@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Application.BE
 {
-    public class UsuarioBE : IEntity
+    public class User : IEntity, IUser
     {
         private Guid guid;
         public Guid Guid { get { return guid; } set { guid = value; } }
@@ -33,12 +33,12 @@ namespace Application.BE
         private string _password;
         public string Password { get { return _password; } set { _password = value; } }
 
-        private Rol _rol;
-        public Rol Rol { get { return _rol; } set { _rol = value; } }
+        private Role _rol;
+        public Role Rol { get { return _rol; } set { _rol = value; } }
 
         public string FullName { get { return $"{_apellido}, {_nombre}"; } }
 
-        public List<Componente> Permisos { get; set; }
+        public List<Component> Permisos { get; set; }
 
     }
 }

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Application.Services
 {
-    public class Encriptacion
+    public class Encrypt
     {
         public static string GetSHA256(string str)
         {

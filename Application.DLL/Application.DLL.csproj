@@ -42,7 +42,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DBAccess.cs" />
-    <Compile Include="mapper_Usuario.cs" />
+    <Compile Include="mapper_Permission.cs" />
+    <Compile Include="mapper_User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

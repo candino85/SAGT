@@ -13,9 +13,9 @@ namespace Application.DLL
     {
         readonly DBAccess accesso = new DBAccess();
 
-        public UsuarioBE GetUsuarioByLoginnamePassword(string loginname, string password)
+        public User GetUsuarioByLoginnamePassword(string loginname, string password)
         {
-            UsuarioBE usuario = new UsuarioBE();
+            User usuario = new User();
             SqlParameter[] parameters = new SqlParameter[2];
             parameters[0] = new SqlParameter("@loginname", loginname);
             parameters[1] = new SqlParameter("@password", password);
@@ -32,9 +32,9 @@ namespace Application.DLL
             return usuario;
         }
 
-        public UsuarioBE GetUsuarioById(int id)
+        public User GetUsuarioById(int id)
         {
-            BE.UsuarioBE usuario = new UsuarioBE();
+            BE.User usuario = new User();
             SqlParameter[] parametro = new SqlParameter[1];
             parametro[0] = new SqlParameter("@id", id);
 
@@ -49,7 +49,7 @@ namespace Application.DLL
             return usuario;
         }
 
-        public int Crear(UsuarioBE usuario)
+        public int Crear(User usuario)
         {
             SqlParameter[] parametros = new SqlParameter[5];
             parametros[0] = new SqlParameter("Nombre",usuario.Nombre);
@@ -61,7 +61,7 @@ namespace Application.DLL
             return accesso.Escribir("UsuarioCrear", parametros);
         }
 
-        public int Modificar(UsuarioBE usuario)
+        public int Modificar(User usuario)
         {
             SqlParameter[] parametros = new SqlParameter[6];
             parametros[0] = new SqlParameter("Id", usuario.Id); 
@@ -82,14 +82,14 @@ namespace Application.DLL
             return accesso.Escribir("UsuarioEliminar", parametro);
         }
 
-        public List<UsuarioBE> Listar()
+        public List<User> Listar()
         {
-            List<UsuarioBE> listaUsuarios = new List<UsuarioBE>();
+            List<User> listaUsuarios = new List<User>();
             DataTable dataTable = accesso.Leer("UsuarioListar", null);
 
             foreach (DataRow row in dataTable.Rows)
             {
-                UsuarioBE usuario = new UsuarioBE
+                User usuario = new User
                 {
                     Id = int.Parse(row["id"].ToString()),
                     DNI = row["dni"].ToString(),

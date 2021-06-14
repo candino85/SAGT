@@ -21,7 +21,7 @@ namespace Application.UI
         {
             InitializeComponent();
             _loginService = new LoginService();
-            txtPassword.IsPassword('*');
+            txtPassword.PasswordChar = '*';
            //_usuarioBE = new BE.Usuario();            
         }
 
@@ -29,7 +29,7 @@ namespace Application.UI
         {
             try
             {
-                _loginService.Login(this.txtUsername.TextBox, this.txtPassword.TextBox);
+                _loginService.Login(this.txtNombreUsuario.Text, this.txtPassword.Text);
                 frmMain frm = (frmMain)this.MdiParent;
                 frm.lblSession.Text = SessionManager.GetInstance.Usuario.LoginName.ToString();
                 frm.ValidarForm();

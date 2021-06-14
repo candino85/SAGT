@@ -9,8 +9,8 @@ using System.Data;
 namespace Application.DLL
 {
     public class DBAccess
-    {        
-        SqlConnection CN = new SqlConnection();        
+    {
+        readonly SqlConnection CN = new SqlConnection();        
 
         private string GetConnectionString()
         {

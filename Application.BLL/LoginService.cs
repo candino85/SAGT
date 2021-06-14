@@ -12,12 +12,12 @@ namespace Application.BLL
     public class LoginService
     {
         private readonly Mapper_Usuario _mapperUsuario;
-        private UsuarioBE _usuario;
+        private BE.User _usuario;
 
         public LoginService()
         {
             _mapperUsuario = new Mapper_Usuario();
-            _usuario = new UsuarioBE();
+            _usuario = new BE.User();
         }
         /// <summary>
         /// El login de usuario se hace contra la base de datos, si es null escala una excepción, sino le asigna uns session
@@ -30,7 +30,7 @@ namespace Application.BLL
 
             try
             {       
-                    _usuario = _mapperUsuario.GetUsuarioByLoginnamePassword(loginname, Encriptacion.GetSHA256(password));
+                    _usuario = _mapperUsuario.GetUsuarioByLoginnamePassword(loginname, Encrypt.GetSHA256(password));
                     if (_usuario.LoginName == null)
                     {
                         throw new Exception("El usuario o contraseña son incorrectos");

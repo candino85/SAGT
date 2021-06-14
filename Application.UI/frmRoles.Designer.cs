@@ -35,10 +35,11 @@ namespace Application.UI
             this.btnAgregar = new System.Windows.Forms.Button();
             this.tvPermisosDisponibles = new System.Windows.Forms.TreeView();
             this.tvPermisosActuales = new System.Windows.Forms.TreeView();
-            this.txtNombreRol = new Application.UI.LabeledTextBox();
             this.btnCrear = new System.Windows.Forms.Button();
             this.btnEditar = new System.Windows.Forms.Button();
             this.btnEliminar = new System.Windows.Forms.Button();
+            this.txtRol = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // lblPermisosDisponibles
@@ -91,15 +92,6 @@ namespace Application.UI
             this.tvPermisosActuales.Size = new System.Drawing.Size(211, 262);
             this.tvPermisosActuales.TabIndex = 28;
             // 
-            // txtNombreRol
-            // 
-            this.txtNombreRol.Location = new System.Drawing.Point(12, 8);
-            this.txtNombreRol.Name = "txtNombreRol";
-            this.txtNombreRol.Size = new System.Drawing.Size(210, 46);
-            this.txtNombreRol.TabIndex = 27;
-            this.txtNombreRol.TextBox = "";
-            this.txtNombreRol.TextLabel = "Nombre Rol";
-            // 
             // btnCrear
             // 
             this.btnCrear.Location = new System.Drawing.Point(228, 8);
@@ -127,11 +119,29 @@ namespace Application.UI
             this.btnEliminar.Text = "Eliminar";
             this.btnEliminar.UseVisualStyleBackColor = true;
             // 
+            // txtRol
+            // 
+            this.txtRol.Location = new System.Drawing.Point(15, 33);
+            this.txtRol.Name = "txtRol";
+            this.txtRol.Size = new System.Drawing.Size(207, 20);
+            this.txtRol.TabIndex = 36;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(12, 17);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(63, 13);
+            this.label1.TabIndex = 37;
+            this.label1.Text = "Nombre Rol";
+            // 
             // frmRoles
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(600, 353);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.txtRol);
             this.Controls.Add(this.btnEliminar);
             this.Controls.Add(this.btnEditar);
             this.Controls.Add(this.lblPermisosDisponibles);
@@ -140,7 +150,6 @@ namespace Application.UI
             this.Controls.Add(this.btnAgregar);
             this.Controls.Add(this.tvPermisosDisponibles);
             this.Controls.Add(this.tvPermisosActuales);
-            this.Controls.Add(this.txtNombreRol);
             this.Controls.Add(this.btnCrear);
             this.Name = "frmRoles";
             this.Text = "frmRoles";
@@ -157,9 +166,10 @@ namespace Application.UI
         private System.Windows.Forms.Button btnAgregar;
         private System.Windows.Forms.TreeView tvPermisosDisponibles;
         private System.Windows.Forms.TreeView tvPermisosActuales;
-        private LabeledTextBox txtNombreRol;
         private System.Windows.Forms.Button btnCrear;
         private System.Windows.Forms.Button btnEditar;
         private System.Windows.Forms.Button btnEliminar;
+        private System.Windows.Forms.TextBox txtRol;
+        private System.Windows.Forms.Label label1;
     }
 }

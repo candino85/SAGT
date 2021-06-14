@@ -41,10 +41,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Componente.cs" />
-    <Compile Include="Permiso.cs" />
-    <Compile Include="Rol.cs" />
-    <Compile Include="UsuarioBE.cs" />
+    <Compile Include="Composite\Component.cs" />
+    <Compile Include="Menu.cs" />
+    <Compile Include="Composite\Permission.cs" />
+    <Compile Include="Composite\Role.cs" />
+    <Compile Include="User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

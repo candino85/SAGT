@@ -10,24 +10,24 @@ using Application.BE;
 
 namespace Application.BLL
 {
-    public class UsuarioBLL
+    public class User
     {
-        UsuarioBE _usuario;
+        BE.User _usuario;
         readonly Mapper_Usuario _mapper;
 
-        public UsuarioBLL()
+        public User()
         {
             _mapper = new Mapper_Usuario();   
         }
 
-        public UsuarioBE GetUsuarioById(int id)
+        public BE.User GetUsuarioById(int id)
         {
-            _usuario = new UsuarioBE();
+            _usuario = new BE.User();
             _usuario = _mapper.GetUsuarioById(id);
             return _usuario;
         }
 
-        public bool CrearUsuario(UsuarioBE usuario)
+        public bool CrearUsuario(BE.User usuario)
         {
             int fa = _mapper.Crear(usuario);
             if (fa != 0)
@@ -35,7 +35,7 @@ namespace Application.BLL
             else
                 return false;
         }
-        public bool ModificarUsuario(UsuarioBE usuario)
+        public bool ModificarUsuario(BE.User usuario)
         {
             int fa = _mapper.Modificar(usuario);
             if (fa != 0)
@@ -51,9 +51,9 @@ namespace Application.BLL
             else
                 return false;
         }
-        public List<UsuarioBE> Listar()
+        public List<BE.User> Listar()
         {
-            List<UsuarioBE> listaUsuarios = _mapper.Listar();
+            List<BE.User> listaUsuarios = _mapper.Listar();
             return listaUsuarios;
         }
     }

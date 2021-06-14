@@ -48,7 +48,14 @@ namespace Application.UI
 
         private void aBMUsuariosToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            frmUsuarios frm = new frmUsuarios();
+            frmUser frm = new frmUser();
+            frm.MdiParent = this;
+            frm.Show();
+        }
+
+        private void permisosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmPermission frm = new frmPermission();
             frm.MdiParent = this;
             frm.Show();
         }
