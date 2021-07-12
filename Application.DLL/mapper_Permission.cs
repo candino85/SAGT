@@ -1,6 +1,7 @@
 ﻿using Application.BE;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
@@ -16,12 +17,36 @@ namespace Application.DLL
         {
             SqlParameter[] parametros = new SqlParameter[2];
             parametros[0] = new SqlParameter("Nombre", permiso.Nombre);
-            if (permiso.Padre.Nombre != null)
-                parametros[1] = new SqlParameter("IdPadre", permiso.Padre.Nombre);
-            else
-                parametros[1] = new SqlParameter("IdPadre", DBNull.Value);
+            parametros[1] = new SqlParameter("IdPadre", DBNull.Value);
 
             return accesso.Escribir("PermisoCrear", parametros);
+        }
+        public int Editar(Permission permiso)
+        {
+            SqlParameter[] parametros = new SqlParameter[3];
+            parametros[0] = new SqlParameter("Id", permiso.Id);
+            parametros[1] = new SqlParameter("Nombre", permiso.Nombre);
+            parametros[2] = new SqlParameter("IdPadre", DBNull.Value);
+
+            return accesso.Escribir("PermisoEditar", parametros);
+        }
+        public List<Permission> Listar()
+        {
+            List<Permission> listaPermisos = new List<Permission>();
+            DataTable dataTable = accesso.Leer("PermisosListar", null);
+            Role role = new Role(null, null);
+            foreach (DataRow row in dataTable.Rows)
+            {
+                
+                var Id = int.Parse(row["id"].ToString());
+                var Nombre = row["nombre"].ToString();
+                var Padre = role;
+                Permission permisos = new Permission(Id, Nombre, Padre);
+
+                listaPermisos.Add(permisos);
+            }
+
+            return listaPermisos;
         }
     }
 }

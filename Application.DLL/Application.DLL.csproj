@@ -42,11 +42,18 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DBAccess.cs" />
+    <Compile Include="mapper_Language.cs" />
     <Compile Include="mapper_Permission.cs" />
+    <Compile Include="mapper_Translate.cs" />
     <Compile Include="mapper_User.cs" />
+    <Compile Include="mapper_Word.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Application.ABSTRACTIONS\Application.ABSTRACTIONS.csproj">
+      <Project>{78E7A009-37AD-46E4-B056-E148759518AD}</Project>
+      <Name>Application.ABSTRACTIONS</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Application.BE\Application.BE.csproj">
       <Project>{a914f3cc-6d63-43c7-9ad4-8d738c888416}</Project>
       <Name>Application.BE</Name>

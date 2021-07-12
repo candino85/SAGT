@@ -1,4 +1,5 @@
-﻿using Application.BE;
+﻿using Application.ABSTRACTIONS;
+using Application.BE;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Application.Services
 {
-    public class SessionManager
+    public class SessionManager : ISubject
     {
         private static SessionManager _session = new SessionManager();
         private readonly static object _lock = new Object();
@@ -15,10 +16,12 @@ namespace Application.Services
         public DateTime InicioSesion { get; set; }
         public DateTime FinSesion { get; set; }
         public bool IsLogged { get; private set; }
+        public IList<IObserver> observers { get ; set ; }
 
         private SessionManager()
         {
             IsLogged = false;
+            observers = new List<IObserver>();
         }
 
         public static SessionManager GetInstance
@@ -29,8 +32,8 @@ namespace Application.Services
                     _session = new SessionManager();
                 return _session;
             }
-        }
-       
+        }        
+
         //>> Agregar método para manejar habilitación y desabilitacion de menues segun Rol
         public void Login(User usuario)
         {
@@ -66,6 +69,31 @@ namespace Application.Services
                     throw new Exception("La sesión no se encuentra iniciada");
                 }
             }
+        }      
+
+
+        public void SubscribeObserver(IObserver observer)
+        {
+            observers.Add(observer);
+        }
+
+        public void UnsubscribeObserver(IObserver observer)
+        {
+            observers.Remove(observer);
+        }
+
+        public void NotifyAllObservers(ILanguage language)
+        {
+            foreach (var observer in observers)
+            {
+                observer.NotifyObserver(language);
+            }
+        }
+
+        public void ChangeLanguage(Language language)
+        {
+            Usuario.Idioma = language;
+            NotifyAllObservers(Usuario.Idioma);
         }
     }
 }

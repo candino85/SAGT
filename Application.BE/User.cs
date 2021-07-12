@@ -32,13 +32,10 @@ namespace Application.BE
 
         private string _password;
         public string Password { get { return _password; } set { _password = value; } }
-
         private Role _rol;
         public Role Rol { get { return _rol; } set { _rol = value; } }
-
         public string FullName { get { return $"{_apellido}, {_nombre}"; } }
-
         public List<Component> Permisos { get; set; }
-
+        public Language Idioma { get ; set; }
     }
 }

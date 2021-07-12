@@ -36,11 +36,15 @@ namespace Application.UI
             this.menuLogin = new System.Windows.Forms.ToolStripMenuItem();
             this.menuLogout = new System.Windows.Forms.ToolStripMenuItem();
             this.aBMUsuariosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.loginToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.logoutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.administrarPermisosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.permisosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.rolesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.loginToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.logoutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuLanguage = new System.Windows.Forms.ToolStripMenuItem();
+            this.españolToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.englishToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip.SuspendLayout();
             this.menu.SuspendLayout();
             this.SuspendLayout();
@@ -53,7 +57,8 @@ namespace Application.UI
             this.statusStrip.Name = "statusStrip";
             this.statusStrip.Size = new System.Drawing.Size(1044, 22);
             this.statusStrip.TabIndex = 2;
-            this.statusStrip.Text = "statusStrip1";
+            this.statusStrip.Tag = "Estado";
+            this.statusStrip.Text = "Estado";
             // 
             // lblSession
             // 
@@ -71,28 +76,31 @@ namespace Application.UI
             this.menu.Name = "menu";
             this.menu.Size = new System.Drawing.Size(1044, 24);
             this.menu.TabIndex = 4;
-            this.menu.Text = "menuStrip1";
+            this.menu.Tag = "Menu";
+            this.menu.Text = "Menu";
             // 
             // Sesion
             // 
             this.Sesion.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.menuLogin,
-            this.menuLogout});
+            this.menuLogout,
+            this.toolStripMenuItem1});
             this.Sesion.Name = "Sesion";
             this.Sesion.Size = new System.Drawing.Size(53, 20);
+            this.Sesion.Tag = "Sesion";
             this.Sesion.Text = "Sesion";
             // 
             // menuLogin
             // 
             this.menuLogin.Name = "menuLogin";
-            this.menuLogin.Size = new System.Drawing.Size(112, 22);
+            this.menuLogin.Size = new System.Drawing.Size(180, 22);
             this.menuLogin.Text = "Login";
             this.menuLogin.Click += new System.EventHandler(this.menuLogin_Click);
             // 
             // menuLogout
             // 
             this.menuLogout.Name = "menuLogout";
-            this.menuLogout.Size = new System.Drawing.Size(112, 22);
+            this.menuLogout.Size = new System.Drawing.Size(180, 22);
             this.menuLogout.Text = "Logout";
             this.menuLogout.Click += new System.EventHandler(this.menuLogout_Click);
             // 
@@ -100,8 +108,33 @@ namespace Application.UI
             // 
             this.aBMUsuariosToolStripMenuItem.Name = "aBMUsuariosToolStripMenuItem";
             this.aBMUsuariosToolStripMenuItem.Size = new System.Drawing.Size(129, 20);
+            this.aBMUsuariosToolStripMenuItem.Tag = "AdministrarUsuarios";
             this.aBMUsuariosToolStripMenuItem.Text = "Administrar Usuarios";
             this.aBMUsuariosToolStripMenuItem.Click += new System.EventHandler(this.aBMUsuariosToolStripMenuItem_Click);
+            // 
+            // administrarPermisosToolStripMenuItem
+            // 
+            this.administrarPermisosToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.permisosToolStripMenuItem,
+            this.rolesToolStripMenuItem});
+            this.administrarPermisosToolStripMenuItem.Name = "administrarPermisosToolStripMenuItem";
+            this.administrarPermisosToolStripMenuItem.Size = new System.Drawing.Size(132, 20);
+            this.administrarPermisosToolStripMenuItem.Tag = "AdministrarPermisos";
+            this.administrarPermisosToolStripMenuItem.Text = "Administrar Permisos";
+            // 
+            // permisosToolStripMenuItem
+            // 
+            this.permisosToolStripMenuItem.Name = "permisosToolStripMenuItem";
+            this.permisosToolStripMenuItem.Size = new System.Drawing.Size(122, 22);
+            this.permisosToolStripMenuItem.Text = "Permisos";
+            this.permisosToolStripMenuItem.Click += new System.EventHandler(this.permisosToolStripMenuItem_Click);
+            // 
+            // rolesToolStripMenuItem
+            // 
+            this.rolesToolStripMenuItem.Name = "rolesToolStripMenuItem";
+            this.rolesToolStripMenuItem.Size = new System.Drawing.Size(122, 22);
+            this.rolesToolStripMenuItem.Text = "Roles";
+            this.rolesToolStripMenuItem.Click += new System.EventHandler(this.rolesToolStripMenuItem_Click);
             // 
             // loginToolStripMenuItem
             // 
@@ -115,27 +148,31 @@ namespace Application.UI
             this.logoutToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.logoutToolStripMenuItem.Text = "Logout";
             // 
-            // administrarPermisosToolStripMenuItem
+            // menuLanguage
             // 
-            this.administrarPermisosToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.permisosToolStripMenuItem,
-            this.rolesToolStripMenuItem});
-            this.administrarPermisosToolStripMenuItem.Name = "administrarPermisosToolStripMenuItem";
-            this.administrarPermisosToolStripMenuItem.Size = new System.Drawing.Size(132, 20);
-            this.administrarPermisosToolStripMenuItem.Text = "Administrar Permisos";
+            this.menuLanguage.Name = "menuLanguage";
+            this.menuLanguage.Size = new System.Drawing.Size(180, 22);
+            this.menuLanguage.Text = "Language";
             // 
-            // permisosToolStripMenuItem
+            // españolToolStripMenuItem
             // 
-            this.permisosToolStripMenuItem.Name = "permisosToolStripMenuItem";
-            this.permisosToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.permisosToolStripMenuItem.Text = "Permisos";
-            this.permisosToolStripMenuItem.Click += new System.EventHandler(this.permisosToolStripMenuItem_Click);
+            this.españolToolStripMenuItem.Name = "españolToolStripMenuItem";
+            this.españolToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.españolToolStripMenuItem.Text = "Español";
+            this.españolToolStripMenuItem.Click += new System.EventHandler(this.españolToolStripMenuItem_Click);
             // 
-            // rolesToolStripMenuItem
+            // englishToolStripMenuItem
             // 
-            this.rolesToolStripMenuItem.Name = "rolesToolStripMenuItem";
-            this.rolesToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.rolesToolStripMenuItem.Text = "Roles";
+            this.englishToolStripMenuItem.Name = "englishToolStripMenuItem";
+            this.englishToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.englishToolStripMenuItem.Text = "English";
+            this.englishToolStripMenuItem.Click += new System.EventHandler(this.englishToolStripMenuItem_Click);
+            // 
+            // toolStripMenuItem1
+            // 
+            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
+            this.toolStripMenuItem1.Text = "Language";
             // 
             // frmMain
             // 
@@ -148,8 +185,9 @@ namespace Application.UI
             this.MainMenuStrip = this.menu;
             this.Name = "frmMain";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Form1";
+            this.Text = "Main";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            this.Load += new System.EventHandler(this.frmMain_Load);
             this.statusStrip.ResumeLayout(false);
             this.statusStrip.PerformLayout();
             this.menu.ResumeLayout(false);
@@ -172,6 +210,10 @@ namespace Application.UI
         private System.Windows.Forms.ToolStripMenuItem administrarPermisosToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem permisosToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem rolesToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem menuLanguage;
+        private System.Windows.Forms.ToolStripMenuItem españolToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem englishToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
     }
 }
 

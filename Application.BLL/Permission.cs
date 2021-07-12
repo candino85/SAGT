@@ -25,5 +25,21 @@ namespace Application.BLL
             else
                 return false;
         }
+
+        public bool EditarPermiso(BE.Permission permiso)
+        {
+            int fa = _mapper.Editar(permiso);
+            if (fa != 0)
+                return true;
+            else
+                return false;
+        }
+
+        public List<BE.Permission> Listar()
+        {
+            List<BE.Permission> permisos = _mapper.Listar();
+            return permisos;
+        }
+
     }
 }

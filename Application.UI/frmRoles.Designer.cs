@@ -153,6 +153,7 @@ namespace Application.UI
             this.Controls.Add(this.btnCrear);
             this.Name = "frmRoles";
             this.Text = "frmRoles";
+            this.Load += new System.EventHandler(this.frmRoles_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

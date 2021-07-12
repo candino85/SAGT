@@ -39,7 +39,7 @@ namespace Application.UI
             // 
             // btnEliminar
             // 
-            this.btnEliminar.Location = new System.Drawing.Point(229, 43);
+            this.btnEliminar.Location = new System.Drawing.Point(229, 80);
             this.btnEliminar.Name = "btnEliminar";
             this.btnEliminar.Size = new System.Drawing.Size(146, 30);
             this.btnEliminar.TabIndex = 40;

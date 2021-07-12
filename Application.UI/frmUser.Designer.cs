@@ -57,6 +57,7 @@ namespace Application.UI
             this.dgvUsuarios.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvUsuarios.Size = new System.Drawing.Size(453, 229);
             this.dgvUsuarios.TabIndex = 5;
+            this.dgvUsuarios.Tag = "Grilla";
             this.dgvUsuarios.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvUsuarios_CellClick);
             // 
             // btnCrear
@@ -65,6 +66,7 @@ namespace Application.UI
             this.btnCrear.Name = "btnCrear";
             this.btnCrear.Size = new System.Drawing.Size(75, 23);
             this.btnCrear.TabIndex = 6;
+            this.btnCrear.Tag = "Crear";
             this.btnCrear.Text = "Crear";
             this.btnCrear.UseVisualStyleBackColor = true;
             this.btnCrear.Click += new System.EventHandler(this.btnCrear_Click);
@@ -75,6 +77,7 @@ namespace Application.UI
             this.btnEliminar.Name = "btnEliminar";
             this.btnEliminar.Size = new System.Drawing.Size(75, 23);
             this.btnEliminar.TabIndex = 7;
+            this.btnEliminar.Tag = "Eliminar";
             this.btnEliminar.Text = "Eliminar";
             this.btnEliminar.UseVisualStyleBackColor = true;
             this.btnEliminar.Click += new System.EventHandler(this.btnEliminar_Click);
@@ -85,6 +88,7 @@ namespace Application.UI
             this.btnEditar.Name = "btnEditar";
             this.btnEditar.Size = new System.Drawing.Size(75, 23);
             this.btnEditar.TabIndex = 8;
+            this.btnEditar.Tag = "Editar";
             this.btnEditar.Text = "Editar";
             this.btnEditar.UseVisualStyleBackColor = true;
             this.btnEditar.Click += new System.EventHandler(this.btnEditar_Click);
@@ -103,6 +107,7 @@ namespace Application.UI
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(26, 13);
             this.label1.TabIndex = 10;
+            this.label1.Tag = "DNI";
             this.label1.Text = "DNI";
             // 
             // label2
@@ -112,6 +117,7 @@ namespace Application.UI
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(44, 13);
             this.label2.TabIndex = 12;
+            this.label2.Tag = "Nombre";
             this.label2.Text = "Nombre";
             // 
             // txtNombre
@@ -128,6 +134,7 @@ namespace Application.UI
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(44, 13);
             this.label3.TabIndex = 14;
+            this.label3.Tag = "Apellido";
             this.label3.Text = "Apellido";
             // 
             // txtApellido
@@ -142,9 +149,10 @@ namespace Application.UI
             this.label4.AutoSize = true;
             this.label4.Location = new System.Drawing.Point(12, 139);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(96, 13);
+            this.label4.Size = new System.Drawing.Size(83, 13);
             this.label4.TabIndex = 16;
-            this.label4.Text = "Nombre de usuario";
+            this.label4.Tag = "NombreUsuario";
+            this.label4.Text = "Nombre Usuario";
             // 
             // txtNombreUsuario
             // 
@@ -160,6 +168,7 @@ namespace Application.UI
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(53, 13);
             this.label5.TabIndex = 18;
+            this.label5.Tag = "Password";
             this.label5.Text = "Password";
             // 
             // txtPassword
@@ -189,7 +198,8 @@ namespace Application.UI
             this.Controls.Add(this.btnCrear);
             this.Controls.Add(this.dgvUsuarios);
             this.Name = "frmUser";
-            this.Text = "frmABM_Usuarios";
+            this.Text = "Usuarios";
+            this.Load += new System.EventHandler(this.frmUser_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvUsuarios)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

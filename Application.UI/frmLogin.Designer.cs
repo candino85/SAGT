@@ -48,7 +48,7 @@ namespace Application.UI
             // 
             // txtNombreUsuario
             // 
-            this.txtNombreUsuario.Location = new System.Drawing.Point(12, 22);
+            this.txtNombreUsuario.Location = new System.Drawing.Point(12, 31);
             this.txtNombreUsuario.Name = "txtNombreUsuario";
             this.txtNombreUsuario.Size = new System.Drawing.Size(186, 20);
             this.txtNombreUsuario.TabIndex = 3;
@@ -56,7 +56,7 @@ namespace Application.UI
             // 
             // txtPassword
             // 
-            this.txtPassword.Location = new System.Drawing.Point(12, 66);
+            this.txtPassword.Location = new System.Drawing.Point(12, 75);
             this.txtPassword.Name = "txtPassword";
             this.txtPassword.Size = new System.Drawing.Size(186, 20);
             this.txtPassword.TabIndex = 4;
@@ -65,16 +65,17 @@ namespace Application.UI
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(9, 6);
+            this.label1.Location = new System.Drawing.Point(9, 15);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(96, 13);
             this.label1.TabIndex = 5;
+            this.label1.Tag = "NombreUsuario";
             this.label1.Text = "Nombre de usuario";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(9, 50);
+            this.label2.Location = new System.Drawing.Point(9, 59);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(53, 13);
             this.label2.TabIndex = 6;

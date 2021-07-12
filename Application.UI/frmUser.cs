@@ -1,10 +1,11 @@
-﻿using Application.Services;
+﻿using Application.ABSTRACTIONS;
+using Application.Services;
 using System;
 using System.Windows.Forms;
 
 namespace Application.UI
 {
-    public partial class frmUser : Form
+    public partial class frmUser : Form, IObserver
     {
         BE.User usuario_BE;
         BLL.User usuario_BLL;
@@ -96,6 +97,21 @@ namespace Application.UI
             txtApellido.Text = usuario_BE.Apellido;
             txtNombreUsuario.Text = usuario_BE.LoginName;
             txtPassword.Text = usuario_BE.Password;
+        }
+
+        public void NotifyObserver(ILanguage languageObserver)
+        {
+            foreach (Control control in this.Controls)
+            {
+                if (!string.IsNullOrEmpty(control.Text))
+                    control.Text = languageObserver.SearchTranslate(control.Tag.ToString());
+            }
+        }
+
+        private void frmUser_Load(object sender, EventArgs e)
+        {
+            if (SessionManager.GetInstance.IsLogged)
+                NotifyObserver(SessionManager.GetInstance.Usuario.Idioma);
         }
     }
 }

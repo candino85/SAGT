@@ -18,12 +18,15 @@ namespace Application.UI
         BE.Role _role;
         BLL.Permission _permisoBLL;
 
+        List<BE.Permission> permisos = new List<Permission>();
         public frmPermission()
         {
             InitializeComponent();
             //_listaPermisos = new List<Permission>();
             _permisoBLL = new BLL.Permission();
             _role = new Role(null, null);
+
+            CargarTreeView();
         }
 
         void LimpiarTreeView()
@@ -57,12 +60,36 @@ namespace Application.UI
         }
 
         private void btnGuardar_Click(object sender, EventArgs e)
-        {
-            List<BE.Component> permisos = _role.GetHijos().ToList();
+        {          
+            bool operation;
             foreach (Permission p in permisos)
             {
-                _permisoBLL.CrearPermiso(p);              
+                if (!tvPermisos.Nodes.ContainsKey(p.Nombre))
+                {
+                    operation = _permisoBLL.EditarPermiso(p);
+                    if (!operation)
+                        throw new Exception($"Error al editar permiso {p.Nombre}");
+                }
+                else
+                {
+                    operation = _permisoBLL.CrearPermiso(p);
+                    if (!operation)
+                        throw new Exception($"Error al crear permiso {p.Nombre}");
+                }
+            }
+            CargarTreeView();
+        }
+
+        private void CargarTreeView()
+        {
+            tvPermisos.Nodes.Clear();
+            permisos = _permisoBLL.Listar();
+            foreach (Permission p in permisos)
+            {
+                tvPermisos.Nodes.Add(p.Nombre);
             }
         }
     }
+
+
 }

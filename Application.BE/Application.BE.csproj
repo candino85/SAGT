@@ -33,6 +33,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -42,9 +43,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Composite\Component.cs" />
+    <Compile Include="Entity.cs" />
     <Compile Include="Menu.cs" />
     <Compile Include="Composite\Permission.cs" />
     <Compile Include="Composite\Role.cs" />
+    <Compile Include="MultiLanguage\Language.cs" />
+    <Compile Include="MultiLanguage\Translate.cs" />
+    <Compile Include="MultiLanguage\Word.cs" />
     <Compile Include="User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -54,5 +59,6 @@
       <Name>Application.ABSTRACTIONS</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
