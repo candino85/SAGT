@@ -1,4 +1,5 @@
 ﻿using Application.ABSTRACTIONS;
+using Application.BE;
 using Application.Services;
 using System;
 using System.Windows.Forms;
@@ -9,6 +10,9 @@ namespace Application.UI
     {
         BE.User usuario_BE;
         BLL.User usuario_BLL;
+        
+        BE.Language idioma_BE;
+        BLL.Language idioma_BLL;
         public frmUser()
         {
             InitializeComponent();
@@ -17,6 +21,9 @@ namespace Application.UI
 
             usuario_BLL = new BLL.User();
             usuario_BE = new BE.User();
+
+            idioma_BLL = new BLL.Language();
+            idioma_BE = new BE.Language();
             Enlazar();
         }
 
@@ -101,10 +108,14 @@ namespace Application.UI
 
         public void NotifyObserver(ILanguage languageObserver)
         {
+            // tengo que traer las traducciones para el idioma seteado del usuario
+            idioma_BE = idioma_BLL.GetLanguage(languageObserver.Name);
+
             foreach (Control control in this.Controls)
             {
                 if (!string.IsNullOrEmpty(control.Text))
-                    control.Text = languageObserver.SearchTranslate(control.Tag.ToString());
+                    control.Text = idioma_BE.SearchTranslate(control.Tag.ToString());
+                    //control.Text = languageObserver.SearchTranslate(control.Tag.ToString());
             }
         }
 

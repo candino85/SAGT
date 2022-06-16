@@ -42,7 +42,7 @@ namespace Application.UI
                 frmMain frm = (frmMain)this.MdiParent;
                 //
                 //SessionManager.GetInstance.SubscribeObserver(frm);
-                
+                // setear idioma del usuario
                 //
                 frm.lblSession.Text = SessionManager.GetInstance.Usuario.LoginName.ToString();
                 frm.ValidarForm();

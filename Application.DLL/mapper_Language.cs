@@ -57,5 +57,26 @@ namespace Application.DLL
 
             return language;
         }
+
+        public BE.Language GetLanguage(int idLanguage)
+        {
+            BE.Language language = new Language();
+
+            SqlParameter[] parameter = new SqlParameter[1];
+            parameter[0] = new SqlParameter("@id", idLanguage);
+            DataTable dataTable = accesso.Leer("IdiomaGetById", parameter);
+
+            if (dataTable.Rows != null)
+            {
+                foreach (DataRow row in dataTable.Rows)
+                {
+                    language.Id = int.Parse(row["id"].ToString());
+                    language.Name = row["idioma"].ToString();
+                }
+            }
+            else
+                throw new Exception("Idioma invalido");
+            return language;
+        }
     }
 }

@@ -36,6 +36,9 @@ namespace Application.BE
         public Role Rol { get { return _rol; } set { _rol = value; } }
         public string FullName { get { return $"{_apellido}, {_nombre}"; } }
         public List<Component> Permisos { get; set; }
-        public Language Idioma { get ; set; }
+
+        private Language _idioma;
+        public Language Idioma { get { return _idioma; } set { _idioma = value; } }
+
     }
 }

@@ -12,7 +12,7 @@ namespace Application.DLL
     public class Mapper_Usuario
     {
         readonly DBAccess accesso = new DBAccess();
-
+        readonly mapper_Language mapper_Language = new mapper_Language();
         public User GetUsuarioByLoginnamePassword(string loginname, string password)
         {
             User usuario = new User();
@@ -25,9 +25,10 @@ namespace Application.DLL
                 usuario.Id = int.Parse(row["id"].ToString());
                 usuario.DNI = row["dni"].ToString();
                 usuario.Nombre = row["nombre"].ToString();
-                usuario.Nombre = row["apellido"].ToString();
-                usuario.LoginName = row["Loginname"].ToString();
-                usuario.Password = row["Password"].ToString();
+                usuario.Apellido = row["apellido"].ToString();
+                usuario.LoginName = row["loginname"].ToString();
+                usuario.Password = row["password"].ToString();
+                usuario.Idioma = mapper_Language.GetLanguage(int.Parse(row["idioma"].ToString()));
             }
             return usuario;
         }
@@ -45,31 +46,37 @@ namespace Application.DLL
                 usuario.Nombre = row["Name"].ToString();
                 usuario.LoginName = row["Loginname"].ToString();
                 usuario.Password = row["Password"].ToString();
+                usuario.Idioma = mapper_Language.GetLanguage(row["Idioma"].ToString());
+                //usuario.Guid = row["Guid"];
             }
             return usuario;
         }
 
         public int Crear(User usuario)
         {
-            SqlParameter[] parametros = new SqlParameter[5];
+            SqlParameter[] parametros = new SqlParameter[6];
             parametros[0] = new SqlParameter("Nombre",usuario.Nombre);
             parametros[1] = new SqlParameter("Apellido",usuario.Apellido);
             parametros[2] = new SqlParameter("DNI",usuario.DNI);
             parametros[3] = new SqlParameter("Loginname",usuario.LoginName);
             parametros[4] = new SqlParameter("Password",usuario.Password);
+            parametros[6] = new SqlParameter("Idioma", usuario.Idioma.Id); 
+            //parametros[7] = new SqlParameter("Guid", usuario.Guid);
 
             return accesso.Escribir("UsuarioCrear", parametros);
         }
 
         public int Modificar(User usuario)
         {
-            SqlParameter[] parametros = new SqlParameter[6];
+            SqlParameter[] parametros = new SqlParameter[7];
             parametros[0] = new SqlParameter("Id", usuario.Id); 
             parametros[1] = new SqlParameter("DNI", usuario.DNI);
             parametros[2] = new SqlParameter("Nombre", usuario.Nombre); 
             parametros[3] = new SqlParameter("Apellido", usuario.Apellido); 
             parametros[4] = new SqlParameter("Loginname", usuario.LoginName); 
             parametros[5] = new SqlParameter("Password", usuario.Password);
+            parametros[6] = new SqlParameter("Idioma", usuario.Idioma.Id);
+            //parametros[7] = new SqlParameter("Guid", usuario.Guid); 
 
             return accesso.Escribir("UsuarioModificar", parametros);
         }

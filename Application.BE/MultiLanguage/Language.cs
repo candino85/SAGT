@@ -9,8 +9,20 @@ namespace Application.BE
 {
     public class Language : IEntity, ILanguage
     {
-        public int Id { get ; set ; }
-        public string Name { get; set; }
+        private int _id;
+        public int Id
+        {
+            get { return _id; }
+            set { _id = value; }
+        }
+
+        private string _name;
+        public string Name
+        {
+            get { return _name; }
+            set { _name = value; }
+        }
+
         public IList<ITranslate> Translates { get ; set ; }
 
         public Language()
@@ -22,9 +34,15 @@ namespace Application.BE
             Translates.Add(translate);
         }
 
+
         public string SearchTranslate(string text)
         {
-            return Translates.FirstOrDefault(x => x.Word.Text == text).TranslatedWord;
+            if (!string.IsNullOrEmpty(Translates.FirstOrDefault(x => x.Word.Text == text).TranslatedWord))
+            {
+                return Translates.FirstOrDefault(x => x.Word.Text == text).TranslatedWord;
+            }
+            else
+                return text;
         }
     }
 }
