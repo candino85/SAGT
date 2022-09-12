@@ -34,12 +34,12 @@ namespace Application.BE
             Translates.Add(translate);
         }
 
-
         public string SearchTranslate(string text)
         {
-            if (!string.IsNullOrEmpty(Translates.FirstOrDefault(x => x.Word.Text == text).TranslatedWord))
+            string translate = Translates.FirstOrDefault(x => x.Word.Text == text).TranslatedWord;
+            if (!string.IsNullOrEmpty(translate))
             {
-                return Translates.FirstOrDefault(x => x.Word.Text == text).TranslatedWord;
+                return translate;
             }
             else
                 return text;

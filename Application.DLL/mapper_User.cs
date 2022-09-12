@@ -19,7 +19,7 @@ namespace Application.DLL
             SqlParameter[] parameters = new SqlParameter[2];
             parameters[0] = new SqlParameter("@loginname", loginname);
             parameters[1] = new SqlParameter("@password", password);
-            DataTable dataTable = accesso.Leer("UsuarioGetByLoginnamePassword", parameters);
+            DataTable dataTable = accesso.Read("UsuarioGetByLoginnamePassword", parameters);
             foreach (DataRow row in dataTable.Rows)
             {
                 usuario.Id = int.Parse(row["id"].ToString());
@@ -39,7 +39,7 @@ namespace Application.DLL
             SqlParameter[] parametro = new SqlParameter[1];
             parametro[0] = new SqlParameter("@id", id);
 
-            DataTable dataTable = accesso.Leer("UsuarioGetById", parametro);
+            DataTable dataTable = accesso.Read("UsuarioGetById", parametro);
             foreach (DataRow row in dataTable.Rows)
             {
                 usuario.Id = int.Parse(row["Id"].ToString());
@@ -52,47 +52,47 @@ namespace Application.DLL
             return usuario;
         }
 
-        public int Crear(User usuario)
+        public int Create(User usuario)
         {
-            SqlParameter[] parametros = new SqlParameter[6];
+            SqlParameter[] parametros = new SqlParameter[5];
             parametros[0] = new SqlParameter("Nombre",usuario.Nombre);
             parametros[1] = new SqlParameter("Apellido",usuario.Apellido);
             parametros[2] = new SqlParameter("DNI",usuario.DNI);
             parametros[3] = new SqlParameter("Loginname",usuario.LoginName);
             parametros[4] = new SqlParameter("Password",usuario.Password);
-            parametros[6] = new SqlParameter("Idioma", usuario.Idioma.Id); 
+            //parametros[6] = new SqlParameter("Idioma", usuario.Idioma.Id); 
             //parametros[7] = new SqlParameter("Guid", usuario.Guid);
 
-            return accesso.Escribir("UsuarioCrear", parametros);
+            return accesso.Write("UsuarioCrear", parametros);
         }
 
-        public int Modificar(User usuario)
+        public int Update(User usuario)
         {
-            SqlParameter[] parametros = new SqlParameter[7];
+            SqlParameter[] parametros = new SqlParameter[6];
             parametros[0] = new SqlParameter("Id", usuario.Id); 
             parametros[1] = new SqlParameter("DNI", usuario.DNI);
             parametros[2] = new SqlParameter("Nombre", usuario.Nombre); 
             parametros[3] = new SqlParameter("Apellido", usuario.Apellido); 
             parametros[4] = new SqlParameter("Loginname", usuario.LoginName); 
             parametros[5] = new SqlParameter("Password", usuario.Password);
-            parametros[6] = new SqlParameter("Idioma", usuario.Idioma.Id);
+            //parametros[6] = new SqlParameter("Idioma", usuario.Idioma.Id);
             //parametros[7] = new SqlParameter("Guid", usuario.Guid); 
 
-            return accesso.Escribir("UsuarioModificar", parametros);
+            return accesso.Write("UsuarioModificar", parametros);
         }
 
-        public int Eliminar(int id)
+        public int Remove(int id)
         {
             SqlParameter[] parametro = new SqlParameter[1];
             parametro[0] = new SqlParameter("Id", id);
             
-            return accesso.Escribir("UsuarioEliminar", parametro);
+            return accesso.Write("UsuarioEliminar", parametro);
         }
 
-        public List<User> Listar()
+        public List<User> List()
         {
             List<User> listaUsuarios = new List<User>();
-            DataTable dataTable = accesso.Leer("UsuarioListar", null);
+            DataTable dataTable = accesso.Read("UsuarioListar", null);
 
             foreach (DataRow row in dataTable.Rows)
             {

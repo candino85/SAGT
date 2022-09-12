@@ -19,7 +19,7 @@ namespace Application.DLL
             parametros[0] = new SqlParameter("Nombre", permiso.Nombre);
             parametros[1] = new SqlParameter("IdPadre", DBNull.Value);
 
-            return accesso.Escribir("PermisoCrear", parametros);
+            return accesso.Write("PermisoCrear", parametros);
         }
         public int Editar(Permission permiso)
         {
@@ -28,12 +28,12 @@ namespace Application.DLL
             parametros[1] = new SqlParameter("Nombre", permiso.Nombre);
             parametros[2] = new SqlParameter("IdPadre", DBNull.Value);
 
-            return accesso.Escribir("PermisoEditar", parametros);
+            return accesso.Write("PermisoEditar", parametros);
         }
         public List<Permission> Listar()
         {
             List<Permission> listaPermisos = new List<Permission>();
-            DataTable dataTable = accesso.Leer("PermisosListar", null);
+            DataTable dataTable = accesso.Read("PermisosListar", null);
             Role role = new Role(null, null);
             foreach (DataRow row in dataTable.Rows)
             {

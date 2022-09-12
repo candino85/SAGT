@@ -14,7 +14,7 @@ namespace Application.DLL
         public List<BE.Word> GetWords()
         {
             List<BE.Word> words = new List<BE.Word>();
-            DataTable dataTable = accesso.Leer("PalabraListar", null);
+            DataTable dataTable = accesso.Read("PalabraListar", null);
 
             foreach (DataRow row in dataTable.Rows)
             {

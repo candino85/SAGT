@@ -98,7 +98,7 @@ namespace Application.UI
                 _languageBE = _languageBLL.GetLanguage(sender.ToString());
                 
                 SessionManager.GetInstance.Usuario.Idioma = _languageBE;
-                _user.ModificarUsuario(SessionManager.GetInstance.Usuario);
+                _user.UserUpdate(SessionManager.GetInstance.Usuario);
                 
                 NotifyObserver(SessionManager.GetInstance.Usuario.Idioma);
 
@@ -135,13 +135,6 @@ namespace Application.UI
             ValidarForm();
         }
 
-        private void aBMUsuariosToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            frmUser frm = new frmUser();
-            frm.MdiParent = this;
-            frm.Show();
-        }
-
         private void permisosToolStripMenuItem_Click(object sender, EventArgs e)
         {
             frmPermission frm = new frmPermission();
@@ -154,6 +147,19 @@ namespace Application.UI
             frmRoles frm = new frmRoles();
             frm.MdiParent = this;
             frm.Show();
+        }
+
+        private void usuariosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+            frmUsersList frm = new frmUsersList();
+            frm.MdiParent = this;
+            frm.Show();
+        }
+
+        private void entidadesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
         }
 
         //private void españolToolStripMenuItem_Click(object sender, EventArgs e)

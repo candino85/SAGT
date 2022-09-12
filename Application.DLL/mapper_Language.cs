@@ -15,7 +15,7 @@ namespace Application.DLL
         public List<BE.Language> Listar()
         {
             List<BE.Language> listaLanguage= new List<BE.Language>();
-            DataTable dataTable = accesso.Leer("IdiomaListar", null);
+            DataTable dataTable = accesso.Read("IdiomaListar", null);
 
             foreach (DataRow row in dataTable.Rows)
             {
@@ -42,7 +42,7 @@ namespace Application.DLL
 
             SqlParameter[] parameter = new SqlParameter[1];
             parameter[0] = new SqlParameter("@idioma", nombre);
-            DataTable dataTable = accesso.Leer("IdiomaGet", parameter);
+            DataTable dataTable = accesso.Read("IdiomaGet", parameter);
 
             if (dataTable.Rows != null)
             {
@@ -64,7 +64,7 @@ namespace Application.DLL
 
             SqlParameter[] parameter = new SqlParameter[1];
             parameter[0] = new SqlParameter("@id", idLanguage);
-            DataTable dataTable = accesso.Leer("IdiomaGetById", parameter);
+            DataTable dataTable = accesso.Read("IdiomaGetById", parameter);
 
             if (dataTable.Rows != null)
             {

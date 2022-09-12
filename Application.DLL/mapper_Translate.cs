@@ -19,7 +19,7 @@ namespace Application.DLL
             SqlParameter[] parameter = new SqlParameter[1];
             parameter[0] = new SqlParameter("@ididioma", language);
 
-            DataTable dataTable = accesso.Leer("TraduccionGet", parameter);
+            DataTable dataTable = accesso.Read("TraduccionGet", parameter);
 
             foreach (DataRow row in dataTable.Rows)
             {

@@ -6,104 +6,96 @@ using System.Windows.Forms;
 
 namespace Application.UI
 {
-    public partial class frmUser : Form, IObserver
+    public partial class frmUser : Form/*, IObserver*/
     {
         BE.User usuario_BE;
         BLL.User usuario_BLL;
-        
+
         BE.Language idioma_BE;
         BLL.Language idioma_BLL;
-        public frmUser()
+
+        private frmUsersList _frmUsersList;
+
+        public frmUser(frmUsersList frmUsersList)
         {
             InitializeComponent();
-
-            txtPassword.PasswordChar = '*';
+            _frmUsersList = frmUsersList;
 
             usuario_BLL = new BLL.User();
-            usuario_BE = new BE.User();
 
-            idioma_BLL = new BLL.Language();
-            idioma_BE = new BE.Language();
-            Enlazar();
+            txtPassword.PasswordChar = '*';
+            btnUpdateUsers.Enabled = false;
+            
+            ComboLanguageLoad();
         }
 
-        private void btnCrear_Click(object sender, EventArgs e)
+        public frmUser(BE.User usuario, frmUsersList frmUsersList)
+        {
+            InitializeComponent();
+            usuario_BE = usuario;
+
+            _frmUsersList = frmUsersList;
+
+            usuario_BLL = new BLL.User();
+
+            ComboLanguageLoad();
+
+            txtPassword.PasswordChar = '*';
+            btnCreateUser.Enabled = false;
+
+            txtDNI.Text = usuario.DNI;
+            txtNombre.Text = usuario.Nombre;
+            txtApellido.Text = usuario.Apellido;
+            txtNombreUsuario.Text = usuario.LoginName;
+            txtPassword.Text = Encrypt.GetSHA256(usuario.Password);            
+        }        
+
+        private void btnCreateUser_Click(object sender, EventArgs e)
         {
             usuario_BE = new BE.User();
+
             usuario_BE.Nombre = txtNombre.Text;
             usuario_BE.Apellido = txtApellido.Text;
             usuario_BE.DNI = txtDNI.Text;
             usuario_BE.LoginName = txtNombreUsuario.Text;
             usuario_BE.Password = Encrypt.GetSHA256(txtPassword.Text);
 
-            bool operation = usuario_BLL.CrearUsuario(usuario_BE);
-            
+            bool operation = usuario_BLL.UserCreate(usuario_BE);
+
             if (!operation)
                 throw new Exception("Error al crear el usuario");
 
-            LimpiarControles();
-            Enlazar();
+
+            _frmUsersList.Bind();
+            this.Close();
         }
 
-        private void btnEditar_Click(object sender, EventArgs e)
-        {           
-            usuario_BE.DNI = txtDNI.Text;
-            usuario_BE.Nombre = txtNombre.Text;
-            usuario_BE.Apellido = txtApellido.Text;            
-            usuario_BE.LoginName = txtNombreUsuario.Text;
-            usuario_BE.Password = Encrypt.GetSHA256(txtPassword.Text);
-
-            bool operation;
-            operation = usuario_BLL.ModificarUsuario(usuario_BE);
-
-            if (!operation)
-                throw new Exception("Error al modificar el usuario");
-
-            LimpiarControles();
-            Enlazar();
-        }
-
-        private void btnEliminar_Click(object sender, EventArgs e)
+        private void btnUpdateUsers_Click(object sender, EventArgs e)
         {
+            usuario_BE.DNI = txtDNI.Text;
             usuario_BE.Nombre = txtNombre.Text;
             usuario_BE.Apellido = txtApellido.Text;
-            usuario_BE.DNI = txtDNI.Text;
             usuario_BE.LoginName = txtNombreUsuario.Text;
-            usuario_BE.Password = txtPassword.Text;
+            if (txtPassword.Text != usuario_BE.Password)
+                usuario_BE.Password = Encrypt.GetSHA256(txtPassword.Text);
 
-            bool operation = usuario_BLL.EliminarUsuario(usuario_BE.Id);
+            bool operation;
+            operation = usuario_BLL.UserUpdate(usuario_BE);
 
             if (!operation)
                 throw new Exception("Error al modificar el usuario");
 
-            LimpiarControles();
-            Enlazar();
+            _frmUsersList.Bind();
+            this.Close();
         }
 
-        void Enlazar()
+        private void ComboLanguageLoad()
         {
-            dgvUsuarios.DataSource = null;
-            dgvUsuarios.DataSource = usuario_BLL.Listar();            
-        }
-
-        void LimpiarControles()
-        {
-            txtDNI.Text = null;
-            txtNombre.Text = null;
-            txtApellido.Text = null;
-            txtNombreUsuario.Text = null;
-            txtPassword.Text = null;
-        }
-
-        private void dgvUsuarios_CellClick(object sender, DataGridViewCellEventArgs e)
-        {
-            usuario_BE = new BE.User();
-            usuario_BE = (BE.User)dgvUsuarios.Rows[e.RowIndex].DataBoundItem;
-            txtDNI.Text = usuario_BE.DNI;
-            txtNombre.Text = usuario_BE.Nombre;
-            txtApellido.Text = usuario_BE.Apellido;
-            txtNombreUsuario.Text = usuario_BE.LoginName;
-            txtPassword.Text = usuario_BE.Password;
+            idioma_BLL = new BLL.Language();
+            cmbLanguage.DataSource = idioma_BLL.Listar();
+            cmbLanguage.DisplayMember = "Name";
+            cmbLanguage.ValueMember = "Id";
+            cmbLanguage.SelectedIndex = -1;
         }
 
         public void NotifyObserver(ILanguage languageObserver)
@@ -115,14 +107,34 @@ namespace Application.UI
             {
                 if (!string.IsNullOrEmpty(control.Text))
                     control.Text = idioma_BE.SearchTranslate(control.Tag.ToString());
-                    //control.Text = languageObserver.SearchTranslate(control.Tag.ToString());
+                //control.Text = languageObserver.SearchTranslate(control.Tag.ToString());
             }
         }
 
-        private void frmUser_Load(object sender, EventArgs e)
-        {
-            if (SessionManager.GetInstance.IsLogged)
-                NotifyObserver(SessionManager.GetInstance.Usuario.Idioma);
-        }
+        //private void btnEliminar_Click(object sender, EventArgs e)
+        //{
+        //    usuario_BE.Nombre = txtNombre.Text;
+        //    usuario_BE.Apellido = txtApellido.Text;
+        //    usuario_BE.DNI = txtDNI.Text;
+        //    usuario_BE.LoginName = txtNombreUsuario.Text;
+        //    usuario_BE.Password = txtPassword.Text;
+
+        //    bool operation = usuario_BLL.UserRemove(usuario_BE.Id);
+
+        //    if (!operation)
+        //        throw new Exception("Error al modificar el usuario");
+
+        //    LimpiarControles();
+        //    //Enlazar();
+        //}
+
+        //void LimpiarControles()
+        //{
+        //    txtDNI.Text = null;
+        //    txtNombre.Text = null;
+        //    txtApellido.Text = null;
+        //    txtNombreUsuario.Text = null;
+        //    txtPassword.Text = null;
+        //}
     }
 }

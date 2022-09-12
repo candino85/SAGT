@@ -27,33 +27,33 @@ namespace Application.BLL
             return _usuario;
         }
 
-        public bool CrearUsuario(BE.User usuario)
+        public bool UserCreate(BE.User usuario)
         {
-            int fa = _mapper.Crear(usuario);
+            int fa = _mapper.Create(usuario);
             if (fa != 0)
                 return true;
             else
                 return false;
         }
-        public bool ModificarUsuario(BE.User usuario)
+        public bool UserUpdate(BE.User usuario)
         {
-            int fa = _mapper.Modificar(usuario);
+            int fa = _mapper.Update(usuario);
             if (fa != 0)
                 return true;
             else
                 return false;
         }
-        public bool EliminarUsuario(int id)
+        public bool UserRemove(int id)
         {
-            int fa = _mapper.Eliminar(id);
+            int fa = _mapper.Remove(id);
             if (fa != 0)
                 return true;
             else
                 return false;
         }
-        public List<BE.User> Listar()
+        public List<BE.User> UserList()
         {
-            List<BE.User> listaUsuarios = _mapper.Listar();
+            List<BE.User> listaUsuarios = _mapper.List();
             return listaUsuarios;
         }
     }

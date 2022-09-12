@@ -21,7 +21,7 @@ namespace Application.DLL
             return cs.ConnectionString;
         }
 
-        void Conectar()
+        void Connect()
         {
             if (CN.State.ToString() == "Closed")
             {
@@ -29,19 +29,19 @@ namespace Application.DLL
                 CN.Open();
             }
             else
-                Desconectar();
+                Disconnect();
             
         }
 
-        void Desconectar()
+        void Disconnect()
         {
             CN.Close();
             CN.Dispose();
         }
 
-        public int Escribir(string sp, SqlParameter[] parametros)
+        public int Write(string sp, SqlParameter[] parametros)
         {
-            Conectar();
+            Connect();
             int fa = 0;
 
             SqlCommand CMD = new SqlCommand();
@@ -65,13 +65,13 @@ namespace Application.DLL
             {
                 TR.Rollback($"La transacción falló \n{ex.ToString()}");               
             }
-            Desconectar();
+            Disconnect();
             return fa;
         }
 
-        public DataTable Leer(string sp, SqlParameter[] parametros)
+        public DataTable Read(string sp, SqlParameter[] parametros)
         {
-            Conectar();
+            Connect();
             DataTable dataTable = new DataTable();
 
             SqlDataAdapter dataAdapter = new SqlDataAdapter();
@@ -85,7 +85,7 @@ namespace Application.DLL
             dataAdapter.SelectCommand.Connection = CN;
             dataAdapter.Fill(dataTable);
 
-            Desconectar();
+            Disconnect();
             return dataTable;
         }
 
