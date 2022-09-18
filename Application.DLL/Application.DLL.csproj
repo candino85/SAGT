@@ -45,6 +45,8 @@
     <Compile Include="mapper_Language.cs" />
     <Compile Include="mapper_Permission.cs" />
     <Compile Include="mapper_Translate.cs" />
+    <Compile Include="mapper_Entity.cs" />
+    <Compile Include="mapper_Client.cs" />
     <Compile Include="mapper_User.cs" />
     <Compile Include="mapper_Word.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

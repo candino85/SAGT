@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace Application.ABSTRACTIONS
 {
-    public interface IUser
+    public interface IUser : IPerson
     {
-        Guid Guid { get; set; }
-        DateTime CreationDate { get; set; }
+        string LoginName { get; set; }
+        string Password { get; set; }
     }
 }

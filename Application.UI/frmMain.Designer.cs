@@ -44,11 +44,14 @@ namespace Application.UI
             this.seguridadToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.permisosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.rolesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.usuariosToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.negocioToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.loginToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.logoutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.españolToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.englishToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.clienteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.gestionarClientesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip.SuspendLayout();
             this.menu.SuspendLayout();
             this.SuspendLayout();
@@ -98,7 +101,7 @@ namespace Application.UI
             // menuLogin
             // 
             this.menuLogin.Name = "menuLogin";
-            this.menuLogin.Size = new System.Drawing.Size(143, 22);
+            this.menuLogin.Size = new System.Drawing.Size(180, 22);
             this.menuLogin.Tag = "Iniciar";
             this.menuLogin.Text = "Iniciar Sesion";
             this.menuLogin.Click += new System.EventHandler(this.menuLogin_Click);
@@ -106,7 +109,7 @@ namespace Application.UI
             // menuLogout
             // 
             this.menuLogout.Name = "menuLogout";
-            this.menuLogout.Size = new System.Drawing.Size(143, 22);
+            this.menuLogout.Size = new System.Drawing.Size(180, 22);
             this.menuLogout.Tag = "Cerrar";
             this.menuLogout.Text = "Cerrar Sesion";
             this.menuLogout.Click += new System.EventHandler(this.menuLogout_Click);
@@ -114,7 +117,7 @@ namespace Application.UI
             // menuLanguage
             // 
             this.menuLanguage.Name = "menuLanguage";
-            this.menuLanguage.Size = new System.Drawing.Size(143, 22);
+            this.menuLanguage.Size = new System.Drawing.Size(180, 22);
             this.menuLanguage.Tag = "Idioma";
             this.menuLanguage.Text = "Idioma";
             // 
@@ -159,7 +162,8 @@ namespace Application.UI
             // 
             this.seguridadToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.permisosToolStripMenuItem,
-            this.rolesToolStripMenuItem});
+            this.rolesToolStripMenuItem,
+            this.usuariosToolStripMenuItem1});
             this.seguridadToolStripMenuItem.Name = "seguridadToolStripMenuItem";
             this.seguridadToolStripMenuItem.Size = new System.Drawing.Size(72, 20);
             this.seguridadToolStripMenuItem.Tag = "";
@@ -179,8 +183,17 @@ namespace Application.UI
             this.rolesToolStripMenuItem.Text = "Roles";
             this.rolesToolStripMenuItem.Click += new System.EventHandler(this.rolesToolStripMenuItem_Click);
             // 
+            // usuariosToolStripMenuItem1
+            // 
+            this.usuariosToolStripMenuItem1.Name = "usuariosToolStripMenuItem1";
+            this.usuariosToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
+            this.usuariosToolStripMenuItem1.Text = "Usuarios";
+            this.usuariosToolStripMenuItem1.Click += new System.EventHandler(this.usuariosToolStripMenuItem1_Click);
+            // 
             // negocioToolStripMenuItem
             // 
+            this.negocioToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.clienteToolStripMenuItem});
             this.negocioToolStripMenuItem.Name = "negocioToolStripMenuItem";
             this.negocioToolStripMenuItem.Size = new System.Drawing.Size(64, 20);
             this.negocioToolStripMenuItem.Text = "Negocio";
@@ -208,6 +221,21 @@ namespace Application.UI
             this.englishToolStripMenuItem.Name = "englishToolStripMenuItem";
             this.englishToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.englishToolStripMenuItem.Text = "English";
+            // 
+            // clienteToolStripMenuItem
+            // 
+            this.clienteToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.gestionarClientesToolStripMenuItem});
+            this.clienteToolStripMenuItem.Name = "clienteToolStripMenuItem";
+            this.clienteToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.clienteToolStripMenuItem.Text = "Cliente";
+            // 
+            // gestionarClientesToolStripMenuItem
+            // 
+            this.gestionarClientesToolStripMenuItem.Name = "gestionarClientesToolStripMenuItem";
+            this.gestionarClientesToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.gestionarClientesToolStripMenuItem.Text = "Gestionar Clientes";
+            this.gestionarClientesToolStripMenuItem.Click += new System.EventHandler(this.gestionarClientesToolStripMenuItem_Click);
             // 
             // frmMain
             // 
@@ -253,6 +281,9 @@ namespace Application.UI
         private System.Windows.Forms.ToolStripMenuItem usuariosToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem espaciosToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem negocioToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem usuariosToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem clienteToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem gestionarClientesToolStripMenuItem;
     }
 }
 

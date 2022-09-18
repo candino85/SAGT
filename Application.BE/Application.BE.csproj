@@ -50,6 +50,7 @@
     <Compile Include="MultiLanguage\Language.cs" />
     <Compile Include="MultiLanguage\Translate.cs" />
     <Compile Include="MultiLanguage\Word.cs" />
+    <Compile Include="Client.cs" />
     <Compile Include="User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

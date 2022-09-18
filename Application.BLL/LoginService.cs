@@ -11,12 +11,12 @@ namespace Application.BLL
 {
     public class LoginService
     {
-        private readonly Mapper_Usuario _mapperUsuario;
+        private readonly Mapper_User _mapperUsuario;
         private BE.User _usuario;
 
         public LoginService()
         {
-            _mapperUsuario = new Mapper_Usuario();
+            _mapperUsuario = new Mapper_User();
             _usuario = new BE.User();
         }
         /// <summary>

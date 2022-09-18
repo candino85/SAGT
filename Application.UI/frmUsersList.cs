@@ -30,9 +30,9 @@ namespace Application.UI
 
         private void btnCreateUser_Click(object sender, EventArgs e)
         {
-            frmUser frm = new frmUser(this);
+            frmUser frmUser = new frmUser(this);
             frmMain frmMain = (frmMain)this.MdiParent;
-            frm.Show();
+            frmUser.Show();
         }
 
         public void Bind()

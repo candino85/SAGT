@@ -13,11 +13,11 @@ namespace Application.BLL
     public class User
     {
         BE.User _usuario;
-        readonly Mapper_Usuario _mapper;
+        readonly Mapper_User _mapper;
 
         public User()
         {
-            _mapper = new Mapper_Usuario();   
+            _mapper = new Mapper_User();   
         }
 
         public BE.User GetUsuarioById(int id)

@@ -40,8 +40,7 @@ namespace Application.Services
             lock (_lock)
             {
                 if (IsLogged == false)
-                {
-                    usuario.Guid = Guid.NewGuid();
+                {                   
                     _session.Usuario = usuario;
                     _session.InicioSesion = DateTime.Now;
                     IsLogged = true;

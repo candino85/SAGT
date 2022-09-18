@@ -29,22 +29,22 @@ namespace Application.UI
         /// </summary>
         private void InitializeComponent()
         {
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.gpbUserList = new System.Windows.Forms.GroupBox();
             this.dgvUsers = new System.Windows.Forms.DataGridView();
             this.btnCreateUser = new System.Windows.Forms.Button();
-            this.groupBox2.SuspendLayout();
+            this.gpbUserList.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvUsers)).BeginInit();
             this.SuspendLayout();
             // 
-            // groupBox2
+            // gpbUserList
             // 
-            this.groupBox2.Controls.Add(this.dgvUsers);
-            this.groupBox2.Location = new System.Drawing.Point(12, 37);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(776, 401);
-            this.groupBox2.TabIndex = 21;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Lista de usuarios";
+            this.gpbUserList.Controls.Add(this.dgvUsers);
+            this.gpbUserList.Location = new System.Drawing.Point(12, 37);
+            this.gpbUserList.Name = "gpbUserList";
+            this.gpbUserList.Size = new System.Drawing.Size(776, 401);
+            this.gpbUserList.TabIndex = 21;
+            this.gpbUserList.TabStop = false;
+            this.gpbUserList.Text = "Lista de usuarios";
             // 
             // dgvUsers
             // 
@@ -78,10 +78,10 @@ namespace Application.UI
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.btnCreateUser);
-            this.Controls.Add(this.groupBox2);
+            this.Controls.Add(this.gpbUserList);
             this.Name = "frmUsersList";
             this.Text = "frmUsersList";
-            this.groupBox2.ResumeLayout(false);
+            this.gpbUserList.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvUsers)).EndInit();
             this.ResumeLayout(false);
 
@@ -89,7 +89,7 @@ namespace Application.UI
 
         #endregion
 
-        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.GroupBox gpbUserList;
         private System.Windows.Forms.DataGridView dgvUsers;
         private System.Windows.Forms.Button btnCreateUser;
     }

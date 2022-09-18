@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Application.BE
 {
-    public class User : IEntity, IUser
+    public class Client : IEntity, IPerson
     {
         private int _id;
         public int Id { get { return _id; } set { _id = value; } }
@@ -30,23 +30,6 @@ namespace Application.BE
         private string _address;
         public string Address { get { return _address; } set { _address = value; } }
 
-
-        private string _loginName;
-        public string LoginName { get { return _loginName; } set { _loginName = value; } }
-        private string _password;
-        public string Password { get { return _password; } set { _password = value; } }
-
         public string FullName { get { return $"{_lastname}, {_name}"; } }
-
-        //Idiomas
-        private Language _idioma;
-        public Language Idioma { get { return _idioma; } set { _idioma = value; } }
-
-        //Composite
-        private Role _rol;
-        public Role Rol { get { return _rol; } set { _rol = value; } }
-        public List<Component> Permisos { get; set; }
-        
     }
 }
-

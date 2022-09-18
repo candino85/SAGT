@@ -46,6 +46,24 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Customs Controls\TextBoxLabeled.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Customs Controls\TextBoxLabeled.Designer.cs">
+      <DependentUpon>TextBoxLabeled.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmEntity.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmEntity.Designer.cs">
+      <DependentUpon>frmEntity.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmEntityList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmEntityList.Designer.cs">
+      <DependentUpon>frmEntityList.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmRoles.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -76,6 +94,12 @@
     <Compile Include="frmMain.Designer.cs">
       <DependentUpon>frmMain.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmUserManagement.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmUserManagement.Designer.cs">
+      <DependentUpon>frmUserManagement.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmUsersList.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -88,8 +112,29 @@
     <Compile Include="MultiLanguageForm.Designer.cs">
       <DependentUpon>MultiLanguageForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Negocio\frmClient.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Negocio\frmClient.Designer.cs">
+      <DependentUpon>frmClient.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Negocio\frmClientList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Negocio\frmClientList.Designer.cs">
+      <DependentUpon>frmClientList.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Customs Controls\TextBoxLabeled.resx">
+      <DependentUpon>TextBoxLabeled.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmEntity.resx">
+      <DependentUpon>frmEntity.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmEntityList.resx">
+      <DependentUpon>frmEntityList.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmRoles.resx">
       <DependentUpon>frmRoles.cs</DependentUpon>
     </EmbeddedResource>
@@ -105,11 +150,20 @@
     <EmbeddedResource Include="frmMain.resx">
       <DependentUpon>frmMain.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frmUserManagement.resx">
+      <DependentUpon>frmUserManagement.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmUsersList.resx">
       <DependentUpon>frmUsersList.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MultiLanguageForm.resx">
       <DependentUpon>MultiLanguageForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Negocio\frmClient.resx">
+      <DependentUpon>frmClient.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Negocio\frmClientList.resx">
+      <DependentUpon>frmClientList.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

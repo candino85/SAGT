@@ -2,6 +2,7 @@
 using Application.BE;
 using Application.BLL;
 using Application.Services;
+using Application.UI.Negocio;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -151,7 +152,6 @@ namespace Application.UI
 
         private void usuariosToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
             frmUsersList frm = new frmUsersList();
             frm.MdiParent = this;
             frm.Show();
@@ -159,7 +159,21 @@ namespace Application.UI
 
         private void entidadesToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            frmEntityList frm = new frmEntityList();
+            frm.MdiParent = this;
+            frm.Show();
+        }
 
+        private void usuariosToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void gestionarClientesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmClientList frm = new frmClientList();
+            frm.MdiParent = this;
+            frm.Show();
         }
 
         //private void españolToolStripMenuItem_Click(object sender, EventArgs e)

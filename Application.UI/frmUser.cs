@@ -29,6 +29,26 @@ namespace Application.UI
             ComboLanguageLoad();
         }
 
+        private void btnCreateUser_Click(object sender, EventArgs e)
+        {
+            usuario_BE = new BE.User();
+
+            usuario_BE.Name = txtNombre.Text;
+            usuario_BE.Lastname = txtApellido.Text;
+            usuario_BE.DNI = txtDNI.Text;
+            usuario_BE.LoginName = txtNombreUsuario.Text;
+            usuario_BE.Password = Encrypt.GetSHA256(txtPassword.Text);
+
+            bool operation = usuario_BLL.UserCreate(usuario_BE);
+
+            if (!operation)
+                throw new Exception("Error al crear el usuario");
+
+
+            _frmUsersList.Bind();
+            this.Close();
+        }
+
         public frmUser(BE.User usuario, frmUsersList frmUsersList)
         {
             InitializeComponent();
@@ -44,38 +64,18 @@ namespace Application.UI
             btnCreateUser.Enabled = false;
 
             txtDNI.Text = usuario.DNI;
-            txtNombre.Text = usuario.Nombre;
-            txtApellido.Text = usuario.Apellido;
+            txtNombre.Text = usuario.Name;
+            txtApellido.Text = usuario.Lastname;
             txtNombreUsuario.Text = usuario.LoginName;
             txtPassword.Text = Encrypt.GetSHA256(usuario.Password);            
-        }        
-
-        private void btnCreateUser_Click(object sender, EventArgs e)
-        {
-            usuario_BE = new BE.User();
-
-            usuario_BE.Nombre = txtNombre.Text;
-            usuario_BE.Apellido = txtApellido.Text;
-            usuario_BE.DNI = txtDNI.Text;
-            usuario_BE.LoginName = txtNombreUsuario.Text;
-            usuario_BE.Password = Encrypt.GetSHA256(txtPassword.Text);
-
-            bool operation = usuario_BLL.UserCreate(usuario_BE);
-
-            if (!operation)
-                throw new Exception("Error al crear el usuario");
-
-
-            _frmUsersList.Bind();
-            this.Close();
         }
-
         private void btnUpdateUsers_Click(object sender, EventArgs e)
         {
             usuario_BE.DNI = txtDNI.Text;
-            usuario_BE.Nombre = txtNombre.Text;
-            usuario_BE.Apellido = txtApellido.Text;
+            usuario_BE.Name= txtNombre.Text;
+            usuario_BE.Lastname = txtApellido.Text;
             usuario_BE.LoginName = txtNombreUsuario.Text;
+            //revisar
             if (txtPassword.Text != usuario_BE.Password)
                 usuario_BE.Password = Encrypt.GetSHA256(txtPassword.Text);
 
@@ -88,7 +88,6 @@ namespace Application.UI
             _frmUsersList.Bind();
             this.Close();
         }
-
         private void ComboLanguageLoad()
         {
             idioma_BLL = new BLL.Language();

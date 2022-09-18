@@ -112,7 +112,7 @@ namespace Application.UI
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(53, 13);
             this.label5.TabIndex = 28;
-            this.label5.Tag = "Password";
+            this.label5.Tag = "password";
             this.label5.Text = "Password";
             // 
             // txtPassword
@@ -129,7 +129,7 @@ namespace Application.UI
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(81, 13);
             this.label4.TabIndex = 26;
-            this.label4.Tag = "NombreUsuario";
+            this.label4.Tag = "nombre usuario";
             this.label4.Text = "Nombre usuario";
             // 
             // txtNombreUsuario
@@ -146,7 +146,7 @@ namespace Application.UI
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(44, 13);
             this.label3.TabIndex = 24;
-            this.label3.Tag = "Apellido";
+            this.label3.Tag = "apellido";
             this.label3.Text = "Apellido";
             // 
             // txtApellido
@@ -163,7 +163,7 @@ namespace Application.UI
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(44, 13);
             this.label2.TabIndex = 22;
-            this.label2.Tag = "Nombre";
+            this.label2.Tag = "nombre";
             this.label2.Text = "Nombre";
             // 
             // txtNombre
