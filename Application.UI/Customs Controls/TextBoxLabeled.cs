@@ -29,6 +29,11 @@ namespace Application.UI.Customs_Controls
             set { lblTextBox.Text = value; }
         }
 
+        public void ClearText()
+        {
+            txtTextBox.Clear();
+        }
+
         public virtual bool ValidateControl()
         {
             bool ok = true;
@@ -50,6 +55,7 @@ namespace Application.UI.Customs_Controls
         {
             lblTextBox.ForeColor = color;
         }
+
 
     }
 }

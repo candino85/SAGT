@@ -41,9 +41,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BackupRestoreRepository.cs" />
     <Compile Include="DBAccess.cs" />
     <Compile Include="mapper_Language.cs" />
-    <Compile Include="mapper_Permission.cs" />
+    <Compile Include="PermissionRepository.cs" />
     <Compile Include="mapper_Translate.cs" />
     <Compile Include="mapper_Entity.cs" />
     <Compile Include="mapper_Client.cs" />

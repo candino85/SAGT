@@ -44,7 +44,7 @@ namespace Application.UI
                 //SessionManager.GetInstance.SubscribeObserver(frm);
                 // setear idioma del usuario
                 //
-                frm.lblSession.Text = SessionManager.GetInstance.Usuario.LoginName.ToString();
+                //frm.lblSession.Text = SessionManager.GetInstance.Usuario.LoginName.ToString();
                 frm.ValidarForm();
                 this.Close();
             }

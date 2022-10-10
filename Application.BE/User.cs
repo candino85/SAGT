@@ -43,9 +43,9 @@ namespace Application.BE
         public Language Idioma { get { return _idioma; } set { _idioma = value; } }
 
         //Composite
-        private Role _rol;
-        public Role Rol { get { return _rol; } set { _rol = value; } }
-        public List<Component> Permisos { get; set; }
+        //private Role _rol;
+        //public Role Rol { get { return _rol; } set { _rol = value; } }
+        //public List<Component> Permisos { get; set; }
         
     }
 }

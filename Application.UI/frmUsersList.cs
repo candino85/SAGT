@@ -39,7 +39,6 @@ namespace Application.UI
         {
             dgvUsers.DataSource = null;
             dgvUsers.DataSource = usuario_BLL.UserList();
-            dgvUsers.Columns["GUID"].Visible = false;
             dgvUsers.Columns["Id"].Visible = false;
             dgvUsers.Columns["Password"].Visible = false;
         }

@@ -1,4 +1,5 @@
 ﻿using Application.DLL;
+using Application.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,37 +10,82 @@ namespace Application.BLL
 {
     public class Permission
     {
-        //BE.Permission _permission;
-        readonly Mapper_Permission _mapper;
+        readonly PermissionRepository _repository;
 
         public Permission()
         {
-            _mapper = new Mapper_Permission();
+            _repository = new PermissionRepository();
         }
 
-        public bool CrearPermiso(BE.Permission permiso)
+        public IList<Component> GetAll(string roleId)
         {
-            int fa = _mapper.Crear(permiso);
-            if (fa != 0)
-                return true;
+            return _repository.GetAll(roleId);
+        }
+
+        public Array GetAllPermissions()
+        {
+            return _repository.GetAllPermissions();
+        }
+
+        public IList<Services.Role> GetAllRolesFromDB()
+        {
+            return _repository.GetAllRolesFromDB();
+        }
+
+        public IList<Services.Permission> GetAllPermissionsFromDB()
+        {
+            return _repository.GetAllPermissionsFromDB(); 
+        }
+
+        public Component SaveComponent(Component component)
+        {
+            return _repository.SaveComponent(component);
+        }
+
+        public int DeleteComponent(Component component)
+        {
+            return _repository.DeleteComponent(component);
+        }
+
+        public Component GetComponent(Component component)
+        {
+            return _repository.GetComponent(component);
+        }
+
+        public bool AlreadyExistComponent(Component component, int idComp)
+        {
+            bool exist = false;
+
+            if (component.Id.Equals(idComp))
+                exist = true;
             else
-                return false;
+            {
+                foreach (var c in component.GetChilds)
+                {
+                    exist = AlreadyExistComponent(c, idComp);
+                    if (exist) return true;
+                }
+            }
+            return exist;
         }
 
-        public bool EditarPermiso(BE.Permission permiso)
+        public Role GetRoleComponents(Role role)
         {
-            int fa = _mapper.Editar(permiso);
-            if (fa != 0)
-                return true;
-            else
-                return false;
+            foreach(var c in GetAll($"= {role.Id}"))
+            {
+                role.AddChild(c);
+            }
+            return role;
         }
 
-        public List<BE.Permission> Listar()
+        public void SaveRole(Role role)
         {
-            List<BE.Permission> permisos = _mapper.Listar();
-            return permisos;
+            _repository.SaveRole(role);
         }
 
+        public bool FindUserPermissions(PermissionType permissionType,UserPermission userPermission)
+        {
+            return _repository.FindUserPermissions(permissionType, userPermission);
+        }
     }
 }

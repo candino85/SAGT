@@ -46,6 +46,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Backup\frmBackupRestore.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Backup\frmBackupRestore.Designer.cs">
+      <DependentUpon>frmBackupRestore.cs</DependentUpon>
+    </Compile>
     <Compile Include="Customs Controls\TextBoxLabeled.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -64,10 +70,10 @@
     <Compile Include="frmEntityList.Designer.cs">
       <DependentUpon>frmEntityList.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmRoles.cs">
+    <Compile Include="Composite\frmRoles.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmRoles.Designer.cs">
+    <Compile Include="Composite\frmRoles.Designer.cs">
       <DependentUpon>frmRoles.cs</DependentUpon>
     </Compile>
     <Compile Include="frmUser.cs">
@@ -81,12 +87,6 @@
     </Compile>
     <Compile Include="frmLogin.Designer.cs">
       <DependentUpon>frmLogin.cs</DependentUpon>
-    </Compile>
-    <Compile Include="frmPermission.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="frmPermission.Designer.cs">
-      <DependentUpon>frmPermission.cs</DependentUpon>
     </Compile>
     <Compile Include="frmMain.cs">
       <SubType>Form</SubType>
@@ -126,6 +126,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Backup\frmBackupRestore.resx">
+      <DependentUpon>frmBackupRestore.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Customs Controls\TextBoxLabeled.resx">
       <DependentUpon>TextBoxLabeled.cs</DependentUpon>
     </EmbeddedResource>
@@ -135,7 +138,7 @@
     <EmbeddedResource Include="frmEntityList.resx">
       <DependentUpon>frmEntityList.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmRoles.resx">
+    <EmbeddedResource Include="Composite\frmRoles.resx">
       <DependentUpon>frmRoles.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmUser.resx">
@@ -143,9 +146,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmLogin.resx">
       <DependentUpon>frmLogin.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="frmPermission.resx">
-      <DependentUpon>frmPermission.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmMain.resx">
       <DependentUpon>frmMain.cs</DependentUpon>
@@ -199,6 +199,10 @@
     <ProjectReference Include="..\Application.BLL\Application.BLL.csproj">
       <Project>{aeb2fa7c-35aa-4cb4-b3be-1e33ca4a3d14}</Project>
       <Name>Application.BLL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Application.DLL\Application.DLL.csproj">
+      <Project>{21ACE2B7-D899-4DE6-B025-A9EA8630FE97}</Project>
+      <Name>Application.DLL</Name>
     </ProjectReference>
     <ProjectReference Include="..\Application.Services\Application.SERVICES.csproj">
       <Project>{4fcc1efb-4b27-4cb4-a432-389e9335594e}</Project>

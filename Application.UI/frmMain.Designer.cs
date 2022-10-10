@@ -31,27 +31,29 @@ namespace Application.UI
         {
             this.statusStrip = new System.Windows.Forms.StatusStrip();
             this.lblSession = new System.Windows.Forms.ToolStripStatusLabel();
+            this.toolStripSesion = new System.Windows.Forms.ToolStripStatusLabel();
             this.menu = new System.Windows.Forms.MenuStrip();
-            this.Sesion = new System.Windows.Forms.ToolStripMenuItem();
+            this.sesionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuLogin = new System.Windows.Forms.ToolStripMenuItem();
             this.menuLogout = new System.Windows.Forms.ToolStripMenuItem();
             this.menuLanguage = new System.Windows.Forms.ToolStripMenuItem();
             this.gestionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.idiomasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.entidadesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.usuariosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.espaciosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.seguridadToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.permisosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.rolesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.usuariosToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.seguridadUsuariosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.negocioToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.clienteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.gestionarClientesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.loginToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.logoutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.españolToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.englishToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.clienteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.gestionarClientesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.backupYRestoreToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip.SuspendLayout();
             this.menu.SuspendLayout();
             this.SuspendLayout();
@@ -59,7 +61,8 @@ namespace Application.UI
             // statusStrip
             // 
             this.statusStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.lblSession});
+            this.lblSession,
+            this.toolStripSesion});
             this.statusStrip.Location = new System.Drawing.Point(0, 517);
             this.statusStrip.Name = "statusStrip";
             this.statusStrip.Size = new System.Drawing.Size(926, 22);
@@ -73,10 +76,16 @@ namespace Application.UI
             this.lblSession.Size = new System.Drawing.Size(39, 17);
             this.lblSession.Text = "Status";
             // 
+            // toolStripSesion
+            // 
+            this.toolStripSesion.Name = "toolStripSesion";
+            this.toolStripSesion.Size = new System.Drawing.Size(116, 17);
+            this.toolStripSesion.Text = "[ Sesión no iniciada ]";
+            // 
             // menu
             // 
             this.menu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.Sesion,
+            this.sesionToolStripMenuItem,
             this.gestionToolStripMenuItem,
             this.seguridadToolStripMenuItem,
             this.negocioToolStripMenuItem});
@@ -87,16 +96,17 @@ namespace Application.UI
             this.menu.Tag = "Menu";
             this.menu.Text = "Menu";
             // 
-            // Sesion
+            // sesionToolStripMenuItem
             // 
-            this.Sesion.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.sesionToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.menuLogin,
             this.menuLogout,
-            this.menuLanguage});
-            this.Sesion.Name = "Sesion";
-            this.Sesion.Size = new System.Drawing.Size(53, 20);
-            this.Sesion.Tag = "Sesion";
-            this.Sesion.Text = "Sesion";
+            this.menuLanguage,
+            this.backupYRestoreToolStripMenuItem});
+            this.sesionToolStripMenuItem.Name = "sesionToolStripMenuItem";
+            this.sesionToolStripMenuItem.Size = new System.Drawing.Size(53, 20);
+            this.sesionToolStripMenuItem.Tag = "Sesion";
+            this.sesionToolStripMenuItem.Text = "Sesion";
             // 
             // menuLogin
             // 
@@ -125,6 +135,7 @@ namespace Application.UI
             // 
             this.gestionToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripSeparator1,
+            this.idiomasToolStripMenuItem,
             this.entidadesToolStripMenuItem,
             this.usuariosToolStripMenuItem,
             this.espaciosToolStripMenuItem});
@@ -137,6 +148,12 @@ namespace Application.UI
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
             this.toolStripSeparator1.Size = new System.Drawing.Size(177, 6);
+            // 
+            // idiomasToolStripMenuItem
+            // 
+            this.idiomasToolStripMenuItem.Name = "idiomasToolStripMenuItem";
+            this.idiomasToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.idiomasToolStripMenuItem.Text = "Idiomas";
             // 
             // entidadesToolStripMenuItem
             // 
@@ -161,20 +178,12 @@ namespace Application.UI
             // seguridadToolStripMenuItem
             // 
             this.seguridadToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.permisosToolStripMenuItem,
             this.rolesToolStripMenuItem,
-            this.usuariosToolStripMenuItem1});
+            this.seguridadUsuariosToolStripMenuItem});
             this.seguridadToolStripMenuItem.Name = "seguridadToolStripMenuItem";
             this.seguridadToolStripMenuItem.Size = new System.Drawing.Size(72, 20);
             this.seguridadToolStripMenuItem.Tag = "";
             this.seguridadToolStripMenuItem.Text = "Seguridad";
-            // 
-            // permisosToolStripMenuItem
-            // 
-            this.permisosToolStripMenuItem.Name = "permisosToolStripMenuItem";
-            this.permisosToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.permisosToolStripMenuItem.Text = "Permisos";
-            this.permisosToolStripMenuItem.Click += new System.EventHandler(this.permisosToolStripMenuItem_Click);
             // 
             // rolesToolStripMenuItem
             // 
@@ -183,12 +192,11 @@ namespace Application.UI
             this.rolesToolStripMenuItem.Text = "Roles";
             this.rolesToolStripMenuItem.Click += new System.EventHandler(this.rolesToolStripMenuItem_Click);
             // 
-            // usuariosToolStripMenuItem1
+            // seguridadUsuariosToolStripMenuItem
             // 
-            this.usuariosToolStripMenuItem1.Name = "usuariosToolStripMenuItem1";
-            this.usuariosToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
-            this.usuariosToolStripMenuItem1.Text = "Usuarios";
-            this.usuariosToolStripMenuItem1.Click += new System.EventHandler(this.usuariosToolStripMenuItem1_Click);
+            this.seguridadUsuariosToolStripMenuItem.Name = "seguridadUsuariosToolStripMenuItem";
+            this.seguridadUsuariosToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.seguridadUsuariosToolStripMenuItem.Text = "Usuarios";
             // 
             // negocioToolStripMenuItem
             // 
@@ -197,6 +205,21 @@ namespace Application.UI
             this.negocioToolStripMenuItem.Name = "negocioToolStripMenuItem";
             this.negocioToolStripMenuItem.Size = new System.Drawing.Size(64, 20);
             this.negocioToolStripMenuItem.Text = "Negocio";
+            // 
+            // clienteToolStripMenuItem
+            // 
+            this.clienteToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.gestionarClientesToolStripMenuItem});
+            this.clienteToolStripMenuItem.Name = "clienteToolStripMenuItem";
+            this.clienteToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.clienteToolStripMenuItem.Text = "Cliente";
+            // 
+            // gestionarClientesToolStripMenuItem
+            // 
+            this.gestionarClientesToolStripMenuItem.Name = "gestionarClientesToolStripMenuItem";
+            this.gestionarClientesToolStripMenuItem.Size = new System.Drawing.Size(169, 22);
+            this.gestionarClientesToolStripMenuItem.Text = "Gestionar Clientes";
+            this.gestionarClientesToolStripMenuItem.Click += new System.EventHandler(this.gestionarClientesToolStripMenuItem_Click);
             // 
             // loginToolStripMenuItem
             // 
@@ -222,20 +245,12 @@ namespace Application.UI
             this.englishToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.englishToolStripMenuItem.Text = "English";
             // 
-            // clienteToolStripMenuItem
+            // backupYRestoreToolStripMenuItem
             // 
-            this.clienteToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.gestionarClientesToolStripMenuItem});
-            this.clienteToolStripMenuItem.Name = "clienteToolStripMenuItem";
-            this.clienteToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.clienteToolStripMenuItem.Text = "Cliente";
-            // 
-            // gestionarClientesToolStripMenuItem
-            // 
-            this.gestionarClientesToolStripMenuItem.Name = "gestionarClientesToolStripMenuItem";
-            this.gestionarClientesToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.gestionarClientesToolStripMenuItem.Text = "Gestionar Clientes";
-            this.gestionarClientesToolStripMenuItem.Click += new System.EventHandler(this.gestionarClientesToolStripMenuItem_Click);
+            this.backupYRestoreToolStripMenuItem.Name = "backupYRestoreToolStripMenuItem";
+            this.backupYRestoreToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.backupYRestoreToolStripMenuItem.Text = "Backup y Restore";
+            this.backupYRestoreToolStripMenuItem.Click += new System.EventHandler(this.backupYRestoreToolStripMenuItem_Click);
             // 
             // frmMain
             // 
@@ -263,7 +278,7 @@ namespace Application.UI
         #endregion
         private System.Windows.Forms.StatusStrip statusStrip;
         private System.Windows.Forms.MenuStrip menu;
-        private System.Windows.Forms.ToolStripMenuItem Sesion;
+        private System.Windows.Forms.ToolStripMenuItem sesionToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem menuLogin;
         private System.Windows.Forms.ToolStripMenuItem menuLogout;
         private System.Windows.Forms.ToolStripMenuItem loginToolStripMenuItem;
@@ -271,7 +286,6 @@ namespace Application.UI
         public System.Windows.Forms.ToolStripStatusLabel lblSession;
         private System.Windows.Forms.ToolStripMenuItem gestionToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem seguridadToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem permisosToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem rolesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem españolToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem englishToolStripMenuItem;
@@ -281,9 +295,12 @@ namespace Application.UI
         private System.Windows.Forms.ToolStripMenuItem usuariosToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem espaciosToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem negocioToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem usuariosToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem seguridadUsuariosToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem clienteToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem gestionarClientesToolStripMenuItem;
+        private System.Windows.Forms.ToolStripStatusLabel toolStripSesion;
+        private System.Windows.Forms.ToolStripMenuItem idiomasToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem backupYRestoreToolStripMenuItem;
     }
 }
 

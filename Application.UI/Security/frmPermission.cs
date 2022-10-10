@@ -37,16 +37,16 @@ namespace Application.UI
         private void btnCrear_Click(object sender, EventArgs e)
         {
             _permisoBE = new Permission(txtNombrePermiso.Text, _role);
-            _role.AddHijo(_permisoBE);
+            _role.AddChild(_permisoBE);
             
-            tvPermisos.Nodes.Add(_permisoBE.Nombre);
+            tvPermisos.Nodes.Add(_permisoBE.Name);
             LimpiarTreeView();
         }
 
         private void btnEliminar_Click(object sender, EventArgs e)
         {
             if (txtNombrePermiso.Text != null)
-                _role.RemoveHijo(_role.GetPermission(txtNombrePermiso.Text));
+                _role.RemoveChild(_role.GetPermission(txtNombrePermiso.Text));
             else
                 MessageBox.Show("Seleccione el permiso que desea eliminar");
 
@@ -64,17 +64,17 @@ namespace Application.UI
             bool operation;
             foreach (Permission p in permisos)
             {
-                if (!tvPermisos.Nodes.ContainsKey(p.Nombre))
+                if (!tvPermisos.Nodes.ContainsKey(p.Name))
                 {
                     operation = _permisoBLL.EditarPermiso(p);
                     if (!operation)
-                        throw new Exception($"Error al editar permiso {p.Nombre}");
+                        throw new Exception($"Error al editar permiso {p.Name}");
                 }
                 else
                 {
                     operation = _permisoBLL.CrearPermiso(p);
                     if (!operation)
-                        throw new Exception($"Error al crear permiso {p.Nombre}");
+                        throw new Exception($"Error al crear permiso {p.Name}");
                 }
             }
             CargarTreeView();
@@ -86,7 +86,7 @@ namespace Application.UI
             permisos = _permisoBLL.Listar();
             foreach (Permission p in permisos)
             {
-                tvPermisos.Nodes.Add(p.Nombre);
+                tvPermisos.Nodes.Add(p.Name);
             }
         }
     }

@@ -42,11 +42,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Composite\Component.cs" />
     <Compile Include="Entity.cs" />
     <Compile Include="Menu.cs" />
-    <Compile Include="Composite\Permission.cs" />
-    <Compile Include="Composite\Role.cs" />
     <Compile Include="MultiLanguage\Language.cs" />
     <Compile Include="MultiLanguage\Translate.cs" />
     <Compile Include="MultiLanguage\Word.cs" />

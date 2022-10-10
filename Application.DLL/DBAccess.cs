@@ -12,7 +12,7 @@ namespace Application.DLL
     {
         readonly SqlConnection CN = new SqlConnection();        
 
-        private string GetConnectionString()
+        public string GetConnectionString()
         {
             var cs = new SqlConnectionStringBuilder();
             cs.IntegratedSecurity = true;
@@ -29,8 +29,7 @@ namespace Application.DLL
                 CN.Open();
             }
             else
-                Disconnect();
-            
+                Disconnect();            
         }
 
         void Disconnect()
@@ -69,6 +68,60 @@ namespace Application.DLL
             return fa;
         }
 
+        public int WriteCommand(SqlCommand cm)
+        {
+            Connect();
+
+            SqlTransaction TR;
+            int id = 0;
+            TR = CN.BeginTransaction();
+
+            cm.CommandType = CommandType.Text;
+            cm.CommandText = cm.CommandText;          
+            cm.Connection = CN;
+
+            try
+            {
+                cm.Transaction = TR;
+                id = (int)cm.ExecuteScalar();
+                TR.Commit();
+            }
+            catch (Exception ex)
+            {
+                TR.Rollback($"La transacción falló \n{ex.ToString()}");
+            }
+            
+            Disconnect();
+            return id;
+        }
+
+        public int DeleteCommand(SqlCommand cm)
+        {
+            Connect();
+
+            SqlTransaction TR;
+            int ok = 0;
+            TR = CN.BeginTransaction();
+
+            cm.CommandType = CommandType.Text;
+            cm.CommandText = cm.CommandText;
+            cm.Connection = CN;
+
+            try
+            {
+                cm.Transaction = TR;
+                cm.ExecuteNonQuery();
+                TR.Commit();
+                ok = 1;
+            }
+            catch (Exception ex)
+            {
+                TR.Rollback($"La transacción falló \n{ex.ToString()}");
+            }
+            Disconnect();
+            return ok;
+        }
+
         public DataTable Read(string sp, SqlParameter[] parametros)
         {
             Connect();
@@ -89,47 +142,21 @@ namespace Application.DLL
             return dataTable;
         }
 
-        //public IDataReader Leer(string query, SqlParameter sqlParameters[])
-        //{
-        //    //SqlConnectionStringBuilder cs = new SqlConnectionStringBuilder();
-        //    //cs.InitialCatalog = "Campo";
-        //    //cs.DataSource = "NB-CRISTIAN\\SQLEXPRESS2019";
-        //    //cs.IntegratedSecurity = true;
+        public DataTable Read(SqlCommand cmd)
+        {
+            Connect();
+            DataTable dataTable = new DataTable();
+            SqlDataAdapter dataAdapter = new SqlDataAdapter();
 
-        //    //SqlConnection sql = new SqlConnection();
-        //    sql.ConnectionString = GetConnectionString();
-        //    IDataReader reader = null;
-        //    try
-        //    {
-        //        Conectar();
-        //        //sql.Open();
-        //        SqlCommand CMD = new SqlCommand();
-        //        CMD.Connection = CN;
-        //        //CMD.CommandText = "select loginname from users where id = @id";
-        //        CMD.CommandText = query;
-        //        //CMD.Parameters.AddWithValue("id", id);
-        //        foreach(SqlParameter p in sqlParameters)
-        //        {
-        //            CMD.Parameters = p;
-        //        }
+            dataAdapter.SelectCommand = new SqlCommand();
+            dataAdapter.SelectCommand.CommandType = CommandType.Text;
+            dataAdapter.SelectCommand.CommandText = cmd.CommandText;
 
+            dataAdapter.SelectCommand.Connection = CN;
+            dataAdapter.Fill(dataTable);
 
-        //        reader = CMD.ExecuteReader();
-
-        //        if (!reader.Read()) throw new Exception("No se encuentra el usuario");
-
-        //        return reader;
-        //    }
-        //    catch (Exception)
-        //    {
-        //        throw;
-        //    }
-        //    finally
-        //    {
-        //        reader.Close();
-        //        sql.Close();
-        //    }
-        //}
-
+            Disconnect();
+            return dataTable;
+        }
     }
 }

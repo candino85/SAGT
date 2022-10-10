@@ -2,6 +2,7 @@
 using Application.BE;
 using Application.BLL;
 using Application.Services;
+using Application.UI.Backup;
 using Application.UI.Negocio;
 using System;
 using System.Collections.Generic;
@@ -19,12 +20,14 @@ namespace Application.UI
     {
         LoginService _login;
         
+        BLL.User user;
+        BLL.Permission permission;
+        UserPermission userPermission;
+
         BLL.Language _languageBLL;
         BE.Language _languageBE;
-
         BLL.Word _word;
 
-        BLL.User _user;
 
         //TEST
         //Language language1 = new Language() { Id = 1, Nombre = "Español" };
@@ -32,17 +35,44 @@ namespace Application.UI
         public frmMain()
         {
             InitializeComponent();
+            user = new BLL.User();
+            permission = new BLL.Permission();
+            userPermission = new UserPermission();          
+
             _login = new LoginService();
             _languageBLL = new BLL.Language();
             _languageBE = new BE.Language();
-            _word = new BLL.Word();
-            _user = new BLL.User();
+            _word = new BLL.Word();         
+        }
 
+        public void ValidatePermissions()
+        {
+            userPermission.Id = SessionManager.GetInstance.Usuario.Id;
+            userPermission.Nombre = SessionManager.GetInstance.Usuario.Name;
+
+            //sesionToolStripMenuItem
+            menuLanguage.Visible = permission.FindUserPermissions(PermissionType.CambiarIdioma, userPermission);
+
+            //gestionToolStripMenuItem
+            entidadesToolStripMenuItem.Visible = permission.FindUserPermissions(PermissionType.GestionarEntidades, userPermission);
+            idiomasToolStripMenuItem.Visible = permission.FindUserPermissions(PermissionType.GestionarIdioma, userPermission);
+            usuariosToolStripMenuItem.Visible = permission.FindUserPermissions(PermissionType.GestionarUsuarios, userPermission);
+            espaciosToolStripMenuItem.Visible = permission.FindUserPermissions(PermissionType.GestionarEspacios, userPermission);
+
+            //seguridadToolStripMenuItem
+            rolesToolStripMenuItem.Visible = permission.FindUserPermissions(PermissionType.ConfigurarSeguridadRoles, userPermission);
+            seguridadUsuariosToolStripMenuItem.Visible = permission.FindUserPermissions(PermissionType.ConfigurarSeguridadUsuarios, userPermission);
+
+            //negocioToolStripMenuItem (Este permiso se desglosará para cada tipo de role del negocio)
+            negocioToolStripMenuItem.Visible = permission.FindUserPermissions(PermissionType.ConfigurarNegocio, userPermission);
+
+            //backupYRestoreToolStripMenuItem
+            backupYRestoreToolStripMenuItem.Visible = permission.FindUserPermissions(PermissionType.BackupRestore, userPermission);
         }
 
         private void frmMain_Load(object sender, EventArgs e)
         {
-            AddAvailableLanguages();
+            //AddAvailableLanguages();
             if (!SessionManager.GetInstance.IsLogged)
             {
                 menuLogin_Click(sender, e);
@@ -57,18 +87,25 @@ namespace Application.UI
             this.menuLogin.Enabled = !SessionManager.GetInstance.IsLogged;
             this.menuLogout.Enabled = SessionManager.GetInstance.IsLogged;
             this.menuLanguage.Enabled = SessionManager.GetInstance.IsLogged;
-         
-            
+
+
             //
             if (SessionManager.GetInstance.IsLogged)
             {
-                foreach (ToolStripMenuItem i in menuLanguage.DropDownItems)
-                {
-                    if (i.Text == SessionManager.GetInstance.Usuario.Idioma.Name)
-                        i.Checked = true;
-                }
+                this.toolStripSesion.Text = SessionManager.GetInstance.Usuario.LoginName;
+
+                //foreach (ToolStripMenuItem i in menuLanguage.DropDownItems)
+                //{
+                //    if (i.Text == SessionManager.GetInstance.Usuario.Idioma.Name)
+                //        i.Checked = true;
+                //}
+
                 //NotifyObserver(SessionManager.GetInstance.Usuario.Idioma);
+                
+                ValidatePermissions();
             }
+            else
+                this.toolStripSesion.Text = "[ Sesión no iniciada ]";
         }
 
         /// <summary>
@@ -99,7 +136,7 @@ namespace Application.UI
                 _languageBE = _languageBLL.GetLanguage(sender.ToString());
                 
                 SessionManager.GetInstance.Usuario.Idioma = _languageBE;
-                _user.UserUpdate(SessionManager.GetInstance.Usuario);
+                user.UserUpdate(SessionManager.GetInstance.Usuario);
                 
                 NotifyObserver(SessionManager.GetInstance.Usuario.Idioma);
 
@@ -131,16 +168,16 @@ namespace Application.UI
 
         private void menuLogout_Click(object sender, EventArgs e)
         {
-            _login.Logout();
-            lblSession.Text = null;
-            ValidarForm();
-        }
-
-        private void permisosToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            frmPermission frm = new frmPermission();
-            frm.MdiParent = this;
-            frm.Show();
+            if(MessageBox.Show("¿Está seguro de que desea cerrar la sesión?", "Confirme",MessageBoxButtons.YesNo) == DialogResult.Yes)
+            {
+                _login.Logout();
+                ValidarForm();
+                
+                if (!SessionManager.GetInstance.IsLogged)
+                {
+                    menuLogin_Click(sender, e);
+                }
+            }           
         }
 
         private void rolesToolStripMenuItem_Click(object sender, EventArgs e)
@@ -164,14 +201,16 @@ namespace Application.UI
             frm.Show();
         }
 
-        private void usuariosToolStripMenuItem1_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void gestionarClientesToolStripMenuItem_Click(object sender, EventArgs e)
         {
             frmClientList frm = new frmClientList();
+            frm.MdiParent = this;
+            frm.Show();
+        }
+
+        private void backupYRestoreToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmBackupRestore frm = new frmBackupRestore();
             frm.MdiParent = this;
             frm.Show();
         }
