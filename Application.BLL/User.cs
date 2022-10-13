@@ -27,13 +27,18 @@ namespace Application.BLL
             return _usuario;
         }
 
-        public bool UserCreate(BE.User usuario)
+        public BE.User GetByLoginName(string loginname)
+        {
+            return _mapper.GetByLoginName(loginname);
+        }
+
+        public int UserCreate(BE.User usuario)
         {
             int fa = _mapper.Create(usuario);
             if (fa != 0)
-                return true;
+                return fa;
             else
-                return false;
+                return 0;
         }
         public bool UserUpdate(BE.User usuario)
         {

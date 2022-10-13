@@ -194,7 +194,7 @@ namespace Application.UI
                     selectedRole.AddChild(r);
             }
             else
-                roleList = selectedRole.GetChilds;
+                roleList = selectedRole.GetChild;
 
             //mostrar en Treeview
             this.tvRole.Nodes.Clear();
@@ -213,8 +213,8 @@ namespace Application.UI
             TreeNode n = new TreeNode(component.Name);
             tn.Tag = component;
             tn.Nodes.Add(n);
-            if (component.GetChilds != null)
-                foreach (var p in component.GetChilds)
+            if (component.GetChild != null)
+                foreach (var p in component.GetChild)
                     ShowInTreeView(n, p); //recursividad para armar el arbol de permisos
         }
 

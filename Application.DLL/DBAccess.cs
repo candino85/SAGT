@@ -76,8 +76,6 @@ namespace Application.DLL
             int id = 0;
             TR = CN.BeginTransaction();
 
-            cm.CommandType = CommandType.Text;
-            cm.CommandText = cm.CommandText;          
             cm.Connection = CN;
 
             try

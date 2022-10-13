@@ -33,6 +33,8 @@ namespace Application.UI
             frmUser frmUser = new frmUser(this);
             frmMain frmMain = (frmMain)this.MdiParent;
             frmUser.Show();
+
+            Bind();
         }
 
         public void Bind()
@@ -40,7 +42,28 @@ namespace Application.UI
             dgvUsers.DataSource = null;
             dgvUsers.DataSource = usuario_BLL.UserList();
             dgvUsers.Columns["Id"].Visible = false;
+            dgvUsers.Columns["CreationDate"].Visible = false;
+            dgvUsers.Columns["FullName"].Visible = false;
             dgvUsers.Columns["Password"].Visible = false;
+            dgvUsers.Columns["Role"].Visible = false;
+        }
+
+        private void txtSearchUser_TextChanged(object sender, EventArgs e)
+        {
+            if (string.IsNullOrEmpty(txtSearchUser.Text))
+            {
+                dgvUsers.DataSource = usuario_BLL.UserList();
+            }
+            else
+            {
+                dgvUsers.DataSource = null;
+                dgvUsers.DataSource = usuario_BLL.UserList().FindAll(x => x.FullName.ToUpper().Contains(txtSearchUser.Text.ToUpper())); ;
+                dgvUsers.Columns["Id"].Visible = false;
+                dgvUsers.Columns["CreationDate"].Visible = false;
+                dgvUsers.Columns["FullName"].Visible = false;
+                dgvUsers.Columns["Password"].Visible = false;
+                dgvUsers.Columns["Role"].Visible = false;
+            }
         }
     }
 }

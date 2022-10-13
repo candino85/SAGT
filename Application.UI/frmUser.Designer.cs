@@ -30,6 +30,8 @@ namespace Application.UI
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.cmbRole = new System.Windows.Forms.ComboBox();
             this.label6 = new System.Windows.Forms.Label();
             this.cmbLanguage = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
@@ -44,11 +46,14 @@ namespace Application.UI
             this.txtNombre = new System.Windows.Forms.TextBox();
             this.btnUpdateUsers = new System.Windows.Forms.Button();
             this.btnCreateUser = new System.Windows.Forms.Button();
+            this.chkActive = new System.Windows.Forms.CheckBox();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.label7);
+            this.groupBox1.Controls.Add(this.cmbRole);
             this.groupBox1.Controls.Add(this.label6);
             this.groupBox1.Controls.Add(this.cmbLanguage);
             this.groupBox1.Controls.Add(this.label1);
@@ -63,10 +68,30 @@ namespace Application.UI
             this.groupBox1.Controls.Add(this.txtNombre);
             this.groupBox1.Location = new System.Drawing.Point(12, 12);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(204, 342);
+            this.groupBox1.Size = new System.Drawing.Size(204, 356);
             this.groupBox1.TabIndex = 19;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Ficha de usuario";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(3, 301);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(23, 13);
+            this.label7.TabIndex = 34;
+            this.label7.Tag = "idioma";
+            this.label7.Text = "Rol";
+            // 
+            // cmbRole
+            // 
+            this.cmbRole.DisplayMember = "Id";
+            this.cmbRole.FormattingEnabled = true;
+            this.cmbRole.Location = new System.Drawing.Point(6, 317);
+            this.cmbRole.Name = "cmbRole";
+            this.cmbRole.Size = new System.Drawing.Size(177, 21);
+            this.cmbRole.TabIndex = 33;
+            this.cmbRole.ValueMember = "Id";
             // 
             // label6
             // 
@@ -195,11 +220,23 @@ namespace Application.UI
             this.btnCreateUser.UseVisualStyleBackColor = true;
             this.btnCreateUser.Click += new System.EventHandler(this.btnCreateUser_Click);
             // 
+            // chkActive
+            // 
+            this.chkActive.AutoSize = true;
+            this.chkActive.Location = new System.Drawing.Point(307, 351);
+            this.chkActive.Name = "chkActive";
+            this.chkActive.Size = new System.Drawing.Size(56, 17);
+            this.chkActive.TabIndex = 25;
+            this.chkActive.Tag = "activo";
+            this.chkActive.Text = "Activo";
+            this.chkActive.UseVisualStyleBackColor = true;
+            // 
             // frmUser
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(373, 366);
+            this.ClientSize = new System.Drawing.Size(373, 380);
+            this.Controls.Add(this.chkActive);
             this.Controls.Add(this.btnCreateUser);
             this.Controls.Add(this.btnUpdateUsers);
             this.Controls.Add(this.groupBox1);
@@ -208,6 +245,7 @@ namespace Application.UI
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -227,5 +265,8 @@ namespace Application.UI
         private System.Windows.Forms.TextBox txtNombre;
         private System.Windows.Forms.Button btnUpdateUsers;
         private System.Windows.Forms.Button btnCreateUser;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.ComboBox cmbRole;
+        private System.Windows.Forms.CheckBox chkActive;
     }
 }

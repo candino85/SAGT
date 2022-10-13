@@ -21,7 +21,7 @@ namespace Application.Services
         {
 
         }
-        public override IList<Component> GetChilds
+        public override IList<Component> GetChild
         {
             get { return new List<Component>(); }
         }

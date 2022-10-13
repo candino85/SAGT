@@ -12,6 +12,7 @@ namespace Application.Services
     {
         private static SessionManager _session = new SessionManager();
         private readonly static object _lock = new Object();
+        
         public User Usuario = new User();
         public DateTime InicioSesion { get; set; }
         public DateTime FinSesion { get; set; }
@@ -34,7 +35,6 @@ namespace Application.Services
             }
         }        
 
-        //>> Agregar método para manejar habilitación y desabilitacion de menues segun Rol
         public void Login(User usuario)
         {
             lock (_lock)

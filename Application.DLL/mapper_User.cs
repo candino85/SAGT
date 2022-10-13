@@ -24,8 +24,8 @@ namespace Application.DLL
             {
                 usuario.Id = int.Parse(row["id"].ToString());
                 usuario.DNI = row["dni"].ToString();
-                usuario.Name= row["nombre"].ToString();
-                usuario.Lastname= row["apellido"].ToString();
+                usuario.Name = row["nombre"].ToString();
+                usuario.Lastname = row["apellido"].ToString();
                 usuario.LoginName = row["loginname"].ToString();
                 usuario.Password = row["password"].ToString();
                 usuario.Idioma = mapper_Language.GetLanguage(int.Parse(row["idioma"].ToString()));
@@ -43,41 +43,51 @@ namespace Application.DLL
             foreach (DataRow row in dataTable.Rows)
             {
                 usuario.Id = int.Parse(row["id"].ToString());
-                usuario.Name = row["name"].ToString();
+                usuario.DNI = row["dni"].ToString();
+                usuario.Name = row["nombre"].ToString();
                 usuario.Lastname = row["apellido"].ToString();
                 usuario.LoginName = row["loginname"].ToString();
                 usuario.Password = row["password"].ToString();
                 usuario.Idioma = mapper_Language.GetLanguage(row["idioma"].ToString());
-                //usuario.Guid = row["Guid"];
+                usuario.Active = (bool)row["activo"];
+                usuario.Role = (int)row["rol"];
+
             }
             return usuario;
         }
 
         public int Create(User usuario)
         {
-            SqlParameter[] parametros = new SqlParameter[5];
-            parametros[0] = new SqlParameter("nombre",usuario.Name);
-            parametros[1] = new SqlParameter("apellido",usuario.Lastname);
-            parametros[2] = new SqlParameter("dni",usuario.DNI);
-            parametros[3] = new SqlParameter("loginname",usuario.LoginName);
-            parametros[4] = new SqlParameter("pPassword",usuario.Password);
-            //parametros[6] = new SqlParameter("Idioma", usuario.Idioma.Id); 
-            //parametros[7] = new SqlParameter("Guid", usuario.Guid);
+            SqlCommand cmd = new SqlCommand(accesso.GetConnectionString());
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.CommandText = "UsuarioCrear";            
 
-            return accesso.Write("UsuarioCrear", parametros);
+            SqlParameter[] parametros = new SqlParameter[7];
+            parametros[0] = new SqlParameter("nombre", usuario.Name);
+            parametros[1] = new SqlParameter("apellido", usuario.Lastname);
+            parametros[2] = new SqlParameter("dni", usuario.DNI);
+            parametros[3] = new SqlParameter("loginname", usuario.LoginName);
+            parametros[4] = new SqlParameter("password", usuario.Password);
+            parametros[5] = new SqlParameter("activo", usuario.Active); 
+            parametros[6] = new SqlParameter("fechaCreacion", DateTime.Now.ToString());
+
+            cmd.Parameters.AddRange(parametros);
+
+            return accesso.WriteCommand(cmd);
         }
 
         public int Update(User usuario)
         {
-            SqlParameter[] parametros = new SqlParameter[6];
-            parametros[0] = new SqlParameter("id", usuario.Id); 
+            SqlParameter[] parametros = new SqlParameter[8];
+            parametros[0] = new SqlParameter("id", usuario.Id);
             parametros[1] = new SqlParameter("dni", usuario.DNI);
-            parametros[2] = new SqlParameter("nombre", usuario.Name); 
-            parametros[3] = new SqlParameter("apellido", usuario.Lastname); 
-            parametros[4] = new SqlParameter("loginname", usuario.LoginName); 
-            parametros[5] = new SqlParameter("password", usuario.Password);
+            parametros[2] = new SqlParameter("nombre", usuario.Name);
+            parametros[3] = new SqlParameter("apellido", usuario.Lastname);
+            parametros[4] = new SqlParameter("loginname", usuario.LoginName);
+            parametros[5] = new SqlParameter("password", usuario.Password);            
+            parametros[6] = new SqlParameter("activo", usuario.Active);
+            parametros[7] = new SqlParameter("fechaCreacion", usuario.CreationDate);
             //parametros[6] = new SqlParameter("Idioma", usuario.Idioma.Id);
-            //parametros[7] = new SqlParameter("Guid", usuario.Guid); 
 
             return accesso.Write("UsuarioModificar", parametros);
         }
@@ -86,7 +96,7 @@ namespace Application.DLL
         {
             SqlParameter[] parametro = new SqlParameter[1];
             parametro[0] = new SqlParameter("Id", id);
-            
+
             return accesso.Write("UsuarioEliminar", parametro);
         }
 
@@ -102,15 +112,41 @@ namespace Application.DLL
                     Id = int.Parse(row["id"].ToString()),
                     DNI = row["dni"].ToString(),
                     Name = row["nombre"].ToString(),
-                    Lastname= row["apellido"].ToString(),
+                    Lastname = row["apellido"].ToString(),
                     LoginName = row["loginname"].ToString(),
-                    Password = row["password"].ToString()
+                    Password = row["password"].ToString(),
+                    Active = bool.Parse(row["activo"].ToString()),
+                    CreationDate = DateTime.Parse(row["FechaCreacion"].ToString())                    
                 };
+
+                if (row["rol"] != DBNull.Value)
+                    usuario.Role = (int)row["rol"]; 
 
                 listaUsuarios.Add(usuario);
             }
 
             return listaUsuarios;
+        }
+
+        public BE.User GetByLoginName(string loginname)
+        {
+            BE.User usuario = new User();
+            SqlParameter[] parametro = new SqlParameter[1];
+            parametro[0] = new SqlParameter("@loginname", loginname);
+
+            DataTable dataTable = accesso.Read("UsuarioGetByLoginName", parametro);
+            foreach (DataRow row in dataTable.Rows)
+            {
+                usuario.Id = int.Parse(row["id"].ToString());
+                usuario.DNI = row["dni"].ToString();
+                usuario.Name = row["nombre"].ToString();
+                usuario.Lastname = row["apellido"].ToString();
+                usuario.LoginName = row["loginname"].ToString();
+                usuario.Password = row["password"].ToString();
+                //usuario.Idioma = mapper_Language.GetLanguage(row["idioma"].ToString());
+
+            }
+            return usuario;
         }
     }
 }

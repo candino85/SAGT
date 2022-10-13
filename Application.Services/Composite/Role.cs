@@ -12,7 +12,7 @@ namespace Application.Services
             _childList = new List<Component>();
         }
 
-        public override IList<Component> GetChilds
+        public override IList<Component> GetChild
         {
             get { return _childList; }
         }

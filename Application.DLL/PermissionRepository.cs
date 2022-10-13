@@ -201,7 +201,7 @@ namespace Application.DLL
                 cmd.Parameters.Add(new SqlParameter("id", role.Id));
                 cmd.ExecuteNonQuery();
 
-                foreach (var child in role.GetChilds)
+                foreach (var child in role.GetChild)
                 {
                     cmd = new SqlCommand();
                     cmd.Connection = cnn;
@@ -293,11 +293,11 @@ namespace Application.DLL
             {
                 foreach(var c in list)
                 {
-                    var r = GetComponent(id, c.GetChilds);
+                    var r = GetComponent(id, c.GetChild);
                     if (r != null && r.Id == id) return r;
                     else
                     if (r != null)
-                        return GetComponent(id, r.GetChilds);
+                        return GetComponent(id, r.GetChild);
                 }
             }
             return component;
@@ -371,13 +371,68 @@ namespace Application.DLL
                 exist = true;
             else 
             {
-                foreach (var p in c.GetChilds)
+                foreach (var p in c.GetChild)
                 { 
                     exist = IsInRole(p, pt, exist); // recursividad para recuperar todos los permisos
                     if (exist) return true;
                 }
             }
             return exist;
+        }
+
+        public int GetUserRole(int idUser)
+        {
+            try
+            {
+                var cnn = new SqlConnection(accesso.GetConnectionString());
+                cnn.Open();
+                var cmd = new SqlCommand();
+                cmd.Connection = cnn;
+
+                var query = $"select id_permiso from usuario_permiso where id_usuario = {idUser}";
+              
+                cmd.CommandText = query;
+
+                var result = cmd.ExecuteScalar();
+                if (result != null)
+                    return (int)result;
+                else
+                    return 0;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+        }
+        public int SaveUserPermission(int idUser, int idPermission)
+        {
+            try
+            {
+                var cnn = new SqlConnection(accesso.GetConnectionString());
+                cnn.Open();
+                var cmd = new SqlCommand();
+                cmd.Connection = cnn;
+
+                var query = $@"if exists (select * from Usuario_Permiso where Id_Usuario = {idUser})
+	                            update Usuario_Permiso set Id_Permiso = {idPermission} where Id_Usuario = {idUser}
+                            else
+	                            insert into usuario_permiso (id_usuario, id_permiso) values ({idUser},{idPermission})";
+
+                cmd.CommandText = query;
+
+                var result = cmd.ExecuteNonQuery();
+
+                if (result != 0)
+                    return result;
+                else
+                    return 0;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
         }
     }
 }

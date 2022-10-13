@@ -48,6 +48,8 @@ namespace Application.BLL
         }
         public void Logout()
         {
+            if (!SessionManager.GetInstance.IsLogged)
+                throw new Exception("Sesión no iniciada");
             SessionManager.GetInstance.Logout();
         }
     }

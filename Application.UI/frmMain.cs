@@ -22,7 +22,7 @@ namespace Application.UI
         
         BLL.User user;
         BLL.Permission permission;
-        UserPermission userPermission;
+        Services.UserPermission userPermission;
 
         BLL.Language _languageBLL;
         BE.Language _languageBE;
@@ -47,27 +47,37 @@ namespace Application.UI
 
         public void ValidatePermissions()
         {
-            userPermission.Id = SessionManager.GetInstance.Usuario.Id;
-            userPermission.Nombre = SessionManager.GetInstance.Usuario.Name;
+            if (SessionManager.GetInstance.Usuario != null)
+            {
+                userPermission.Id = SessionManager.GetInstance.Usuario.Id;
+                userPermission.Nombre = SessionManager.GetInstance.Usuario.Name;
 
-            //sesionToolStripMenuItem
-            menuLanguage.Visible = permission.FindUserPermissions(PermissionType.CambiarIdioma, userPermission);
+                //sesionToolStripMenuItem
+                menuLanguage.Visible = permission.FindUserPermissions(PermissionType.CambiarIdioma, userPermission);
+                backupYRestoreToolStripMenuItem.Visible = permission.FindUserPermissions(PermissionType.BackupRestore, userPermission);
 
-            //gestionToolStripMenuItem
-            entidadesToolStripMenuItem.Visible = permission.FindUserPermissions(PermissionType.GestionarEntidades, userPermission);
-            idiomasToolStripMenuItem.Visible = permission.FindUserPermissions(PermissionType.GestionarIdioma, userPermission);
-            usuariosToolStripMenuItem.Visible = permission.FindUserPermissions(PermissionType.GestionarUsuarios, userPermission);
-            espaciosToolStripMenuItem.Visible = permission.FindUserPermissions(PermissionType.GestionarEspacios, userPermission);
+                gestionToolStripMenuItem.Visible = true;
+                entidadesToolStripMenuItem.Visible = permission.FindUserPermissions(PermissionType.GestionarEntidades, userPermission);
+                idiomasToolStripMenuItem.Visible = permission.FindUserPermissions(PermissionType.GestionarIdioma, userPermission);
+                usuariosToolStripMenuItem.Visible = permission.FindUserPermissions(PermissionType.GestionarUsuarios, userPermission);
+                //espaciosToolStripMenuItem.Visible = permission.FindUserPermissions(PermissionType.GestionarEspacios, userPermission);
 
-            //seguridadToolStripMenuItem
-            rolesToolStripMenuItem.Visible = permission.FindUserPermissions(PermissionType.ConfigurarSeguridadRoles, userPermission);
-            seguridadUsuariosToolStripMenuItem.Visible = permission.FindUserPermissions(PermissionType.ConfigurarSeguridadUsuarios, userPermission);
+                seguridadToolStripMenuItem.Visible = true;
+                rolesToolStripMenuItem.Visible = permission.FindUserPermissions(PermissionType.ConfigurarSeguridadRoles, userPermission);
+                //seguridadUsuariosToolStripMenuItem.Visible = permission.FindUserPermissions(PermissionType.ConfigurarSeguridadUsuarios, userPermission);
 
-            //negocioToolStripMenuItem (Este permiso se desglosará para cada tipo de role del negocio)
-            negocioToolStripMenuItem.Visible = permission.FindUserPermissions(PermissionType.ConfigurarNegocio, userPermission);
+                //negocioToolStripMenuItem (Este permiso se desglosará para cada tipo de role del negocio)
+                negocioToolStripMenuItem.Visible = permission.FindUserPermissions(PermissionType.ConfigurarNegocio, userPermission);
+            }
+            else
+            {
+                menuLanguage.Visible = false;
+                backupYRestoreToolStripMenuItem.Visible = false;
 
-            //backupYRestoreToolStripMenuItem
-            backupYRestoreToolStripMenuItem.Visible = permission.FindUserPermissions(PermissionType.BackupRestore, userPermission);
+                gestionToolStripMenuItem.Visible = false;
+                seguridadToolStripMenuItem.Visible = false;
+                negocioToolStripMenuItem.Visible = false;
+            }
         }
 
         private void frmMain_Load(object sender, EventArgs e)
@@ -101,10 +111,11 @@ namespace Application.UI
                 //}
 
                 //NotifyObserver(SessionManager.GetInstance.Usuario.Idioma);
-                
+
                 ValidatePermissions();
             }
             else
+                ValidatePermissions();
                 this.toolStripSesion.Text = "[ Sesión no iniciada ]";
         }
 
@@ -213,6 +224,11 @@ namespace Application.UI
             frmBackupRestore frm = new frmBackupRestore();
             frm.MdiParent = this;
             frm.Show();
+        }
+
+        private void seguridadUsuariosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
         }
 
         //private void españolToolStripMenuItem_Click(object sender, EventArgs e)

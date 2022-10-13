@@ -42,11 +42,19 @@ namespace Application.BE
         private Language _idioma;
         public Language Idioma { get { return _idioma; } set { _idioma = value; } }
 
+
+        private int _role;
+
+        public int Role
+        {
+            get { return _role; }
+            set { _role = value; }
+        }
+
         //Composite
         //private Role _rol;
         //public Role Rol { get { return _rol; } set { _rol = value; } }
-        //public List<Component> Permisos { get; set; }
-        
+
     }
 }
 

@@ -12,7 +12,7 @@ namespace Application.Services
         public int Id { get; set; }
         public string Name { get; set; }
         public Role Parent { get; set; }
-        public abstract IList<Component> GetChilds { get; }
+        public abstract IList<Component> GetChild { get; }
         public abstract void AddChild(Component c);
         public abstract void RemoveChild(Component c);
         public PermissionType Permission { get; set; }

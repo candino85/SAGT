@@ -60,7 +60,7 @@ namespace Application.BLL
                 exist = true;
             else
             {
-                foreach (var c in component.GetChilds)
+                foreach (var c in component.GetChild)
                 {
                     exist = AlreadyExistComponent(c, idComp);
                     if (exist) return true;
@@ -86,6 +86,16 @@ namespace Application.BLL
         public bool FindUserPermissions(PermissionType permissionType,UserPermission userPermission)
         {
             return _repository.FindUserPermissions(permissionType, userPermission);
+        }
+
+        public int GetUserRole(int idUser)
+        {
+            return _repository.GetUserRole(idUser);
+        }
+
+        public int SaveUserPermission(int idUser, int idPermission)
+        {
+            return _repository.SaveUserPermission(idUser,idPermission);
         }
     }
 }
