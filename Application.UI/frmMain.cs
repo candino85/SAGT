@@ -53,8 +53,7 @@ namespace Application.UI
                 userPermission.Nombre = SessionManager.GetInstance.Usuario.Name;
 
                 //sesionToolStripMenuItem
-                menuLanguage.Visible = permission.FindUserPermissions(PermissionType.CambiarIdioma, userPermission);
-                backupYRestoreToolStripMenuItem.Visible = permission.FindUserPermissions(PermissionType.BackupRestore, userPermission);
+                menuLanguage.Visible = permission.FindUserPermissions(PermissionType.CambiarIdioma, userPermission);                
 
                 gestionToolStripMenuItem.Visible = true;
                 entidadesToolStripMenuItem.Visible = permission.FindUserPermissions(PermissionType.GestionarEntidades, userPermission);
@@ -64,6 +63,7 @@ namespace Application.UI
 
                 seguridadToolStripMenuItem.Visible = true;
                 rolesToolStripMenuItem.Visible = permission.FindUserPermissions(PermissionType.ConfigurarSeguridadRoles, userPermission);
+                backupRestoreToolStripMenuItem.Visible = permission.FindUserPermissions(PermissionType.BackupRestore, userPermission);
                 //seguridadUsuariosToolStripMenuItem.Visible = permission.FindUserPermissions(PermissionType.ConfigurarSeguridadUsuarios, userPermission);
 
                 //negocioToolStripMenuItem (Este permiso se desglosará para cada tipo de role del negocio)
@@ -72,7 +72,7 @@ namespace Application.UI
             else
             {
                 menuLanguage.Visible = false;
-                backupYRestoreToolStripMenuItem.Visible = false;
+                backupRestoreToolStripMenuItem.Visible = false;
 
                 gestionToolStripMenuItem.Visible = false;
                 seguridadToolStripMenuItem.Visible = false;
@@ -221,14 +221,19 @@ namespace Application.UI
 
         private void backupYRestoreToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            frmBackupRestore frm = new frmBackupRestore();
-            frm.MdiParent = this;
-            frm.Show();
+
         }
 
         private void seguridadUsuariosToolStripMenuItem_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void backupRestoreToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmBackupRestore frm = new frmBackupRestore();
+            frm.MdiParent = this;
+            frm.Show();
         }
 
         //private void españolToolStripMenuItem_Click(object sender, EventArgs e)

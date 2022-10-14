@@ -17,7 +17,7 @@ namespace Application.Services.Security
         {
             Log.Error(e, message);
         }
-        public void fatal(string message, Exception e)
+        public void Fatal(string message, Exception e)
         {
             Log.Fatal(e, message);
         }

@@ -40,7 +40,7 @@ namespace Application.DLL
 
             try
             {                
-                string query = $"USE[master] ALTER DATABASE Campo SET Single_User WITH Rollback Immediate;  RESTORE DATABASE Campo FROM DISK = N'{path}' WITH REPLACE; ALTER DATABASE Campo SET Multi_User";
+                string query = $"USE[master] ALTER DATABASE {conn.Database} SET Single_User WITH Rollback Immediate;  RESTORE DATABASE {conn.Database} FROM DISK = N'{path}' WITH REPLACE; ALTER DATABASE {conn.Database} SET Multi_User";
 
                 SqlCommand comm = new SqlCommand(query,conn);
                 comm.ExecuteNonQuery();
