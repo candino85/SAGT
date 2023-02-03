@@ -76,7 +76,7 @@ namespace Application.UI
                     usuario_BE.LoginName = txtNombreUsuario.Text;
                     usuario_BE.Password = Encrypt.GetSHA256(txtPassword.Text);
                     usuario_BE.Active = true;
-                                       
+
 
                     usuario_BE.Id = usuario_BLL.UserCreate(usuario_BE);
 
@@ -98,30 +98,30 @@ namespace Application.UI
             }
             else
                 MessageBox.Show("Verifique los campos para crear el nuevo usuario");
-            
+
             _frmUsersList.Bind();
         }
 
         private void btnUpdateUsers_Click(object sender, EventArgs e)
         {
             if (txtNombreUsuario.Text == usuario_BE.LoginName)
-            {                    
+            {
                 usuario_BE.DNI = txtDNI.Text;
                 usuario_BE.Name = txtNombre.Text;
                 usuario_BE.Lastname = txtApellido.Text;
                 usuario_BE.Active = chkActive.Checked;
 
 
-                    if (txtPassword.Text != usuario_BE.Password)
-                    {
-                        DialogResult result = MessageBox.Show("La contraseña ingresada difiere de la contraseña guardada", "Desea cambiar la clave del usuario por la ingresada?", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (txtPassword.Text != usuario_BE.Password)
+                {
+                    DialogResult result = MessageBox.Show("La contraseña ingresada difiere de la contraseña guardada", "Desea cambiar la clave del usuario por la ingresada?", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
-                        if (result == DialogResult.Yes)
-                            usuario_BE.Password = Encrypt.GetSHA256(txtPassword.Text);
-                    }
+                    if (result == DialogResult.Yes)
+                        usuario_BE.Password = Encrypt.GetSHA256(txtPassword.Text);
+                }
             }
-            else 
-            { 
+            else
+            {
                 if (txtNombreUsuario.Text != (usuario_BLL.GetByLoginName(txtNombreUsuario.Text)).LoginName)
                 {
                     usuario_BE.LoginName = txtNombreUsuario.Text;

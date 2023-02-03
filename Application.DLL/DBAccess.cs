@@ -16,7 +16,7 @@ namespace Application.DLL
         {
             var cs = new SqlConnectionStringBuilder();
             cs.IntegratedSecurity = true;
-            cs.DataSource = "NB-CRISTIAN\\SQLEXPRESS2019";
+            cs.DataSource = ".\\SQLEXPRESS2019";
             cs.InitialCatalog = "Campo";
             return cs.ConnectionString;
         }
