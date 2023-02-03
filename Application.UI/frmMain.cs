@@ -47,7 +47,7 @@ namespace Application.UI
 
         public void ValidatePermissions()
         {
-            if (SessionManager.GetInstance.Usuario != null)
+            if (SessionManager.GetInstance.Usuario != null && SessionManager.GetInstance.Usuario.LoginName != "SysAdmin")
             {
                 userPermission.Id = SessionManager.GetInstance.Usuario.Id;
                 userPermission.Nombre = SessionManager.GetInstance.Usuario.Name;
@@ -68,6 +68,25 @@ namespace Application.UI
 
                 //negocioToolStripMenuItem (Este permiso se desglosará para cada tipo de role del negocio)
                 negocioToolStripMenuItem.Visible = permission.FindUserPermissions(PermissionType.ConfigurarNegocio, userPermission);
+            }
+            else if (SessionManager.GetInstance.Usuario.LoginName == "SysAdmin")
+            {
+                //sesionToolStripMenuItem
+                menuLanguage.Visible = true;
+
+                gestionToolStripMenuItem.Visible = true;
+                entidadesToolStripMenuItem.Visible = true;
+                idiomasToolStripMenuItem.Visible = true;
+                usuariosToolStripMenuItem.Visible = true;
+                //espaciosToolStripMenuItem.Visible = permission.FindUserPermissions(PermissionType.GestionarEspacios, userPermission);
+
+                seguridadToolStripMenuItem.Visible = true;
+                rolesToolStripMenuItem.Visible = true;
+                backupRestoreToolStripMenuItem.Visible = true;
+                //seguridadUsuariosToolStripMenuItem.Visible = permission.FindUserPermissions(PermissionType.ConfigurarSeguridadUsuarios, userPermission);
+
+                //negocioToolStripMenuItem (Este permiso se desglosará para cada tipo de role del negocio)
+                negocioToolStripMenuItem.Visible = true;
             }
             else
             {
@@ -115,8 +134,10 @@ namespace Application.UI
                 ValidatePermissions();
             }
             else
+            {
                 ValidatePermissions();
                 this.toolStripSesion.Text = "[ Sesión no iniciada ]";
+            }
         }
 
         /// <summary>
