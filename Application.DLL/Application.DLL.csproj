@@ -43,6 +43,7 @@
   <ItemGroup>
     <Compile Include="BackupRestoreRepository.cs" />
     <Compile Include="DBAccess.cs" />
+    <Compile Include="LanguageRepository.cs" />
     <Compile Include="LoggingRepository.cs" />
     <Compile Include="mapper_Language.cs" />
     <Compile Include="PermissionRepository.cs" />

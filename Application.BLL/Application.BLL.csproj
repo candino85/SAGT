@@ -42,7 +42,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BackupRestore.cs" />
-    <Compile Include="Language.cs" />
+    <Compile Include="LanguageService.cs" />
     <Compile Include="LoginService.cs" />
     <Compile Include="Client.cs" />
     <Compile Include="Permission.cs" />

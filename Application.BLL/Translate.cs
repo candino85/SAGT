@@ -10,15 +10,15 @@ namespace Application.BLL
     public class Translate
     {
         readonly mapper_Translate _mapper;
-        public List<BE.Translate> Listar(BE.Language language, List<BE.Word> words)
-        {
-            List<BE.Translate> translates = _mapper.GetTranslates(language.Id, words);
+        //public List<BE.Translation> Listar(BE.Language language, List<BE.Word> words)
+        //{
+        //    List<BE.Translation> translates = _mapper.GetTranslates(language.Id, words);
 
-            //foreach (BE.Translate translate in listaTranslates)
-            //{
-            //    language.AddTranslate(translate);
-            //}
-            return translates;
-        }
+        //    //foreach (BE.Translate translate in listaTranslates)
+        //    //{
+        //    //    language.AddTranslate(translate);
+        //    //}
+        //    return translates;
+        //}
     }
 }

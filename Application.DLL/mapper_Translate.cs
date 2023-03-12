@@ -13,26 +13,26 @@ namespace Application.DLL
     public class mapper_Translate
     {
         readonly DBAccess accesso = new DBAccess();
-        public List<Translate> GetTranslates(int language, List<BE.Word> words)
-        {
-            List<BE.Translate> listaTranslate = new List<BE.Translate>();
-            SqlParameter[] parameter = new SqlParameter[1];
-            parameter[0] = new SqlParameter("@ididioma", language);
+        //public List<Translation> GetTranslates(int language, List<BE.Word> words)
+        //{
+        //    List<BE.Translation> listaTranslate = new List<BE.Translation>();
+        //    SqlParameter[] parameter = new SqlParameter[1];
+        //    parameter[0] = new SqlParameter("@ididioma", language);
 
-            DataTable dataTable = accesso.Read("TraduccionGet", parameter);
+        //    DataTable dataTable = accesso.Read("TraduccionGet", parameter);
 
-            foreach (DataRow row in dataTable.Rows)
-            {
-                BE.Translate translate = new Translate
-                {
-                    Id = int.Parse(row["id"].ToString()),
-                    Word = words.FirstOrDefault(x => x.Id == int.Parse(row["idpalabra"].ToString())),
-                    TranslatedWord = row["palabratraducida"].ToString(),
-                };
+        //    foreach (DataRow row in dataTable.Rows)
+        //    {
+        //        BE.Translation translate = new Translation
+        //        {
+        //            Id = int.Parse(row["id"].ToString()),
+        //            Word = words.FirstOrDefault(x => x.Id == int.Parse(row["idpalabra"].ToString())),
+        //            Word = row["palabratraducida"].ToString(),
+        //        };
 
-                listaTranslate.Add(translate);
-            }
-            return listaTranslate;
-        }
+        //        listaTranslate.Add(translate);
+        //    }
+        //    return listaTranslate;
+        //}
     }
 }

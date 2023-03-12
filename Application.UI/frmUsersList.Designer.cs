@@ -29,61 +29,21 @@ namespace Application.UI
         /// </summary>
         private void InitializeComponent()
         {
-            this.gpbUserList = new System.Windows.Forms.GroupBox();
-            this.dgvUsers = new System.Windows.Forms.DataGridView();
-            this.btnCreateUser = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.txtSearchUser = new System.Windows.Forms.TextBox();
-            this.gpbUserList.SuspendLayout();
+            this.btnCreateUser = new System.Windows.Forms.Button();
+            this.dgvUsers = new System.Windows.Forms.DataGridView();
             ((System.ComponentModel.ISupportInitialize)(this.dgvUsers)).BeginInit();
             this.SuspendLayout();
-            // 
-            // gpbUserList
-            // 
-            this.gpbUserList.Controls.Add(this.label1);
-            this.gpbUserList.Controls.Add(this.txtSearchUser);
-            this.gpbUserList.Controls.Add(this.btnCreateUser);
-            this.gpbUserList.Controls.Add(this.dgvUsers);
-            this.gpbUserList.Location = new System.Drawing.Point(12, 12);
-            this.gpbUserList.Name = "gpbUserList";
-            this.gpbUserList.Size = new System.Drawing.Size(670, 438);
-            this.gpbUserList.TabIndex = 21;
-            this.gpbUserList.TabStop = false;
-            this.gpbUserList.Text = "Lista de usuarios";
-            // 
-            // dgvUsers
-            // 
-            this.dgvUsers.AllowUserToAddRows = false;
-            this.dgvUsers.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
-            this.dgvUsers.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvUsers.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
-            this.dgvUsers.Location = new System.Drawing.Point(6, 52);
-            this.dgvUsers.MultiSelect = false;
-            this.dgvUsers.Name = "dgvUsers";
-            this.dgvUsers.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvUsers.Size = new System.Drawing.Size(657, 376);
-            this.dgvUsers.TabIndex = 5;
-            this.dgvUsers.Tag = "";
-            this.dgvUsers.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvUsers_CellDoubleClick);
-            // 
-            // btnCreateUser
-            // 
-            this.btnCreateUser.Location = new System.Drawing.Point(529, 19);
-            this.btnCreateUser.Name = "btnCreateUser";
-            this.btnCreateUser.Size = new System.Drawing.Size(134, 26);
-            this.btnCreateUser.TabIndex = 22;
-            this.btnCreateUser.Tag = "crear usuario";
-            this.btnCreateUser.Text = "Crear nuevo usuario";
-            this.btnCreateUser.UseVisualStyleBackColor = true;
-            this.btnCreateUser.Click += new System.EventHandler(this.btnCreateUser_Click);
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(6, 26);
+            this.label1.Location = new System.Drawing.Point(27, 38);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(46, 13);
-            this.label1.TabIndex = 24;
+            this.label1.Size = new System.Drawing.Size(67, 20);
+            this.label1.TabIndex = 28;
             this.label1.Tag = "buscar";
             this.label1.Text = "Buscar :";
             // 
@@ -91,33 +51,67 @@ namespace Application.UI
             // 
             this.txtSearchUser.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtSearchUser.Location = new System.Drawing.Point(58, 23);
+            this.txtSearchUser.Location = new System.Drawing.Point(105, 33);
+            this.txtSearchUser.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txtSearchUser.Name = "txtSearchUser";
-            this.txtSearchUser.Size = new System.Drawing.Size(465, 20);
-            this.txtSearchUser.TabIndex = 23;
+            this.txtSearchUser.Size = new System.Drawing.Size(696, 26);
+            this.txtSearchUser.TabIndex = 27;
             this.txtSearchUser.TextChanged += new System.EventHandler(this.txtSearchUser_TextChanged);
+            // 
+            // btnCreateUser
+            // 
+            this.btnCreateUser.Location = new System.Drawing.Point(812, 27);
+            this.btnCreateUser.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btnCreateUser.Name = "btnCreateUser";
+            this.btnCreateUser.Size = new System.Drawing.Size(201, 40);
+            this.btnCreateUser.TabIndex = 26;
+            this.btnCreateUser.Tag = "crear usuario";
+            this.btnCreateUser.Text = "Crear Usuario";
+            this.btnCreateUser.UseVisualStyleBackColor = true;
+            // 
+            // dgvUsers
+            // 
+            this.dgvUsers.AllowUserToAddRows = false;
+            this.dgvUsers.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
+            this.dgvUsers.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvUsers.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
+            this.dgvUsers.Location = new System.Drawing.Point(27, 92);
+            this.dgvUsers.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.dgvUsers.MultiSelect = false;
+            this.dgvUsers.Name = "dgvUsers";
+            this.dgvUsers.RowHeadersWidth = 62;
+            this.dgvUsers.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgvUsers.Size = new System.Drawing.Size(986, 578);
+            this.dgvUsers.TabIndex = 25;
+            this.dgvUsers.Tag = "";
+            this.dgvUsers.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvUsers_CellDoubleClick);
             // 
             // frmUsersList
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(694, 462);
-            this.Controls.Add(this.gpbUserList);
+            this.ClientSize = new System.Drawing.Size(1041, 711);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.txtSearchUser);
+            this.Controls.Add(this.btnCreateUser);
+            this.Controls.Add(this.dgvUsers);
+            this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "frmUsersList";
-            this.Text = "frmUsersList";
-            this.gpbUserList.ResumeLayout(false);
-            this.gpbUserList.PerformLayout();
+            this.Tag = "frmUsersList";
+            this.Text = "Administración de Usuarios";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.frmUsersList_FormClosed);
+            this.Load += new System.EventHandler(this.frmUsersList_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvUsers)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
         #endregion
 
-        private System.Windows.Forms.GroupBox gpbUserList;
-        private System.Windows.Forms.DataGridView dgvUsers;
-        private System.Windows.Forms.Button btnCreateUser;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox txtSearchUser;
+        private System.Windows.Forms.Button btnCreateUser;
+        private System.Windows.Forms.DataGridView dgvUsers;
     }
 }

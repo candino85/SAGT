@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace Application.BE
 {
-    public class Translate : Entity, ITranslate
+    public class Translation : Entity, ITranslation
     {
-        public string TranslatedWord { get ; set ; }
-        public IWord Word { get ; set ; }
+        public string Key { get ; set ; }
+        public string Translate { get ; set ; }
     }
 }

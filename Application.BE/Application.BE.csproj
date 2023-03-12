@@ -45,7 +45,7 @@
     <Compile Include="Entity.cs" />
     <Compile Include="Menu.cs" />
     <Compile Include="MultiLanguage\Language.cs" />
-    <Compile Include="MultiLanguage\Translate.cs" />
+    <Compile Include="MultiLanguage\Translation.cs" />
     <Compile Include="MultiLanguage\Word.cs" />
     <Compile Include="Client.cs" />
     <Compile Include="User.cs" />

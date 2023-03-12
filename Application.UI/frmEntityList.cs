@@ -1,4 +1,7 @@
-﻿using System;
+﻿using Application.ABSTRACTIONS;
+using Application.Services;
+using Application.UI.Language;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -10,7 +13,7 @@ using System.Windows.Forms;
 
 namespace Application.UI
 {
-    public partial class frmEntityList : Form
+    public partial class frmEntityList : Form, ILanguageObserver
     {
         BE.Entity Entity_BE;
         BLL.Entity entity_BLL;
@@ -40,6 +43,21 @@ namespace Application.UI
             dgvEntities.DataSource = null;
             dgvEntities.DataSource = entity_BLL.EntityList();
             dgvEntities.Columns["Id"].Visible = false;
+        }
+
+        public void updateLanguage(ILanguage language)
+        {
+            Translator.Translate(this);
+        }
+
+        private void frmEntityList_Load(object sender, EventArgs e)
+        {
+            updateLanguage(SessionManager.GetInstance.language);
+        }
+
+        private void frmEntityList_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            SessionManager.GetInstance.UnsubscribeObserver(this);
         }
     }
 }

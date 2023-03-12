@@ -8,11 +8,13 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Application.ABSTRACTIONS;
 using Application.Services;
+using Application.UI.Language;
 
 namespace Application.UI
 {
-    public partial class frmRoles : Form
+    public partial class frmRoles : Form, ILanguageObserver
     {
         BLL.Permission _permission;
         Services.Role selectedRole;
@@ -307,6 +309,16 @@ namespace Application.UI
             //    Id = int.Parse(tvRole.SelectedNode.Name.ToString()),
             //    Name = tvRole.SelectedNode.Text
             //};
+        }
+
+        public void updateLanguage(ILanguage language)
+        {
+            Translator.Translate(this);
+        }
+
+        private void frmRoles_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            SessionManager.GetInstance.UnsubscribeObserver(this);
         }
     }
 }

@@ -45,9 +45,9 @@
     <Compile Include="IPerson.cs" />
     <Compile Include="IUser.cs" />
     <Compile Include="Observer\ILanguage.cs" />
-    <Compile Include="Observer\IObserver.cs" />
-    <Compile Include="Observer\ISubject.cs" />
-    <Compile Include="Observer\ITranslate.cs" />
+    <Compile Include="Observer\ILanguageObserver.cs" />
+    <Compile Include="Observer\ILanguageSubject.cs" />
+    <Compile Include="Observer\ITranslation.cs" />
     <Compile Include="Observer\IWord.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

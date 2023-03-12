@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace Application.ABSTRACTIONS
 {
-    public interface ITranslate : IEntity
+    public interface ITranslation
     {
-        string TranslatedWord { get; set; }
-        IWord Word { get; set; }
+        string Key { get; set; }
+        string Translate { get; set; }
     }
 }

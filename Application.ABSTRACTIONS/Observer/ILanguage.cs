@@ -6,11 +6,12 @@ using System.Threading.Tasks;
 
 namespace Application.ABSTRACTIONS
 {
-    public interface ILanguage : IEntity
+    public interface ILanguage 
     {
         string Name { get; set; }
-        IList<ITranslate> Translates { get; set; }
-        void AddTranslate(ITranslate translate);
-        string SearchTranslate(string text);
+
+        bool Default { get; set; }
+
+        List<ITranslation> Translations { get; set; }
     }
 }

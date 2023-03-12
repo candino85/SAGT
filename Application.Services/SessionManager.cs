@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Application.Services
 {
-    public class SessionManager : ISubject
+    public class SessionManager : ILanguageSubject
     {
         private static SessionManager _session = new SessionManager();
         private readonly static object _lock = new Object();
@@ -17,12 +17,23 @@ namespace Application.Services
         public DateTime InicioSesion { get; set; }
         public DateTime FinSesion { get; set; }
         public bool IsLogged { get; private set; }
-        public IList<IObserver> observers { get ; set ; }
+        public IList<ILanguageObserver> languageObservers { get ; set ; }
+
+        private Language _language;
+
+        public Language language 
+        { 
+            get { return _language; } 
+            set { 
+                _language = value; 
+                NotifyAllObservers((ILanguage)language); 
+            } 
+        }
 
         private SessionManager()
         {
             IsLogged = false;
-            observers = new List<IObserver>();
+            languageObservers = new List<ILanguageObserver>();
         }
 
         public static SessionManager GetInstance
@@ -42,6 +53,7 @@ namespace Application.Services
                 if (IsLogged == false)
                 {                   
                     _session.Usuario = usuario;
+                    _session.language = usuario.Idioma;
                     _session.InicioSesion = DateTime.Now;
                     IsLogged = true;
                 }
@@ -70,29 +82,28 @@ namespace Application.Services
             }
         }      
 
-
-        public void SubscribeObserver(IObserver observer)
+        public void SubscribeObserver(ILanguageObserver observer)
         {
-            observers.Add(observer);
+            languageObservers.Add(observer);
         }
 
-        public void UnsubscribeObserver(IObserver observer)
+        public void UnsubscribeObserver(ILanguageObserver observer)
         {
-            observers.Remove(observer);
+            languageObservers.Remove(observer);
         }
 
         public void NotifyAllObservers(ILanguage language)
         {
-            foreach (var observer in observers)
+            foreach (ILanguageObserver observer in languageObservers)
             {
-                observer.NotifyObserver(language);
+                observer.updateLanguage(language);
             }
         }
 
         public void ChangeLanguage(Language language)
         {
-            Usuario.Idioma = language;
-            NotifyAllObservers(Usuario.Idioma);
+            _session.Usuario.Idioma = language;
+            NotifyAllObservers(_session.Usuario.Idioma);
         }
     }
 }

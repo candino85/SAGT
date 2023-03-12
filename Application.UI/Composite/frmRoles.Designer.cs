@@ -50,9 +50,10 @@ namespace Application.UI
             // 
             // btnRemovePermission
             // 
-            this.btnRemovePermission.Location = new System.Drawing.Point(244, 195);
+            this.btnRemovePermission.Location = new System.Drawing.Point(366, 300);
+            this.btnRemovePermission.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnRemovePermission.Name = "btnRemovePermission";
-            this.btnRemovePermission.Size = new System.Drawing.Size(116, 28);
+            this.btnRemovePermission.Size = new System.Drawing.Size(174, 43);
             this.btnRemovePermission.TabIndex = 31;
             this.btnRemovePermission.Text = "<< Quitar";
             this.btnRemovePermission.UseVisualStyleBackColor = true;
@@ -60,9 +61,10 @@ namespace Application.UI
             // 
             // btnAddPermission
             // 
-            this.btnAddPermission.Location = new System.Drawing.Point(244, 161);
+            this.btnAddPermission.Location = new System.Drawing.Point(366, 248);
+            this.btnAddPermission.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnAddPermission.Name = "btnAddPermission";
-            this.btnAddPermission.Size = new System.Drawing.Size(116, 28);
+            this.btnAddPermission.Size = new System.Drawing.Size(174, 43);
             this.btnAddPermission.TabIndex = 30;
             this.btnAddPermission.Tag = "agregar";
             this.btnAddPermission.Text = "Agregar >>";
@@ -71,17 +73,19 @@ namespace Application.UI
             // 
             // tvRole
             // 
-            this.tvRole.Location = new System.Drawing.Point(6, 115);
+            this.tvRole.Location = new System.Drawing.Point(9, 177);
+            this.tvRole.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.tvRole.Name = "tvRole";
-            this.tvRole.Size = new System.Drawing.Size(212, 244);
+            this.tvRole.Size = new System.Drawing.Size(316, 373);
             this.tvRole.TabIndex = 29;
             this.tvRole.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.tvRole_AfterSelect);
             // 
             // tvAvailablePermission
             // 
-            this.tvAvailablePermission.Location = new System.Drawing.Point(6, 115);
+            this.tvAvailablePermission.Location = new System.Drawing.Point(9, 177);
+            this.tvAvailablePermission.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.tvAvailablePermission.Name = "tvAvailablePermission";
-            this.tvAvailablePermission.Size = new System.Drawing.Size(211, 210);
+            this.tvAvailablePermission.Size = new System.Drawing.Size(314, 321);
             this.tvAvailablePermission.TabIndex = 28;
             this.tvAvailablePermission.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.tvAvailablePermission_AfterSelect);
             // 
@@ -93,9 +97,11 @@ namespace Application.UI
             this.groupBox1.Controls.Add(this.txtPermissionName);
             this.groupBox1.Controls.Add(this.cmbPermisos);
             this.groupBox1.Controls.Add(this.tvAvailablePermission);
-            this.groupBox1.Location = new System.Drawing.Point(12, 12);
+            this.groupBox1.Location = new System.Drawing.Point(18, 18);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(226, 365);
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.groupBox1.Size = new System.Drawing.Size(339, 562);
             this.groupBox1.TabIndex = 38;
             this.groupBox1.TabStop = false;
             this.groupBox1.Tag = "permisos";
@@ -107,17 +113,19 @@ namespace Application.UI
             this.cmbPermissionTypes.Items.AddRange(new object[] {
             "Roles",
             "Permisos"});
-            this.cmbPermissionTypes.Location = new System.Drawing.Point(6, 334);
+            this.cmbPermissionTypes.Location = new System.Drawing.Point(9, 514);
+            this.cmbPermissionTypes.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.cmbPermissionTypes.Name = "cmbPermissionTypes";
-            this.cmbPermissionTypes.Size = new System.Drawing.Size(211, 21);
+            this.cmbPermissionTypes.Size = new System.Drawing.Size(314, 28);
             this.cmbPermissionTypes.TabIndex = 43;
             this.cmbPermissionTypes.SelectionChangeCommitted += new System.EventHandler(this.cmbPermissionTypes_SelectionChangeCommitted);
             // 
             // btnDeleteComponent
             // 
-            this.btnDeleteComponent.Location = new System.Drawing.Point(111, 86);
+            this.btnDeleteComponent.Location = new System.Drawing.Point(166, 132);
+            this.btnDeleteComponent.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnDeleteComponent.Name = "btnDeleteComponent";
-            this.btnDeleteComponent.Size = new System.Drawing.Size(106, 23);
+            this.btnDeleteComponent.Size = new System.Drawing.Size(159, 35);
             this.btnDeleteComponent.TabIndex = 42;
             this.btnDeleteComponent.Tag = "eliminar";
             this.btnDeleteComponent.Text = "Eliminar";
@@ -126,9 +134,10 @@ namespace Application.UI
             // 
             // btnCreatePermission
             // 
-            this.btnCreatePermission.Location = new System.Drawing.Point(6, 86);
+            this.btnCreatePermission.Location = new System.Drawing.Point(9, 132);
+            this.btnCreatePermission.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnCreatePermission.Name = "btnCreatePermission";
-            this.btnCreatePermission.Size = new System.Drawing.Size(99, 23);
+            this.btnCreatePermission.Size = new System.Drawing.Size(148, 35);
             this.btnCreatePermission.TabIndex = 41;
             this.btnCreatePermission.Tag = "crear permiso";
             this.btnCreatePermission.Text = "Crear Permiso";
@@ -138,9 +147,10 @@ namespace Application.UI
             // txtPermissionName
             // 
             this.txtPermissionName.LabelText = "Nombre permiso";
-            this.txtPermissionName.Location = new System.Drawing.Point(6, 40);
+            this.txtPermissionName.Location = new System.Drawing.Point(9, 62);
+            this.txtPermissionName.Margin = new System.Windows.Forms.Padding(6, 8, 6, 8);
             this.txtPermissionName.Name = "txtPermissionName";
-            this.txtPermissionName.Size = new System.Drawing.Size(211, 40);
+            this.txtPermissionName.Size = new System.Drawing.Size(316, 62);
             this.txtPermissionName.TabIndex = 40;
             this.txtPermissionName.Tag = "nombre permiso";
             this.txtPermissionName.TextBoxText = "";
@@ -148,9 +158,10 @@ namespace Application.UI
             // cmbPermisos
             // 
             this.cmbPermisos.FormattingEnabled = true;
-            this.cmbPermisos.Location = new System.Drawing.Point(6, 17);
+            this.cmbPermisos.Location = new System.Drawing.Point(9, 26);
+            this.cmbPermisos.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.cmbPermisos.Name = "cmbPermisos";
-            this.cmbPermisos.Size = new System.Drawing.Size(211, 21);
+            this.cmbPermisos.Size = new System.Drawing.Size(314, 28);
             this.cmbPermisos.TabIndex = 39;
             // 
             // gpbRoles
@@ -159,9 +170,11 @@ namespace Application.UI
             this.gpbRoles.Controls.Add(this.btnCreateRole);
             this.gpbRoles.Controls.Add(this.cmbRoles);
             this.gpbRoles.Controls.Add(this.tvRole);
-            this.gpbRoles.Location = new System.Drawing.Point(366, 12);
+            this.gpbRoles.Location = new System.Drawing.Point(549, 18);
+            this.gpbRoles.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.gpbRoles.Name = "gpbRoles";
-            this.gpbRoles.Size = new System.Drawing.Size(224, 365);
+            this.gpbRoles.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.gpbRoles.Size = new System.Drawing.Size(336, 562);
             this.gpbRoles.TabIndex = 39;
             this.gpbRoles.TabStop = false;
             this.gpbRoles.Tag = "roles";
@@ -170,18 +183,20 @@ namespace Application.UI
             // txtRoleName
             // 
             this.txtRoleName.LabelText = "Nombre Rol";
-            this.txtRoleName.Location = new System.Drawing.Point(6, 40);
+            this.txtRoleName.Location = new System.Drawing.Point(9, 62);
+            this.txtRoleName.Margin = new System.Windows.Forms.Padding(6, 8, 6, 8);
             this.txtRoleName.Name = "txtRoleName";
-            this.txtRoleName.Size = new System.Drawing.Size(211, 40);
+            this.txtRoleName.Size = new System.Drawing.Size(316, 62);
             this.txtRoleName.TabIndex = 46;
             this.txtRoleName.Tag = "nombre rol";
             this.txtRoleName.TextBoxText = "";
             // 
             // btnCreateRole
             // 
-            this.btnCreateRole.Location = new System.Drawing.Point(6, 86);
+            this.btnCreateRole.Location = new System.Drawing.Point(9, 132);
+            this.btnCreateRole.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnCreateRole.Name = "btnCreateRole";
-            this.btnCreateRole.Size = new System.Drawing.Size(115, 23);
+            this.btnCreateRole.Size = new System.Drawing.Size(172, 35);
             this.btnCreateRole.TabIndex = 45;
             this.btnCreateRole.Tag = "crear";
             this.btnCreateRole.Text = "Crear role";
@@ -191,17 +206,19 @@ namespace Application.UI
             // cmbRoles
             // 
             this.cmbRoles.FormattingEnabled = true;
-            this.cmbRoles.Location = new System.Drawing.Point(6, 17);
+            this.cmbRoles.Location = new System.Drawing.Point(9, 26);
+            this.cmbRoles.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.cmbRoles.Name = "cmbRoles";
-            this.cmbRoles.Size = new System.Drawing.Size(211, 21);
+            this.cmbRoles.Size = new System.Drawing.Size(314, 28);
             this.cmbRoles.TabIndex = 42;
             this.cmbRoles.SelectionChangeCommitted += new System.EventHandler(this.cmbRoles_SelectionChangeCommitted);
             // 
             // btnSaveSelectedRole
             // 
-            this.btnSaveSelectedRole.Location = new System.Drawing.Point(244, 277);
+            this.btnSaveSelectedRole.Location = new System.Drawing.Point(366, 426);
+            this.btnSaveSelectedRole.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnSaveSelectedRole.Name = "btnSaveSelectedRole";
-            this.btnSaveSelectedRole.Size = new System.Drawing.Size(116, 28);
+            this.btnSaveSelectedRole.Size = new System.Drawing.Size(174, 43);
             this.btnSaveSelectedRole.TabIndex = 40;
             this.btnSaveSelectedRole.Tag = "guardar rol";
             this.btnSaveSelectedRole.Text = "Guardar Rol";
@@ -210,16 +227,18 @@ namespace Application.UI
             // 
             // frmRoles
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(616, 389);
+            this.ClientSize = new System.Drawing.Size(924, 598);
             this.Controls.Add(this.btnSaveSelectedRole);
             this.Controls.Add(this.btnRemovePermission);
             this.Controls.Add(this.btnAddPermission);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.gpbRoles);
+            this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "frmRoles";
             this.Text = "frmRoles";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.frmRoles_FormClosed);
             this.Load += new System.EventHandler(this.frmRoles_Load);
             this.groupBox1.ResumeLayout(false);
             this.gpbRoles.ResumeLayout(false);

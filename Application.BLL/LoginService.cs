@@ -19,11 +19,7 @@ namespace Application.BLL
             _mapperUsuario = new Mapper_User();
             _usuario = new BE.User();
         }
-        /// <summary>
-        /// El login de usuario se hace contra la base de datos, si es null escala una excepción, sino le asigna uns session
-        /// </summary>
-        /// <param name="loginname"></param>
-        /// <param name="password"></param>
+
         public void Login(string loginname, string password)
         {
             if (string.IsNullOrEmpty(loginname) || string.IsNullOrEmpty(password)) throw new Exception("Debe completar los campos");

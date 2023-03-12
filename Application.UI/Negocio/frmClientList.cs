@@ -1,4 +1,7 @@
-﻿using System;
+﻿using Application.ABSTRACTIONS;
+using Application.Services;
+using Application.UI.Language;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -10,7 +13,7 @@ using System.Windows.Forms;
 
 namespace Application.UI.Negocio
 {
-    public partial class frmClientList : Form
+    public partial class frmClientList : Form, ILanguageObserver
     {
         BE.Client cliente_BE;
         BLL.Client cliente_BLL;
@@ -27,13 +30,6 @@ namespace Application.UI.Negocio
         private void btnCreateClient_Click(object sender, EventArgs e)
         {
             frmClient frmClient = new frmClient(this);
-            frmMain frmMain = (frmMain)this.MdiParent;
-            frmClient.Show();
-        }
-
-        private void dgvClients_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
-        {
-            frmClient frmClient = new frmClient((BE.Client)dgvClients.Rows[e.RowIndex].DataBoundItem, this);
             frmMain frmMain = (frmMain)this.MdiParent;
             frmClient.Show();
         }
@@ -61,6 +57,29 @@ namespace Application.UI.Negocio
                 dgvClients.Columns["CreationDate"].Visible = false;
                 dgvClients.Columns["FullName"].Visible = false;
             }
+        }
+
+        public void updateLanguage(ILanguage language)
+        {
+            Translator.Translate(this);
+        }
+
+        private void frmClientList_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            SessionManager.GetInstance.UnsubscribeObserver(this);
+        }
+
+        private void dgvClients_CellMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            frmClient formClient = new frmClient((BE.Client)dgvClients.Rows[e.RowIndex].DataBoundItem, this);
+            frmMain formMain = (frmMain)this.MdiParent;
+            formClient.Show();
+            SessionManager.GetInstance.SubscribeObserver(formClient);
+        }
+
+        private void frmClientList_Load(object sender, EventArgs e)
+        {
+            updateLanguage(SessionManager.GetInstance.language);
         }
     }
 }

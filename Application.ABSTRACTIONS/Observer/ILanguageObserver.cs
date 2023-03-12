@@ -6,8 +6,8 @@ using System.Text;
 
 namespace Application.ABSTRACTIONS
 {
-    public interface IObserver
+    public interface ILanguageObserver
     {
-        void NotifyObserver(ILanguage languageObserver);
+        void updateLanguage(ILanguage language);
     }
 }

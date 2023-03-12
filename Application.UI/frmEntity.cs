@@ -1,4 +1,7 @@
-﻿using System;
+﻿using Application.ABSTRACTIONS;
+using Application.Services;
+using Application.UI.Language;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -10,7 +13,7 @@ using System.Windows.Forms;
 
 namespace Application.UI
 {
-    public partial class frmEntity : Form
+    public partial class frmEntity : Form, ILanguageObserver
     {
         BE.Entity entidad_BE;
         BLL.Entity entidad_BLL;
@@ -80,6 +83,21 @@ namespace Application.UI
 
             _frmEntitiesList.Bind();
             this.Close();
+        }
+
+        public void updateLanguage(ILanguage language)
+        {
+            Translator.Translate(this);
+        }
+
+        private void frmEntity_Load(object sender, EventArgs e)
+        {
+            updateLanguage(SessionManager.GetInstance.language);
+        }
+
+        private void frmEntity_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            SessionManager.GetInstance.UnsubscribeObserver(this);
         }
     }
 }

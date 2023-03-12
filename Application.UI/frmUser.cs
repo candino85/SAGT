@@ -1,18 +1,19 @@
 ﻿using Application.ABSTRACTIONS;
 using Application.BE;
 using Application.Services;
+using Application.UI.Language;
 using System;
 using System.Windows.Forms;
 
 namespace Application.UI
 {
-    public partial class frmUser : Form/*, IObserver*/
+    public partial class frmUser : Form, ILanguageObserver
     {
         BE.User usuario_BE;
         BLL.User usuario_BLL;
 
         BE.Language idioma_BE;
-        BLL.Language idioma_BLL;
+        //BLL.LanguageService idioma_BLL;
 
         BLL.Permission permission;
 
@@ -29,7 +30,7 @@ namespace Application.UI
             txtPassword.PasswordChar = '*';
             btnUpdateUsers.Enabled = false;
 
-            CombosLoad();
+            //CombosLoad();
         }
 
         public frmUser(BE.User usuario, frmUsersList frmUsersList)
@@ -42,7 +43,7 @@ namespace Application.UI
             usuario_BLL = new BLL.User();
             permission = new BLL.Permission();
 
-            CombosLoad();
+            //CombosLoad();
 
             txtPassword.PasswordChar = '*';
             btnCreateUser.Enabled = false;
@@ -61,6 +62,11 @@ namespace Application.UI
                 cmbRole.SelectedValue = rol;
             else
                 cmbRole.SelectedIndex = -1;
+        }
+
+        public void updateLanguage(ILanguage language)
+        {
+            Translator.Translate(this);
         }
 
         private void btnCreateUser_Click(object sender, EventArgs e)
@@ -148,32 +154,44 @@ namespace Application.UI
             _frmUsersList.Bind();
             this.Close();
         }
-        private void CombosLoad()
-        {
-            idioma_BLL = new BLL.Language();
-            cmbLanguage.DataSource = idioma_BLL.Listar();
-            cmbLanguage.DisplayMember = "Name";
-            cmbLanguage.ValueMember = "Id";
-            cmbLanguage.SelectedIndex = -1;
 
-            cmbRole.DataSource = null;
-            cmbRole.DataSource = permission.GetAllRolesFromDB();
-            cmbRole.DisplayMember = "Name";
-            cmbRole.ValueMember = "Id";
+        private void frmUser_Load(object sender, EventArgs e)
+        {
+            updateLanguage(SessionManager.GetInstance.language);
         }
 
-        public void NotifyObserver(ILanguage languageObserver)
+        private void frmUser_FormClosed(object sender, FormClosedEventArgs e)
         {
-            // tengo que traer las traducciones para el idioma seteado del usuario
-            idioma_BE = idioma_BLL.GetLanguage(languageObserver.Name);
-
-            foreach (Control control in this.Controls)
-            {
-                if (!string.IsNullOrEmpty(control.Text))
-                    control.Text = idioma_BE.SearchTranslate(control.Tag.ToString());
-                //control.Text = languageObserver.SearchTranslate(control.Tag.ToString());
-            }
+            SessionManager.GetInstance.UnsubscribeObserver(this);
         }
+
+
+        //private void CombosLoad()
+        //{
+        //    idioma_BLL = new BLL.LanguageService();
+        //    cmbLanguage.DataSource = idioma_BLL.GetLanguage();
+        //    cmbLanguage.DisplayMember = "Name";
+        //    cmbLanguage.ValueMember = "Id";
+        //    cmbLanguage.SelectedIndex = -1;
+
+        //    cmbRole.DataSource = null;
+        //    cmbRole.DataSource = permission.GetAllRolesFromDB();
+        //    cmbRole.DisplayMember = "Name";
+        //    cmbRole.ValueMember = "Id";
+        //}
+
+        //public void NotifyObserver(ILanguage languageObserver)
+        //{
+        //    // tengo que traer las traducciones para el idioma seteado del usuario
+        //    idioma_BE = idioma_BLL.GetLanguage(languageObserver.Name);
+
+        //    foreach (Control control in this.Controls)
+        //    {
+        //        if (!string.IsNullOrEmpty(control.Text))
+        //            control.Text = idioma_BE.SearchTranslate(control.Tag.ToString());
+        //        //control.Text = languageObserver.SearchTranslate(control.Tag.ToString());
+        //    }
+        //}
 
         //private void btnEliminar_Click(object sender, EventArgs e)
         //{

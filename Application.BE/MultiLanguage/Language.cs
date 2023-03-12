@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Application.BE
 {
-    public class Language : IEntity, ILanguage
+    public class Language : ILanguage, IEntity
     {
         private int _id;
         public int Id
@@ -23,26 +23,13 @@ namespace Application.BE
             set { _name = value; }
         }
 
-        public IList<ITranslate> Translates { get ; set ; }
-
-        public Language()
+        private bool _default;
+        public bool Default
         {
-            Translates = new List<ITranslate>();
-        }
-        public void AddTranslate(ITranslate translate)
-        {
-            Translates.Add(translate);
+            get { return _default; }
+            set { _default = value; }
         }
 
-        public string SearchTranslate(string text)
-        {
-            string translate = Translates.FirstOrDefault(x => x.Word.Text == text).TranslatedWord;
-            if (!string.IsNullOrEmpty(translate))
-            {
-                return translate;
-            }
-            else
-                return text;
-        }
+        public List<ITranslation> Translations { get ; set ; }
     }
 }

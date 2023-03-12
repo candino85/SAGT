@@ -8,30 +8,34 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Application.ABSTRACTIONS;
+using Application.BE;
 using Application.BLL;
 using Application.Services;
+using Application.UI.Language;
 
 namespace Application.UI
 {
-    public partial class frmLogin : Form, IObserver
+    public partial class frmLogin : Form, ILanguageObserver
     {
         LoginService _loginService;
-        //BE.Usuario _usuarioBE;
+        LanguageService _languageService;
+        BE.Language _language;
 
         public frmLogin()
-        {
+        {  
             InitializeComponent();
             _loginService = new LoginService();
             txtPassword.PasswordChar = '*';
-           //_usuarioBE = new BE.Usuario();            
+
+            _languageService = new LanguageService();
+            _language = _languageService.GetLanguage(_languageService.GetLanguages().ToList().Where(x => x.Default == true).First().Name);
+
+            updateLanguage(_language);
         }
 
-        public void NotifyObserver(ILanguage languageObserver)
+        public void updateLanguage(ILanguage language)
         {
-            foreach (Control control in this.Controls)
-            {
-                control.Text = languageObserver.SearchTranslate(control.Tag.ToString());
-            }
+            Translator.UpdateLanguageRecursiveControls((BE.Language)_language,this.Controls);
         }
 
         private void btnIngresar_Click(object sender, EventArgs e)
@@ -39,19 +43,28 @@ namespace Application.UI
             try
             {
                 _loginService.Login(this.txtNombreUsuario.Text, this.txtPassword.Text);
+                
                 frmMain frm = (frmMain)this.MdiParent;
-                //
-                //SessionManager.GetInstance.SubscribeObserver(frm);
-                // setear idioma del usuario
-                //
-                //frm.lblSession.Text = SessionManager.GetInstance.Usuario.LoginName.ToString();
+                
+                frm.lblEstado.Text = SessionManager.GetInstance.Usuario.LoginName.ToString();
                 frm.ValidarForm();
+                
                 this.Close();
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
+        }
+
+        private void frmLogin_Load(object sender, EventArgs e)
+        {
+            updateLanguage(SessionManager.GetInstance.language);
+        }
+
+        private void frmLogin_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            SessionManager.GetInstance.UnsubscribeObserver(this);
         }
     }
 }

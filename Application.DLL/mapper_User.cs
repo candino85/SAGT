@@ -13,24 +13,38 @@ namespace Application.DLL
     {
         readonly DBAccess accesso = new DBAccess();
         readonly mapper_Language mapper_Language = new mapper_Language();
+        readonly LanguageRepository languageRepository = new LanguageRepository();
         public User GetUsuarioByLoginnamePassword(string loginname, string password)
         {
-            User usuario = new User();
-            SqlParameter[] parameters = new SqlParameter[2];
-            parameters[0] = new SqlParameter("@loginname", loginname);
-            parameters[1] = new SqlParameter("@password", password);
-            DataTable dataTable = accesso.Read("UsuarioGetByLoginnamePassword", parameters);
-            foreach (DataRow row in dataTable.Rows)
-            {
-                usuario.Id = int.Parse(row["id"].ToString());
-                usuario.DNI = row["dni"].ToString();
-                usuario.Name = row["nombre"].ToString();
-                usuario.Lastname = row["apellido"].ToString();
-                usuario.LoginName = row["loginname"].ToString();
-                usuario.Password = row["password"].ToString();
-                usuario.Idioma = mapper_Language.GetLanguage(int.Parse(row["idioma"].ToString()));
+            try
+            { 
+                User usuario = new User();                
+                int idLanguage = 0;
+                
+                SqlParameter[] parameters = new SqlParameter[2];
+                parameters[0] = new SqlParameter("@loginname", loginname);
+                parameters[1] = new SqlParameter("@password", password);
+               
+                DataTable dataTable = accesso.Read("UsuarioGetByLoginnamePassword", parameters);
+                
+                foreach (DataRow row in dataTable.Rows)
+                {
+                    usuario.Id = int.Parse(row["id"].ToString());
+                    usuario.DNI = row["dni"].ToString();
+                    usuario.Name = row["nombre"].ToString();
+                    usuario.Lastname = row["apellido"].ToString();
+                    usuario.LoginName = row["loginname"].ToString();
+                    usuario.Password = row["password"].ToString();
+                    usuario.Idioma = languageRepository.GetLanguage(int.Parse(row["idioma"].ToString()));
+                }
+
+                return usuario;
             }
-            return usuario;
+            catch 
+            {
+                throw new Exception();
+            }
+            
         }
 
         public User GetUsuarioById(int id)
