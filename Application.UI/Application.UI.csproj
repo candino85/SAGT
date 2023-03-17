@@ -125,6 +125,18 @@
       <DependentUpon>frmLanguageNew.cs</DependentUpon>
     </Compile>
     <Compile Include="Language\Translator.cs" />
+    <Compile Include="Negocio\frmArea.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Negocio\frmArea.Designer.cs">
+      <DependentUpon>frmArea.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Negocio\frmAreaList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Negocio\frmAreaList.Designer.cs">
+      <DependentUpon>frmAreaList.cs</DependentUpon>
+    </Compile>
     <Compile Include="Negocio\frmClient.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -177,6 +189,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Language\frmLanguageNew.resx">
       <DependentUpon>frmLanguageNew.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Negocio\frmArea.resx">
+      <DependentUpon>frmArea.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Negocio\frmAreaList.resx">
+      <DependentUpon>frmAreaList.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Negocio\frmClient.resx">
       <DependentUpon>frmClient.cs</DependentUpon>

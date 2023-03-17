@@ -13,7 +13,6 @@ namespace Application.UI
         BLL.User usuario_BLL;
 
         BE.Language idioma_BE;
-        //BLL.LanguageService idioma_BLL;
 
         BLL.Permission permission;
 

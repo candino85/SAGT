@@ -115,6 +115,7 @@ namespace Application.UI
                 gestionToolStripMenuItem.Visible = false;
                 seguridadToolStripMenuItem.Visible = false;
                 negocioToolStripMenuItem.Visible = false;
+                menuLogout.Visible = false;
             }
         }
 
@@ -254,6 +255,16 @@ namespace Application.UI
         private void idiomasToolStripMenuItem_Click(object sender, EventArgs e)
         {
             CreateForm(typeof(frmLanguage));
+        }
+
+        private void gestionarEspaciosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            CreateForm(typeof(frmAreaList));
+        }
+
+        private void salirToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

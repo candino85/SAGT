@@ -12,7 +12,6 @@ namespace Application.DLL
     public class Mapper_User
     {
         readonly DBAccess accesso = new DBAccess();
-        readonly mapper_Language mapper_Language = new mapper_Language();
         readonly LanguageRepository languageRepository = new LanguageRepository();
         public User GetUsuarioByLoginnamePassword(string loginname, string password)
         {
@@ -62,7 +61,7 @@ namespace Application.DLL
                 usuario.Lastname = row["apellido"].ToString();
                 usuario.LoginName = row["loginname"].ToString();
                 usuario.Password = row["password"].ToString();
-                usuario.Idioma = mapper_Language.GetLanguage(row["idioma"].ToString());
+                usuario.Idioma = languageRepository.GetLanguage(int.Parse(row["idioma"].ToString()));
                 usuario.Active = (bool)row["activo"];
                 usuario.Role = (int)row["rol"];
 
@@ -157,7 +156,7 @@ namespace Application.DLL
                 usuario.Lastname = row["apellido"].ToString();
                 usuario.LoginName = row["loginname"].ToString();
                 usuario.Password = row["password"].ToString();
-                //usuario.Idioma = mapper_Language.GetLanguage(row["idioma"].ToString());
+                usuario.Idioma = languageRepository.GetLanguage(int.Parse(row["idioma"].ToString()));
 
             }
             return usuario;

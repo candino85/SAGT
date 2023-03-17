@@ -12,7 +12,6 @@ namespace Application.DLL
     public class Mapper_Client
     {
         readonly DBAccess accesso = new DBAccess();
-        readonly mapper_Language mapper_Language = new mapper_Language();
 
         public int Create(Client client)
         {

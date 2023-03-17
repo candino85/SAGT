@@ -29,6 +29,7 @@ namespace Application.UI.Negocio
 
         private void btnCreateClient_Click(object sender, EventArgs e)
         {
+            //suscribirlo en los observers
             frmClient frmClient = new frmClient(this);
             frmMain frmMain = (frmMain)this.MdiParent;
             frmClient.Show();
