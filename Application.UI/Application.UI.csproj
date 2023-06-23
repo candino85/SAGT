@@ -100,11 +100,11 @@
     <Compile Include="frmMain.Designer.cs">
       <DependentUpon>frmMain.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmUserManagement.cs">
+    <Compile Include="frmUserChangePassword.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmUserManagement.Designer.cs">
-      <DependentUpon>frmUserManagement.cs</DependentUpon>
+    <Compile Include="frmUserChangePassword.Designer.cs">
+      <DependentUpon>frmUserChangePassword.cs</DependentUpon>
     </Compile>
     <Compile Include="frmUsersList.cs">
       <SubType>Form</SubType>
@@ -178,8 +178,8 @@
     <EmbeddedResource Include="frmMain.resx">
       <DependentUpon>frmMain.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmUserManagement.resx">
-      <DependentUpon>frmUserManagement.cs</DependentUpon>
+    <EmbeddedResource Include="frmUserChangePassword.resx">
+      <DependentUpon>frmUserChangePassword.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmUsersList.resx">
       <DependentUpon>frmUsersList.cs</DependentUpon>
@@ -211,6 +211,8 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <None Include="Class Diagram - UI.cd" />
+    <None Include="Negocio\ClassDiagram - UI Neg.cd" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

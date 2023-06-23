@@ -44,7 +44,6 @@
     <Compile Include="BackupRestore.cs" />
     <Compile Include="BusinessLogicException.cs" />
     <Compile Include="LanguageService.cs" />
-    <Compile Include="LoginService.cs" />
     <Compile Include="Client.cs" />
     <Compile Include="Permission.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -53,10 +52,6 @@
     <Compile Include="User.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Application.ABSTRACTIONS\Application.ABSTRACTIONS.csproj">
-      <Project>{78E7A009-37AD-46E4-B056-E148759518AD}</Project>
-      <Name>Application.ABSTRACTIONS</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Application.BE\Application.BE.csproj">
       <Project>{a914f3cc-6d63-43c7-9ad4-8d738c888416}</Project>
       <Name>Application.BE</Name>
@@ -69,6 +64,9 @@
       <Project>{4fcc1efb-4b27-4cb4-a432-389e9335594e}</Project>
       <Name>Application.SERVICES</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ClassDiagram - BLL.cd" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

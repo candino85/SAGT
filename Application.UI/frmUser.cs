@@ -1,58 +1,81 @@
 ﻿using Application.ABSTRACTIONS;
-using Application.BE;
 using Application.Services;
 using Application.UI.Language;
 using System;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.ToolTip;
 
 namespace Application.UI
 {
     public partial class frmUser : Form, ILanguageObserver
     {
         BE.User usuario_BE;
+        BE.User userDB;
         BLL.User usuario_BLL;
 
-        BE.Language idioma_BE;
-
+        BLL.LanguageService languageService;
+        BLL.Entity entity;
         BLL.Permission permission;
 
         private frmUsersList _frmUsersList;
 
-        public frmUser(frmUsersList frmUsersList)
+        public frmUser()
         {
             InitializeComponent();
-            _frmUsersList = frmUsersList;
 
             usuario_BLL = new BLL.User();
             permission = new BLL.Permission();
 
-            txtPassword.PasswordChar = '*';
-            btnUpdateUsers.Enabled = false;
+            btnUpdateUsers.Visible = false;
+            btnCreateUser.Visible = true;
 
-            //CombosLoad();
+            CombosLoad();
+            cmbLanguage.SelectedIndex = -1;
+            cmbRole.SelectedIndex = -1;
         }
+
+        //public frmUser(frmUsersList frmUsersList)
+        //{
+        //    InitializeComponent();           
+
+        //    usuario_BLL = new BLL.User();
+        //    permission = new BLL.Permission();
+
+        //    btnUpdateUsers.Enabled = false;
+
+        //    CombosLoad();
+        //    cmbLanguage.SelectedIndex = -1;
+        //    cmbRole.SelectedIndex = -1;
+
+        //}
 
         public frmUser(BE.User usuario, frmUsersList frmUsersList)
         {
             InitializeComponent();
             usuario_BE = usuario;
 
+            usuario_BLL = new BLL.User();
+            entity = new BLL.Entity();
+            permission = new BLL.Permission();
+            
             _frmUsersList = frmUsersList;
 
-            usuario_BLL = new BLL.User();
-            permission = new BLL.Permission();
-
-            //CombosLoad();
-
-            txtPassword.PasswordChar = '*';
-            btnCreateUser.Enabled = false;
+            btnCreateUser.Visible = false;
+            btnUpdateUsers.Visible = true;
 
             txtDNI.Text = usuario.DNI;
             txtNombre.Text = usuario.Name;
             txtApellido.Text = usuario.Lastname;
             txtNombreUsuario.Text = usuario.LoginName;
-            txtPassword.Text = usuario.Password;
+            txtAddress.Text = usuario.Address;
+            txtEmail.Text = usuario.Email;
             chkActive.Checked = usuario.Active;
+            chkBlocked.Checked = usuario.Blocked;
+
+            CombosLoad();
+            cmbLanguage.SelectedValue = usuario.Language.Id;
+            cmbRole.SelectedValue = usuario.Role;   
+            cmbEntity.SelectedValue = usuario.Entity.Id;
 
             // traigo el rol actual del usuario
             var rol = 0;
@@ -70,84 +93,149 @@ namespace Application.UI
 
         private void btnCreateUser_Click(object sender, EventArgs e)
         {
-            usuario_BE = new BE.User();
-            if (!string.IsNullOrEmpty(txtNombreUsuario.Text) && !string.IsNullOrEmpty(txtNombre.Text) && !string.IsNullOrEmpty(txtApellido.Text) && !string.IsNullOrEmpty(txtDNI.Text) && !string.IsNullOrEmpty(txtPassword.Text) && cmbRole.SelectedValue != null)
+            try
             {
-                if (txtNombreUsuario.Text != (usuario_BLL.GetByLoginName(txtNombreUsuario.Text)).LoginName)
+                // TODO implementar validaciones con controles customs
+                if (!string.IsNullOrEmpty(txtDNI.Text) &&
+                    !string.IsNullOrEmpty(txtNombre.Text) &&
+                    !string.IsNullOrEmpty(txtApellido.Text) &&
+                    !string.IsNullOrEmpty(txtNombreUsuario.Text) &&
+                    !string.IsNullOrEmpty(txtEmail.Text) &&
+                    cmbRole.SelectedValue != null &&
+                    cmbLanguage.SelectedValue != null &&
+                    cmbEntity.SelectedValue != null)
                 {
-                    usuario_BE.Name = txtNombre.Text;
-                    usuario_BE.Lastname = txtApellido.Text;
-                    usuario_BE.DNI = txtDNI.Text;
-                    usuario_BE.LoginName = txtNombreUsuario.Text;
-                    usuario_BE.Password = Encrypt.GetSHA256(txtPassword.Text);
-                    usuario_BE.Active = true;
 
-
-                    usuario_BE.Id = usuario_BLL.UserCreate(usuario_BE);
-
-                    if (usuario_BE.Id == 0)
-                        throw new Exception("Error al crear el usuario");
-                    else
+                    var tmpusr = usuario_BLL.GetByLoginName(txtNombreUsuario.Text); // usuario temporal para comprobar si existe el username o email en el sistema
+                    
+                    if (txtNombreUsuario.Text != tmpusr.LoginName && txtEmail.Text != tmpusr.Email)
                     {
+                        //usuario_BE = GetValuesFromForm();
+                        usuario_BE = new BE.User();
+                        usuario_BE.DNI = txtDNI.Text;
+                        usuario_BE.Name = txtNombre.Text;
+                        usuario_BE.Lastname = txtApellido.Text;
+                        usuario_BE.LoginName = txtNombreUsuario.Text;
+                        usuario_BE.Address = txtAddress.Text;
+                        usuario_BE.Email = txtEmail.Text;
+                        usuario_BE.Active = chkActive.Checked;
+                        usuario_BE.Blocked = chkBlocked.Checked;
+                        usuario_BE.Role = int.Parse(cmbRole.SelectedValue.ToString());
+                        usuario_BE.Entity = entity.GetEntityById(int.Parse(cmbEntity.SelectedValue.ToString()));
+                        usuario_BE.Language = languageService.GetLanguage(cmbLanguage.Text);
+                        usuario_BE.Password = Encrypt.GetSHA256(Encrypt.GetRandomPassword());
+                        usuario_BE.Email = txtEmail.Text;
+                        usuario_BE.Blocked = false; 
+
+                        usuario_BE.Id = usuario_BLL.UserCreate(usuario_BE);
+
+                        if (usuario_BE.Id == 0)
+                            MessageBox.Show("Error al crear el usuario", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        else
+                            MessageBox.Show("Usuario creado correctamente", "INFO", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                        // guardo el Rol del usuario
                         if (cmbRole.SelectedValue != null)
                         {
                             usuario_BE.Role = (int)cmbRole.SelectedValue;
                             permission.SaveUserPermission(usuario_BE.Id, usuario_BE.Role);
                         }
                     }
-                    _frmUsersList.Bind();
-                    this.Close();
+                    if (txtNombreUsuario.Text == tmpusr.LoginName)
+                        MessageBox.Show("Este usuario ya está registrado en el sistema", "INFO", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    if (txtEmail.Text == tmpusr.Email)
+                        MessageBox.Show("Este email ya está registrado en el sistema", "INFO", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 }
                 else
-                    MessageBox.Show("El usuario ya se encuentra registrado, por favor, elija uno diferente");
+                {
+                    MessageBox.Show("Verifique los campos para crear el nuevo usuario");
+                }
             }
-            else
-                MessageBox.Show("Verifique los campos para crear el nuevo usuario");
-
-            _frmUsersList.Bind();
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Se ha producido un error\n{ex}\n{ex.Message}", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            //_frmUsersList.Bind();
+            Close();
         }
 
         private void btnUpdateUsers_Click(object sender, EventArgs e)
         {
-            if (txtNombreUsuario.Text == usuario_BE.LoginName)
+            if (txtNombreUsuario.Text == usuario_BE.LoginName) // si el nombre de usuario es el mismo
             {
+                //usuario_BE = GetValuesFromForm();
                 usuario_BE.DNI = txtDNI.Text;
                 usuario_BE.Name = txtNombre.Text;
                 usuario_BE.Lastname = txtApellido.Text;
+                usuario_BE.LoginName = txtNombreUsuario.Text;
+                usuario_BE.Address = txtAddress.Text;
+                usuario_BE.Email = txtEmail.Text;
                 usuario_BE.Active = chkActive.Checked;
+                usuario_BE.Blocked = chkBlocked.Checked;
+                usuario_BE.Role = int.Parse(cmbRole.SelectedValue.ToString());
+                usuario_BE.Entity = entity.GetEntityById(int.Parse(cmbEntity.SelectedValue.ToString()));
+                usuario_BE.Language = languageService.GetLanguage(cmbLanguage.Text);
+                usuario_BE.Email = txtEmail.Text;
 
+                userDB = usuario_BLL.GetByLoginName(txtNombreUsuario.Text);
 
-                if (txtPassword.Text != usuario_BE.Password)
-                {
-                    DialogResult result = MessageBox.Show("La contraseña ingresada difiere de la contraseña guardada", "Desea cambiar la clave del usuario por la ingresada?", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-
-                    if (result == DialogResult.Yes)
-                        usuario_BE.Password = Encrypt.GetSHA256(txtPassword.Text);
-                }
+                UpdateUser(usuario_BE, userDB);
             }
-            else
+            else // si el nombre de usuario es distinto
             {
-                if (txtNombreUsuario.Text != (usuario_BLL.GetByLoginName(txtNombreUsuario.Text)).LoginName)
+                var tmpusr = usuario_BLL.GetByLoginName(txtNombreUsuario.Text); // traigo temp user para comparar sus loginnames
+                if (tmpusr.LoginName is null) // si son distintos
                 {
+                    usuario_BE.DNI = txtDNI.Text;
+                    usuario_BE.Name = txtNombre.Text;
+                    usuario_BE.Lastname = txtApellido.Text;
                     usuario_BE.LoginName = txtNombreUsuario.Text;
+                    usuario_BE.Address = txtAddress.Text;
+                    usuario_BE.Email = txtEmail.Text;
+                    usuario_BE.Active = chkActive.Checked;
+                    usuario_BE.Blocked = chkBlocked.Checked;
+                    usuario_BE.Role = int.Parse(cmbRole.SelectedValue.ToString());
+                    usuario_BE.Entity = entity.GetEntityById(int.Parse(cmbEntity.SelectedValue.ToString()));
+                    usuario_BE.Language = languageService.GetLanguage(cmbLanguage.Text);
+                    usuario_BE.Email = txtEmail.Text;
+
+                    UpdateUser(usuario_BE, userDB);
                 }
                 else
-                    MessageBox.Show("El usuario ya se encuentra registrado, por favor, elija uno diferente");
+                    MessageBox.Show("El usuario ya se encuentra registrado, por favor, elija uno diferente", "INFO", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
+        }
 
-
-            bool operation;
-            operation = usuario_BLL.UserUpdate(usuario_BE);
-
-            if (!operation)
-                throw new Exception("Error al modificar el usuario");
-
-
-            // refactorizar
-            if (cmbRole.SelectedValue != null)
+        private void UpdateUser(BE.User newUser, BE.User currentUser)
+        {
+            try
             {
-                usuario_BE.Role = (int)cmbRole.SelectedValue;
-                permission.SaveUserPermission(usuario_BE.Id, usuario_BE.Role);
+
+                bool operation = false;
+
+                if (!usuario_BE.Equals(userDB))
+                {
+                    operation = usuario_BLL.UserUpdate(usuario_BE);
+
+                    // refactorizar
+                    if (cmbRole.SelectedValue != null)
+                    {
+                        usuario_BE.Role = (int)cmbRole.SelectedValue;
+                        int permissionSaved = permission.SaveUserPermission(usuario_BE.Id, usuario_BE.Role);
+                    }
+
+                    if (!operation)
+                        MessageBox.Show($"Se ha producido un error al modificar el usuario", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    else
+                        MessageBox.Show($"El usuario se modificó correctamente", "INFO", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                else
+                    MessageBox.Show("El usuario no presentó cambios");
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Se ha producido un error\n{ex}\n{ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
             _frmUsersList.Bind();
@@ -164,33 +252,42 @@ namespace Application.UI
             SessionManager.GetInstance.UnsubscribeObserver(this);
         }
 
+        private BE.User GetValuesFromForm()
+        {
+            BE.User user = new BE.User();//usuario_BLL.GetByLoginName(txtNombreUsuario.Text);
+            user.DNI = txtDNI.Text;
+            user.Name = txtNombre.Text;
+            user.Lastname = txtApellido.Text;
+            user.LoginName = txtNombreUsuario.Text;
+            user.Address = txtAddress.Text;            
+            user.Active = chkActive.Checked;
+            user.Role = int.Parse(cmbRole.SelectedValue.ToString());
+            user.Entity = entity.GetEntityById(int.Parse(cmbEntity.SelectedValue.ToString()));            
+            user.Language = languageService.GetLanguage(cmbLanguage.Text);
+            if (_frmUsersList.Name != "frmUsersList")
+                user.Password = Encrypt.GetSHA256(Encrypt.GetRandomPassword());
 
-        //private void CombosLoad()
-        //{
-        //    idioma_BLL = new BLL.LanguageService();
-        //    cmbLanguage.DataSource = idioma_BLL.GetLanguage();
-        //    cmbLanguage.DisplayMember = "Name";
-        //    cmbLanguage.ValueMember = "Id";
-        //    cmbLanguage.SelectedIndex = -1;
+            return user;
+        }
 
-        //    cmbRole.DataSource = null;
-        //    cmbRole.DataSource = permission.GetAllRolesFromDB();
-        //    cmbRole.DisplayMember = "Name";
-        //    cmbRole.ValueMember = "Id";
-        //}
+        private void CombosLoad()
+        {
+            languageService = new BLL.LanguageService();
+            cmbLanguage.DataSource = null;
+            cmbLanguage.DataSource = languageService.GetLanguages();
+            cmbLanguage.DisplayMember = "Name";
+            cmbLanguage.ValueMember = "Id";
 
-        //public void NotifyObserver(ILanguage languageObserver)
-        //{
-        //    // tengo que traer las traducciones para el idioma seteado del usuario
-        //    idioma_BE = idioma_BLL.GetLanguage(languageObserver.Name);
+            cmbRole.DataSource = null;
+            cmbRole.DataSource = permission.GetAllRolesFromDB();
+            cmbRole.DisplayMember = "Name";
+            cmbRole.ValueMember = "Id";
 
-        //    foreach (Control control in this.Controls)
-        //    {
-        //        if (!string.IsNullOrEmpty(control.Text))
-        //            control.Text = idioma_BE.SearchTranslate(control.Tag.ToString());
-        //        //control.Text = languageObserver.SearchTranslate(control.Tag.ToString());
-        //    }
-        //}
+            entity = new BLL.Entity();
+            cmbEntity.DataSource = entity.EntityList();
+            cmbEntity.DisplayMember = "Name";
+            cmbEntity.ValueMember = "Id";
+        }
 
         //private void btnEliminar_Click(object sender, EventArgs e)
         //{

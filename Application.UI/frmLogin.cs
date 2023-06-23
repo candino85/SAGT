@@ -1,11 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using Application.ABSTRACTIONS;
 using Application.BE;
@@ -17,18 +11,21 @@ namespace Application.UI
 {
     public partial class frmLogin : Form, ILanguageObserver
     {
-        LoginService _loginService;
-        LanguageService _languageService;
-        BE.Language _language;
+        //readonly LoginService _loginService;
+        readonly LanguageService _languageService;
+        readonly BE.Language _language;
+
+        readonly BLL.User _user;
 
         public frmLogin()
         {  
             InitializeComponent();
-            _loginService = new LoginService();
+            //_loginService = new LoginService();
+            _user = new BLL.User();
             txtPassword.PasswordChar = '*';
 
             _languageService = new LanguageService();
-            _language = _languageService.GetLanguage(_languageService.GetLanguages().ToList().Where(x => x.Default == true).First().Name);
+            _language = _languageService.GetLanguage(_languageService.GetLanguages().ToList().First(x => x.Default == true).Name);
 
             updateLanguage(_language);
         }
@@ -40,21 +37,16 @@ namespace Application.UI
 
         private void btnIngresar_Click(object sender, EventArgs e)
         {
-            try
-            {
-                _loginService.Login(this.txtNombreUsuario.Text, this.txtPassword.Text);
-                
-                frmMain frm = (frmMain)this.MdiParent;
-                
+            MessageBox.Show(_user.LogIn(this.txtNombreUsuario.Text, this.txtPassword.Text), "Atención", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            
+            if (SessionManager.GetInstance.IsLogged)
+            {                 
+                frmMain frm = (frmMain)this.MdiParent;            
                 frm.lblEstado.Text = SessionManager.GetInstance.Usuario.LoginName.ToString();
                 frm.ValidarForm();
-                
                 this.Close();
             }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
+            
         }
 
         private void frmLogin_Load(object sender, EventArgs e)

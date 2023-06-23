@@ -32,14 +32,14 @@ namespace Application.UI
             frmUser.Show();
         }
 
-        private void btnCreateUser_Click(object sender, EventArgs e)
-        {
-            frmUser frmUser = new frmUser(this);
-            frmMain frmMain = (frmMain)this.MdiParent;
-            frmUser.Show();
+        //private void btnCreateUser_Click(object sender, EventArgs e)
+        //{
+        //    frmUser frmUser = new frmUser(this);
+        //    frmMain frmMain = (frmMain)this.MdiParent;
+        //    frmUser.Show();
 
-            Bind();
-        }
+        //    Bind();
+        //}
 
         public void Bind()
         {

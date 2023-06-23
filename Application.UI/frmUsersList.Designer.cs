@@ -31,7 +31,6 @@ namespace Application.UI
         {
             this.label1 = new System.Windows.Forms.Label();
             this.txtSearchUser = new System.Windows.Forms.TextBox();
-            this.btnCreateUser = new System.Windows.Forms.Button();
             this.dgvUsers = new System.Windows.Forms.DataGridView();
             ((System.ComponentModel.ISupportInitialize)(this.dgvUsers)).BeginInit();
             this.SuspendLayout();
@@ -54,20 +53,9 @@ namespace Application.UI
             this.txtSearchUser.Location = new System.Drawing.Point(105, 33);
             this.txtSearchUser.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txtSearchUser.Name = "txtSearchUser";
-            this.txtSearchUser.Size = new System.Drawing.Size(696, 26);
+            this.txtSearchUser.Size = new System.Drawing.Size(908, 26);
             this.txtSearchUser.TabIndex = 27;
             this.txtSearchUser.TextChanged += new System.EventHandler(this.txtSearchUser_TextChanged);
-            // 
-            // btnCreateUser
-            // 
-            this.btnCreateUser.Location = new System.Drawing.Point(812, 27);
-            this.btnCreateUser.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.btnCreateUser.Name = "btnCreateUser";
-            this.btnCreateUser.Size = new System.Drawing.Size(201, 40);
-            this.btnCreateUser.TabIndex = 26;
-            this.btnCreateUser.Tag = "crear usuario";
-            this.btnCreateUser.Text = "Crear Usuario";
-            this.btnCreateUser.UseVisualStyleBackColor = true;
             // 
             // dgvUsers
             // 
@@ -93,7 +81,6 @@ namespace Application.UI
             this.ClientSize = new System.Drawing.Size(1041, 711);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.txtSearchUser);
-            this.Controls.Add(this.btnCreateUser);
             this.Controls.Add(this.dgvUsers);
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "frmUsersList";
@@ -111,7 +98,6 @@ namespace Application.UI
 
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox txtSearchUser;
-        private System.Windows.Forms.Button btnCreateUser;
         private System.Windows.Forms.DataGridView dgvUsers;
     }
 }

@@ -13,7 +13,7 @@ namespace Application.Services
         private static SessionManager _session = new SessionManager();
         private readonly static object _lock = new Object();
         
-        public User Usuario = new User();
+        public User Usuario;
         public DateTime InicioSesion { get; set; }
         public DateTime FinSesion { get; set; }
         public bool IsLogged { get; private set; }
@@ -24,10 +24,7 @@ namespace Application.Services
         public Language language 
         { 
             get { return _language; } 
-            set { 
-                _language = value; 
-                NotifyAllObservers((ILanguage)language); 
-            } 
+            set { _language = value; } 
         }
 
         private SessionManager()
@@ -53,7 +50,7 @@ namespace Application.Services
                 if (IsLogged == false)
                 {                   
                     _session.Usuario = usuario;
-                    _session.language = usuario.Idioma;
+                    _session.language = usuario.Language;
                     _session.InicioSesion = DateTime.Now;
                     IsLogged = true;
                 }
@@ -102,8 +99,8 @@ namespace Application.Services
 
         public void ChangeLanguage(Language language)
         {
-            _session.Usuario.Idioma = language;
-            NotifyAllObservers(_session.Usuario.Idioma);
+            _session.Usuario.Language = language;
+            NotifyAllObservers(_session.Usuario.Language);
         }
     }
 }

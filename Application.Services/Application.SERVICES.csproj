@@ -49,7 +49,6 @@
     <Compile Include="Composite\PermissionType.cs" />
     <Compile Include="Composite\Role.cs" />
     <Compile Include="Composite\UserPermission.cs" />
-    <Compile Include="DataAccessException.cs" />
     <Compile Include="Encrypt.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Security\Logging.cs" />
@@ -67,6 +66,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <None Include="Class Diagram - Services.cd" />
     <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

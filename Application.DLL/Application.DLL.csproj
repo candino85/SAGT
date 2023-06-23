@@ -42,9 +42,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BackupRestoreRepository.cs" />
+    <Compile Include="DataAccessException.cs" />
     <Compile Include="DBAccess.cs" />
     <Compile Include="LanguageRepository.cs" />
-    <Compile Include="LoggingRepository.cs" />
     <Compile Include="mapper_Area.cs" />
     <Compile Include="PermissionRepository.cs" />
     <Compile Include="mapper_Entity.cs" />
@@ -65,6 +65,9 @@
       <Project>{4fcc1efb-4b27-4cb4-a432-389e9335594e}</Project>
       <Name>Application.SERVICES</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ClassDiagram_DLL.cd" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

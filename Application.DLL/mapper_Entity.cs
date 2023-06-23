@@ -33,9 +33,9 @@ namespace Application.DLL
         //    return usuario;
         //}
 
-        public Entity GetEntityById(int id)
+        public Sucursal GetEntityById(int id)
         {
-            BE.Entity entidad = new Entity();
+            BE.Sucursal entidad = new Sucursal();
             SqlParameter[] parametro = new SqlParameter[1];
             parametro[0] = new SqlParameter("@id", id);
 
@@ -52,7 +52,7 @@ namespace Application.DLL
             return entidad;
         }
 
-        public int Create(Entity entidad)
+        public int Create(Sucursal entidad)
         {
             SqlParameter[] parametros = new SqlParameter[5];
             parametros[0] = new SqlParameter("Nombre",entidad.Name);
@@ -66,7 +66,7 @@ namespace Application.DLL
             return accesso.Write("EntidadCrear", parametros);
         }
 
-        public int Update(Entity entidad)
+        public int Update(Sucursal entidad)
         {
             SqlParameter[] parametros = new SqlParameter[6];
             parametros[0] = new SqlParameter("Id", entidad.Id); 
@@ -89,20 +89,20 @@ namespace Application.DLL
         //    return accesso.Write("UsuarioEliminar", parametro);
         //}
 
-        public List<Entity> List()
+        public List<Sucursal> List()
         {
-            List<Entity> listaEntidades = new List<Entity>();
+            List<Sucursal> listaEntidades = new List<Sucursal>();
             DataTable dataTable = accesso.Read("EntidadListar", null);
 
             foreach (DataRow row in dataTable.Rows)
             {
-                Entity entidad = new Entity
+                Sucursal entidad = new Sucursal
                 {
                     Id = int.Parse(row["id"].ToString()),
-                    Cuit = row["cuit"].ToString(),
                     Name = row["nombre"].ToString(),
                     Address = row["direccion"].ToString(),
                     Phone = row["telefono"].ToString(),
+                    Cuit = row["cuit"].ToString(),
                     Active = bool.Parse(row["activo"].ToString())
                 };
 

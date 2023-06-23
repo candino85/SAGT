@@ -20,9 +20,5 @@ namespace Application.Services
         {
             return Name;
         }
-        public Component()
-        {
-
-        }
     }
 }

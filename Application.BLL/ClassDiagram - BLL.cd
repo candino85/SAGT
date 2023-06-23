@@ -1,0 +1,66 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Application.BLL.Area" Collapsed="true">
+    <Position X="6" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ACAAAAAAAAAAAAAAAAABAAAAAIAAAAJAAAAAAABAAIE=</HashCode>
+      <FileName>Area.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Application.BLL.BackupRestore" Collapsed="true">
+    <Position X="7.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAACQBAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>BackupRestore.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Application.BLL.BusinessLogicException" Collapsed="true">
+    <Position X="9.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>BusinessLogicException.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Application.BLL.Client" Collapsed="true">
+    <Position X="1.75" Y="2" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>QAAAAAAAAAAAAAAAAACBQAAAgAAAAAAAAgAABAAAAAA=</HashCode>
+      <FileName>Client.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Application.BLL.Entity" Collapsed="true">
+    <Position X="7.75" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AACAAAAAAAAAAAEAAAABAAAAAAAAAQAAAAAAgAAAABA=</HashCode>
+      <FileName>Entity.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Application.BLL.LanguageService" Collapsed="true">
+    <Position X="9.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAIAAAAAAAAAAAAAAAAAIAAAAAAACABAAAgAAAAACA=</HashCode>
+      <FileName>LanguageService.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Application.BLL.Permission">
+    <Position X="7.75" Y="4.5" Width="3" />
+    <TypeIdentifier>
+      <HashCode>BAEAQAAwCABAAIAAAAAABAAQEAAAAAAICgAAAAAAAAA=</HashCode>
+      <FileName>Permission.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Application.BLL.User">
+    <Position X="1" Y="4.25" Width="1.75" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AACAAAAAABQAACEAAgABAAAAAAAAABAAAAAAAAIACAA=</HashCode>
+      <FileName>User.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9.5" />
+</ClassDiagram>

@@ -17,9 +17,9 @@ namespace Application.BE
         private string _description;
         public string Description { get { return _description; } set { _description = value; } }
 
-        private Entity _entity;
+        private Sucursal _entity;
 
-        public Entity Entity
+        public Sucursal Entity
         {
             get { return _entity; }
             set { _entity = value; }

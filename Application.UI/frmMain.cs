@@ -20,9 +20,10 @@ namespace Application.UI
 {
     public partial class frmMain : Form, ILanguageObserver
     {
-        LoginService _login;
-        
+        //LoginService _login;
         BLL.Permission permission;
+        BLL.User user;
+
         Services.UserPermission userPermission;
 
         BLL.LanguageService _languageBLL;
@@ -32,9 +33,10 @@ namespace Application.UI
             InitializeComponent();
             
             permission = new BLL.Permission();
-            userPermission = new UserPermission();          
+            userPermission = new UserPermission();
+            user = new BLL.User();
 
-            _login = new LoginService();
+            //_login = new LoginService();
             _languageBLL = new BLL.LanguageService();
         }
 
@@ -68,7 +70,7 @@ namespace Application.UI
                 userPermission.Nombre = SessionManager.GetInstance.Usuario.Name;
 
                 //sesionToolStripMenuItem
-                menuLanguage.Visible = permission.FindUserPermissions(PermissionType.CambiarIdioma, userPermission);                
+                menuLanguage.Visible = permission.FindUserPermissions(PermissionType.CambiarIdioma, userPermission);
 
                 gestionToolStripMenuItem.Visible = true;
                 entidadesToolStripMenuItem.Visible = permission.FindUserPermissions(PermissionType.GestionarEntidades, userPermission);
@@ -84,25 +86,25 @@ namespace Application.UI
                 //negocioToolStripMenuItem (Este permiso se desglosará para cada tipo de role del negocio)
                 negocioToolStripMenuItem.Visible = permission.FindUserPermissions(PermissionType.ConfigurarNegocio, userPermission);
             }
-            else if (SessionManager.GetInstance.Usuario.LoginName == "SysAdmin")
-            {
-                //sesionToolStripMenuItem
-                menuLanguage.Visible = true;
+            //else if (SessionManager.GetInstance.Usuario.LoginName == "SysAdmin")
+            //{
+            //    //sesionToolStripMenuItem
+            //    menuLanguage.Visible = true;
 
-                gestionToolStripMenuItem.Visible = true;
-                entidadesToolStripMenuItem.Visible = true;
-                idiomasToolStripMenuItem.Visible = true;
-                usuariosToolStripMenuItem.Visible = true;
-                //espaciosToolStripMenuItem.Visible = permission.FindUserPermissions(PermissionType.GestionarEspacios, userPermission);
+            //    gestionToolStripMenuItem.Visible = true;
+            //    entidadesToolStripMenuItem.Visible = true;
+            //    idiomasToolStripMenuItem.Visible = true;
+            //    usuariosToolStripMenuItem.Visible = true;
+            //    //espaciosToolStripMenuItem.Visible = permission.FindUserPermissions(PermissionType.GestionarEspacios, userPermission);
 
-                seguridadToolStripMenuItem.Visible = true;
-                rolesToolStripMenuItem.Visible = true;
-                backupRestoreToolStripMenuItem.Visible = true;
-                //seguridadUsuariosToolStripMenuItem.Visible = permission.FindUserPermissions(PermissionType.ConfigurarSeguridadUsuarios, userPermission);
+            //    seguridadToolStripMenuItem.Visible = true;
+            //    rolesToolStripMenuItem.Visible = true;
+            //    backupRestoreToolStripMenuItem.Visible = true;
+            //    //seguridadUsuariosToolStripMenuItem.Visible = permission.FindUserPermissions(PermissionType.ConfigurarSeguridadUsuarios, userPermission);
 
-                //negocioToolStripMenuItem (Este permiso se desglosará para cada tipo de role del negocio)
-                negocioToolStripMenuItem.Visible = true;
-            }
+            //    //negocioToolStripMenuItem (Este permiso se desglosará para cada tipo de role del negocio)
+            //    negocioToolStripMenuItem.Visible = true;
+            //}
         }
 
         private void CloseSesion()
@@ -115,39 +117,36 @@ namespace Application.UI
                 gestionToolStripMenuItem.Visible = false;
                 seguridadToolStripMenuItem.Visible = false;
                 negocioToolStripMenuItem.Visible = false;
-                menuLogout.Visible = false;
             }
         }
 
         public void ValidarForm()
         {
-            //login menu settings
-            this.menuLogin.Enabled = !SessionManager.GetInstance.IsLogged;
             this.menuLogout.Enabled = SessionManager.GetInstance.IsLogged;
-            this.menuLanguage.Enabled = SessionManager.GetInstance.IsLogged;
+            this.menuLogin.Enabled = !SessionManager.GetInstance.IsLogged;
 
+            //this.menuLanguage.Enabled = SessionManager.GetInstance.IsLogged;
 
             if (SessionManager.GetInstance.IsLogged)
-            {
+            {                
                 this.lblEstado.Text = SessionManager.GetInstance.Usuario.LoginName;
 
                 foreach (ToolStripMenuItem i in menuLanguage.DropDownItems)
                 {
-                    if (i.Text == SessionManager.GetInstance.Usuario.Idioma.Name)
+                    if (i.Text == SessionManager.GetInstance.Usuario.Language.Name)
                         i.Checked = true;
                     else 
                         i.Checked = false;
                 }
                 
                 updateLanguage(SessionManager.GetInstance.language);
-
-                validatePermissions();
             }
             else
             {
-                validatePermissions();
-                this.lblEstado.Text = "[Sesión no iniciada]";
+                this.lblEstado.Text = "[Sesión no iniciada]";                
             }
+            
+            validatePermissions();
         }
 
         public void LoadComboLanguage()
@@ -160,7 +159,10 @@ namespace Application.UI
                 ToolStripMenuItem i = new ToolStripMenuItem(item.Name);
                 i.Tag = item;
                 i.Click += languageChange_Click;
-                i.Checked = item.Default;
+                if(SessionManager.GetInstance.Usuario != null)
+                    i.Checked = (SessionManager.GetInstance.language.Name == item.Name) ? true : item.Default;
+                else
+                    i.Checked = item.Default;
                 menuLanguage.DropDown.Items.Add(i);
             }
         }
@@ -193,7 +195,9 @@ namespace Application.UI
 
         private void languageChange_Click(object sender, EventArgs e)
         {
-            SessionManager.GetInstance.language = _languageBLL.GetLanguage(sender.ToString());
+            var newLang = _languageBLL.GetLanguage(sender.ToString());
+            SessionManager.GetInstance.ChangeLanguage(newLang);
+            
             LoadComboLanguage();
             //TODO
             //MARCAR EL IDIOMA SELECCIONADO
@@ -204,22 +208,20 @@ namespace Application.UI
         {
             if(MessageBox.Show("¿Está seguro de que desea cerrar la sesión?", "Confirme",MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
-                _login.Logout();
+                user.LogOut();
                 CloseSesion();
                 
                 if (!SessionManager.GetInstance.IsLogged)
                 {
-                    menuLogin_Click(sender, e);
+                    CreateForm(typeof(frmLogin));
                 }
+                ValidarForm();
             }           
         }
 
         private void menuLogin_Click(object sender, EventArgs e)
         {
             CreateForm(typeof(frmLogin));
-            //frmLogin frm = new frmLogin();
-            //frm.MdiParent = this;
-            //frm.Show();
         }
 
         private void rolesToolStripMenuItem_Click(object sender, EventArgs e)
@@ -229,7 +231,7 @@ namespace Application.UI
 
         private void usuariosToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            CreateForm(typeof(frmUsersList));
+            //CreateForm(typeof(frmUsersList));
         }
 
         private void entidadesToolStripMenuItem_Click(object sender, EventArgs e)
@@ -261,10 +263,24 @@ namespace Application.UI
         {
             CreateForm(typeof(frmAreaList));
         }
+        private void cambiarClaveToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            CreateForm(typeof(frmUserChangePassword));
+        }
 
         private void salirToolStripMenuItem_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void nuevoUsuarioToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            CreateForm(typeof(frmUser));
+        }
+
+        private void buscarUsuarioToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            CreateForm(typeof(frmUsersList));
         }
     }
 }

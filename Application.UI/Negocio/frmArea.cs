@@ -156,7 +156,7 @@ namespace Application.UI.Negocio
                     _area_be = new BE.Area();
 
                     _area_be.Name = txtName.Text;
-                    _area_be.Entity = (BE.Entity)cmbEntity.SelectedItem;
+                    _area_be.Entity = (BE.Sucursal)cmbEntity.SelectedItem;
 
                     _area_be = _area_bll.GetAreaByName(_area_be);
 

@@ -15,7 +15,7 @@ namespace Application.UI
 {
     public partial class frmEntity : Form, ILanguageObserver
     {
-        BE.Entity entidad_BE;
+        BE.Sucursal entidad_BE;
         BLL.Entity entidad_BLL;
 
         private frmEntityList _frmEntitiesList;
@@ -31,7 +31,7 @@ namespace Application.UI
 
         private void btnCreateEntity_Click(object sender, EventArgs e)
         {
-            entidad_BE = new BE.Entity();
+            entidad_BE = new BE.Sucursal();
 
             entidad_BE.Name = txtNombre.Text;
             entidad_BE.Address = txtDireccion.Text;
@@ -49,7 +49,7 @@ namespace Application.UI
             this.Close();
         }
 
-        public frmEntity(BE.Entity entidad,frmEntityList frmEntityList)
+        public frmEntity(BE.Sucursal entidad,frmEntityList frmEntityList)
         {
             InitializeComponent();
             entidad_BE = entidad;

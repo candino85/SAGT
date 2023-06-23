@@ -29,6 +29,18 @@ namespace Application.UI.Customs_Controls
             set { lblTextBox.Text = value; }
         }
 
+        public char PasswordChar 
+        {
+            get { return txtTextBox.PasswordChar; }
+            set { txtTextBox.PasswordChar = value; } 
+        }
+
+        public object Tag
+        {
+            get { return lblTextBox.Tag;}
+            set { lblTextBox.Tag = value;} 
+        }
+
         public void ClearText()
         {
             txtTextBox.Clear();

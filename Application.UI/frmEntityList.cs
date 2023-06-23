@@ -15,7 +15,7 @@ namespace Application.UI
 {
     public partial class frmEntityList : Form, ILanguageObserver
     {
-        BE.Entity Entity_BE;
+        BE.Sucursal Entity_BE;
         BLL.Entity entity_BLL;
         public frmEntityList()
         {
@@ -33,7 +33,7 @@ namespace Application.UI
 
         private void dgvEntities_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            frmEntity frmEntity = new frmEntity((BE.Entity)dgvEntities.Rows[e.RowIndex].DataBoundItem, this);
+            frmEntity frmEntity = new frmEntity((BE.Sucursal)dgvEntities.Rows[e.RowIndex].DataBoundItem, this);
             frmMain frmMain = (frmMain)this.MdiParent;
             frmEntity.Show();
         }

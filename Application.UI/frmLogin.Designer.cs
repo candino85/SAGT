@@ -64,7 +64,6 @@ namespace Application.UI
             this.txtPassword.Name = "txtPassword";
             this.txtPassword.Size = new System.Drawing.Size(277, 26);
             this.txtPassword.TabIndex = 4;
-            this.txtPassword.Text = "1234";
             // 
             // label1
             // 

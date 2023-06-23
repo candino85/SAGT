@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Application.BE
 {
-    public class Entity : IEntity
+    public class Sucursal : IEntity
     {
         public int Id { get ; set ; }
         
