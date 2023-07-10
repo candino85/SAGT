@@ -58,18 +58,31 @@ namespace Application.BLL
             SessionManager.GetInstance.Logout();
         }
 
-        public string UpdatePassword(string passA, string passbN)
+        public string UpdatePassword(BE.User usrA, BE.User usrN)
+        {
+                var result = _mapper.UpdatePassword(usrA.LoginName, usrN.Password);
+                if (result != 0)
+                {                    
+                    return "CM";
+                }
+                else
+                    return "HP";
+        }
+
+        public string UpdatePassword(string passA, string passN)
         {
             if (SessionManager.GetInstance.Usuario.Password == Encrypt.GetSHA256(passA))
             {
-                var result = _mapper.UpdatePassword(SessionManager.GetInstance.Usuario.LoginName, Encrypt.GetSHA256(passbN));
+                var result = _mapper.UpdatePassword(SessionManager.GetInstance.Usuario.LoginName, Encrypt.GetSHA256(passN));
                 if (result != 0)
-                    return "La contraseña fue modificada con éxito";
+                {
+                    return "CM";
+                }
                 else
-                    return "Hubo un problema al modificar la contraseña";
+                    return "HP";
             }
             else
-                return "La contraseña actual es incorrecta";
+                return "CI";
         }
 
         public void FailLoginAttempt(BE.User user)
@@ -93,7 +106,9 @@ namespace Application.BLL
         {
             int fa = _mapper.Create(usuario);
             if (fa != 0)
+            {                
                 return fa;
+            }
             else
                 return 0;
         }

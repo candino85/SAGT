@@ -129,7 +129,8 @@ namespace Application.UI.Language
         private void btnCreateNewLanguage_Click(object sender, EventArgs e)
         {
             frmLanguageNew frm = new frmLanguageNew();
-            frm.Show();
+            frm.ShowDialog();
+            RefreshDataGrid();
         }
 
         public void updateLanguage(ILanguage language)

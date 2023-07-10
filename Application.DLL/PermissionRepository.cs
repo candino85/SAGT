@@ -5,8 +5,10 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web.Services.Description;
 
 namespace Application.DLL
 {
@@ -105,14 +107,14 @@ namespace Application.DLL
 
         //    Role role;
         //    List<Role> roleList = new List<Role>();
-            
+
         //    while (reader.Read())
         //    {
         //        role = new Role(){
         //            Id = reader.GetInt32(reader.GetOrdinal("id")),
         //            Name = reader.GetString(reader.GetOrdinal("nombre")),                    
         //        };
-                
+
         //        roleList.Add(role);
         //    }
 
@@ -162,7 +164,7 @@ namespace Application.DLL
             var cmd = new SqlCommand();
             cmd.Connection = cnn;
             var query = $@"select id, nombre, permiso from permiso where permiso is not null";
-            
+
             cmd.CommandText = query;
 
             var reader = cmd.ExecuteReader();
@@ -215,7 +217,7 @@ namespace Application.DLL
                     cmd.ExecuteNonQuery();
                 }
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 throw e;
             }
@@ -231,7 +233,7 @@ namespace Application.DLL
                 cmd.Connection = cnn;
 
                 var query = $@"insert into permiso (nombre, permiso) values (@nombre, @permiso); select id from permiso where id = @@identity;";
-                
+
                 cmd.Parameters.Add(new SqlParameter("nombre", component.Name));
                 //cmd.Parameters.Add(new SqlParameter("permiso", component.Permission));
                 cmd.CommandText = query;
@@ -249,7 +251,17 @@ namespace Application.DLL
             {
                 throw e;
             }
-            
+
+        }
+
+        public int DeletePermissionFromRole(Component permission)
+        {
+            var query = $"delete from permiso_permiso where id_padre = {permission.Parent.Id} and id_hijo = {permission.Id}";
+            var cmd = new SqlCommand();
+            cmd.CommandText = query;
+
+            int result = accesso.DeleteCommand(cmd);
+            return result;
         }
 
         public int DeleteComponent(Component component)
@@ -268,6 +280,27 @@ namespace Application.DLL
             return result;
         }
 
+        public Component GetComponentById(Component component, int id)
+        {
+            Component componentToRemove = new Role();
+
+            var query = $"select id_padre, ID_Hijo FROM permiso_permiso where Id_Hijo = {id} AND Id_Padre = {component.Id}";
+            var cmd = new SqlCommand();
+            cmd.CommandText = query;
+
+            DataTable dt = new DataTable();
+            dt = accesso.Read(cmd);
+
+            foreach(DataRow dr in dt.Rows)
+            {
+                Permission permission = new Permission {
+                    Id = (int)dr["Id_Hijo"],
+                    Parent = (Role)dr["Id_Padre"]
+                };
+                componentToRemove.AddChild(permission);
+            }
+            return componentToRemove;
+        }
         public Component GetComponent(Component component)
         {
             var query = "select nombre, id_padre, permiso from permiso where id = @id";
@@ -288,10 +321,10 @@ namespace Application.DLL
         public Component GetComponent(int id, IList<Component> list)
         {
             Component component = list != null ? list.Where(i => i.Id.Equals(id)).FirstOrDefault() : null;
-            
-            if(component ==null && list !=null)
+
+            if (component == null && list != null)
             {
-                foreach(var c in list)
+                foreach (var c in list)
                 {
                     var r = GetComponent(id, c.GetChild);
                     if (r != null && r.Id == id) return r;
@@ -305,74 +338,75 @@ namespace Application.DLL
 
         public bool FindUserPermissions(PermissionType permissionType, UserPermission userPermission)
         {
-                var cnn = new SqlConnection(accesso.GetConnectionString());
-                cnn.Open();
-                var cmd = new SqlCommand();
-                cmd.Connection = cnn;
-                cmd.CommandText = $"select p.Id, p.Nombre, p.Permiso from permiso p inner join usuario_permiso up on up.id_permiso = p.id where up.id_usuario = @id";
-                cmd.Parameters.AddWithValue("@id", userPermission.Id);
-                var reader = cmd.ExecuteReader();
+            var cnn = new SqlConnection(accesso.GetConnectionString());
+            cnn.Open();
+            var cmd = new SqlCommand();
+            cmd.Connection = cnn;
+            cmd.CommandText = $"select p.Id, p.Nombre, p.Permiso from permiso p inner join usuario_permiso up on up.id_permiso = p.id where up.id_usuario = @id";
+            cmd.Parameters.AddWithValue("@id", userPermission.Id);
+            var reader = cmd.ExecuteReader();
 
-                userPermission.Permissions.Clear();
-                while (reader.Read())
+            userPermission.Permissions.Clear();
+            while (reader.Read())
+            {
+                var idPermiso = reader.GetInt32(reader.GetOrdinal("id"));
+                var nombrePermiso = reader.GetString(reader.GetOrdinal("nombre"));
+                var permisoPermiso = string.Empty;
+
+                if (reader["permiso"] != DBNull.Value)
+                    permisoPermiso = reader.GetString(reader.GetOrdinal("permiso"));
+
+                Component component;
+                if (!string.IsNullOrEmpty(permisoPermiso)) // un solo permiso
                 {
-                    var idPermiso = reader.GetInt32(reader.GetOrdinal("id"));
-                    var nombrePermiso = reader.GetString(reader.GetOrdinal("nombre"));
-                    var permisoPermiso = string.Empty;
-
-                    if (reader["permiso"] != DBNull.Value)
-                        permisoPermiso = reader.GetString(reader.GetOrdinal("permiso"));
-
-                    Component component;
-                    if (!string.IsNullOrEmpty(permisoPermiso)) // un solo permiso
+                    component = new Permission()
                     {
-                        component = new Permission() { 
                         Id = idPermiso,
                         Name = nombrePermiso,
-                        Permission = (PermissionType)Enum.Parse(typeof(PermissionType),permisoPermiso)
-                        };
-                        userPermission.Permissions.Add(component);
-                    }
-                    else // un conjunto de permisos
-                    {
-                        component = new Role()
-                        {
-                            Id = idPermiso,
-                            Name = nombrePermiso                          
-                        };
-                        var p = GetAll($"={component.Id}");
-                        
-                        foreach (var permission in p)
-                            component.AddChild(permission);
-
-                        userPermission.Permissions.Add(component);
-                    }
+                        Permission = (PermissionType)Enum.Parse(typeof(PermissionType), permisoPermiso)
+                    };
+                    userPermission.Permissions.Add(component);
                 }
-
-                bool exist = false;
-
-                foreach (var p in userPermission.Permissions)
+                else // un conjunto de permisos
                 {
-                    if (p.Permission.Equals(permissionType))
-                        return true;
-                    else 
-                    { 
-                        exist = IsInRole(p, permissionType, exist);
-                        if(exist) return true;
-                    }
+                    component = new Role()
+                    {
+                        Id = idPermiso,
+                        Name = nombrePermiso
+                    };
+                    var p = GetAll($"={component.Id}");
+
+                    foreach (var permission in p)
+                        component.AddChild(permission);
+
+                    userPermission.Permissions.Add(component);
                 }
-                reader.Close();
-                return exist;
+            }
+
+            bool exist = false;
+
+            foreach (var p in userPermission.Permissions)
+            {
+                if (p.Permission.Equals(permissionType))
+                    return true;
+                else
+                {
+                    exist = IsInRole(p, permissionType, exist);
+                    if (exist) return true;
+                }
+            }
+            reader.Close();
+            return exist;
         }
 
         bool IsInRole(Component c, PermissionType pt, bool exist)
         {
             if (c.Permission.Equals(pt)) // un permiso
                 exist = true;
-            else 
+            else
             {
                 foreach (var p in c.GetChild)
-                { 
+                {
                     exist = IsInRole(p, pt, exist); // recursividad para recuperar todos los permisos
                     if (exist) return true;
                 }
@@ -390,7 +424,7 @@ namespace Application.DLL
                 cmd.Connection = cnn;
 
                 var query = $"select id_permiso from usuario_permiso where id_usuario = {idUser}";
-              
+
                 cmd.CommandText = query;
 
                 var result = cmd.ExecuteScalar();

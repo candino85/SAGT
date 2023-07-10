@@ -12,24 +12,23 @@
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="Application.Services.Permission">
-    <Position X="7" Y="4.5" Width="1.5" />
+    <Position X="7.25" Y="3.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAEAAAAAIAAAAAAAIAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Composite\Permission.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Application.Services.Role">
-    <Position X="4.75" Y="4.5" Width="1.5" />
+    <Position X="4.75" Y="3" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAABAAAAAAAEAAAAAIAAAAAAAIAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Composite\Role.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Application.Services.UserPermission">
-    <Position X="11.25" Y="1.5" Width="1.5" />
+    <Position X="11.25" Y="1" Width="1.5" />
     <Compartments>
       <Compartment Name="Fields" Collapsed="true" />
-      <Compartment Name="Properties" Collapsed="true" />
     </Compartments>
     <TypeIdentifier>
       <HashCode>AAACAAAAAAAAAAAEAAAAgAAAAAAAAAAAEAAAAAAACAA=</HashCode>
@@ -48,8 +47,22 @@
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
+  <Class Name="Application.Services.Encrypt">
+    <Position X="1.75" Y="6" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAACAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Encrypt.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Application.Services.EmailSender">
+    <Position X="2" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>EmailSender.cs</FileName>
+    </TypeIdentifier>
+  </Class>
   <Enum Name="Application.Services.PermissionType">
-    <Position X="9" Y="1.5" Width="1.5" />
+    <Position X="9.25" Y="3" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAIBCgAAAAAAiAAAAAAhAAAAAAAEAAAAAA=</HashCode>
       <FileName>Composite\PermissionType.cs</FileName>

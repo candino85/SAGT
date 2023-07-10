@@ -15,7 +15,7 @@ namespace Application.DLL
     {
         readonly DBAccess accesso = new DBAccess();
         readonly LanguageRepository languageRepository = new LanguageRepository();
-        readonly Mapper_Entity entity = new Mapper_Entity();
+        readonly Mapper_Sucursal entity = new Mapper_Sucursal();
 
         //public User GetUsuarioByLoginnamePassword(string loginname, string password)
         //{
@@ -72,7 +72,7 @@ namespace Application.DLL
                     usuario.Language = languageRepository.GetLanguage(int.Parse(row["idioma"].ToString()));
                     usuario.Active = (bool)row["activo"];
                     usuario.Role = (int)row["rol"];
-                    usuario.Entity = entity.GetEntityById((int)row["Entidad"]);
+                    usuario.Entity = entity.GetlById((int)row["Entidad"]);
                     usuario.Address = row["direccion"].ToString();
                     usuario.Email = row["email"].ToString();
                     usuario.Blocked = (bool)row["bloqueado"];
@@ -106,7 +106,7 @@ namespace Application.DLL
                 parametros[10] = new SqlParameter("entidad", usuario.Entity.Id);
                 parametros[11] = new SqlParameter("email", usuario.Email);
                 parametros[12] = new SqlParameter("bloqueado", usuario.Blocked);
-                parametros[13] = new SqlParameter("intentos", 0);
+                parametros[13] = new SqlParameter("intentos", Convert.ToString(0));
 
                 cmd.Parameters.AddRange(parametros);
 
@@ -170,7 +170,7 @@ namespace Application.DLL
                         Password = row["password"].ToString(),
                         Active = (bool)row["activo"],
                         CreationDate = (DateTime)row["FechaCreacion"],
-                        Entity = entity.GetEntityById((int)row["Entidad"]),
+                        Entity = entity.GetlById((int)row["Entidad"]),
                         Language = languageRepository.GetLanguage((int)row["idioma"]),
                         Role = row["role"] != DBNull.Value ? (int)row["role"] : 0,
                         //Address = row["direccion"] != DBNull.Value ? row["direccion"].ToString() : string.Empty
@@ -209,7 +209,7 @@ namespace Application.DLL
                     usuario.Language = languageRepository.GetLanguage(int.Parse(row["idioma"].ToString()));
                     usuario.Active = (bool)row["activo"];
                     usuario.Role = (int)row["role"];
-                    usuario.Entity = entity.GetEntityById((int)row["Entidad"]);
+                    usuario.Entity = entity.GetlById((int)row["Entidad"]);
                     usuario.Address = row["direccion"].ToString();
                     usuario.Email = row["email"].ToString();
                     usuario.Blocked = (bool)row["bloqueado"];

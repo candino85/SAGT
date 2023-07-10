@@ -17,13 +17,11 @@ namespace Application.UI.Language
     {
         LanguageService languageService;
 
-        private frmMain _frmMain;
         private frmLanguage _frmLanguage;
         public frmLanguageNew()
         {
             InitializeComponent();
             languageService = new LanguageService();
-            //_frmMain = new frmMain();
             _frmLanguage = new frmLanguage();
         }
 
@@ -33,7 +31,7 @@ namespace Application.UI.Language
             {
                 languageService.CreateNewLanguage(txtNewLanguageName.Text);
                 //*QUE HACEMOS DESPUES DE AGREGAR EL NUEVO LENGUAGE?
-                _frmMain.LoadComboLanguage();
+                
                 _frmLanguage.RefreshDataGrid();
                 this.Close();
             }

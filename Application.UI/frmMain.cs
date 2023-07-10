@@ -5,6 +5,7 @@ using Application.Services;
 using Application.UI.Backup;
 using Application.UI.Language;
 using Application.UI.Negocio;
+using Application.UI.Negocio.ABM;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -20,13 +21,12 @@ namespace Application.UI
 {
     public partial class frmMain : Form, ILanguageObserver
     {
-        //LoginService _login;
         BLL.Permission permission;
         BLL.User user;
 
         Services.UserPermission userPermission;
 
-        BLL.LanguageService _languageBLL;
+        BLL.LanguageService language;
 
         public frmMain()
         {
@@ -35,9 +35,7 @@ namespace Application.UI
             permission = new BLL.Permission();
             userPermission = new UserPermission();
             user = new BLL.User();
-
-            //_login = new LoginService();
-            _languageBLL = new BLL.LanguageService();
+            language = new BLL.LanguageService();
         }
 
         private void frmMain_Load(object sender, EventArgs e)
@@ -52,16 +50,6 @@ namespace Application.UI
             LoadComboLanguage();
         }
 
-        private void frmMain_FormClosed(object sender, FormClosedEventArgs e)
-        {
-            SessionManager.GetInstance.UnsubscribeObserver(this);
-            foreach (Form form in MdiChildren)
-            {
-                if (typeof(ILanguageObserver).IsAssignableFrom(form.GetType()))
-                    SessionManager.GetInstance.UnsubscribeObserver((ILanguageObserver)form);
-            }
-        }
-
         private void validatePermissions()
         {
             if (SessionManager.GetInstance.Usuario != null && SessionManager.GetInstance.Usuario.LoginName != "SysAdmin")
@@ -69,22 +57,41 @@ namespace Application.UI
                 userPermission.Id = SessionManager.GetInstance.Usuario.Id;
                 userPermission.Nombre = SessionManager.GetInstance.Usuario.Name;
 
-                //sesionToolStripMenuItem
-                menuLanguage.Visible = permission.FindUserPermissions(PermissionType.CambiarIdioma, userPermission);
+                //foreach (ToolStripMenuItem menuItem in menu.Items)
+                //{
+                //    var m
+                //    menuItem.Visible = permission.FindUserPermissions(PermissionType.(menuItem.Name).text, userPermission);
+                //}
 
-                gestionToolStripMenuItem.Visible = true;
-                entidadesToolStripMenuItem.Visible = permission.FindUserPermissions(PermissionType.GestionarEntidades, userPermission);
-                idiomasToolStripMenuItem.Visible = permission.FindUserPermissions(PermissionType.GestionarIdioma, userPermission);
-                usuariosToolStripMenuItem.Visible = permission.FindUserPermissions(PermissionType.GestionarUsuarios, userPermission);
-                //espaciosToolStripMenuItem.Visible = permission.FindUserPermissions(PermissionType.GestionarEspacios, userPermission);
+                //sesion
+                menuLanguage.Visible = permission.FindUserPermissions(PermissionType.menuCambiarIdioma, userPermission);
+                menuCambiarClave.Visible = permission.FindUserPermissions(PermissionType.menuCambiarClave, userPermission);
 
-                seguridadToolStripMenuItem.Visible = true;
-                rolesToolStripMenuItem.Visible = permission.FindUserPermissions(PermissionType.ConfigurarSeguridadRoles, userPermission);
-                backupRestoreToolStripMenuItem.Visible = permission.FindUserPermissions(PermissionType.BackupRestore, userPermission);
-                //seguridadUsuariosToolStripMenuItem.Visible = permission.FindUserPermissions(PermissionType.ConfigurarSeguridadUsuarios, userPermission);
+                //administrar
+                menuAdministrar.Visible = permission.FindUserPermissions(PermissionType.menuAdministrar, userPermission);
+                menuUsuarios.Visible = permission.FindUserPermissions(PermissionType.menuUsuarios, userPermission);
+                menuPerfiles.Visible = permission.FindUserPermissions(PermissionType.menuPerfiles, userPermission);
+                menuIdiomas.Visible = permission.FindUserPermissions(PermissionType.menuIdiomas, userPermission);
+                menuBackupRestore.Visible = permission.FindUserPermissions(PermissionType.menuBackupRestore, userPermission);
 
-                //negocioToolStripMenuItem (Este permiso se desglosará para cada tipo de role del negocio)
-                negocioToolStripMenuItem.Visible = permission.FindUserPermissions(PermissionType.ConfigurarNegocio, userPermission);
+                //maestros
+                menuMaestros.Visible = permission.FindUserPermissions(PermissionType.menuMaestros, userPermission);
+                menuSucursales.Visible = permission.FindUserPermissions(PermissionType.menuSucursales, userPermission);
+                menuEspacios.Visible = permission.FindUserPermissions(PermissionType.menuEspacios, userPermission);
+                menuClientes.Visible = permission.FindUserPermissions(PermissionType.menuClientes, userPermission);
+                menuEspecialidades.Visible = permission.FindUserPermissions(PermissionType.menuEspecialidades, userPermission);
+                menuEstudios.Visible = permission.FindUserPermissions(PermissionType.menuEstudios, userPermission);
+
+                //turnos
+                menuTurnos.Visible = permission.FindUserPermissions(PermissionType.menuTurnos, userPermission);
+                menuRegistrarTurno.Visible = permission.FindUserPermissions(PermissionType.menuRegistrarTurno, userPermission);
+                menuAgenda.Visible = permission.FindUserPermissions(PermissionType.menuAgenda, userPermission);
+
+                //reportes
+                menuReportes.Visible = permission.FindUserPermissions(PermissionType.menuReportes,userPermission);
+
+                //ayuda
+                menuAyuda.Visible = permission.FindUserPermissions(PermissionType.menuAyuda, userPermission);
             }
             //else if (SessionManager.GetInstance.Usuario.LoginName == "SysAdmin")
             //{
@@ -109,14 +116,22 @@ namespace Application.UI
 
         private void CloseSesion()
         {
+            foreach (Form frm in this.MdiChildren)
+            {
+                if (frm != this)    //Cerramos todos los formularios menos el formulario principal que contiene el menú
+                    frm.Close();
+            }
+
             if (SessionManager.GetInstance.Usuario == null)
             {
                 menuLanguage.Visible = false;
-                backupRestoreToolStripMenuItem.Visible = false;
+                menuCambiarClave.Visible = false;
 
-                gestionToolStripMenuItem.Visible = false;
-                seguridadToolStripMenuItem.Visible = false;
-                negocioToolStripMenuItem.Visible = false;
+                menuAdministrar.Visible = false;
+                menuMaestros.Visible = false;
+                menuTurnos.Visible = false;
+                menuReportes.Visible = false;
+                menuAyuda.Visible = false;
             }
         }
 
@@ -152,7 +167,8 @@ namespace Application.UI
         public void LoadComboLanguage()
         {
             menuLanguage.DropDown.Items.Clear();
-            List<BE.Language> languages = _languageBLL.GetLanguages();
+
+            List<BE.Language> languages = language.GetLanguages();
 
             foreach (BE.Language item in languages)
             {
@@ -160,9 +176,7 @@ namespace Application.UI
                 i.Tag = item;
                 i.Click += languageChange_Click;
                 if(SessionManager.GetInstance.Usuario != null)
-                    i.Checked = (SessionManager.GetInstance.language.Name == item.Name) ? true : item.Default;
-                else
-                    i.Checked = item.Default;
+                    i.Checked = (SessionManager.GetInstance.language.Name == item.Name) ? true : false;
                 menuLanguage.DropDown.Items.Add(i);
             }
         }
@@ -195,13 +209,11 @@ namespace Application.UI
 
         private void languageChange_Click(object sender, EventArgs e)
         {
-            var newLang = _languageBLL.GetLanguage(sender.ToString());
+            var newLang = language.GetLanguage(sender.ToString());
             SessionManager.GetInstance.ChangeLanguage(newLang);
-            
+            user.UserUpdate(SessionManager.GetInstance.Usuario);
+
             LoadComboLanguage();
-            //TODO
-            //MARCAR EL IDIOMA SELECCIONADO
-            //SETEAR EL IDIOMA EN EL USUARIO
         }
 
         private void menuLogout_Click(object sender, EventArgs e)
@@ -224,53 +236,14 @@ namespace Application.UI
             CreateForm(typeof(frmLogin));
         }
 
-        private void rolesToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            CreateForm(typeof(frmRoles));
-        }
-
-        private void usuariosToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            //CreateForm(typeof(frmUsersList));
-        }
-
-        private void entidadesToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            CreateForm(typeof(frmEntityList));
-        }
-
-        private void gestionarClientesToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            CreateForm(typeof(frmClientList));
-        }
-
-        private void seguridadUsuariosToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void backupRestoreToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            CreateForm(typeof(frmBackupRestore));
-        }
-
         private void idiomasToolStripMenuItem_Click(object sender, EventArgs e)
         {
             CreateForm(typeof(frmLanguage));
         }
 
-        private void gestionarEspaciosToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            CreateForm(typeof(frmAreaList));
-        }
         private void cambiarClaveToolStripMenuItem_Click(object sender, EventArgs e)
         {
             CreateForm(typeof(frmUserChangePassword));
-        }
-
-        private void salirToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            this.Close();
         }
 
         private void nuevoUsuarioToolStripMenuItem_Click(object sender, EventArgs e)
@@ -281,6 +254,61 @@ namespace Application.UI
         private void buscarUsuarioToolStripMenuItem_Click(object sender, EventArgs e)
         {
             CreateForm(typeof(frmUsersList));
+        }
+
+        private void salirToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void frmMain_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            SessionManager.GetInstance.UnsubscribeObserver(this);
+            foreach (Form form in MdiChildren)
+            {
+                if (typeof(ILanguageObserver).IsAssignableFrom(form.GetType()))
+                    SessionManager.GetInstance.UnsubscribeObserver((ILanguageObserver)form);
+            }
+        }
+
+        private void menuGestionEspacios_Click(object sender, EventArgs e)
+        {
+            CreateForm(typeof(frmAreaList));
+        }
+
+        private void sucursalToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            CreateForm(typeof(frmEntityList));
+        }
+
+        private void registrarToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            CreateForm(typeof(frmRegistrarTurno));
+        }
+
+        private void menuBackupRestore_Click(object sender, EventArgs e)
+        {
+            CreateForm(typeof(frmBackupRestore));
+        }
+
+        private void menuPerfiles_Click(object sender, EventArgs e)
+        {
+            CreateForm(typeof(frmRoles));
+        }
+
+        private void menuAgenda_Click(object sender, EventArgs e)
+        {
+            CreateForm(typeof(frmAgenda));
+        }
+
+        private void crearPaciente_Click(object sender, EventArgs e)
+        {
+            CreateForm(typeof(frmClient));
+        }
+
+        private void modificarPaciente_Click(object sender, EventArgs e)
+        {
+            CreateForm(typeof(frmClientList));
         }
     }
 }

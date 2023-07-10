@@ -14,7 +14,7 @@ namespace Application.DLL
     {
         readonly DBAccess accesso = new DBAccess();
         readonly LanguageRepository languageRepository = new LanguageRepository();
-        readonly Mapper_Entity entity = new Mapper_Entity();
+        readonly Mapper_Sucursal entity = new Mapper_Sucursal();
         public Area GetAreaById(int id)
         {
             try
@@ -29,7 +29,7 @@ namespace Application.DLL
                     area.Id = (int)dataTable.Rows[0]["id"];
                     area.Name = dataTable.Rows[0]["nombre"].ToString();
                     area.Description = dataTable.Rows[0]["descripcion"].ToString();
-                    area.Entity = entity.GetEntityById((int)dataTable.Rows[0]["entidad"]);
+                    area.Entity = entity.GetlById((int)dataTable.Rows[0]["entidad"]);
                     area.Active = (bool)dataTable.Rows[0]["activo"];
                 }
                 return area;
@@ -52,7 +52,7 @@ namespace Application.DLL
                     area.Id = (int)dataTable.Rows[0]["id"];
                     area.Name = dataTable.Rows[0]["nombre"].ToString();
                     area.Description = dataTable.Rows[0]["descripcion"].ToString();
-                    area.Entity = entity.GetEntityById((int)dataTable.Rows[0]["entidad"]);
+                    area.Entity = entity.GetlById((int)dataTable.Rows[0]["entidad"]);
                     area.Active = (bool)dataTable.Rows[0]["activo"];
                 }
 
@@ -127,7 +127,7 @@ namespace Application.DLL
                         Id = int.Parse(row["id"].ToString()),
                         Name = row["nombre"].ToString(),
                         Description = row["descripcion"].ToString(),
-                        Entity = entity.GetEntityById((int)row["entidad"]),
+                        Entity = entity.GetlById((int)row["entidad"]),
                         Active = (bool)row["activo"]
                     };
                     listaEspacios.Add(area);

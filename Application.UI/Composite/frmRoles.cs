@@ -17,12 +17,15 @@ namespace Application.UI
     public partial class frmRoles : Form, ILanguageObserver
     {
         BLL.Permission _permission;
+
         Services.Role selectedRole;
+
         Services.Component selectedComponent;
 
         public frmRoles()
         {
             InitializeComponent();
+
             _permission = new BLL.Permission();
 
             GetRolesAndCleanCtl();
@@ -96,7 +99,8 @@ namespace Application.UI
                         Name = txtRoleName.TextBoxText
                     };
 
-                    //comprobar si existe role con el mismo nombre
+                    // TODO comprobar si existe role con el mismo nombre
+
                     role = _permission.SaveComponent(role);
 
                     if (role.Id != 0)
@@ -170,7 +174,6 @@ namespace Application.UI
             }
         }
 
-
         private void cmbRoles_SelectionChangeCommitted(object sender, EventArgs e)
         {
             var tmp = (Role)this.cmbRoles.SelectedItem;
@@ -213,6 +216,8 @@ namespace Application.UI
         void ShowInTreeView(TreeNode tn, Services.Component component)
         {
             TreeNode n = new TreeNode(component.Name);
+            n.Name = component.Id.ToString();
+            
             tn.Tag = component;
             tn.Nodes.Add(n);
             if (component.GetChild != null)
@@ -249,66 +254,86 @@ namespace Application.UI
 
         private void btnDeleteComponent_Click(object sender, EventArgs e)
         {
-            try
-            {            
-                var ok = _permission.DeleteComponent(selectedComponent);
-                
-                if (ok == 1)
+            if (selectedComponent != null)
+            {
+                try
                 {
-                    tvAvailablePermission.Nodes.Clear();
-                    
-                    if (selectedComponent is Permission)
+                    var ok = _permission.DeleteComponent(selectedComponent);
+
+                    if (ok == 1)
                     {
-                        LoadPermissions();
-                        GetPermissionsAndCleanCtls();
+                        tvAvailablePermission.Nodes.Clear();
+
+                        if (selectedComponent is Permission)
+                        {
+                            LoadPermissions();
+                            GetPermissionsAndCleanCtls();
+                        }
+                        else
+                        {
+                            LoadRoles();
+                            GetRolesAndCleanCtl();
+                        }
+                        ShowRoleOnTreeView(false);
                     }
                     else
-                    {
-                        LoadRoles();
-                        GetRolesAndCleanCtl();
-                    }
-                    ShowRoleOnTreeView(false);
+                        MessageBox.Show("El permiso no pudo ser eliminado");
                 }
-                else
-                    MessageBox.Show("El permiso no pudo ser eliminado");
+                catch (Exception ex)
+                {
+                    throw ex;
+                }
             }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
+            else
+                MessageBox.Show("Seleccione el permiso o rol a eliminar", "INFO", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
         }
 
         private void tvAvailablePermission_AfterSelect(object sender, TreeViewEventArgs e)
         {
-                    if (cmbPermissionTypes.SelectedItem.ToString() == "Permisos")
-                        selectedComponent = new Permission()
-                        {
-                            Id = int.Parse(tvAvailablePermission.SelectedNode.Name),
-                            Name = tvAvailablePermission.SelectedNode.Text
-                        };
-                    else
-                        selectedComponent = new Role()
-                        {
-                            Id = int.Parse(tvAvailablePermission.SelectedNode.Name),
-                            Name = tvAvailablePermission.SelectedNode.Text
-                        };
+            if (cmbPermissionTypes.SelectedItem.ToString() == "Permisos")
+                selectedComponent = new Permission()
+                {
+                    Id = int.Parse(tvAvailablePermission.SelectedNode.Name),
+                    Name = tvAvailablePermission.SelectedNode.Text
+                };
+            else
+                selectedComponent = new Role()
+                {
+                    Id = int.Parse(tvAvailablePermission.SelectedNode.Name),
+                    Name = tvAvailablePermission.SelectedNode.Text
+                };
         }
 
         private void btnRemovePermission_Click(object sender, EventArgs e)
         {
-            //selectedRole.RemoveChild(selectedComponent);
-            //tvAvailablePermission.Nodes.Clear();
-            //foreach (Services.Component c in selectedRole.GetChilds)
-            //    tvAvailablePermission.Nodes.Add(c.Id.ToString(), c.Name.ToString());
+            if (selectedComponent is Permission) 
+            { 
+                _permission.DeletePermissionFromRole(selectedComponent);
+                cmbRoles_SelectionChangeCommitted(sender, e);
+            }
+            else 
+            { 
+                _permission.DeleteComponent(selectedComponent);
+                GetRolesAndCleanCtl();
+                this.tvRole.Nodes.Clear();
+            }
         }
 
         private void tvRole_AfterSelect(object sender, TreeViewEventArgs e)
         {
-            //selectedComponent = new Role()
-            //{
-            //    Id = int.Parse(tvRole.SelectedNode.Name.ToString()),
-            //    Name = tvRole.SelectedNode.Text
-            //};
+            if (e.Node.Text != selectedRole.Name.ToString())
+            {
+                selectedComponent = new Permission()
+                {
+                    Id = int.Parse(tvRole.SelectedNode.Name),
+                    Name = tvRole.SelectedNode.Text,
+                    Parent = selectedRole
+                };
+            }
+            else
+            {
+                selectedComponent = selectedRole;
+            }
         }
 
         public void updateLanguage(ILanguage language)

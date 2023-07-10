@@ -9,27 +9,49 @@ namespace Application.Services
     public enum PermissionType
     {
         //Sesion
-        //SesionToolStripMenu
-        CambiarIdioma,
-        CambiarClave,
+        menuCambiarIdioma,
+        menuCambiarClave,
 
-        //Gestion
-        //gestionToolStripMenuItem
-        GestionarIdioma,
-        GestionarUsuarios,
-        GestionarEntidades,
-        GestionarEspacios,
+        //Administrar
+        menuAdministrar,
+        menuUsuarios,
+        menuIdiomas,
+        menuBackupRestore,
+        menuPerfiles,
 
-        //Seguridad
-        //seguridadToolStripMenuItem
-        ConfigurarSeguridadRoles,
-        ConfigurarSeguridadUsuarios,
+        //Maestros
+        menuMaestros,
+        menuSucursales,
+        menuEspacios,
+        menuClientes,
+        menuEspecialidades,
+        menuEstudios,
+
+        //Turnos
+        menuTurnos,
+        menuRegistrarTurno,
+        menuAgenda,
+
+        //Reportes
+        menuReportes,
+        
+        //Ayuda
+        menuAyuda
+
 
         //Negocio
-        //negocioToolStripMenuItem
-        ConfigurarNegocio,
+        //menuGestionNegocio,
+        //menuGestionClientes,
+        //menuGestionEspacios,
+        //menuGestionEspecicialidades,
+        //menuGestionEstudios,
+        //menuRegistrarTurno,
 
-        //Sistema
-        BackupRestore
+        //Seguridad
+        //menuGestionSeguridad,
+        //menuGestionPermisos,
+        //menuGestionRoles,
+        //menuGestionBackup
+
     }
 }

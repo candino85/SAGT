@@ -150,6 +150,7 @@ namespace Application.UI
             this.txtPermissionName.Location = new System.Drawing.Point(9, 62);
             this.txtPermissionName.Margin = new System.Windows.Forms.Padding(6, 8, 6, 8);
             this.txtPermissionName.Name = "txtPermissionName";
+            this.txtPermissionName.PasswordChar = '\0';
             this.txtPermissionName.Size = new System.Drawing.Size(316, 62);
             this.txtPermissionName.TabIndex = 40;
             this.txtPermissionName.Tag = "nombre permiso";
@@ -186,6 +187,7 @@ namespace Application.UI
             this.txtRoleName.Location = new System.Drawing.Point(9, 62);
             this.txtRoleName.Margin = new System.Windows.Forms.Padding(6, 8, 6, 8);
             this.txtRoleName.Name = "txtRoleName";
+            this.txtRoleName.PasswordChar = '\0';
             this.txtRoleName.Size = new System.Drawing.Size(316, 62);
             this.txtRoleName.TabIndex = 46;
             this.txtRoleName.Tag = "nombre rol";

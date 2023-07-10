@@ -10,24 +10,24 @@ using Application.BE;
 
 namespace Application.BLL
 {
-    public class Entity
+    public class Sucursal
     {
-        BE.Sucursal _entidad;
-        readonly Mapper_Entity _mapper;
+        BE.Sucursal _sucursal;
+        readonly Mapper_Sucursal _mapper;
 
-        public Entity()
+        public Sucursal()
         {
-            _mapper = new Mapper_Entity();   
+            _mapper = new Mapper_Sucursal();
         }
 
-        public BE.Sucursal GetEntityById(int id)
+        public BE.Sucursal GetSucursalById(int id)
         {
-            _entidad = new BE.Sucursal();
-            _entidad = _mapper.GetEntityById(id);
-            return _entidad;
+            _sucursal = new BE.Sucursal();
+            _sucursal = _mapper.GetlById(id);
+            return _sucursal;
         }
 
-        public bool EntityCreate(BE.Sucursal entidad)
+        public bool SucursalCreate(BE.Sucursal entidad)
         {
             int fa = _mapper.Create(entidad);
             if (fa != 0)
@@ -35,9 +35,9 @@ namespace Application.BLL
             else
                 return false;
         }
-        public bool EntityUpdate(BE.Sucursal entidad)
+        public bool SucursalUpdate(BE.Sucursal sucursal)
         {
-            int fa = _mapper.Update(entidad);
+            int fa = _mapper.Update(sucursal);
             if (fa != 0)
                 return true;
             else
@@ -51,10 +51,10 @@ namespace Application.BLL
         //    else
         //        return false;
         //}
-        public List<BE.Sucursal> EntityList()
+        public List<BE.Sucursal> SucursalList()
         {
-            List<BE.Sucursal> listaEntidades = _mapper.List();
-            return listaEntidades;
+            List<BE.Sucursal> listaSucursales = _mapper.List();
+            return listaSucursales;
         }
     }
 }

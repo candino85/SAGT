@@ -37,7 +37,7 @@ namespace Application.UI
 
         private void btnIngresar_Click(object sender, EventArgs e)
         {
-            MessageBox.Show(_user.LogIn(this.txtNombreUsuario.Text, this.txtPassword.Text), "Atención", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            MessageBox.Show(_user.LogIn(this.txtNombreUsuario.Text, this.txtPassword.Text), "Bievenido", MessageBoxButtons.OK, MessageBoxIcon.Information);
             
             if (SessionManager.GetInstance.IsLogged)
             {                 
@@ -57,6 +57,11 @@ namespace Application.UI
         private void frmLogin_FormClosed(object sender, FormClosedEventArgs e)
         {
             SessionManager.GetInstance.UnsubscribeObserver(this);
+        }
+
+        private void btnCancelar_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

@@ -35,6 +35,9 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Windows.Forms.Calendar">
+      <HintPath>..\..\..\..\..\Users\andin\Downloads\System_Windows_Forms_Calendar_003\System.Windows.Forms.Calendar\System.Windows.Forms.Calendar\bin\Debug\System.Windows.Forms.Calendar.dll</HintPath>
+    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -58,22 +61,34 @@
     <Compile Include="Bitacora\frmBitacora.Designer.cs">
       <DependentUpon>frmBitacora.cs</DependentUpon>
     </Compile>
+    <Compile Include="Composite\frmPermissions.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Composite\frmPermissions.Designer.cs">
+      <DependentUpon>frmPermissions.cs</DependentUpon>
+    </Compile>
     <Compile Include="Customs Controls\TextBoxLabeled.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="Customs Controls\TextBoxLabeled.Designer.cs">
       <DependentUpon>TextBoxLabeled.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmEntity.cs">
+    <Compile Include="Negocio\ABM\frmAgenda.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmEntity.Designer.cs">
+    <Compile Include="Negocio\ABM\frmAgenda.Designer.cs">
+      <DependentUpon>frmAgenda.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Negocio\ABM\frmEntity.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Negocio\ABM\frmEntity.Designer.cs">
       <DependentUpon>frmEntity.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmEntityList.cs">
+    <Compile Include="Negocio\ABM\frmEntityList.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmEntityList.Designer.cs">
+    <Compile Include="Negocio\ABM\frmEntityList.Designer.cs">
       <DependentUpon>frmEntityList.cs</DependentUpon>
     </Compile>
     <Compile Include="Composite\frmRoles.cs">
@@ -125,29 +140,41 @@
       <DependentUpon>frmLanguageNew.cs</DependentUpon>
     </Compile>
     <Compile Include="Language\Translator.cs" />
-    <Compile Include="Negocio\frmArea.cs">
+    <Compile Include="Negocio\ABM\frmArea.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Negocio\frmArea.Designer.cs">
+    <Compile Include="Negocio\ABM\frmArea.Designer.cs">
       <DependentUpon>frmArea.cs</DependentUpon>
     </Compile>
-    <Compile Include="Negocio\frmAreaList.cs">
+    <Compile Include="Negocio\ABM\frmAreaList.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Negocio\frmAreaList.Designer.cs">
+    <Compile Include="Negocio\ABM\frmAreaList.Designer.cs">
       <DependentUpon>frmAreaList.cs</DependentUpon>
     </Compile>
-    <Compile Include="Negocio\frmClient.cs">
+    <Compile Include="Negocio\ABM\frmClient.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Negocio\frmClient.Designer.cs">
+    <Compile Include="Negocio\ABM\frmClient.Designer.cs">
       <DependentUpon>frmClient.cs</DependentUpon>
     </Compile>
-    <Compile Include="Negocio\frmClientList.cs">
+    <Compile Include="Negocio\ABM\frmClientList.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Negocio\frmClientList.Designer.cs">
+    <Compile Include="Negocio\ABM\frmClientList.Designer.cs">
       <DependentUpon>frmClientList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Negocio\ABM\frmEstudio.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Negocio\ABM\frmEstudio.Designer.cs">
+      <DependentUpon>frmEstudio.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Negocio\frmRegistrarTurno.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Negocio\frmRegistrarTurno.Designer.cs">
+      <DependentUpon>frmRegistrarTurno.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -160,10 +187,13 @@
     <EmbeddedResource Include="Customs Controls\TextBoxLabeled.resx">
       <DependentUpon>TextBoxLabeled.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmEntity.resx">
+    <EmbeddedResource Include="Negocio\ABM\frmAgenda.resx">
+      <DependentUpon>frmAgenda.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Negocio\ABM\frmEntity.resx">
       <DependentUpon>frmEntity.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmEntityList.resx">
+    <EmbeddedResource Include="Negocio\ABM\frmEntityList.resx">
       <DependentUpon>frmEntityList.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Composite\frmRoles.resx">
@@ -190,17 +220,23 @@
     <EmbeddedResource Include="Language\frmLanguageNew.resx">
       <DependentUpon>frmLanguageNew.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Negocio\frmArea.resx">
+    <EmbeddedResource Include="Negocio\ABM\frmArea.resx">
       <DependentUpon>frmArea.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Negocio\frmAreaList.resx">
+    <EmbeddedResource Include="Negocio\ABM\frmAreaList.resx">
       <DependentUpon>frmAreaList.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Negocio\frmClient.resx">
+    <EmbeddedResource Include="Negocio\ABM\frmClient.resx">
       <DependentUpon>frmClient.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Negocio\frmClientList.resx">
+    <EmbeddedResource Include="Negocio\ABM\frmClientList.resx">
       <DependentUpon>frmClientList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Negocio\ABM\frmEstudio.resx">
+      <DependentUpon>frmEstudio.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Negocio\frmRegistrarTurno.resx">
+      <DependentUpon>frmRegistrarTurno.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

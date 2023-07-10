@@ -2,9 +2,11 @@
 using Application.Services;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Component = Application.Services.Component;
 
 namespace Application.BLL
 {
@@ -47,11 +49,20 @@ namespace Application.BLL
             return _repository.DeleteComponent(component);
         }
 
+        public int DeletePermissionFromRole(Component permission)
+        {
+            return _repository.DeletePermissionFromRole(permission);
+        }
+
         public Component GetComponent(Component component)
         {
             return _repository.GetComponent(component);
         }
 
+        public Component GetComponentById(Component component, int id)
+        {
+            return _repository.GetComponentById(component, id);
+        }
         public bool AlreadyExistComponent(Component component, int idComp)
         {
             bool exist = false;

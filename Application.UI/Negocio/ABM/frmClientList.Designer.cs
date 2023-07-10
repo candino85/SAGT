@@ -29,24 +29,11 @@ namespace Application.UI.Negocio
         /// </summary>
         private void InitializeComponent()
         {
-            this.btnCreateClient = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.txtSearchClient = new System.Windows.Forms.TextBox();
             this.dgvClients = new System.Windows.Forms.DataGridView();
             ((System.ComponentModel.ISupportInitialize)(this.dgvClients)).BeginInit();
             this.SuspendLayout();
-            // 
-            // btnCreateClient
-            // 
-            this.btnCreateClient.Location = new System.Drawing.Point(620, 21);
-            this.btnCreateClient.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.btnCreateClient.Name = "btnCreateClient";
-            this.btnCreateClient.Size = new System.Drawing.Size(200, 35);
-            this.btnCreateClient.TabIndex = 8;
-            this.btnCreateClient.Tag = "crear nuevo cliente";
-            this.btnCreateClient.Text = "Crear nuevo cliente";
-            this.btnCreateClient.UseVisualStyleBackColor = true;
-            this.btnCreateClient.Click += new System.EventHandler(this.btnCreateClient_Click);
             // 
             // label1
             // 
@@ -66,7 +53,7 @@ namespace Application.UI.Negocio
             this.txtSearchClient.Location = new System.Drawing.Point(105, 25);
             this.txtSearchClient.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txtSearchClient.Name = "txtSearchClient";
-            this.txtSearchClient.Size = new System.Drawing.Size(504, 26);
+            this.txtSearchClient.Size = new System.Drawing.Size(714, 26);
             this.txtSearchClient.TabIndex = 6;
             // 
             // dgvClients
@@ -86,7 +73,6 @@ namespace Application.UI.Negocio
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(846, 566);
-            this.Controls.Add(this.btnCreateClient);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.txtSearchClient);
             this.Controls.Add(this.dgvClients);
@@ -104,8 +90,6 @@ namespace Application.UI.Negocio
         }
 
         #endregion
-
-        private System.Windows.Forms.Button btnCreateClient;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox txtSearchClient;
         private System.Windows.Forms.DataGridView dgvClients;

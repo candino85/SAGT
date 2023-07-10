@@ -22,7 +22,7 @@ namespace Application.UI.Negocio
         private BLL.Area _area_bll;
         private frmAreaList _formAreaList;
 
-        private BLL.Entity _entity;
+        private BLL.Sucursal _entity;
 
         public frmArea(frmAreaList formAreaList)
         {
@@ -74,9 +74,9 @@ namespace Application.UI.Negocio
 
         private void LoadComboBox()
         {
-            _entity = new BLL.Entity();
+            _entity = new BLL.Sucursal();
 
-            cmbEntity.DataSource = _entity.EntityList();
+            cmbEntity.DataSource = _entity.SucursalList();
             cmbEntity.DisplayMember = "Name";
             cmbEntity.ValueMember = "Id";
         }
@@ -195,7 +195,7 @@ namespace Application.UI.Negocio
             _area_be = new BE.Area();
             _area_be.Name = txtName.Text;
             _area_be.Description = txtAreaDesc.Text;
-            _area_be.Entity = _entity.GetEntityById((int)cmbEntity.SelectedValue);
+            _area_be.Entity = _entity.GetSucursalById((int)cmbEntity.SelectedValue);
             _area_be.Active = chkActivo.Checked;
             return _area_be;
         }

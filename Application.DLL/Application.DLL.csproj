@@ -33,6 +33,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Web.Services" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -45,9 +46,13 @@
     <Compile Include="DataAccessException.cs" />
     <Compile Include="DBAccess.cs" />
     <Compile Include="LanguageRepository.cs" />
+    <Compile Include="mapper_Agenda.cs" />
     <Compile Include="mapper_Area.cs" />
+    <Compile Include="Mapper_Especialidad.cs" />
+    <Compile Include="mapper_Estudio.cs" />
+    <Compile Include="mapper_Turno.cs" />
     <Compile Include="PermissionRepository.cs" />
-    <Compile Include="mapper_Entity.cs" />
+    <Compile Include="mapper_Sucursal.cs" />
     <Compile Include="mapper_Client.cs" />
     <Compile Include="mapper_User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

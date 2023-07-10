@@ -16,7 +16,7 @@ namespace Application.UI
     public partial class frmEntity : Form, ILanguageObserver
     {
         BE.Sucursal entidad_BE;
-        BLL.Entity entidad_BLL;
+        BLL.Sucursal entidad_BLL;
 
         private frmEntityList _frmEntitiesList;
         public frmEntity(frmEntityList frmEntityList)
@@ -24,7 +24,7 @@ namespace Application.UI
             InitializeComponent();
             _frmEntitiesList = frmEntityList;
 
-            entidad_BLL = new BLL.Entity();
+            entidad_BLL = new BLL.Sucursal();
 
             btnUpdateEntity.Enabled = false;
         }
@@ -39,7 +39,7 @@ namespace Application.UI
             entidad_BE.Cuit = txtCuit.Text;
             entidad_BE.Active = chkActive.Checked;
 
-            bool operation = entidad_BLL.EntityCreate(entidad_BE);
+            bool operation = entidad_BLL.SucursalCreate(entidad_BE);
 
             if (!operation)
                 throw new Exception("Error al crear la entidad");
@@ -56,7 +56,7 @@ namespace Application.UI
 
             _frmEntitiesList = frmEntityList;
 
-            entidad_BLL = new BLL.Entity();
+            entidad_BLL = new BLL.Sucursal();
 
             btnCreateEntity.Enabled = false;
 
@@ -75,7 +75,7 @@ namespace Application.UI
             entidad_BE.Cuit = txtCuit.Text;
             entidad_BE.Active = chkActive.Checked;
 
-            bool operation = entidad_BLL.EntityUpdate(entidad_BE);
+            bool operation = entidad_BLL.SucursalUpdate(entidad_BE);
 
             if (!operation)
                 throw new Exception("Error al actualizar la entidad");

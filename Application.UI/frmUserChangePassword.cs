@@ -62,9 +62,20 @@ namespace Application.UI
                     MessageBox.Show("La nueva clave y la confirmación no coinciden");
                     break;
                 case "OK":
-                    MessageBox.Show(user.UpdatePassword(txtClaveActual.TextBoxText, txtClaveNueva.TextBoxText), "INFO", MessageBoxButtons.OK,MessageBoxIcon.Information);       
-                    if (SessionManager.GetInstance.Usuario.Password == Encrypt.GetSHA256(txtClaveNueva.TextBoxText))
-                        this.Close();
+
+                        var msg = user.UpdatePassword(txtClaveActual.TextBoxText, txtClaveNueva.TextBoxText);
+                        string  msgtoshw = "";
+                        if (msg == "CM")
+                            msgtoshw = "La contraseña fue modificada con éxito.";
+                        else if (msg == "HP")
+                            msgtoshw = "Hubo un problema al modificar la contraseña.";
+                        else if (msg == "CI")
+                            msgtoshw = "La contraseña actual es incorrecta.";
+
+                        MessageBox.Show(msgtoshw, "INFO", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        
+                        if (msg == "HP" || msg == "CI" || msg == "CM")
+                            this.Close();
                     break;
             }             
         }

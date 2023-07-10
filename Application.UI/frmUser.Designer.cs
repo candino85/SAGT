@@ -51,11 +51,12 @@ namespace Application.UI
             this.email = new System.Windows.Forms.Label();
             this.txtEmail = new System.Windows.Forms.TextBox();
             this.chkActive = new System.Windows.Forms.CheckBox();
+            this.btnPswRst = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnUpdateUsers
             // 
-            this.btnUpdateUsers.Location = new System.Drawing.Point(345, 370);
+            this.btnUpdateUsers.Location = new System.Drawing.Point(345, 357);
             this.btnUpdateUsers.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnUpdateUsers.Name = "btnUpdateUsers";
             this.btnUpdateUsers.Size = new System.Drawing.Size(260, 40);
@@ -63,15 +64,15 @@ namespace Application.UI
             this.btnUpdateUsers.Tag = "guardar";
             this.btnUpdateUsers.Text = "Guardar";
             this.btnUpdateUsers.UseVisualStyleBackColor = true;
-            this.btnUpdateUsers.Click += new System.EventHandler(this.btnUpdateUsers_Click);
+            this.btnUpdateUsers.Click += new System.EventHandler(this.btnUpdateUser_Click);
             // 
             // btnCreateUser
             // 
-            this.btnCreateUser.Location = new System.Drawing.Point(345, 370);
+            this.btnCreateUser.Location = new System.Drawing.Point(345, 357);
             this.btnCreateUser.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnCreateUser.Name = "btnCreateUser";
             this.btnCreateUser.Size = new System.Drawing.Size(260, 40);
-            this.btnCreateUser.TabIndex = 24;
+            this.btnCreateUser.TabIndex = 11;
             this.btnCreateUser.Tag = "crear";
             this.btnCreateUser.Text = "Crear";
             this.btnCreateUser.UseVisualStyleBackColor = true;
@@ -80,12 +81,11 @@ namespace Application.UI
             // chkBlocked
             // 
             this.chkBlocked.AutoSize = true;
-            this.chkBlocked.Enabled = false;
             this.chkBlocked.Location = new System.Drawing.Point(493, 323);
             this.chkBlocked.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.chkBlocked.Name = "chkBlocked";
             this.chkBlocked.Size = new System.Drawing.Size(112, 24);
-            this.chkBlocked.TabIndex = 25;
+            this.chkBlocked.TabIndex = 10;
             this.chkBlocked.Tag = "bloqueado";
             this.chkBlocked.Text = "Bloqueado";
             this.chkBlocked.UseVisualStyleBackColor = true;
@@ -109,7 +109,7 @@ namespace Application.UI
             this.cmbRole.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.cmbRole.Name = "cmbRole";
             this.cmbRole.Size = new System.Drawing.Size(264, 28);
-            this.cmbRole.TabIndex = 47;
+            this.cmbRole.TabIndex = 7;
             this.cmbRole.ValueMember = "Id";
             // 
             // label6
@@ -131,7 +131,7 @@ namespace Application.UI
             this.cmbLanguage.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.cmbLanguage.Name = "cmbLanguage";
             this.cmbLanguage.Size = new System.Drawing.Size(264, 28);
-            this.cmbLanguage.TabIndex = 45;
+            this.cmbLanguage.TabIndex = 8;
             this.cmbLanguage.ValueMember = "Id";
             // 
             // label1
@@ -141,7 +141,7 @@ namespace Application.UI
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(185, 20);
-            this.label1.TabIndex = 44;
+            this.label1.TabIndex = 3;
             this.label1.Tag = "DNI";
             this.label1.Text = "Documento de Identidad";
             // 
@@ -151,7 +151,7 @@ namespace Application.UI
             this.txtDNI.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txtDNI.Name = "txtDNI";
             this.txtDNI.Size = new System.Drawing.Size(264, 26);
-            this.txtDNI.TabIndex = 43;
+            this.txtDNI.TabIndex = 0;
             // 
             // label4
             // 
@@ -170,7 +170,7 @@ namespace Application.UI
             this.txtNombreUsuario.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txtNombreUsuario.Name = "txtNombreUsuario";
             this.txtNombreUsuario.Size = new System.Drawing.Size(264, 26);
-            this.txtNombreUsuario.TabIndex = 39;
+            this.txtNombreUsuario.TabIndex = 3;
             // 
             // label3
             // 
@@ -189,7 +189,7 @@ namespace Application.UI
             this.txtApellido.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txtApellido.Name = "txtApellido";
             this.txtApellido.Size = new System.Drawing.Size(264, 26);
-            this.txtApellido.TabIndex = 37;
+            this.txtApellido.TabIndex = 2;
             // 
             // label2
             // 
@@ -208,7 +208,7 @@ namespace Application.UI
             this.txtNombre.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txtNombre.Name = "txtNombre";
             this.txtNombre.Size = new System.Drawing.Size(264, 26);
-            this.txtNombre.TabIndex = 35;
+            this.txtNombre.TabIndex = 1;
             // 
             // label8
             // 
@@ -229,7 +229,7 @@ namespace Application.UI
             this.cmbEntity.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.cmbEntity.Name = "cmbEntity";
             this.cmbEntity.Size = new System.Drawing.Size(264, 28);
-            this.cmbEntity.TabIndex = 49;
+            this.cmbEntity.TabIndex = 6;
             this.cmbEntity.ValueMember = "Id";
             // 
             // label9
@@ -249,8 +249,8 @@ namespace Application.UI
             this.txtAddress.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txtAddress.Multiline = true;
             this.txtAddress.Name = "txtAddress";
-            this.txtAddress.Size = new System.Drawing.Size(264, 69);
-            this.txtAddress.TabIndex = 51;
+            this.txtAddress.Size = new System.Drawing.Size(264, 113);
+            this.txtAddress.TabIndex = 4;
             this.txtAddress.Tag = "";
             // 
             // email
@@ -270,7 +270,7 @@ namespace Application.UI
             this.txtEmail.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txtEmail.Name = "txtEmail";
             this.txtEmail.Size = new System.Drawing.Size(264, 26);
-            this.txtEmail.TabIndex = 53;
+            this.txtEmail.TabIndex = 5;
             // 
             // chkActive
             // 
@@ -279,16 +279,29 @@ namespace Application.UI
             this.chkActive.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.chkActive.Name = "chkActive";
             this.chkActive.Size = new System.Drawing.Size(78, 24);
-            this.chkActive.TabIndex = 55;
+            this.chkActive.TabIndex = 9;
             this.chkActive.Tag = "activo";
             this.chkActive.Text = "Activo";
             this.chkActive.UseVisualStyleBackColor = true;
+            // 
+            // btnPswRst
+            // 
+            this.btnPswRst.Location = new System.Drawing.Point(345, 414);
+            this.btnPswRst.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btnPswRst.Name = "btnPswRst";
+            this.btnPswRst.Size = new System.Drawing.Size(260, 40);
+            this.btnPswRst.TabIndex = 55;
+            this.btnPswRst.Tag = "reset contraseña";
+            this.btnPswRst.Text = "Reset Contraseña";
+            this.btnPswRst.UseVisualStyleBackColor = true;
+            this.btnPswRst.Click += new System.EventHandler(this.btnPswRst_Click);
             // 
             // frmUser
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(635, 429);
+            this.ClientSize = new System.Drawing.Size(629, 468);
+            this.Controls.Add(this.btnPswRst);
             this.Controls.Add(this.chkActive);
             this.Controls.Add(this.email);
             this.Controls.Add(this.txtEmail);
@@ -345,5 +358,6 @@ namespace Application.UI
         private System.Windows.Forms.Label email;
         private System.Windows.Forms.TextBox txtEmail;
         private System.Windows.Forms.CheckBox chkActive;
+        private System.Windows.Forms.Button btnPswRst;
     }
 }

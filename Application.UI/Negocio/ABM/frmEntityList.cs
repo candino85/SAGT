@@ -16,11 +16,11 @@ namespace Application.UI
     public partial class frmEntityList : Form, ILanguageObserver
     {
         BE.Sucursal Entity_BE;
-        BLL.Entity entity_BLL;
+        BLL.Sucursal entity_BLL;
         public frmEntityList()
         {
             InitializeComponent();
-            entity_BLL = new BLL.Entity();
+            entity_BLL = new BLL.Sucursal();
             Bind();
         }
 
@@ -41,7 +41,7 @@ namespace Application.UI
         public void Bind()
         {
             dgvEntities.DataSource = null;
-            dgvEntities.DataSource = entity_BLL.EntityList();
+            dgvEntities.DataSource = entity_BLL.SucursalList();
             dgvEntities.Columns["Id"].Visible = false;
         }
 

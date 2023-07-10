@@ -21,10 +21,33 @@ namespace Application.UI.Negocio
         BLL.Client cliente_BLL;
 
         private frmClientList _frmClientsList;
-        public frmClient(frmClientList frmClientList)
+        private frmRegistrarTurno _frmRegistrarTurno;
+
+        public frmClient()
         {
             InitializeComponent();
-            _frmClientsList = frmClientList;
+
+            cliente_BLL = new BLL.Client();
+
+            btnModify.Enabled = false;
+            btnRemove.Enabled = false;
+        }
+
+        //public frmClient(frmClientList frmClientList)
+        //{
+        //    InitializeComponent();
+        //    _frmClientsList = frmClientList;
+
+        //    cliente_BLL = new BLL.Client();
+
+        //    btnModify.Enabled = false;
+        //    btnRemove.Enabled = false;
+        //}
+
+        public frmClient(frmRegistrarTurno frmRegistrarTurno)
+        {
+            InitializeComponent();
+            _frmRegistrarTurno = frmRegistrarTurno;
 
             cliente_BLL = new BLL.Client();
 
@@ -66,7 +89,8 @@ namespace Application.UI.Negocio
             if (!operation)
                 throw new Exception("Error al crear el cliente");
 
-            _frmClientsList.Bind();
+            _frmRegistrarTurno.LoadCmbClientes();
+
             this.Close();
         }
 

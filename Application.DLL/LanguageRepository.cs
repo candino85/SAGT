@@ -260,7 +260,7 @@ namespace Application.DLL
                 var cmd = new SqlCommand();
                 cmd.Connection = cnn;
 
-                cmd.CommandText = $@"insert into idioma (idioma) values (@idioma)";
+                cmd.CommandText = $@"insert into idioma (idioma, [default]) values (@idioma,0)";
                 cmd.Parameters.Add(new SqlParameter("idioma", name));
 
                 cmd.ExecuteNonQuery();
@@ -272,7 +272,5 @@ namespace Application.DLL
                 throw new Exception(ex.Message);
             }
         }
-
-
     }
 }

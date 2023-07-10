@@ -99,8 +99,9 @@ namespace Application.Services
 
         public void ChangeLanguage(Language language)
         {
+            this.language = language;
             _session.Usuario.Language = language;
-            NotifyAllObservers(_session.Usuario.Language);
+            NotifyAllObservers(language);
         }
     }
 }

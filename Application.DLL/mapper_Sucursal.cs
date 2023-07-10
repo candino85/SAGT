@@ -9,7 +9,7 @@ using System.Data;
 
 namespace Application.DLL
 {
-    public class Mapper_Entity
+    public class Mapper_Sucursal
     {
         readonly DBAccess accesso = new DBAccess();
         //readonly mapper_Language mapper_Language = new mapper_Language();
@@ -33,48 +33,48 @@ namespace Application.DLL
         //    return usuario;
         //}
 
-        public Sucursal GetEntityById(int id)
+        public Sucursal GetlById(int id)
         {
-            BE.Sucursal entidad = new Sucursal();
+            BE.Sucursal sucursal = new Sucursal();
             SqlParameter[] parametro = new SqlParameter[1];
             parametro[0] = new SqlParameter("@id", id);
 
             DataTable dataTable = accesso.Read("EntidadGetById", parametro);
             foreach (DataRow row in dataTable.Rows)
             {
-                entidad.Id = int.Parse(row["Id"].ToString());
-                entidad.Name = row["Nombre"].ToString();
-                entidad.Address = row["Direccion"].ToString();
-                entidad.Phone= row["Telefono"].ToString();
-                entidad.Cuit = row["Cuit"].ToString();
-                entidad.Active = bool.Parse(row["Activo"].ToString());
+                sucursal.Id = int.Parse(row["Id"].ToString());
+                sucursal.Name = row["Nombre"].ToString();
+                sucursal.Address = row["Direccion"].ToString();
+                sucursal.Phone= row["Telefono"].ToString();
+                sucursal.Cuit = row["Cuit"].ToString();
+                sucursal.Active = bool.Parse(row["Activo"].ToString());
             }
-            return entidad;
+            return sucursal;
         }
 
-        public int Create(Sucursal entidad)
+        public int Create(Sucursal sucursal)
         {
             SqlParameter[] parametros = new SqlParameter[5];
-            parametros[0] = new SqlParameter("Nombre",entidad.Name);
-            parametros[1] = new SqlParameter("Direccion",entidad.Address);
-            parametros[2] = new SqlParameter("Telefono",entidad.Phone);
-            parametros[3] = new SqlParameter("Cuit",entidad.Cuit);
-            parametros[4] = new SqlParameter("Activo",entidad.Active);
+            parametros[0] = new SqlParameter("Nombre",sucursal.Name);
+            parametros[1] = new SqlParameter("Direccion",sucursal.Address);
+            parametros[2] = new SqlParameter("Telefono",sucursal.Phone);
+            parametros[3] = new SqlParameter("Cuit",sucursal.Cuit);
+            parametros[4] = new SqlParameter("Activo",sucursal.Active);
             //parametros[6] = new SqlParameter("Idioma", usuario.Idioma.Id); 
             //parametros[7] = new SqlParameter("Guid", usuario.Guid);
 
             return accesso.Write("EntidadCrear", parametros);
         }
 
-        public int Update(Sucursal entidad)
+        public int Update(Sucursal sucursal)
         {
             SqlParameter[] parametros = new SqlParameter[6];
-            parametros[0] = new SqlParameter("Id", entidad.Id); 
-            parametros[1] = new SqlParameter("Cuit", entidad.Cuit);
-            parametros[2] = new SqlParameter("Nombre", entidad.Name); 
-            parametros[3] = new SqlParameter("Direccion", entidad.Address); 
-            parametros[4] = new SqlParameter("Telefono", entidad.Phone); 
-            parametros[5] = new SqlParameter("Activo", entidad.Active);
+            parametros[0] = new SqlParameter("Id", sucursal.Id); 
+            parametros[1] = new SqlParameter("Cuit", sucursal.Cuit);
+            parametros[2] = new SqlParameter("Nombre", sucursal.Name); 
+            parametros[3] = new SqlParameter("Direccion", sucursal.Address); 
+            parametros[4] = new SqlParameter("Telefono", sucursal.Phone); 
+            parametros[5] = new SqlParameter("Activo", sucursal.Active);
             //parametros[6] = new SqlParameter("Idioma", usuario.Idioma.Id);
             //parametros[7] = new SqlParameter("Guid", usuario.Guid); 
 
@@ -91,12 +91,12 @@ namespace Application.DLL
 
         public List<Sucursal> List()
         {
-            List<Sucursal> listaEntidades = new List<Sucursal>();
+            List<Sucursal> listaSucursales = new List<Sucursal>();
             DataTable dataTable = accesso.Read("EntidadListar", null);
 
             foreach (DataRow row in dataTable.Rows)
             {
-                Sucursal entidad = new Sucursal
+                Sucursal sucursal = new Sucursal
                 {
                     Id = int.Parse(row["id"].ToString()),
                     Name = row["nombre"].ToString(),
@@ -106,10 +106,10 @@ namespace Application.DLL
                     Active = bool.Parse(row["activo"].ToString())
                 };
 
-                listaEntidades.Add(entidad);
+                listaSucursales.Add(sucursal);
             }
 
-            return listaEntidades;
+            return listaSucursales;
         }
     }
 }
