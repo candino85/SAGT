@@ -10,11 +10,11 @@ namespace Application.BLL
     public class Especialidad
     {
         BE.Especialidad _especialidad;
-        readonly Mapper_Especialidad _mapper;
+        readonly mapper_Especialidad _mapper;
 
         public Especialidad()
         {
-            _mapper = new Mapper_Especialidad();
+            _mapper = new mapper_Especialidad();
         }
 
         public BE.Especialidad GetEspecialidadById(int id)

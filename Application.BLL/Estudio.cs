@@ -13,11 +13,11 @@ namespace Application.BLL
     public class Estudio
     {
         BE.Estudio _estudio;
-        readonly Mapper_Estudio _mapper;
+        readonly mapper_Estudio _mapper;
 
         public Estudio()
         {
-            _mapper = new Mapper_Estudio();   
+            _mapper = new mapper_Estudio();   
         }
 
         public BE.Estudio GetEstudioById(int id)

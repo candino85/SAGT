@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Application.DLL
 {
-    public class Mapper_Especialidad
+    public class mapper_Especialidad
     {
         readonly DBAccess accesso = new DBAccess();
 
@@ -30,9 +30,8 @@ namespace Application.DLL
 
         public int Create(Especialidad especialidad)
         {
-            SqlParameter[] parametros = new SqlParameter[2];
-            parametros[0] = new SqlParameter("Id", especialidad.Id);
-            parametros[1] = new SqlParameter("descripcion", especialidad.Descripcion);
+            SqlParameter[] parametros = new SqlParameter[1];
+            parametros[0] = new SqlParameter("descripcion", especialidad.Descripcion);
 
             return accesso.Write("EspecialidadCrear", parametros);
         }

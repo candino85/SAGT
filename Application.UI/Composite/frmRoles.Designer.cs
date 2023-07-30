@@ -37,13 +37,15 @@ namespace Application.UI
             this.cmbPermissionTypes = new System.Windows.Forms.ComboBox();
             this.btnDeleteComponent = new System.Windows.Forms.Button();
             this.btnCreatePermission = new System.Windows.Forms.Button();
-            this.txtPermissionName = new Application.UI.Customs_Controls.TextBoxLabeled();
             this.cmbPermisos = new System.Windows.Forms.ComboBox();
             this.gpbRoles = new System.Windows.Forms.GroupBox();
-            this.txtRoleName = new Application.UI.Customs_Controls.TextBoxLabeled();
             this.btnCreateRole = new System.Windows.Forms.Button();
             this.cmbRoles = new System.Windows.Forms.ComboBox();
             this.btnSaveSelectedRole = new System.Windows.Forms.Button();
+            this.txtRoleName = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.txtPermissionName = new System.Windows.Forms.TextBox();
             this.groupBox1.SuspendLayout();
             this.gpbRoles.SuspendLayout();
             this.SuspendLayout();
@@ -55,6 +57,7 @@ namespace Application.UI
             this.btnRemovePermission.Name = "btnRemovePermission";
             this.btnRemovePermission.Size = new System.Drawing.Size(174, 43);
             this.btnRemovePermission.TabIndex = 31;
+            this.btnRemovePermission.Tag = "quitar";
             this.btnRemovePermission.Text = "<< Quitar";
             this.btnRemovePermission.UseVisualStyleBackColor = true;
             this.btnRemovePermission.Click += new System.EventHandler(this.btnRemovePermission_Click);
@@ -91,17 +94,18 @@ namespace Application.UI
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.cmbPermissionTypes);
+            this.groupBox1.Controls.Add(this.txtPermissionName);
             this.groupBox1.Controls.Add(this.btnDeleteComponent);
             this.groupBox1.Controls.Add(this.btnCreatePermission);
-            this.groupBox1.Controls.Add(this.txtPermissionName);
             this.groupBox1.Controls.Add(this.cmbPermisos);
             this.groupBox1.Controls.Add(this.tvAvailablePermission);
             this.groupBox1.Location = new System.Drawing.Point(18, 18);
             this.groupBox1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.groupBox1.Size = new System.Drawing.Size(339, 562);
+            this.groupBox1.Size = new System.Drawing.Size(334, 562);
             this.groupBox1.TabIndex = 38;
             this.groupBox1.TabStop = false;
             this.groupBox1.Tag = "permisos";
@@ -144,18 +148,6 @@ namespace Application.UI
             this.btnCreatePermission.UseVisualStyleBackColor = true;
             this.btnCreatePermission.Click += new System.EventHandler(this.btnSavePermission_Click);
             // 
-            // txtPermissionName
-            // 
-            this.txtPermissionName.LabelText = "Nombre permiso";
-            this.txtPermissionName.Location = new System.Drawing.Point(9, 62);
-            this.txtPermissionName.Margin = new System.Windows.Forms.Padding(6, 8, 6, 8);
-            this.txtPermissionName.Name = "txtPermissionName";
-            this.txtPermissionName.PasswordChar = '\0';
-            this.txtPermissionName.Size = new System.Drawing.Size(316, 62);
-            this.txtPermissionName.TabIndex = 40;
-            this.txtPermissionName.Tag = "nombre permiso";
-            this.txtPermissionName.TextBoxText = "";
-            // 
             // cmbPermisos
             // 
             this.cmbPermisos.FormattingEnabled = true;
@@ -167,6 +159,7 @@ namespace Application.UI
             // 
             // gpbRoles
             // 
+            this.gpbRoles.Controls.Add(this.label1);
             this.gpbRoles.Controls.Add(this.txtRoleName);
             this.gpbRoles.Controls.Add(this.btnCreateRole);
             this.gpbRoles.Controls.Add(this.cmbRoles);
@@ -181,18 +174,6 @@ namespace Application.UI
             this.gpbRoles.Tag = "roles";
             this.gpbRoles.Text = "Roles";
             // 
-            // txtRoleName
-            // 
-            this.txtRoleName.LabelText = "Nombre Rol";
-            this.txtRoleName.Location = new System.Drawing.Point(9, 62);
-            this.txtRoleName.Margin = new System.Windows.Forms.Padding(6, 8, 6, 8);
-            this.txtRoleName.Name = "txtRoleName";
-            this.txtRoleName.PasswordChar = '\0';
-            this.txtRoleName.Size = new System.Drawing.Size(316, 62);
-            this.txtRoleName.TabIndex = 46;
-            this.txtRoleName.Tag = "nombre rol";
-            this.txtRoleName.TextBoxText = "";
-            // 
             // btnCreateRole
             // 
             this.btnCreateRole.Location = new System.Drawing.Point(9, 132);
@@ -201,7 +182,7 @@ namespace Application.UI
             this.btnCreateRole.Size = new System.Drawing.Size(172, 35);
             this.btnCreateRole.TabIndex = 45;
             this.btnCreateRole.Tag = "crear";
-            this.btnCreateRole.Text = "Crear role";
+            this.btnCreateRole.Text = "Crear";
             this.btnCreateRole.UseVisualStyleBackColor = true;
             this.btnCreateRole.Click += new System.EventHandler(this.btnCreateRole_Click);
             // 
@@ -222,10 +203,44 @@ namespace Application.UI
             this.btnSaveSelectedRole.Name = "btnSaveSelectedRole";
             this.btnSaveSelectedRole.Size = new System.Drawing.Size(174, 43);
             this.btnSaveSelectedRole.TabIndex = 40;
-            this.btnSaveSelectedRole.Tag = "guardar rol";
-            this.btnSaveSelectedRole.Text = "Guardar Rol";
+            this.btnSaveSelectedRole.Tag = "guardar";
+            this.btnSaveSelectedRole.Text = "Guardar";
             this.btnSaveSelectedRole.UseVisualStyleBackColor = true;
             this.btnSaveSelectedRole.Click += new System.EventHandler(this.btnSaveSelectedRole_Click);
+            // 
+            // txtRoleName
+            // 
+            this.txtRoleName.Location = new System.Drawing.Point(9, 88);
+            this.txtRoleName.Name = "txtRoleName";
+            this.txtRoleName.Size = new System.Drawing.Size(314, 26);
+            this.txtRoleName.TabIndex = 46;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(7, 65);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(82, 20);
+            this.label1.TabIndex = 47;
+            this.label1.Tag = "nuevo rol";
+            this.label1.Text = "Nuevo Rol";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(7, 65);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(115, 20);
+            this.label2.TabIndex = 49;
+            this.label2.Tag = "nuevo permiso";
+            this.label2.Text = "Nuevo Permiso";
+            // 
+            // txtPermissionName
+            // 
+            this.txtPermissionName.Location = new System.Drawing.Point(9, 88);
+            this.txtPermissionName.Name = "txtPermissionName";
+            this.txtPermissionName.Size = new System.Drawing.Size(314, 26);
+            this.txtPermissionName.TabIndex = 48;
             // 
             // frmRoles
             // 
@@ -239,11 +254,14 @@ namespace Application.UI
             this.Controls.Add(this.gpbRoles);
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "frmRoles";
+            this.Tag = "frmRoles";
             this.Text = "frmRoles";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.frmRoles_FormClosed);
             this.Load += new System.EventHandler(this.frmRoles_Load);
             this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             this.gpbRoles.ResumeLayout(false);
+            this.gpbRoles.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -255,14 +273,16 @@ namespace Application.UI
         private System.Windows.Forms.TreeView tvAvailablePermission;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Button btnCreatePermission;
-        private Customs_Controls.TextBoxLabeled txtPermissionName;
         private System.Windows.Forms.ComboBox cmbPermisos;
         private System.Windows.Forms.GroupBox gpbRoles;
         private System.Windows.Forms.Button btnCreateRole;
         private System.Windows.Forms.ComboBox cmbRoles;
         private System.Windows.Forms.Button btnDeleteComponent;
-        private Customs_Controls.TextBoxLabeled txtRoleName;
         private System.Windows.Forms.Button btnSaveSelectedRole;
         private System.Windows.Forms.ComboBox cmbPermissionTypes;
+        private System.Windows.Forms.TextBox txtRoleName;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.TextBox txtPermissionName;
     }
 }

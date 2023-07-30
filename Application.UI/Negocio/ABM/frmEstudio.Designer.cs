@@ -32,10 +32,12 @@
             this.btnRemove = new System.Windows.Forms.Button();
             this.btnModify = new System.Windows.Forms.Button();
             this.btnCreate = new System.Windows.Forms.Button();
-            this.txtTiempo = new Application.UI.Customs_Controls.TextBoxLabeled();
-            this.txtName = new Application.UI.Customs_Controls.TextBoxLabeled();
             this.cmbEspecialidad = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.txtName = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.lblTiempo = new System.Windows.Forms.Label();
+            this.cmbTiempo = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
             // 
             // chkActive
@@ -85,32 +87,6 @@
             this.btnCreate.UseVisualStyleBackColor = true;
             this.btnCreate.Click += new System.EventHandler(this.btnCreate_Click);
             // 
-            // txtTiempo
-            // 
-            this.txtTiempo.AutoSize = true;
-            this.txtTiempo.LabelText = "Tiempo";
-            this.txtTiempo.Location = new System.Drawing.Point(15, 174);
-            this.txtTiempo.Margin = new System.Windows.Forms.Padding(6, 8, 6, 8);
-            this.txtTiempo.Name = "txtTiempo";
-            this.txtTiempo.PasswordChar = '\0';
-            this.txtTiempo.Size = new System.Drawing.Size(280, 69);
-            this.txtTiempo.TabIndex = 22;
-            this.txtTiempo.Tag = "tiempo";
-            this.txtTiempo.TextBoxText = "";
-            // 
-            // txtName
-            // 
-            this.txtName.AutoSize = true;
-            this.txtName.LabelText = "Nombre";
-            this.txtName.Location = new System.Drawing.Point(15, 17);
-            this.txtName.Margin = new System.Windows.Forms.Padding(6, 8, 6, 8);
-            this.txtName.Name = "txtName";
-            this.txtName.PasswordChar = '\0';
-            this.txtName.Size = new System.Drawing.Size(280, 69);
-            this.txtName.TabIndex = 20;
-            this.txtName.Tag = "nombre";
-            this.txtName.TextBoxText = "";
-            // 
             // cmbEspecialidad
             // 
             this.cmbEspecialidad.FormattingEnabled = true;
@@ -124,26 +100,71 @@
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(16, 112);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(149, 30);
+            this.label1.Size = new System.Drawing.Size(99, 20);
             this.label1.TabIndex = 29;
             this.label1.Tag = "especialidad";
             this.label1.Text = "Especialidad";
+            // 
+            // txtName
+            // 
+            this.txtName.Location = new System.Drawing.Point(15, 69);
+            this.txtName.Name = "txtName";
+            this.txtName.Size = new System.Drawing.Size(275, 26);
+            this.txtName.TabIndex = 31;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(16, 46);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(65, 20);
+            this.label2.TabIndex = 32;
+            this.label2.Tag = "nombre";
+            this.label2.Text = "Nombre";
+            // 
+            // lblTiempo
+            // 
+            this.lblTiempo.AutoSize = true;
+            this.lblTiempo.Location = new System.Drawing.Point(16, 179);
+            this.lblTiempo.Name = "lblTiempo";
+            this.lblTiempo.Size = new System.Drawing.Size(61, 20);
+            this.lblTiempo.TabIndex = 33;
+            this.lblTiempo.Tag = "tiempo";
+            this.lblTiempo.Text = "Tiempo";
+            // 
+            // cmbTiempo
+            // 
+            this.cmbTiempo.FormattingEnabled = true;
+            this.cmbTiempo.Items.AddRange(new object[] {
+            "5",
+            "10",
+            "15",
+            "30",
+            "60"});
+            this.cmbTiempo.Location = new System.Drawing.Point(15, 203);
+            this.cmbTiempo.Name = "cmbTiempo";
+            this.cmbTiempo.Size = new System.Drawing.Size(275, 28);
+            this.cmbTiempo.TabIndex = 34;
             // 
             // frmEstudio
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(466, 392);
+            this.Controls.Add(this.cmbTiempo);
+            this.Controls.Add(this.lblTiempo);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.txtName);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.cmbEspecialidad);
             this.Controls.Add(this.chkActive);
             this.Controls.Add(this.btnRemove);
             this.Controls.Add(this.btnModify);
             this.Controls.Add(this.btnCreate);
-            this.Controls.Add(this.txtTiempo);
-            this.Controls.Add(this.txtName);
             this.Name = "frmEstudio";
             this.Text = "frmEstudio";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.frmEstudio_FormClosed);
+            this.Load += new System.EventHandler(this.frmEstudio_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -155,9 +176,11 @@
         private System.Windows.Forms.Button btnRemove;
         private System.Windows.Forms.Button btnModify;
         private System.Windows.Forms.Button btnCreate;
-        private Customs_Controls.TextBoxLabeled txtTiempo;
-        private Customs_Controls.TextBoxLabeled txtName;
         private System.Windows.Forms.ComboBox cmbEspecialidad;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TextBox txtName;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label lblTiempo;
+        private System.Windows.Forms.ComboBox cmbTiempo;
     }
 }

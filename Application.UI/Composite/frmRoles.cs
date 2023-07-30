@@ -35,7 +35,7 @@ namespace Application.UI
         }
         private void frmRoles_Load(object sender, EventArgs e)
         {
-
+            updateLanguage(SessionManager.GetInstance.language);
         }
 
         void GetRolesAndCleanCtl()
@@ -43,7 +43,7 @@ namespace Application.UI
             cmbRoles.DataSource = null;
             cmbRoles.DataSource = _permission.GetAllRolesFromDB();
             cmbRoles.SelectedItem = null;
-            txtRoleName.ClearText();
+            txtRoleName.Clear();
         }
 
         void GetPermissionsAndCleanCtls()
@@ -51,7 +51,7 @@ namespace Application.UI
             cmbPermisos.DataSource = null;
             cmbPermisos.DataSource = _permission.GetAllPermissions();
             cmbPermisos.SelectedItem = null;
-            txtPermissionName.ClearText();
+            txtPermissionName.Clear();
         }
 
         void LoadPermissions()
@@ -76,7 +76,7 @@ namespace Application.UI
             { 
                 Permission permission = new Permission()
                 {
-                    Name = this.txtPermissionName.TextBoxText,
+                    Name = this.txtPermissionName.Text,
                     Permission = (PermissionType)this.cmbPermisos.SelectedItem
                 };
 
@@ -85,40 +85,50 @@ namespace Application.UI
                 GetPermissionsAndCleanCtls();          
             }
             else
-                MessageBox.Show("Debe seleccionar un permiso para poder crearlo");
+                MessageBox.Show("Debe seleccionar un permiso para poder crearlo", "INFO", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
         }
 
         private void btnCreateRole_Click(object sender, EventArgs e)
         {
-            try 
-            { 
-                if (!string.IsNullOrWhiteSpace(txtRoleName.TextBoxText))
+            try
+            {
+                if (!string.IsNullOrWhiteSpace(txtRoleName.Text))
                 {
                     Services.Component role = new Role()
                     {
-                        Name = txtRoleName.TextBoxText
+                        Name = txtRoleName.Text
                     };
 
                     // TODO comprobar si existe role con el mismo nombre
+                    var newRole = _permission.GetAllRolesFromDB();
 
-                    role = _permission.SaveComponent(role);
-
-                    if (role.Id != 0)
+                    if (newRole.Count(r => r.Name == role.Name) == 0)
                     {
-                        GetRolesAndCleanCtl();
-                        if(cmbPermissionTypes.SelectedItem != null)
-                        { 
-                            if ((cmbPermissionTypes.SelectedItem.ToString() == "Roles"))
+                        role = _permission.SaveComponent(role);
+
+
+
+                        if (role.Id != 0)
+                        {
+                            GetRolesAndCleanCtl();
+                            if (cmbPermissionTypes.SelectedItem != null)
                             {
-                                LoadRoles();
+                                if ((cmbPermissionTypes.SelectedItem.ToString() == "Roles"))
+                                {
+                                    LoadRoles();
+                                }
                             }
                         }
-                    }                        
+                    }
+                    else
+                    {
+                        MessageBox.Show("El nombre de rol que intenta agregar ya existe, elija otro", "INFO", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    }
                 }
                 else
-                MessageBox.Show("Ingrese un nombre para el nuevo rol");
+                    MessageBox.Show("Ingrese un nombre para el nuevo rol", "INFO", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 throw ex;
             }
@@ -140,7 +150,7 @@ namespace Application.UI
                         permission.Id = int.Parse(tvAvailablePermission.SelectedNode.Name);
 
                         if (_permission.AlreadyExistComponent(selectedRole, permission.Id))
-                            MessageBox.Show("El permiso que está intentado agregar ya existe");
+                            MessageBox.Show("El permiso que está intentado agregar ya existe", "INFO", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                         else
                         {
                             selectedRole.AddChild(permission);
@@ -154,7 +164,7 @@ namespace Application.UI
                         role.Id = int.Parse(tvAvailablePermission.SelectedNode.Name);
 
                         if (_permission.AlreadyExistComponent(selectedRole, role.Id))
-                            MessageBox.Show("El rol que está intentado agregar ya existe");
+                            MessageBox.Show("El rol que está intentado agregar ya existe", "INFO", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                         else
                         {
                             role = _permission.GetRoleComponents(role);
@@ -165,12 +175,12 @@ namespace Application.UI
                 }
                 else
                 {
-                    MessageBox.Show("Role o Permiso incorrecto");
+                    MessageBox.Show("Role o Permiso incorrecto", "INFO", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 }
             }
             else
             {
-                MessageBox.Show("Debe seleccionar un rol al cual agregar permisos/roles");
+                MessageBox.Show("Debe seleccionar un rol al cual agregar permisos/roles", "INFO", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
         }
 
@@ -238,11 +248,11 @@ namespace Application.UI
             try 
             { 
                 _permission.SaveRole(selectedRole);
-                MessageBox.Show("El rol se guardó correctamente");
+                MessageBox.Show("El rol se guardó correctamente", "INFO", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch(Exception ex)
             {
-                MessageBox.Show("Error al guardar el rol", ex.ToString());
+                MessageBox.Show($"Error al guardar el rol\n {ex.ToString()}", "INFO", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
 
         }
@@ -277,7 +287,7 @@ namespace Application.UI
                         ShowRoleOnTreeView(false);
                     }
                     else
-                        MessageBox.Show("El permiso no pudo ser eliminado");
+                        MessageBox.Show("El permiso no pudo ser eliminado", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
                 catch (Exception ex)
                 {
@@ -306,17 +316,22 @@ namespace Application.UI
 
         private void btnRemovePermission_Click(object sender, EventArgs e)
         {
-            if (selectedComponent is Permission) 
-            { 
-                _permission.DeletePermissionFromRole(selectedComponent);
-                cmbRoles_SelectionChangeCommitted(sender, e);
+            if (tvRole.SelectedNode != null)
+            {
+                if (selectedComponent is Permission)
+                {
+                    _permission.DeletePermissionFromRole(selectedComponent);
+                    cmbRoles_SelectionChangeCommitted(sender, e);
+                }
+                else
+                {
+                    _permission.DeleteComponent(selectedComponent);
+                    GetRolesAndCleanCtl();
+                    this.tvRole.Nodes.Clear();
+                }
             }
-            else 
-            { 
-                _permission.DeleteComponent(selectedComponent);
-                GetRolesAndCleanCtl();
-                this.tvRole.Nodes.Clear();
-            }
+            else
+                MessageBox.Show("Seleccione el permiso o rol a eliminar", "INFO", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
         }
 
         private void tvRole_AfterSelect(object sender, TreeViewEventArgs e)

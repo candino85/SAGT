@@ -78,7 +78,7 @@ namespace Application.UI.Negocio
                 {
                     GetTurnos((int)cmbEstudio.SelectedValue);
                     PlaceItemsTurnos();
-                }
+                }                
             }
             else
                 MessageBox.Show("Seleccione un Estudio!", "INFO", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -88,6 +88,12 @@ namespace Application.UI.Negocio
         {
             switch (timeScale)
             {
+                case 5:
+                    calendar1.TimeScale = CalendarTimeScale.FiveMinutes;
+                    break;
+                case 10:
+                    calendar1.TimeScale = CalendarTimeScale.TenMinutes;
+                    break;
                 case 15:
                     calendar1.TimeScale = CalendarTimeScale.FifteenMinutes;
                     break;
@@ -107,6 +113,7 @@ namespace Application.UI.Negocio
         {
             calendar1.SetViewRange(monthView1.SelectionStart,monthView1.SelectionEnd);
             cmbEstudio_SelectedIndexChanged(sender, e);
+            EnableButtons();
         }
 
         private void calendar1_LoadItems(object sender, CalendarLoadEventArgs e)
@@ -208,17 +215,7 @@ namespace Application.UI.Negocio
 
         private void calendar1_ItemSelected(object sender, CalendarItemEventArgs e)
         {
-            if (rbtDisponibles.Checked)
-            {
-                btnRegistrarTurno.Visible = true;
-                btnCancelarTurno.Visible = false;
-            }
-            else if (rbtAsignados.Checked)
-            {
-                btnCancelarTurno.Visible = true;
-                btnCancelarTurno.Enabled = true;
-                btnRegistrarTurno.Visible = false;
-            }
+            EnableButtons();
 
                 calendarItemSelected = (CalendarItem)e.Item;
             if (estudio_BE != null)
@@ -230,6 +227,21 @@ namespace Application.UI.Negocio
             else
             {
                 MessageBox.Show("Por favor seleccione un Estudio para continuar", "INFO", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
+
+        private void EnableButtons()
+        {
+            if (rbtDisponibles.Checked)
+            {
+                btnRegistrarTurno.Visible = true;
+                btnCancelarTurno.Visible = false;
+            }
+            else if (rbtAsignados.Checked)
+            {
+                btnCancelarTurno.Visible = true;
+                btnCancelarTurno.Enabled = true;
+                btnRegistrarTurno.Visible = false;
             }
         }
 
@@ -286,16 +298,16 @@ namespace Application.UI.Negocio
                 {
                     //enviar correo con el turno al paciente
                     MessageBox.Show("El turno se ha registrado correctamente y se envío la información al paciente vía email", "INFO", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    if (rbtDisponibles.Checked)
-                    {
-                        btnRegistrarTurno.Enabled = false;
-                        btnCancelarTurno.Visible = false;
-                    }
-                    else if (rbtAsignados.Checked)
-                    {
-                        btnCancelarTurno.Visible = true;
-                        btnRegistrarTurno.Visible = false;
-                    }
+                    //if (rbtDisponibles.Checked)
+                    //{
+                    //    btnRegistrarTurno.Enabled = false;
+                    //    btnCancelarTurno.Visible = false;
+                    //}
+                    //else if (rbtAsignados.Checked)
+                    //{
+                    //    btnCancelarTurno.Visible = true;
+                    //    btnRegistrarTurno.Visible = false;
+                    //}
                     cmbEstudio_SelectedIndexChanged(sender, new EventArgs());
                 }
                 else

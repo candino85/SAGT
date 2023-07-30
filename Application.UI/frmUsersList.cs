@@ -78,11 +78,26 @@ namespace Application.UI
         private void frmUsersList_Load(object sender, EventArgs e)
         {
             updateLanguage(SessionManager.GetInstance.language);
+            DataGridViewConfig();
         }
 
         private void frmUsersList_FormClosed(object sender, FormClosedEventArgs e)
         {
             SessionManager.GetInstance.UnsubscribeObserver(this);
+        }
+
+        private void DataGridViewConfig()
+        {
+            dgvUsers.AllowUserToAddRows = false;
+            dgvUsers.AllowUserToDeleteRows = false;
+            dgvUsers.AllowUserToResizeRows = false;
+            dgvUsers.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.DisableResizing;
+            dgvUsers.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            dgvUsers.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.DisplayedCells;
+            dgvUsers.ReadOnly = true;
+            dgvUsers.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dgvUsers.RowHeadersVisible = false;
+            dgvUsers.MultiSelect = false;
         }
     }
 }

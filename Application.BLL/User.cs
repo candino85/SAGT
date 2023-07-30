@@ -135,5 +135,12 @@ namespace Application.BLL
             List<BE.User> listaUsuarios = _mapper.List();
             return listaUsuarios;
         }
+
+        public int[] UserExist(string loginname, string email, string dni)
+        {
+            var result = _mapper.UserExist(loginname, email, dni);
+
+            return result;
+        }
     }
 }

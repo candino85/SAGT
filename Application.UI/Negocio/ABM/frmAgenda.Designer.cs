@@ -85,6 +85,7 @@
             this.htpLunesDesde.Format = System.Windows.Forms.DateTimePickerFormat.Time;
             this.htpLunesDesde.Location = new System.Drawing.Point(165, 177);
             this.htpLunesDesde.Name = "htpLunesDesde";
+            this.htpLunesDesde.ShowUpDown = true;
             this.htpLunesDesde.Size = new System.Drawing.Size(134, 26);
             this.htpLunesDesde.TabIndex = 9;
             this.htpLunesDesde.Value = new System.DateTime(2023, 7, 6, 8, 0, 0, 0);
@@ -94,6 +95,7 @@
             this.htpLunesHasta.Format = System.Windows.Forms.DateTimePickerFormat.Time;
             this.htpLunesHasta.Location = new System.Drawing.Point(308, 177);
             this.htpLunesHasta.Name = "htpLunesHasta";
+            this.htpLunesHasta.ShowUpDown = true;
             this.htpLunesHasta.Size = new System.Drawing.Size(134, 26);
             this.htpLunesHasta.TabIndex = 18;
             this.htpLunesHasta.Value = new System.DateTime(2023, 7, 6, 18, 0, 0, 0);
@@ -119,6 +121,7 @@
             this.htpMartesHasta.Format = System.Windows.Forms.DateTimePickerFormat.Time;
             this.htpMartesHasta.Location = new System.Drawing.Point(308, 217);
             this.htpMartesHasta.Name = "htpMartesHasta";
+            this.htpMartesHasta.ShowUpDown = true;
             this.htpMartesHasta.Size = new System.Drawing.Size(134, 26);
             this.htpMartesHasta.TabIndex = 22;
             this.htpMartesHasta.Value = new System.DateTime(2023, 7, 6, 18, 0, 0, 0);
@@ -128,6 +131,7 @@
             this.htpMartesDesde.Format = System.Windows.Forms.DateTimePickerFormat.Time;
             this.htpMartesDesde.Location = new System.Drawing.Point(165, 217);
             this.htpMartesDesde.Name = "htpMartesDesde";
+            this.htpMartesDesde.ShowUpDown = true;
             this.htpMartesDesde.Size = new System.Drawing.Size(134, 26);
             this.htpMartesDesde.TabIndex = 21;
             this.htpMartesDesde.Value = new System.DateTime(2023, 7, 6, 8, 0, 0, 0);
@@ -137,6 +141,7 @@
             this.htpMiercolesHasta.Format = System.Windows.Forms.DateTimePickerFormat.Time;
             this.htpMiercolesHasta.Location = new System.Drawing.Point(308, 257);
             this.htpMiercolesHasta.Name = "htpMiercolesHasta";
+            this.htpMiercolesHasta.ShowUpDown = true;
             this.htpMiercolesHasta.Size = new System.Drawing.Size(134, 26);
             this.htpMiercolesHasta.TabIndex = 24;
             this.htpMiercolesHasta.Value = new System.DateTime(2023, 7, 6, 18, 0, 0, 0);
@@ -146,6 +151,7 @@
             this.htpMiercolesDesde.Format = System.Windows.Forms.DateTimePickerFormat.Time;
             this.htpMiercolesDesde.Location = new System.Drawing.Point(165, 257);
             this.htpMiercolesDesde.Name = "htpMiercolesDesde";
+            this.htpMiercolesDesde.ShowUpDown = true;
             this.htpMiercolesDesde.Size = new System.Drawing.Size(134, 26);
             this.htpMiercolesDesde.TabIndex = 23;
             this.htpMiercolesDesde.Value = new System.DateTime(2023, 7, 6, 8, 0, 0, 0);
@@ -155,6 +161,7 @@
             this.htpJuevesHasta.Format = System.Windows.Forms.DateTimePickerFormat.Time;
             this.htpJuevesHasta.Location = new System.Drawing.Point(308, 297);
             this.htpJuevesHasta.Name = "htpJuevesHasta";
+            this.htpJuevesHasta.ShowUpDown = true;
             this.htpJuevesHasta.Size = new System.Drawing.Size(134, 26);
             this.htpJuevesHasta.TabIndex = 26;
             this.htpJuevesHasta.Value = new System.DateTime(2023, 7, 6, 18, 0, 0, 0);
@@ -164,6 +171,7 @@
             this.htpViernesHasta.Format = System.Windows.Forms.DateTimePickerFormat.Time;
             this.htpViernesHasta.Location = new System.Drawing.Point(308, 336);
             this.htpViernesHasta.Name = "htpViernesHasta";
+            this.htpViernesHasta.ShowUpDown = true;
             this.htpViernesHasta.Size = new System.Drawing.Size(134, 26);
             this.htpViernesHasta.TabIndex = 28;
             this.htpViernesHasta.Value = new System.DateTime(2023, 7, 6, 18, 0, 0, 0);
@@ -173,6 +181,7 @@
             this.htpViernesDesde.Format = System.Windows.Forms.DateTimePickerFormat.Time;
             this.htpViernesDesde.Location = new System.Drawing.Point(165, 336);
             this.htpViernesDesde.Name = "htpViernesDesde";
+            this.htpViernesDesde.ShowUpDown = true;
             this.htpViernesDesde.Size = new System.Drawing.Size(134, 26);
             this.htpViernesDesde.TabIndex = 27;
             this.htpViernesDesde.Value = new System.DateTime(2023, 7, 6, 8, 0, 0, 0);
@@ -182,6 +191,7 @@
             this.htpSabadoHasta.Format = System.Windows.Forms.DateTimePickerFormat.Time;
             this.htpSabadoHasta.Location = new System.Drawing.Point(308, 375);
             this.htpSabadoHasta.Name = "htpSabadoHasta";
+            this.htpSabadoHasta.ShowUpDown = true;
             this.htpSabadoHasta.Size = new System.Drawing.Size(134, 26);
             this.htpSabadoHasta.TabIndex = 30;
             this.htpSabadoHasta.Value = new System.DateTime(2023, 7, 6, 18, 0, 0, 0);
@@ -191,6 +201,7 @@
             this.htpSabadoDesde.Format = System.Windows.Forms.DateTimePickerFormat.Time;
             this.htpSabadoDesde.Location = new System.Drawing.Point(165, 375);
             this.htpSabadoDesde.Name = "htpSabadoDesde";
+            this.htpSabadoDesde.ShowUpDown = true;
             this.htpSabadoDesde.Size = new System.Drawing.Size(134, 26);
             this.htpSabadoDesde.TabIndex = 29;
             this.htpSabadoDesde.Value = new System.DateTime(2023, 7, 6, 8, 0, 0, 0);
@@ -200,6 +211,7 @@
             this.htpDomingoHasta.Format = System.Windows.Forms.DateTimePickerFormat.Time;
             this.htpDomingoHasta.Location = new System.Drawing.Point(308, 415);
             this.htpDomingoHasta.Name = "htpDomingoHasta";
+            this.htpDomingoHasta.ShowUpDown = true;
             this.htpDomingoHasta.Size = new System.Drawing.Size(134, 26);
             this.htpDomingoHasta.TabIndex = 32;
             this.htpDomingoHasta.Value = new System.DateTime(2023, 7, 6, 18, 0, 0, 0);
@@ -209,6 +221,7 @@
             this.htpDomingoDesde.Format = System.Windows.Forms.DateTimePickerFormat.Time;
             this.htpDomingoDesde.Location = new System.Drawing.Point(165, 415);
             this.htpDomingoDesde.Name = "htpDomingoDesde";
+            this.htpDomingoDesde.ShowUpDown = true;
             this.htpDomingoDesde.Size = new System.Drawing.Size(134, 26);
             this.htpDomingoDesde.TabIndex = 31;
             this.htpDomingoDesde.Value = new System.DateTime(2023, 7, 6, 8, 0, 0, 0);
@@ -269,6 +282,7 @@
             this.htpJuevesDesde.Format = System.Windows.Forms.DateTimePickerFormat.Time;
             this.htpJuevesDesde.Location = new System.Drawing.Point(165, 297);
             this.htpJuevesDesde.Name = "htpJuevesDesde";
+            this.htpJuevesDesde.ShowUpDown = true;
             this.htpJuevesDesde.Size = new System.Drawing.Size(134, 26);
             this.htpJuevesDesde.TabIndex = 25;
             this.htpJuevesDesde.Value = new System.DateTime(2023, 7, 6, 8, 0, 0, 0);
@@ -394,7 +408,8 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.cmbEstudio);
             this.Name = "frmAgenda";
-            this.Text = "frmAgenda";
+            this.Tag = "frmAgenda";
+            this.Text = "Creador de Agendas";
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.ResumeLayout(false);

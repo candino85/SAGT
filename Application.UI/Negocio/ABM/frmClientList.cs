@@ -22,7 +22,6 @@ namespace Application.UI.Negocio
             InitializeComponent();
             
             cliente_BLL = new BLL.Client();
-            
             Bind();
         }
 
@@ -53,7 +52,7 @@ namespace Application.UI.Negocio
             else
             {
                 dgvClients.DataSource = null;
-                dgvClients.DataSource = cliente_BLL.ClientList().FindAll(x => x.FullName.ToUpper().Contains(txtSearchClient.Text.ToUpper())); ;
+                dgvClients.DataSource = cliente_BLL.ClientList().FindAll(x => x.FullName.ToUpper().Contains(txtSearchClient.Text.ToUpper()));
                 dgvClients.Columns["Id"].Visible = false;
                 dgvClients.Columns["CreationDate"].Visible = false;
                 dgvClients.Columns["FullName"].Visible = false;
@@ -81,6 +80,20 @@ namespace Application.UI.Negocio
         private void frmClientList_Load(object sender, EventArgs e)
         {
             updateLanguage(SessionManager.GetInstance.language);
+        }
+
+        private void DataGridViewConfig()
+        {
+            dgvClients.AllowUserToAddRows = false;
+            dgvClients.AllowUserToDeleteRows = false;
+            dgvClients.AllowUserToResizeRows = false;
+            dgvClients.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.DisableResizing;
+            dgvClients.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            dgvClients.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.DisplayedCells;
+            dgvClients.ReadOnly = true;
+            dgvClients.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dgvClients.RowHeadersVisible = false;
+            dgvClients.MultiSelect = false;
         }
     }
 }

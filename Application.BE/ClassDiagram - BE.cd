@@ -39,9 +39,9 @@
     <Lollipop Position="0.2" Collapsed="true" />
   </Class>
   <Class Name="Application.BE.Sucursal" Collapsed="true">
-    <Position X="2.5" Y="1.5" Width="1.5" />
+    <Position X="4.25" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAACYAAAAAAAAAAEAAAAAAQAAAAAAAAiAAAAIAAAAAA=</HashCode>
+      <HashCode>AAACQAAAAAAAAAAEAAAAAAQAAAAAAAAiAAAAIAAAAAA=</HashCode>
       <FileName>Sucursal.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />

@@ -6,6 +6,7 @@ using Application.UI.Backup;
 using Application.UI.Language;
 using Application.UI.Negocio;
 using Application.UI.Negocio.ABM;
+using Application.UI.Negocio.Reportes;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -15,7 +16,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using static System.Collections.Specialized.BitVector32;
 
 namespace Application.UI
 {
@@ -309,6 +309,26 @@ namespace Application.UI
         private void modificarPaciente_Click(object sender, EventArgs e)
         {
             CreateForm(typeof(frmClientList));
+        }
+
+        private void menuReportesTurnos_Click(object sender, EventArgs e)
+        {
+            CreateForm(typeof(frmReport1));
+        }
+
+        private void crearEstudio_Click(object sender, EventArgs e)
+        {
+            CreateForm(typeof(frmEstudio));
+        }
+
+        private void modificarToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            CreateForm(typeof(frmEstudioList));
+        }
+
+        private void crearToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            CreateForm(typeof(frmEspecialidad));
         }
     }
 }

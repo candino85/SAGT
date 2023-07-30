@@ -48,7 +48,8 @@ namespace Application.UI.Negocio
             // 
             // txtSearchClient
             // 
-            this.txtSearchClient.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.txtSearchClient.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtSearchClient.Location = new System.Drawing.Point(105, 25);
             this.txtSearchClient.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
@@ -58,12 +59,17 @@ namespace Application.UI.Negocio
             // 
             // dgvClients
             // 
+            this.dgvClients.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.dgvClients.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvClients.Location = new System.Drawing.Point(27, 74);
             this.dgvClients.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.dgvClients.Name = "dgvClients";
             this.dgvClients.ReadOnly = true;
+            this.dgvClients.RowHeadersVisible = false;
             this.dgvClients.RowHeadersWidth = 62;
+            this.dgvClients.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvClients.Size = new System.Drawing.Size(792, 465);
             this.dgvClients.TabIndex = 5;
             this.dgvClients.CellMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgvClients_CellMouseDoubleClick);

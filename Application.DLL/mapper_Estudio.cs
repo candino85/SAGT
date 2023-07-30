@@ -9,9 +9,11 @@ using System.Data;
 
 namespace Application.DLL
 {
-    public class Mapper_Estudio
+    public class mapper_Estudio
     {
         readonly DBAccess accesso = new DBAccess();
+        
+        private mapper_Especialidad mapper_Especialidad = new mapper_Especialidad();
 
         public Estudio GetById(int id)
         {
@@ -24,7 +26,7 @@ namespace Application.DLL
             {
                 estudio.Id = int.Parse(row["Id"].ToString());
                 estudio.Nombre = row["Nombre"].ToString();
-                estudio.Especialidad = int.Parse(row["especialidad"].ToString());
+                estudio.Especialidad = mapper_Especialidad.GetEspecialidadlById(int.Parse(row["especialidad"].ToString()));
                 estudio.Tiempo = int.Parse(row["tiempo"].ToString());
                 estudio.Activo = bool.Parse(row["activo"].ToString());
             }
@@ -74,7 +76,7 @@ namespace Application.DLL
                 {
                     Id = int.Parse(row["id"].ToString()),
                     Nombre = row["nombre"].ToString(),
-                    Especialidad = int.Parse(row["especialidad"].ToString()),
+                    Especialidad = mapper_Especialidad.GetEspecialidadlById(int.Parse(row["especialidad"].ToString())),
                     Tiempo = int.Parse(row["tiempo"].ToString()),
                     Activo = bool.Parse(row["activo"].ToString())
                 };

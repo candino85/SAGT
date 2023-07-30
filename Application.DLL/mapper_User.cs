@@ -8,6 +8,7 @@ using System.Data.SqlClient;
 using System.Data;
 using Application.Services;
 using System.Security.Policy;
+using System.Xml.Linq;
 
 namespace Application.DLL
 {
@@ -251,6 +252,39 @@ namespace Application.DLL
                 throw new DataAccessException("Sucedió un error en DAL", ex);
             }
 
+        }
+
+        public int[] UserExist(string loginname, string email, string dni)
+        {
+            var cnn = new SqlConnection(accesso.GetConnectionString());
+            int[] usrExist = new int[3];
+             
+            try
+            {
+                cnn.Open();
+                var cmd = new SqlCommand();
+                cmd.Connection = cnn;
+
+                var queryLoginname = $@"SELECT COUNT(*) FROM dbo.Usuarios WHERE LoginName = '{loginname}'";
+                var queryEmail = $@"SELECT COUNT(*) FROM dbo.Usuarios WHERE Email = '{email}'";
+                var queryDNI = $@"SELECT COUNT(*) FROM dbo.Usuarios WHERE DNI = '{dni}'";
+
+                cmd.CommandText = queryLoginname;
+                usrExist[0] = Convert.ToInt32(cmd.ExecuteScalar());
+
+                cmd.CommandText = queryEmail;
+                usrExist[1] = Convert.ToInt32(cmd.ExecuteScalar());
+
+                cmd.CommandText = queryDNI;
+                usrExist[2] = Convert.ToInt32(cmd.ExecuteScalar());
+
+                return usrExist;
+            }
+            catch (Exception ex)
+            {
+                cnn.Close();
+                throw new Exception(ex.Message);
+            }
         }
     }
 }

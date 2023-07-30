@@ -19,7 +19,12 @@ namespace Application.UI
         BLL.Sucursal entidad_BLL;
 
         private frmEntityList _frmEntitiesList;
-        public frmEntity(frmEntityList frmEntityList)
+
+        public frmEntity()
+        {
+            InitializeComponent();
+        }
+            public frmEntity(frmEntityList frmEntityList)
         {
             InitializeComponent();
             _frmEntitiesList = frmEntityList;

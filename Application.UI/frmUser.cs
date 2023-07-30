@@ -1,4 +1,5 @@
 ﻿using Application.ABSTRACTIONS;
+using Application.DLL;
 using Application.Services;
 using Application.UI.Language;
 using System;
@@ -109,9 +110,13 @@ namespace Application.UI
                     cmbEntity.SelectedValue != null)
                 {
 
-                    var chckLoginname = usuario_BLL.GetByLoginName(txtNombreUsuario.Text); // usuario temporal para comprobar si existe el username o email en el sistema
-                    var checkEmail = usuario_BLL.UserList();
-                    if (txtNombreUsuario.Text != chckLoginname.LoginName && txtEmail.Text != (checkEmail.FirstOrDefault(usr => usr.Email == txtEmail.Text)).Email);
+                    //var chckLoginname = usuario_BLL.GetByLoginName(txtNombreUsuario.Text); // usuario temporal para comprobar si existe el username o email en el sistema
+                    //var checkEmail = usuario_BLL.UserList();
+                    //if ((txtNombreUsuario.Text != chckLoginname.LoginName) || (txtEmail.Text != (checkEmail.FirstOrDefault(usr => usr.Email == txtEmail.Text)).Email));
+
+                    var usrExist = usuario_BLL.UserExist(txtNombreUsuario.Text, txtEmail.Text, txtDNI.Text);
+                    
+                    if (usrExist[0] == 0 && usrExist[1] == 0 && usrExist[2] == 0)
                     {
                         //usuario_BE = GetValuesFromForm();
                         usuario_BE = new BE.User();
@@ -139,6 +144,7 @@ namespace Application.UI
                         {
                             EmailSender.NotificarContraseña(usuario_BE.LoginName, tmppsw, usuario_BE.Email);
                             MessageBox.Show("Usuario creado correctamente, las credenciales se enviaron al correo electrónico del nuevo usuario.", "INFO", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            this.Close();
                         }
                         // guardo el Rol del usuario
                         if (cmbRole.SelectedValue != null)
@@ -147,10 +153,12 @@ namespace Application.UI
                             permission.SaveUserPermission(usuario_BE.Id, usuario_BE.Role);
                         }
                     }
-                    if (txtNombreUsuario.Text == chckLoginname.LoginName)
-                        MessageBox.Show("Este usuario ya está registrado en el sistema", "INFO", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                    if (txtEmail.Text == chckLoginname.Email)
-                        MessageBox.Show("Este email ya está registrado en el sistema", "INFO", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    if (usrExist[0] > 0)
+                        MessageBox.Show($"El nombre de usuario '{txtNombreUsuario.Text}' ya está registrado en el sistema, por favor, ingrese otro diferente\n", "INFO", MessageBoxButtons.OK, MessageBoxIcon.Exclamation); 
+                    if (usrExist[1] > 0)
+                        MessageBox.Show($"El correo '{txtEmail.Text}' ya está registrado en el sistema, por favor, ingrese otro diferente\n", "INFO", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    if (usrExist[2] > 0)
+                        MessageBox.Show($"El DNI '{txtDNI.Text}' ya está registrado en el sistema\n", "INFO", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 }
                 else
                 {
@@ -161,8 +169,6 @@ namespace Application.UI
             {
                 MessageBox.Show($"Se ha producido un error\n{ex}\n{ex.Message}", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            //_frmUsersList.Bind();
-            Close();
         }
 
         private void btnUpdateUser_Click(object sender, EventArgs e)

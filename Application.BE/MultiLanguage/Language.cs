@@ -30,6 +30,11 @@ namespace Application.BE
             set { _default = value; }
         }
 
+        public override string ToString()
+        {
+            return Name;
+        }
+
         public List<ITranslation> Translations { get ; set ; }
     }
 }

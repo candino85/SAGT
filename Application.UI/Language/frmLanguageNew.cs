@@ -27,19 +27,24 @@ namespace Application.UI.Language
 
         private void btnSaveNewLanguage_Click(object sender, EventArgs e)
         {
-            try
+            var newLanguage = languageService.GetLanguage(txtNewLanguageName.Text);
+            if (newLanguage.Name is null)
             {
-                languageService.CreateNewLanguage(txtNewLanguageName.Text);
-                //*QUE HACEMOS DESPUES DE AGREGAR EL NUEVO LENGUAGE?
-                
-                _frmLanguage.RefreshDataGrid();
-                this.Close();
-            }
-            catch (Exception ex)
-            {
-                throw new Exception(ex.Message);
-            }
+                try
+                {
+                    languageService.CreateNewLanguage(txtNewLanguageName.Text);
+                    //*QUE HACEMOS DESPUES DE AGREGAR EL NUEVO LENGUAGE?
 
+                    _frmLanguage.RefreshDataGrid();
+                    this.Close();
+                }
+                catch (Exception ex)
+                {
+                    throw new Exception(ex.Message);
+                }
+            }
+            else
+                MessageBox.Show("El idioma que intenta agregar ya existe", "INFO", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
         }
 
         private void frmLanguageNew_Load(object sender, EventArgs e)

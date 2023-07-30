@@ -1,5 +1,6 @@
 ﻿using Application.BE;
 using Application.Services;
+using Application.UI.Customs_Controls;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -34,9 +35,7 @@ namespace Application.UI.Language
                 }
 
                 if (control.Tag != null)
-                {
-                    //CAMBIAR IDIOMA CUSTOM CONTROLS TEXTBOXLABELED
-                
+                {                
                     control.Text = GetTranslation(language, control.Tag.ToString()) ?? control.Text;
                 }
 

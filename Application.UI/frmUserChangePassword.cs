@@ -48,7 +48,7 @@ namespace Application.UI
 
         private void btnCambiarClave_Click(object sender, EventArgs e)
         {
-            string ctrl =  checkControls(txtClaveActual.TextBoxText, txtClaveNueva.TextBoxText, txtClaveNueva2.TextBoxText);
+            string ctrl =  checkControls(txtClaveActual.Text, txtClaveNueva.Text, txtClaveNueva2.Text);
 
             switch (ctrl)
             {
@@ -63,7 +63,7 @@ namespace Application.UI
                     break;
                 case "OK":
 
-                        var msg = user.UpdatePassword(txtClaveActual.TextBoxText, txtClaveNueva.TextBoxText);
+                        var msg = user.UpdatePassword(txtClaveActual.Text, txtClaveNueva.Text);
                         string  msgtoshw = "";
                         if (msg == "CM")
                             msgtoshw = "La contraseña fue modificada con éxito.";
