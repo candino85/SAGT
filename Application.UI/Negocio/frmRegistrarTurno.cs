@@ -1,6 +1,7 @@
 ﻿using Application.ABSTRACTIONS;
 using Application.BE;
 using Application.BLL;
+using Application.Services;
 using Application.UI.Language;
 using Application.UI.Negocio.ABM;
 using System;
@@ -123,7 +124,7 @@ namespace Application.UI.Negocio
 
         private void frmRegistrarTurno_Load(object sender, EventArgs e)
         {
-
+            updateLanguage(SessionManager.GetInstance.language);
         }
 
         private void GetAgenda(int estudio)
@@ -343,6 +344,11 @@ namespace Application.UI.Negocio
             frmEstudio frmEstudio = new frmEstudio(this);
             frmMain frmMain = (frmMain)this.MdiParent;
             frmEstudio.Show();
+        }
+
+        private void frmRegistrarTurno_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            SessionManager.GetInstance.UnsubscribeObserver(this);
         }
     }
 }

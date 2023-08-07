@@ -83,7 +83,8 @@
             this.Controls.Add(this.txtSearchEstudio);
             this.Controls.Add(this.dgvEstudios);
             this.Name = "frmEstudioList";
-            this.Text = "frmEstudioList";
+            this.Tag = "frmEstudioList";
+            this.Text = "Lista de Estudios";
             ((System.ComponentModel.ISupportInitialize)(this.dgvEstudios)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

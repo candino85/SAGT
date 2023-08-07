@@ -162,7 +162,8 @@
             this.Controls.Add(this.btnModify);
             this.Controls.Add(this.btnCreate);
             this.Name = "frmEstudio";
-            this.Text = "frmEstudio";
+            this.Tag = "frmEstudio";
+            this.Text = "Estudio";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.frmEstudio_FormClosed);
             this.Load += new System.EventHandler(this.frmEstudio_Load);
             this.ResumeLayout(false);

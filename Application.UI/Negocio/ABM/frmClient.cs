@@ -88,8 +88,9 @@ namespace Application.UI.Negocio
 
             if (!operation)
                 throw new Exception("Error al crear el cliente");
-
-            _frmRegistrarTurno.LoadCmbClientes();
+            
+            if(_frmRegistrarTurno != null)
+                _frmRegistrarTurno.LoadCmbClientes();
 
             this.Close();
         }

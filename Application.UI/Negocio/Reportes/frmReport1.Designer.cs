@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            Microsoft.Reporting.WinForms.ReportDataSource reportDataSource7 = new Microsoft.Reporting.WinForms.ReportDataSource();
+            Microsoft.Reporting.WinForms.ReportDataSource reportDataSource1 = new Microsoft.Reporting.WinForms.ReportDataSource();
             this.turnosBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.dataSetRepo1 = new Application.UI.Negocio.Reportes.DataSetRepo1();
             this.reportViewer1 = new Microsoft.Reporting.WinForms.ReportViewer();
@@ -60,9 +60,9 @@
             this.reportViewer1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            reportDataSource7.Name = "DataSet1";
-            reportDataSource7.Value = this.turnosBindingSource;
-            this.reportViewer1.LocalReport.DataSources.Add(reportDataSource7);
+            reportDataSource1.Name = "DataSet1";
+            reportDataSource1.Value = this.turnosBindingSource;
+            this.reportViewer1.LocalReport.DataSources.Add(reportDataSource1);
             this.reportViewer1.LocalReport.ReportEmbeddedResource = "Application.UI.Negocio.Reportes.Report1.rdlc";
             this.reportViewer1.Location = new System.Drawing.Point(12, 86);
             this.reportViewer1.Name = "reportViewer1";
@@ -160,7 +160,7 @@
             this.Controls.Add(this.reportViewer1);
             this.Name = "frmReport1";
             this.Tag = "frmReport1";
-            this.Text = "frmReport1";
+            this.Text = "Reporte de Turnos Asignados";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.frmReport1_FormClosed);
             this.Load += new System.EventHandler(this.frmReport1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.turnosBindingSource)).EndInit();

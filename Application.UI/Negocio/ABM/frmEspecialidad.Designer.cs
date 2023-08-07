@@ -99,7 +99,8 @@
             this.Controls.Add(this.btnModify);
             this.Controls.Add(this.btnCreate);
             this.Name = "frmEspecialidad";
-            this.Text = "frmEspecialidad";
+            this.Tag = "frmEspecialidad";
+            this.Text = "Especialidad";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.frmEspecialidad_FormClosed);
             this.Load += new System.EventHandler(this.frmEspecialidad_Load);
             this.ResumeLayout(false);

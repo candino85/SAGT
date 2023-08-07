@@ -37,7 +37,7 @@ namespace Application.UI.Negocio.ABM
 
             if (ok)
             { 
-                MessageBox.Show("La espscialidad se creó correctamente.", "INFO", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("La especialidad se creó correctamente.", "INFO", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 this.Close();
             }
             else

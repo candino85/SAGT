@@ -28,11 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange16 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
-            System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange17 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
-            System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange18 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
-            System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange19 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
-            System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange20 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
+            System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange11 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
+            System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange12 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
+            System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange13 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
+            System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange14 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
+            System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange15 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
             this.cmbEstudio = new System.Windows.Forms.ComboBox();
             this.lblEstudios = new System.Windows.Forms.Label();
             this.lblSucursal = new System.Windows.Forms.Label();
@@ -232,27 +232,27 @@
             this.calendar1.Controls.Add(this.monthView2);
             this.calendar1.FirstDayOfWeek = System.DayOfWeek.Monday;
             this.calendar1.Font = new System.Drawing.Font("Segoe UI", 9.5F);
-            calendarHighlightRange16.DayOfWeek = System.DayOfWeek.Monday;
-            calendarHighlightRange16.EndTime = System.TimeSpan.Parse("17:00:00");
-            calendarHighlightRange16.StartTime = System.TimeSpan.Parse("08:00:00");
-            calendarHighlightRange17.DayOfWeek = System.DayOfWeek.Tuesday;
-            calendarHighlightRange17.EndTime = System.TimeSpan.Parse("17:00:00");
-            calendarHighlightRange17.StartTime = System.TimeSpan.Parse("08:00:00");
-            calendarHighlightRange18.DayOfWeek = System.DayOfWeek.Wednesday;
-            calendarHighlightRange18.EndTime = System.TimeSpan.Parse("17:00:00");
-            calendarHighlightRange18.StartTime = System.TimeSpan.Parse("08:00:00");
-            calendarHighlightRange19.DayOfWeek = System.DayOfWeek.Thursday;
-            calendarHighlightRange19.EndTime = System.TimeSpan.Parse("17:00:00");
-            calendarHighlightRange19.StartTime = System.TimeSpan.Parse("08:00:00");
-            calendarHighlightRange20.DayOfWeek = System.DayOfWeek.Friday;
-            calendarHighlightRange20.EndTime = System.TimeSpan.Parse("17:00:00");
-            calendarHighlightRange20.StartTime = System.TimeSpan.Parse("08:00:00");
+            calendarHighlightRange11.DayOfWeek = System.DayOfWeek.Monday;
+            calendarHighlightRange11.EndTime = System.TimeSpan.Parse("17:00:00");
+            calendarHighlightRange11.StartTime = System.TimeSpan.Parse("08:00:00");
+            calendarHighlightRange12.DayOfWeek = System.DayOfWeek.Tuesday;
+            calendarHighlightRange12.EndTime = System.TimeSpan.Parse("17:00:00");
+            calendarHighlightRange12.StartTime = System.TimeSpan.Parse("08:00:00");
+            calendarHighlightRange13.DayOfWeek = System.DayOfWeek.Wednesday;
+            calendarHighlightRange13.EndTime = System.TimeSpan.Parse("17:00:00");
+            calendarHighlightRange13.StartTime = System.TimeSpan.Parse("08:00:00");
+            calendarHighlightRange14.DayOfWeek = System.DayOfWeek.Thursday;
+            calendarHighlightRange14.EndTime = System.TimeSpan.Parse("17:00:00");
+            calendarHighlightRange14.StartTime = System.TimeSpan.Parse("08:00:00");
+            calendarHighlightRange15.DayOfWeek = System.DayOfWeek.Friday;
+            calendarHighlightRange15.EndTime = System.TimeSpan.Parse("17:00:00");
+            calendarHighlightRange15.StartTime = System.TimeSpan.Parse("08:00:00");
             this.calendar1.HighlightRanges = new System.Windows.Forms.Calendar.CalendarHighlightRange[] {
-        calendarHighlightRange16,
-        calendarHighlightRange17,
-        calendarHighlightRange18,
-        calendarHighlightRange19,
-        calendarHighlightRange20};
+        calendarHighlightRange11,
+        calendarHighlightRange12,
+        calendarHighlightRange13,
+        calendarHighlightRange14,
+        calendarHighlightRange15};
             this.calendar1.Location = new System.Drawing.Point(16, 88);
             this.calendar1.Name = "calendar1";
             this.calendar1.Size = new System.Drawing.Size(981, 948);
@@ -333,7 +333,7 @@
             // 
             this.btnCrearEstudio.Location = new System.Drawing.Point(273, 23);
             this.btnCrearEstudio.Name = "btnCrearEstudio";
-            this.btnCrearEstudio.Size = new System.Drawing.Size(144, 51);
+            this.btnCrearEstudio.Size = new System.Drawing.Size(161, 59);
             this.btnCrearEstudio.TabIndex = 318;
             this.btnCrearEstudio.Tag = "crear estudio";
             this.btnCrearEstudio.Text = "Crear Estudio";
@@ -357,7 +357,7 @@
             // btnRegistrarTurno
             // 
             this.btnRegistrarTurno.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.btnRegistrarTurno.Location = new System.Drawing.Point(14, 378);
+            this.btnRegistrarTurno.Location = new System.Drawing.Point(17, 378);
             this.btnRegistrarTurno.Name = "btnRegistrarTurno";
             this.btnRegistrarTurno.Size = new System.Drawing.Size(467, 55);
             this.btnRegistrarTurno.TabIndex = 307;
@@ -403,7 +403,8 @@
             this.Controls.Add(this.calendar1);
             this.Name = "frmRegistrarTurno";
             this.Tag = "frmRegistrarTurno";
-            this.Text = "frmRegistrarTurno";
+            this.Text = "Registrar Turnos";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.frmRegistrarTurno_FormClosed);
             this.Load += new System.EventHandler(this.frmRegistrarTurno_Load);
             this.calendar1.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
