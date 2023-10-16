@@ -13,11 +13,12 @@ namespace Application.UI.Negocio.ABM
     public partial class frmAgenda : Form
     {
 
-        BE.Estudio estudio_BE;
         BLL.Estudio estudio_BLL;
         
         BE.Agenda agenda_BE;
         BLL.Agenda agenda_BLL;
+
+        BLL.Sucursal sucursal_BLL;
 
         List<BE.Agenda> agendas;
 
@@ -25,8 +26,9 @@ namespace Application.UI.Negocio.ABM
         {
             InitializeComponent();
 
-            estudio_BE = new BE.Estudio();
             estudio_BLL = new BLL.Estudio();
+
+            sucursal_BLL = new BLL.Sucursal();
 
             agenda_BLL = new BLL.Agenda();
 
@@ -34,6 +36,11 @@ namespace Application.UI.Negocio.ABM
             cmbEstudio.ValueMember = "id";
             cmbEstudio.DisplayMember = "nombre";
             cmbEstudio.SelectedIndex = -1;
+
+            cmbSucursal.DataSource = sucursal_BLL.SucursalList();
+            cmbSucursal.ValueMember = "id";
+            cmbSucursal.DisplayMember = "name";
+            cmbSucursal.SelectedIndex = -1;
 
             dtpFechaDesde.Value = DateTime.Parse(DateTime.Today.ToString("d"));
             dtpFechaHasta.Value = DateTime.Parse(DateTime.Today.ToString("d"));
@@ -54,7 +61,8 @@ namespace Application.UI.Negocio.ABM
                         {
                             estudio = (int)cmbEstudio.SelectedValue,
                             fechaDesde = d.Add(htpLunesDesde.Value.TimeOfDay),
-                            fechaHasta = d.Add(htpLunesHasta.Value.TimeOfDay)
+                            fechaHasta = d.Add(htpLunesHasta.Value.TimeOfDay),
+                            entidad = (int)cmbSucursal.SelectedValue
                         };
                     }
                     else if ((d.DayOfWeek == DayOfWeek.Tuesday) && (chkMartes.Checked))
@@ -63,7 +71,8 @@ namespace Application.UI.Negocio.ABM
                         {
                             estudio = (int)cmbEstudio.SelectedValue,
                             fechaDesde = d.Add(htpMartesDesde.Value.TimeOfDay),
-                            fechaHasta = d.Add(htpMartesHasta.Value.TimeOfDay)
+                            fechaHasta = d.Add(htpMartesHasta.Value.TimeOfDay),
+                            entidad = (int)cmbSucursal.SelectedValue
                         };
                     }
                     else if ((d.DayOfWeek == DayOfWeek.Wednesday) && (chkMiercoles.Checked))
@@ -72,7 +81,8 @@ namespace Application.UI.Negocio.ABM
                         {
                             estudio = (int)cmbEstudio.SelectedValue,
                             fechaDesde = d.Add(htpMiercolesDesde.Value.TimeOfDay),
-                            fechaHasta = d.Add(htpMiercolesHasta.Value.TimeOfDay)
+                            fechaHasta = d.Add(htpMiercolesHasta.Value.TimeOfDay),
+                            entidad = (int)cmbSucursal.SelectedValue
                         };
                     }
                     else if ((d.DayOfWeek == DayOfWeek.Thursday) && (chkJueves.Checked))
@@ -81,7 +91,8 @@ namespace Application.UI.Negocio.ABM
                         {
                             estudio = (int)cmbEstudio.SelectedValue,
                             fechaDesde = d.Add(htpJuevesDesde.Value.TimeOfDay),
-                            fechaHasta = d.Add(htpJuevesHasta.Value.TimeOfDay)
+                            fechaHasta = d.Add(htpJuevesHasta.Value.TimeOfDay),
+                            entidad = (int)cmbSucursal.SelectedValue
                         };
                     }
                     else if ((d.DayOfWeek == DayOfWeek.Friday) && (chkViernes.Checked))
@@ -90,7 +101,8 @@ namespace Application.UI.Negocio.ABM
                         {
                             estudio = (int)cmbEstudio.SelectedValue,
                             fechaDesde = d.Add(htpViernesDesde.Value.TimeOfDay),
-                            fechaHasta = d.Add(htpViernesHasta.Value.TimeOfDay)
+                            fechaHasta = d.Add(htpViernesHasta.Value.TimeOfDay),
+                            entidad = (int)cmbSucursal.SelectedValue
                         };
                     }
                     else if ((d.DayOfWeek == DayOfWeek.Saturday) && (chkSabado.Checked))
@@ -99,7 +111,8 @@ namespace Application.UI.Negocio.ABM
                         {
                             estudio = (int)cmbEstudio.SelectedValue,
                             fechaDesde = d.Add(htpSabadoDesde.Value.TimeOfDay),
-                            fechaHasta = d.Add(htpSabadoHasta.Value.TimeOfDay)
+                            fechaHasta = d.Add(htpSabadoHasta.Value.TimeOfDay),
+                            entidad = (int)cmbSucursal.SelectedValue
                         };
                     }
                     else if ((d.DayOfWeek == DayOfWeek.Sunday) && (chkDomingo.Checked))
@@ -108,7 +121,8 @@ namespace Application.UI.Negocio.ABM
                         {
                             estudio = (int)cmbEstudio.SelectedValue,
                             fechaDesde = d.Add(htpDomingoDesde.Value.TimeOfDay),
-                            fechaHasta = d.Add(htpDomingoHasta.Value.TimeOfDay)
+                            fechaHasta = d.Add(htpDomingoHasta.Value.TimeOfDay),
+                            entidad = (int)cmbSucursal.SelectedValue
                         };
                     }
 

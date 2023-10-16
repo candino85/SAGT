@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Security.Policy;
+using Application.BE;
 using Application.DLL;
 using Application.Services;
 
@@ -9,10 +11,13 @@ namespace Application.BLL
     {
         BE.User _usuario;
         readonly Mapper_User _mapper;
+        
+        private Bitacora _bitacora;
 
         public User()
         {
-            _mapper = new Mapper_User();   
+            _mapper = new Mapper_User();
+            _bitacora = new Bitacora();
         }
 
         public string LogIn(string username, string password)
@@ -20,33 +25,49 @@ namespace Application.BLL
             var user = _mapper.GetByLoginName(username);                //obtengo el usuario
             
             if (SessionManager.GetInstance.IsLogged)                    //si ya se encuentra iniciada una sesión
+            {
+                _bitacora.LogEvent(user.Id,"Auth", "Log In", 4, "Ya existe una sesión iniciada.");
                 return "Ya existe una sesión iniciada.";
+            }                
             else if (user.Name == null)                                 //si el usuario no existe
+            {
+                _bitacora.LogEvent(0, "Auth", "Log In", 3, $"El usuario {username} no existe.");
                 return $"El usuario '{username}' no existe.";
+            }                
             else if (!user.Active)                                      //si el usuario está inactivo
-                return "El usuario se encuentra inactivo, contacte a RRHH.";
+            {
+                _bitacora.LogEvent(user.Id, "Auth", "Log In", 2, $"El usuario {username} se encuentra inactivo.");
+                return $"El usuario {username} se encuentra inactivo, contacte a RRHH.";
+            }
             else if (user.Blocked)
-                return "El usuario se encuentra bloqueado, contacte a un administrador para desbloquearlo.";
+            {
+                _bitacora.LogEvent(user.Id, "Auth", "Log In", 2, $"El usuario {username} se encuentra bloqueado.");
+                return $"El usuario {username} se encuentra bloqueado, contacte a un administrador para desbloquearlo.";
+            }                
             else if (Encrypt.GetSHA256(password).Equals(user.Password)) // si no se cumple ninguno de los anteriores inicio sesión
             {
                 SessionManager.GetInstance.Login(user);
                 user.Attempts = 0;
                 _mapper.Update(user);
+
+                _bitacora.LogEvent(user.Id, "Auth", "Log In", 1, $"El usuario {username} se logueo correctamente.");
                 return $"Bienvenido {user.Name} {user.Lastname}";
             }
             else                                                        //si la clave ingresada no coicide con la del usuario
             {
                 user.Attempts++;
                 var msg = "Contraseña incorrecta";
-                if ((user.Attempts) < 3)                                    //si la cantidad de intentos es menor a 3
+                if ((user.Attempts) < 3)                                //si la cantidad de intentos es menor a 3
                     msg += $", le quedan {3 - user.Attempts} intentos restantes antes de bloquear su usuario.";
                 FailLoginAttempt(user);
-                if ((user.Attempts) > 2)                                    //si la cantidad de intentos es mayor a 2
+                if ((user.Attempts) > 2)                                //si la cantidad de intentos es mayor a 2
                 { 
                     user.Blocked = true;
                     _mapper.Update(user);
+                    _bitacora.LogEvent(user.Id, "Auth", "Log In", 4, $"El usuario {username} ha sido bloqueado.");
                     msg += ", el usuario ha sido bloqueado.";
                 }
+                _bitacora.LogEvent(user.Id, "Auth", "Log In", 3, $"El usuario {username} ingresó incorrectamente la contraseña.");
                 return msg;
             }
         }
@@ -55,7 +76,9 @@ namespace Application.BLL
         {
             if (!SessionManager.GetInstance.IsLogged)
                 throw new Exception("No hay sesión iniciada");      //doble validación, anulo en boton en formulario y valido en la bll
+            _bitacora.LogEvent(SessionManager.GetInstance.Usuario.Id, "Auth", "Log Out", 1, $"El usuario {SessionManager.GetInstance.Usuario.LoginName} ha finalizado su sesión correctamente.");
             SessionManager.GetInstance.Logout();
+            
         }
 
         public string UpdatePassword(BE.User usrA, BE.User usrN)
@@ -63,6 +86,7 @@ namespace Application.BLL
                 var result = _mapper.UpdatePassword(usrA.LoginName, usrN.Password);
                 if (result != 0)
                 {                    
+                    _bitacora.LogEvent(usrA.Id, "Administracion", "Actualización de clave de usuario", 3, $"El usuario {usrA.LoginName} ha cambiado su clave correctamente.");
                     return "CM";
                 }
                 else
@@ -76,6 +100,7 @@ namespace Application.BLL
                 var result = _mapper.UpdatePassword(SessionManager.GetInstance.Usuario.LoginName, Encrypt.GetSHA256(passN));
                 if (result != 0)
                 {
+                    _bitacora.LogEvent(SessionManager.GetInstance.Usuario.Id, "Administracion", "Actualización de clave de usuario", 3, $"El usuario {SessionManager.GetInstance.Usuario.LoginName} ha cambiado su clave correctamente.");
                     return "CM";
                 }
                 else
@@ -87,7 +112,8 @@ namespace Application.BLL
 
         public void FailLoginAttempt(BE.User user)
         {
-                _mapper.FailLoginAttempt(user);            
+            _mapper.FailLoginAttempt(user);
+            _bitacora.LogEvent(user.Id, "Auth", "Fallo de Log In", 3, $"El usuario {user.LoginName} ha ingresado mal la clave {user.Attempts} vez/veces.");
         }
 
         //public BE.User GetUsuarioById(int id)
@@ -106,17 +132,22 @@ namespace Application.BLL
         {
             int fa = _mapper.Create(usuario);
             if (fa != 0)
-            {                
+            {
+                _bitacora.LogEvent(usuario.Id, "Administracion", "Creación de usuario", 2, $"El usuario {usuario.LoginName} se ha creado correctamente.");
                 return fa;
             }
             else
                 return 0;
         }
-        public bool UserUpdate(BE.User usuario)
+
+        public bool UserUpdate(BE.User usuario, string msg)
         {
             int fa = _mapper.Update(usuario);
             if (fa != 0)
+            {
+                _bitacora.LogEvent(usuario.Id, "Idioma", $"{msg}", 2, $"El usuario {usuario.LoginName} se ha modificado correctamente.");
                 return true;
+            }
             else
                 return false;
         }
@@ -141,6 +172,11 @@ namespace Application.BLL
             var result = _mapper.UserExist(loginname, email, dni);
 
             return result;
+        }
+
+        public BE.User GetUserById(int id)
+        {
+            return _mapper.GetUsuarioById(id);
         }
     }
 }

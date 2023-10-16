@@ -3,6 +3,7 @@ using Application.BE;
 using Application.BLL;
 using Application.Services;
 using Application.UI.Backup;
+using Application.UI.Bitacora;
 using Application.UI.Language;
 using Application.UI.Negocio;
 using Application.UI.Negocio.ABM;
@@ -73,6 +74,7 @@ namespace Application.UI
                 menuPerfiles.Visible = permission.FindUserPermissions(PermissionType.menuPerfiles, userPermission);
                 menuIdiomas.Visible = permission.FindUserPermissions(PermissionType.menuIdiomas, userPermission);
                 menuBackupRestore.Visible = permission.FindUserPermissions(PermissionType.menuBackupRestore, userPermission);
+                menuBitacora.Visible = permission.FindUserPermissions(PermissionType.menuBitacora, userPermission);
 
                 //maestros
                 menuMaestros.Visible = permission.FindUserPermissions(PermissionType.menuMaestros, userPermission);
@@ -83,9 +85,11 @@ namespace Application.UI
                 menuEstudios.Visible = permission.FindUserPermissions(PermissionType.menuEstudios, userPermission);
 
                 //turnos
-                menuTurnos.Visible = permission.FindUserPermissions(PermissionType.menuTurnos, userPermission);
-                menuRegistrarTurno.Visible = permission.FindUserPermissions(PermissionType.menuRegistrarTurno, userPermission);
+                menuRegistrar.Visible = permission.FindUserPermissions(PermissionType.menuRegistrar, userPermission);
+                menuTurno.Visible = permission.FindUserPermissions(PermissionType.menuTurno, userPermission);
                 menuAgenda.Visible = permission.FindUserPermissions(PermissionType.menuAgenda, userPermission);
+                menuMuestra.Visible = permission.FindUserPermissions(PermissionType.menuMuestra, userPermission);
+                menuHistoricoDeCambios.Visible = permission.FindUserPermissions(PermissionType.menuHistoricoDeCambios, userPermission);
 
                 //reportes
                 menuReportes.Visible = permission.FindUserPermissions(PermissionType.menuReportes,userPermission);
@@ -129,7 +133,7 @@ namespace Application.UI
 
                 menuAdministrar.Visible = false;
                 menuMaestros.Visible = false;
-                menuTurnos.Visible = false;
+                menuRegistrar.Visible = false;
                 menuReportes.Visible = false;
                 menuAyuda.Visible = false;
             }
@@ -211,7 +215,7 @@ namespace Application.UI
         {
             var newLang = language.GetLanguage(sender.ToString());
             SessionManager.GetInstance.ChangeLanguage(newLang);
-            user.UserUpdate(SessionManager.GetInstance.Usuario);
+            user.UserUpdate(SessionManager.GetInstance.Usuario, "Cambio de idioma");
 
             LoadComboLanguage();
         }
@@ -236,31 +240,6 @@ namespace Application.UI
             CreateForm(typeof(frmLogin));
         }
 
-        private void idiomasToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            CreateForm(typeof(frmLanguage));
-        }
-
-        private void cambiarClaveToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            CreateForm(typeof(frmUserChangePassword));
-        }
-
-        private void nuevoUsuarioToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            CreateForm(typeof(frmUser));
-        }
-
-        private void buscarUsuarioToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            CreateForm(typeof(frmUsersList));
-        }
-
-        private void salirToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            this.Close();
-        }
-
         private void frmMain_FormClosed(object sender, FormClosedEventArgs e)
         {
             SessionManager.GetInstance.UnsubscribeObserver(this);
@@ -269,21 +248,6 @@ namespace Application.UI
                 if (typeof(ILanguageObserver).IsAssignableFrom(form.GetType()))
                     SessionManager.GetInstance.UnsubscribeObserver((ILanguageObserver)form);
             }
-        }
-
-        private void menuGestionEspacios_Click(object sender, EventArgs e)
-        {
-            CreateForm(typeof(frmAreaList));
-        }
-
-        private void sucursalToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            CreateForm(typeof(frmEntityList));
-        }
-
-        private void registrarToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            CreateForm(typeof(frmRegistrarTurno));
         }
 
         private void menuBackupRestore_Click(object sender, EventArgs e)
@@ -321,14 +285,59 @@ namespace Application.UI
             CreateForm(typeof(frmEstudio));
         }
 
-        private void modificarToolStripMenuItem_Click(object sender, EventArgs e)
+        private void menuBitacora_Click(object sender, EventArgs e)
+        {
+            CreateForm(typeof(FrmBitacora));
+        }
+
+        private void modificarEstudio_Click(object sender, EventArgs e)
         {
             CreateForm(typeof(frmEstudioList));
         }
 
-        private void crearToolStripMenuItem1_Click(object sender, EventArgs e)
+        private void menuTurno_Click(object sender, EventArgs e)
         {
-            CreateForm(typeof(frmEspecialidad));
+            CreateForm(typeof(frmRegistrarTurno));
+        }
+
+        private void menuSucursales_Click(object sender, EventArgs e)
+        {
+            CreateForm(typeof(frmEntityList));
+        }
+
+        private void menuCerrar_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void modificarUsuario_Click(object sender, EventArgs e)
+        {
+            CreateForm(typeof(frmUsersList));
+        }
+
+        private void crearUsuario_Click(object sender, EventArgs e)
+        {
+            CreateForm(typeof(frmUser));
+        }
+
+        private void menuCambiarClave_Click(object sender, EventArgs e)
+        {
+            CreateForm(typeof(frmUserChangePassword));
+        }
+
+        private void menuIdiomas_Click(object sender, EventArgs e)
+        {
+            CreateForm(typeof(frmLanguage));
+        }
+
+        private void menuEspacios_Click(object sender, EventArgs e)
+        {
+            CreateForm(typeof(frmAreaList));
+        }
+
+        private void menuHistoricoDeCambios_Click(object sender, EventArgs e)
+        {
+            CreateForm(typeof(frmBitacoraCambios));
         }
     }
 }

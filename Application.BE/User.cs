@@ -76,6 +76,11 @@ namespace Application.BE
             set { _attempts = value; }
         }
 
+        public override string ToString()
+        {
+            return LoginName;
+        }
+
 
         //Composite
         //private Role _rol;

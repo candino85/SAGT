@@ -14,8 +14,8 @@ namespace Application.UI
         //readonly LoginService _loginService;
         readonly LanguageService _languageService;
         readonly BE.Language _language;
-
         readonly BLL.User _user;
+        readonly BE.Bitacora _bitacora;
 
         public frmLogin()
         {  
@@ -28,6 +28,8 @@ namespace Application.UI
             _language = _languageService.GetLanguage(_languageService.GetLanguages().ToList().First(x => x.Default == true).Name);
 
             updateLanguage(_language);
+
+
         }
 
         public void updateLanguage(ILanguage language)
@@ -38,6 +40,7 @@ namespace Application.UI
         private void btnIngresar_Click(object sender, EventArgs e)
         {
             MessageBox.Show(_user.LogIn(this.txtNombreUsuario.Text, this.txtPassword.Text), "Bievenido", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
             
             if (SessionManager.GetInstance.IsLogged)
             {                 

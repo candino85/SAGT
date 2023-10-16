@@ -17,12 +17,12 @@ namespace Application.UI.Backup
     public partial class frmBackupRestore : Form, ILanguageObserver
     {
         BLL.BackupRestore backupRestore;
+
         public frmBackupRestore()
         {
             InitializeComponent();
             backupRestore = new BLL.BackupRestore();
         }
-
 
         private void btnBackupFolder_Click(object sender, EventArgs e)
         {
@@ -30,7 +30,7 @@ namespace Application.UI.Backup
             dialog.ShowDialog();
             if (dialog.SelectedPath != string.Empty)
             {
-                txtBackupDatabase.TextBoxText = dialog.SelectedPath;               
+                txtBackupDatabase.Text = dialog.SelectedPath;               
             }
         }
 
@@ -50,24 +50,23 @@ namespace Application.UI.Backup
                     //Get the path of specified file
                     filePath = openFileDialog.FileName;
                 }
-                txtRestoreBackup.TextBoxText = filePath;
+                txtRestoreBackup.Text = filePath;
             }
-
         }
 
         private void btnGoBackup_Click(object sender, EventArgs e)
         {
-            if (!string.IsNullOrEmpty(txtBackupDatabase.TextBoxText))
-                MessageBox.Show(backupRestore.BackupDatabase(txtBackupDatabase.TextBoxText));
+            if (!string.IsNullOrEmpty(txtBackupDatabase.Text))
+                MessageBox.Show(backupRestore.BackupDatabase(txtBackupDatabase.Text));
             else
                 MessageBox.Show("Seleccione la ruta donde guardar el backup");
         }
 
         private void btnGoRestore_Click(object sender, EventArgs e)
         {
-            if (!string.IsNullOrEmpty(txtRestoreBackup.TextBoxText))
+            if (!string.IsNullOrEmpty(txtRestoreBackup.Text))
             {                
-                MessageBox.Show(backupRestore.RestoreDatabase(txtRestoreBackup.TextBoxText));
+                MessageBox.Show(backupRestore.RestoreDatabase(txtRestoreBackup.Text));
             }
             else
                 MessageBox.Show("Seleccione el archivo de backup que desea restaurar");

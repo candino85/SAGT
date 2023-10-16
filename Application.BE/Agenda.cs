@@ -13,5 +13,6 @@ namespace Application.BE
         public DateTime fechaDesde {get;set;}
         public DateTime fechaHasta { get; set; }
         public int estudio { get; set; }
+        public int entidad { get; set; }
     }
 }

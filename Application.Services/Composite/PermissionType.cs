@@ -18,6 +18,7 @@ namespace Application.Services
         menuIdiomas,
         menuBackupRestore,
         menuPerfiles,
+        menuBitacora,
 
         //Maestros
         menuMaestros,
@@ -28,9 +29,11 @@ namespace Application.Services
         menuEstudios,
 
         //Turnos
-        menuTurnos,
-        menuRegistrarTurno,
+        menuRegistrar,
+        menuTurno,
         menuAgenda,
+        menuMuestra,
+        menuHistoricoDeCambios,
 
         //Reportes
         menuReportes,

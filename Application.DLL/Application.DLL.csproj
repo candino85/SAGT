@@ -48,6 +48,7 @@
     <Compile Include="LanguageRepository.cs" />
     <Compile Include="mapper_Agenda.cs" />
     <Compile Include="mapper_Area.cs" />
+    <Compile Include="BitacoraRepository.cs" />
     <Compile Include="mapper_Especialidad.cs" />
     <Compile Include="mapper_Estudio.cs" />
     <Compile Include="mapper_Turno.cs" />

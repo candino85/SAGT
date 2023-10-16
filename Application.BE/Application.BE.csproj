@@ -44,13 +44,16 @@
   <ItemGroup>
     <Compile Include="Agenda.cs" />
     <Compile Include="Area.cs" />
+    <Compile Include="Bitacora.cs" />
     <Compile Include="Especialidad.cs" />
     <Compile Include="Estudio.cs" />
+    <Compile Include="Muestra.cs" />
     <Compile Include="Sucursal.cs" />
     <Compile Include="MultiLanguage\Language.cs" />
     <Compile Include="MultiLanguage\Translation.cs" />
     <Compile Include="Client.cs" />
     <Compile Include="Turno.cs" />
+    <Compile Include="TurnoHistorico.cs" />
     <Compile Include="User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

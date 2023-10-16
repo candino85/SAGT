@@ -28,13 +28,48 @@ namespace Application.BLL
             return turnos;
         }
 
-        public bool TurnoCreate(BE.Turno turno)
+        public List<BE.Turno> GetTurnosByEstudioSucursal(int estudio, int sucursal)
         {
-            int fa = _mapper.Create(turno);
+            List<BE.Turno> turnos = _mapper.GetByEstudioSucursal(estudio, sucursal);
+            return turnos;
+        }
+
+        public bool TurnoCreate(BE.Turno turno, BE.User user)
+        {
+            int fa = _mapper.Create(turno, user);
             if (fa != 0)
                 return true;
             else
                 return false;
+        }
+
+        public bool TurnoUpdate(BE.Turno turno, BE.User user)
+        {
+            int fa = _mapper.Update(turno, user);
+            if (fa != 0)
+                return true;
+            else
+                return false;
+        }
+        public bool TurnoEliminar(BE.Turno turno, BE.User user)
+        {
+            int fa = _mapper.Delete(turno, user);
+            if (fa != 0)
+                return true;
+            else
+                return false;
+        }
+
+        public List<BE.TurnoHistorico> GetTurnosHistorico()
+        {
+            List<BE.TurnoHistorico> turnosHistorico = _mapper.GetAllHistorico();
+
+            return turnosHistorico;
+        }
+        public List<BE.TurnoHistorico> GetTurnosHistorico(BE.FiltroHistorico filtro)
+        {
+            List<BE.TurnoHistorico> turnosHistorico = _mapper.GetChanges(filtro);
+            return turnosHistorico;
         }
     }
 }

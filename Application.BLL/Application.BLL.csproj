@@ -43,6 +43,7 @@
   <ItemGroup>
     <Compile Include="Agenda.cs" />
     <Compile Include="BackupRestore.cs" />
+    <Compile Include="Bitacora.cs" />
     <Compile Include="BusinessLogicException.cs" />
     <Compile Include="Especialidad.cs" />
     <Compile Include="Estudio.cs" />

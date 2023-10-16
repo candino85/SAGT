@@ -59,30 +59,38 @@ namespace Application.UI.Negocio
             LoadCombos();
         }
 
-        private void cmbEstudio_SelectedIndexChanged(object sender, EventArgs e)
+
+        private void btnBuscar_Click(object sender, EventArgs e)
         {
-            if (cmbEstudio.SelectedValue != null)
+            if (cmbEstudio.SelectedValue != null && cmbSucursal.SelectedValue != null)
             {
                 estudio_BE = estudio_BLL.GetEstudioById((int)cmbEstudio.SelectedValue);
-                sucursal_BE = sucursal_BLL.GetSucursalById(1);
-                
-                SetTimeScale(estudio_BE.Tiempo);                
+                sucursal_BE = sucursal_BLL.GetSucursalById((int)cmbSucursal.SelectedValue);
+
+                SetTimeScale(estudio_BE.Tiempo);
                 RemoveItems();
 
                 if (rbtDisponibles.Checked)
                 {
-                    GetTurnos((int)cmbEstudio.SelectedValue);
-                    GetAgenda((int)cmbEstudio.SelectedValue);
+                    GetAgenda((int)cmbEstudio.SelectedValue, (int)cmbSucursal.SelectedValue);
+                    GetTurnos((int)cmbEstudio.SelectedValue, (int)cmbSucursal.SelectedValue);
+
                     PlaceItemsAgenda();
                 }
                 if (rbtAsignados.Checked)
                 {
-                    GetTurnos((int)cmbEstudio.SelectedValue);
+                    GetTurnos((int)cmbEstudio.SelectedValue, (int)cmbSucursal.SelectedValue);
                     PlaceItemsTurnos();
-                }                
+                }
             }
-            else
+            else if(cmbEstudio.SelectedValue is null)
                 MessageBox.Show("Seleccione un Estudio!", "INFO", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            else if (cmbSucursal.SelectedValue is null)
+                MessageBox.Show("Seleccione una Sucursal!", "INFO", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+        private void cmbEstudio_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
 
         private void SetTimeScale(int timeScale)
@@ -112,9 +120,14 @@ namespace Application.UI.Negocio
 
         private void monthView1_SelectionChanged(object sender, EventArgs e)
         {
-            calendar1.SetViewRange(monthView1.SelectionStart,monthView1.SelectionEnd);
-            cmbEstudio_SelectedIndexChanged(sender, e);
-            EnableButtons();
+            if (cmbEstudio.SelectedIndex != -1)
+            {
+                calendar1.SetViewRange(monthView1.SelectionStart, monthView1.SelectionEnd);
+                btnBuscar_Click(sender, e);
+                EnableButtons();
+            }
+            else
+                MessageBox.Show("Por favor seleccione un Estudio para continuar", "INFO", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         private void calendar1_LoadItems(object sender, CalendarLoadEventArgs e)
@@ -127,11 +140,11 @@ namespace Application.UI.Negocio
             updateLanguage(SessionManager.GetInstance.language);
         }
 
-        private void GetAgenda(int estudio)
+        private void GetAgenda(int estudio, int sucursal)
         {
             List<BE.Agenda> lstAgenda = new List<BE.Agenda>();
 
-            lstAgenda = agenda_BLL.GetAgendaByEstudio(estudio);
+            lstAgenda = agenda_BLL.GetByEstudioSucursal(estudio, sucursal);
             itemsAgenda.Clear();
 
             foreach (BE.Agenda a in lstAgenda)
@@ -149,11 +162,11 @@ namespace Application.UI.Negocio
             }
         }
 
-        private void GetTurnos(int estudio)
+        private void GetTurnos(int estudio, int sucursal)
         {
             List<BE.Turno> lstTurno = new List<BE.Turno>();
 
-            lstTurno = turno_BLL.GetTurnosByEstudio(estudio);
+            lstTurno = turno_BLL.GetTurnosByEstudioSucursal(estudio, sucursal);
 
             itemsTurnos.Clear();
 
@@ -218,12 +231,19 @@ namespace Application.UI.Negocio
         {
             EnableButtons();
 
-                calendarItemSelected = (CalendarItem)e.Item;
+            calendarItemSelected = (CalendarItem)e.Item;
             if (estudio_BE != null)
             {
                 txtFecha.Text = calendarItemSelected.DayStart.ToString();
                 txtHora.Text = calendarItemSelected.StartDate.ToShortTimeString();
                 txtEstudio.Text = estudio_BE.Nombre;
+
+                if(rbtAsignados.Checked)
+                {   
+                    turno = (BE.Turno)calendarItemSelected.Tag;
+                    cmbPaciente.SelectedValue = turno.client;
+                }
+
             }
             else
             {
@@ -237,11 +257,14 @@ namespace Application.UI.Negocio
             {
                 btnRegistrarTurno.Visible = true;
                 btnCancelarTurno.Visible = false;
+                btnEliminarTurno.Visible = false;
             }
             else if (rbtAsignados.Checked)
             {
                 btnCancelarTurno.Visible = true;
                 btnCancelarTurno.Enabled = true;
+                btnEliminarTurno.Visible = true;
+                btnEliminarTurno.Enabled = true;
                 btnRegistrarTurno.Visible = false;
             }
         }
@@ -262,13 +285,13 @@ namespace Application.UI.Negocio
         private void rbtDisponibles_CheckedChanged(object sender, EventArgs e)
         {
             if(rbtDisponibles.Checked)
-                cmbEstudio_SelectedIndexChanged(sender, e);
+                btnBuscar_Click(sender, e);
         }
 
         private void rbtAsignados_CheckedChanged(object sender, EventArgs e)
         {
             if(rbtAsignados.Checked)
-                cmbEstudio_SelectedIndexChanged(sender, e);
+                btnBuscar_Click(sender, e);
         }
 
         private void btnCrearPaciente_Click(object sender, EventArgs e)
@@ -294,7 +317,9 @@ namespace Application.UI.Negocio
                     sucursal = sucursal_BE.Id,
                 };
 
-                bool ok = turno_BLL.TurnoCreate(turno);
+                //calendarItemSelected.Tag = turno;
+
+                bool ok = turno_BLL.TurnoCreate(turno, SessionManager.GetInstance.Usuario);
                 if (ok)
                 {
                     //enviar correo con el turno al paciente
@@ -309,7 +334,7 @@ namespace Application.UI.Negocio
                     //    btnCancelarTurno.Visible = true;
                     //    btnRegistrarTurno.Visible = false;
                     //}
-                    cmbEstudio_SelectedIndexChanged(sender, new EventArgs());
+                    rbtDisponibles_CheckedChanged(sender, new EventArgs());
                 }
                 else
                 {
@@ -324,7 +349,24 @@ namespace Application.UI.Negocio
 
         private void btnCancelarTurno_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Esta función aún no se encuentra implementada","INFO", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            if(turno.estado == 'A')
+            {
+                DialogResult dialogResult = MessageBox.Show("Esta seguro de que desea cancelar el turno?", "CANCELACIÓN DE TURNO",MessageBoxButtons.YesNo,MessageBoxIcon.Question);
+                if (dialogResult == DialogResult.Yes)
+                {
+                    turno.estado = 'C';
+                    var ok = turno_BLL.TurnoUpdate(turno, SessionManager.GetInstance.Usuario);
+
+                    if (ok)
+                        MessageBox.Show("El turno se ha cancelado correctamente.", "INFO", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    else
+                        MessageBox.Show("Ocurrió un error al intentar cancelar el turno seleccionado.", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+
+                    rbtAsignados_CheckedChanged(sender, new EventArgs());
+                }
+            }
+            else
+                MessageBox.Show("El turno seleccionado se encuentra vencido.", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
         }
 
         public void updateLanguage(ILanguage language)
@@ -349,6 +391,28 @@ namespace Application.UI.Negocio
         private void frmRegistrarTurno_FormClosed(object sender, FormClosedEventArgs e)
         {
             SessionManager.GetInstance.UnsubscribeObserver(this);
+        }
+
+        private void btnEliminarTurno_Click(object sender, EventArgs e)
+        {
+            if (turno.estado == 'A')
+            {
+                DialogResult dialogResult = MessageBox.Show("Esta seguro de que desea eliminar el turno permanentemente?", "ELIMINACIÓN DE TURNO", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                
+                if (dialogResult == DialogResult.Yes)
+                {
+                    var ok = turno_BLL.TurnoEliminar(turno, SessionManager.GetInstance.Usuario);
+
+                    if (ok)
+                        MessageBox.Show("El turno se ha eliminado correctamente.", "INFO", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    else
+                        MessageBox.Show("Ocurrió un error al intentar eliminar el turno seleccionado.", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+
+                    rbtAsignados_CheckedChanged(sender, new EventArgs());
+                }
+            }
+            else
+                MessageBox.Show("El turno seleccionado se encuentra vencido.", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
         }
     }
 }

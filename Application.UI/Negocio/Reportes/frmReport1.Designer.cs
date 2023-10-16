@@ -79,6 +79,7 @@
             this.dtpDesde.Size = new System.Drawing.Size(237, 26);
             this.dtpDesde.TabIndex = 1;
             this.dtpDesde.Value = new System.DateTime(2023, 7, 11, 0, 0, 0, 0);
+            this.dtpDesde.ValueChanged += new System.EventHandler(this.dtpDesde_ValueChanged);
             // 
             // dtpHasta
             // 

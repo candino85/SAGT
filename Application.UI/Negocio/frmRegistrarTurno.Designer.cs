@@ -28,11 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange11 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
-            System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange12 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
-            System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange13 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
-            System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange14 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
-            System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange15 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
+            System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange1 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
+            System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange2 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
+            System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange3 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
+            System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange4 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
+            System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange5 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
             this.cmbEstudio = new System.Windows.Forms.ComboBox();
             this.lblEstudios = new System.Windows.Forms.Label();
             this.lblSucursal = new System.Windows.Forms.Label();
@@ -56,6 +56,8 @@
             this.btnCancelarTurno = new System.Windows.Forms.Button();
             this.btnRegistrarTurno = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.btnEliminarTurno = new System.Windows.Forms.Button();
+            this.btnBuscar = new System.Windows.Forms.Button();
             this.calendar1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -92,7 +94,6 @@
             // 
             // cmbSucursal
             // 
-            this.cmbSucursal.Enabled = false;
             this.cmbSucursal.FormattingEnabled = true;
             this.cmbSucursal.Location = new System.Drawing.Point(444, 43);
             this.cmbSucursal.Name = "cmbSucursal";
@@ -104,7 +105,7 @@
             // 
             this.lblPaciente.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.lblPaciente.AutoSize = true;
-            this.lblPaciente.Location = new System.Drawing.Point(13, 26);
+            this.lblPaciente.Location = new System.Drawing.Point(13, 59);
             this.lblPaciente.Name = "lblPaciente";
             this.lblPaciente.Size = new System.Drawing.Size(71, 20);
             this.lblPaciente.TabIndex = 7;
@@ -115,7 +116,7 @@
             // 
             this.cmbPaciente.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.cmbPaciente.FormattingEnabled = true;
-            this.cmbPaciente.Location = new System.Drawing.Point(13, 49);
+            this.cmbPaciente.Location = new System.Drawing.Point(13, 82);
             this.cmbPaciente.Name = "cmbPaciente";
             this.cmbPaciente.Size = new System.Drawing.Size(468, 28);
             this.cmbPaciente.TabIndex = 6;
@@ -124,7 +125,7 @@
             // btnCrearPaciente
             // 
             this.btnCrearPaciente.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.btnCrearPaciente.Location = new System.Drawing.Point(13, 83);
+            this.btnCrearPaciente.Location = new System.Drawing.Point(13, 116);
             this.btnCrearPaciente.Name = "btnCrearPaciente";
             this.btnCrearPaciente.Size = new System.Drawing.Size(468, 55);
             this.btnCrearPaciente.TabIndex = 8;
@@ -137,7 +138,7 @@
             // 
             this.label6.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(13, 300);
+            this.label6.Location = new System.Drawing.Point(13, 333);
             this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(44, 20);
@@ -149,7 +150,7 @@
             // 
             this.label5.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(13, 166);
+            this.label5.Location = new System.Drawing.Point(13, 199);
             this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(63, 20);
@@ -161,7 +162,7 @@
             // 
             this.label4.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(13, 231);
+            this.label4.Location = new System.Drawing.Point(13, 264);
             this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(54, 20);
@@ -173,7 +174,7 @@
             // 
             this.txtEstudio.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.txtEstudio.Enabled = false;
-            this.txtEstudio.Location = new System.Drawing.Point(13, 189);
+            this.txtEstudio.Location = new System.Drawing.Point(13, 222);
             this.txtEstudio.Name = "txtEstudio";
             this.txtEstudio.Size = new System.Drawing.Size(470, 26);
             this.txtEstudio.TabIndex = 312;
@@ -182,7 +183,7 @@
             // 
             this.txtFecha.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.txtFecha.Enabled = false;
-            this.txtFecha.Location = new System.Drawing.Point(13, 254);
+            this.txtFecha.Location = new System.Drawing.Point(13, 287);
             this.txtFecha.Name = "txtFecha";
             this.txtFecha.Size = new System.Drawing.Size(470, 26);
             this.txtFecha.TabIndex = 313;
@@ -191,7 +192,7 @@
             // 
             this.txtHora.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.txtHora.Enabled = false;
-            this.txtHora.Location = new System.Drawing.Point(13, 323);
+            this.txtHora.Location = new System.Drawing.Point(13, 356);
             this.txtHora.Name = "txtHora";
             this.txtHora.Size = new System.Drawing.Size(470, 26);
             this.txtHora.TabIndex = 314;
@@ -208,7 +209,7 @@
             this.monthView1.DaySelectedTextColor = System.Drawing.SystemColors.HighlightText;
             this.monthView1.FirstDayOfWeek = System.DayOfWeek.Monday;
             this.monthView1.ItemPadding = new System.Windows.Forms.Padding(2);
-            this.monthView1.Location = new System.Drawing.Point(1017, 23);
+            this.monthView1.Location = new System.Drawing.Point(1101, 23);
             this.monthView1.MonthTitleColor = System.Drawing.SystemColors.ActiveCaption;
             this.monthView1.MonthTitleColorInactive = System.Drawing.SystemColors.InactiveCaption;
             this.monthView1.MonthTitleTextColor = System.Drawing.SystemColors.ActiveCaptionText;
@@ -231,31 +232,31 @@
             this.calendar1.Controls.Add(this.monthView3);
             this.calendar1.Controls.Add(this.monthView2);
             this.calendar1.FirstDayOfWeek = System.DayOfWeek.Monday;
-            this.calendar1.Font = new System.Drawing.Font("Segoe UI", 9.5F);
-            calendarHighlightRange11.DayOfWeek = System.DayOfWeek.Monday;
-            calendarHighlightRange11.EndTime = System.TimeSpan.Parse("17:00:00");
-            calendarHighlightRange11.StartTime = System.TimeSpan.Parse("08:00:00");
-            calendarHighlightRange12.DayOfWeek = System.DayOfWeek.Tuesday;
-            calendarHighlightRange12.EndTime = System.TimeSpan.Parse("17:00:00");
-            calendarHighlightRange12.StartTime = System.TimeSpan.Parse("08:00:00");
-            calendarHighlightRange13.DayOfWeek = System.DayOfWeek.Wednesday;
-            calendarHighlightRange13.EndTime = System.TimeSpan.Parse("17:00:00");
-            calendarHighlightRange13.StartTime = System.TimeSpan.Parse("08:00:00");
-            calendarHighlightRange14.DayOfWeek = System.DayOfWeek.Thursday;
-            calendarHighlightRange14.EndTime = System.TimeSpan.Parse("17:00:00");
-            calendarHighlightRange14.StartTime = System.TimeSpan.Parse("08:00:00");
-            calendarHighlightRange15.DayOfWeek = System.DayOfWeek.Friday;
-            calendarHighlightRange15.EndTime = System.TimeSpan.Parse("17:00:00");
-            calendarHighlightRange15.StartTime = System.TimeSpan.Parse("08:00:00");
+            this.calendar1.Font = new System.Drawing.Font("Segoe UI", 11F);
+            calendarHighlightRange1.DayOfWeek = System.DayOfWeek.Monday;
+            calendarHighlightRange1.EndTime = System.TimeSpan.Parse("17:00:00");
+            calendarHighlightRange1.StartTime = System.TimeSpan.Parse("08:00:00");
+            calendarHighlightRange2.DayOfWeek = System.DayOfWeek.Tuesday;
+            calendarHighlightRange2.EndTime = System.TimeSpan.Parse("17:00:00");
+            calendarHighlightRange2.StartTime = System.TimeSpan.Parse("08:00:00");
+            calendarHighlightRange3.DayOfWeek = System.DayOfWeek.Wednesday;
+            calendarHighlightRange3.EndTime = System.TimeSpan.Parse("17:00:00");
+            calendarHighlightRange3.StartTime = System.TimeSpan.Parse("08:00:00");
+            calendarHighlightRange4.DayOfWeek = System.DayOfWeek.Thursday;
+            calendarHighlightRange4.EndTime = System.TimeSpan.Parse("17:00:00");
+            calendarHighlightRange4.StartTime = System.TimeSpan.Parse("08:00:00");
+            calendarHighlightRange5.DayOfWeek = System.DayOfWeek.Friday;
+            calendarHighlightRange5.EndTime = System.TimeSpan.Parse("17:00:00");
+            calendarHighlightRange5.StartTime = System.TimeSpan.Parse("08:00:00");
             this.calendar1.HighlightRanges = new System.Windows.Forms.Calendar.CalendarHighlightRange[] {
-        calendarHighlightRange11,
-        calendarHighlightRange12,
-        calendarHighlightRange13,
-        calendarHighlightRange14,
-        calendarHighlightRange15};
+        calendarHighlightRange1,
+        calendarHighlightRange2,
+        calendarHighlightRange3,
+        calendarHighlightRange4,
+        calendarHighlightRange5};
             this.calendar1.Location = new System.Drawing.Point(16, 88);
             this.calendar1.Name = "calendar1";
-            this.calendar1.Size = new System.Drawing.Size(981, 948);
+            this.calendar1.Size = new System.Drawing.Size(1065, 999);
             this.calendar1.TabIndex = 311;
             this.calendar1.Text = "calendar1";
             this.calendar1.LoadItems += new System.Windows.Forms.Calendar.Calendar.CalendarLoadEventHandler(this.calendar1_LoadItems);
@@ -331,9 +332,9 @@
             // 
             // btnCrearEstudio
             // 
-            this.btnCrearEstudio.Location = new System.Drawing.Point(273, 23);
+            this.btnCrearEstudio.Location = new System.Drawing.Point(273, 43);
             this.btnCrearEstudio.Name = "btnCrearEstudio";
-            this.btnCrearEstudio.Size = new System.Drawing.Size(161, 59);
+            this.btnCrearEstudio.Size = new System.Drawing.Size(161, 32);
             this.btnCrearEstudio.TabIndex = 318;
             this.btnCrearEstudio.Tag = "crear estudio";
             this.btnCrearEstudio.Text = "Crear Estudio";
@@ -344,9 +345,9 @@
             // 
             this.btnCancelarTurno.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.btnCancelarTurno.Enabled = false;
-            this.btnCancelarTurno.Location = new System.Drawing.Point(13, 378);
+            this.btnCancelarTurno.Location = new System.Drawing.Point(11, 434);
             this.btnCancelarTurno.Name = "btnCancelarTurno";
-            this.btnCancelarTurno.Size = new System.Drawing.Size(468, 55);
+            this.btnCancelarTurno.Size = new System.Drawing.Size(468, 39);
             this.btnCancelarTurno.TabIndex = 317;
             this.btnCancelarTurno.Tag = "cancelar turno";
             this.btnCancelarTurno.Text = "Cancelar Turno";
@@ -357,9 +358,9 @@
             // btnRegistrarTurno
             // 
             this.btnRegistrarTurno.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.btnRegistrarTurno.Location = new System.Drawing.Point(17, 378);
+            this.btnRegistrarTurno.Location = new System.Drawing.Point(12, 388);
             this.btnRegistrarTurno.Name = "btnRegistrarTurno";
-            this.btnRegistrarTurno.Size = new System.Drawing.Size(467, 55);
+            this.btnRegistrarTurno.Size = new System.Drawing.Size(467, 40);
             this.btnRegistrarTurno.TabIndex = 307;
             this.btnRegistrarTurno.Tag = "registrar turno";
             this.btnRegistrarTurno.Text = "Registrar Turno";
@@ -370,6 +371,7 @@
             // panel1
             // 
             this.panel1.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.panel1.Controls.Add(this.btnEliminarTurno);
             this.panel1.Controls.Add(this.btnRegistrarTurno);
             this.panel1.Controls.Add(this.btnCancelarTurno);
             this.panel1.Controls.Add(this.txtHora);
@@ -381,16 +383,42 @@
             this.panel1.Controls.Add(this.btnCrearPaciente);
             this.panel1.Controls.Add(this.lblPaciente);
             this.panel1.Controls.Add(this.cmbPaciente);
-            this.panel1.Location = new System.Drawing.Point(1003, 574);
+            this.panel1.Location = new System.Drawing.Point(1087, 558);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(496, 462);
+            this.panel1.Size = new System.Drawing.Size(496, 529);
             this.panel1.TabIndex = 319;
+            // 
+            // btnEliminarTurno
+            // 
+            this.btnEliminarTurno.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.btnEliminarTurno.Enabled = false;
+            this.btnEliminarTurno.Location = new System.Drawing.Point(11, 479);
+            this.btnEliminarTurno.Name = "btnEliminarTurno";
+            this.btnEliminarTurno.Size = new System.Drawing.Size(468, 39);
+            this.btnEliminarTurno.TabIndex = 318;
+            this.btnEliminarTurno.Tag = "eliminar turno";
+            this.btnEliminarTurno.Text = "Eliminar Turno";
+            this.btnEliminarTurno.UseVisualStyleBackColor = true;
+            this.btnEliminarTurno.Visible = false;
+            this.btnEliminarTurno.Click += new System.EventHandler(this.btnEliminarTurno_Click);
+            // 
+            // btnBuscar
+            // 
+            this.btnBuscar.Location = new System.Drawing.Point(917, 39);
+            this.btnBuscar.Name = "btnBuscar";
+            this.btnBuscar.Size = new System.Drawing.Size(161, 32);
+            this.btnBuscar.TabIndex = 320;
+            this.btnBuscar.Tag = "buscar";
+            this.btnBuscar.Text = "Buscar";
+            this.btnBuscar.UseVisualStyleBackColor = true;
+            this.btnBuscar.Click += new System.EventHandler(this.btnBuscar_Click);
             // 
             // frmRegistrarTurno
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1511, 1048);
+            this.ClientSize = new System.Drawing.Size(1595, 1099);
+            this.Controls.Add(this.btnBuscar);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.btnCrearEstudio);
             this.Controls.Add(this.rbtAsignados);
@@ -438,5 +466,7 @@
         private System.Windows.Forms.Button btnCancelarTurno;
         private System.Windows.Forms.Button btnRegistrarTurno;
         private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Button btnEliminarTurno;
+        private System.Windows.Forms.Button btnBuscar;
     }
 }

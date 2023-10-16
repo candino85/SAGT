@@ -67,6 +67,9 @@
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
+    <Reference Include="Zen.Barcode.Core, Version=3.1.0.0, Culture=neutral, PublicKeyToken=b5ae55aa76d2d9de, processorArchitecture=MSIL">
+      <HintPath>..\packages\Zen.Barcode.Rendering.Framework.3.1.10729.1\lib\Zen.Barcode.Core.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Backup\frmBackupRestore.cs">
@@ -81,6 +84,12 @@
     <Compile Include="Bitacora\frmBitacora.Designer.cs">
       <DependentUpon>frmBitacora.cs</DependentUpon>
     </Compile>
+    <Compile Include="Bitacora\frmBitacoraCambios.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Bitacora\frmBitacoraCambios.Designer.cs">
+      <DependentUpon>frmBitacoraCambios.cs</DependentUpon>
+    </Compile>
     <Compile Include="Composite\frmPermissions.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -92,6 +101,12 @@
     </Compile>
     <Compile Include="Customs Controls\TextBoxLabeled.Designer.cs">
       <DependentUpon>TextBoxLabeled.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Digito Verificador\frmDigitoVerificador.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Digito Verificador\frmDigitoVerificador.Designer.cs">
+      <DependentUpon>frmDigitoVerificador.cs</DependentUpon>
     </Compile>
     <Compile Include="Negocio\ABM\frmAgenda.cs">
       <SubType>Form</SubType>
@@ -202,6 +217,24 @@
     <Compile Include="Negocio\ABM\frmEstudioList.Designer.cs">
       <DependentUpon>frmEstudioList.cs</DependentUpon>
     </Compile>
+    <Compile Include="Negocio\frmRegistrarMuestra.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Negocio\frmRegistrarMuestra.Designer.cs">
+      <DependentUpon>frmRegistrarMuestra.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Negocio\frmRegistrarMuestraQRPreview.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Negocio\frmRegistrarMuestraQRPreview.Designer.cs">
+      <DependentUpon>frmRegistrarMuestraQRPreview.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Negocio\frmVerTurnosxEstudio.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Negocio\frmVerTurnosxEstudio.Designer.cs">
+      <DependentUpon>frmVerTurnosxEstudio.cs</DependentUpon>
+    </Compile>
     <Compile Include="Negocio\frmRegistrarTurno.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -231,8 +264,14 @@
     <EmbeddedResource Include="Bitacora\frmBitacora.resx">
       <DependentUpon>frmBitacora.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Bitacora\frmBitacoraCambios.resx">
+      <DependentUpon>frmBitacoraCambios.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Customs Controls\TextBoxLabeled.resx">
       <DependentUpon>TextBoxLabeled.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Digito Verificador\frmDigitoVerificador.resx">
+      <DependentUpon>frmDigitoVerificador.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Negocio\ABM\frmAgenda.resx">
       <DependentUpon>frmAgenda.cs</DependentUpon>
@@ -287,6 +326,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Negocio\ABM\frmEstudioList.resx">
       <DependentUpon>frmEstudioList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Negocio\frmRegistrarMuestra.resx">
+      <DependentUpon>frmRegistrarMuestra.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Negocio\frmRegistrarMuestraQRPreview.resx">
+      <DependentUpon>frmRegistrarMuestraQRPreview.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Negocio\frmVerTurnosxEstudio.resx">
+      <DependentUpon>frmVerTurnosxEstudio.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Negocio\frmRegistrarTurno.resx">
       <DependentUpon>frmRegistrarTurno.cs</DependentUpon>

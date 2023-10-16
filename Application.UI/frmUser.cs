@@ -20,6 +20,8 @@ namespace Application.UI
         BLL.Sucursal entity;
         BLL.Permission permission;
 
+        BLL.Bitacora bitacora;
+
         private frmUsersList _frmUsersList;
 
         public frmUser()
@@ -99,7 +101,6 @@ namespace Application.UI
         {
             try
             {
-                // TODO implementar validaciones con controles customs
                 if (!string.IsNullOrEmpty(txtDNI.Text) &&
                     !string.IsNullOrEmpty(txtNombre.Text) &&
                     !string.IsNullOrEmpty(txtApellido.Text) &&
@@ -144,6 +145,7 @@ namespace Application.UI
                         {
                             EmailSender.NotificarContraseña(usuario_BE.LoginName, tmppsw, usuario_BE.Email);
                             MessageBox.Show("Usuario creado correctamente, las credenciales se enviaron al correo electrónico del nuevo usuario.", "INFO", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
                             this.Close();
                         }
                         // guardo el Rol del usuario
@@ -193,8 +195,7 @@ namespace Application.UI
                 }
                 else if (newUser.Blocked == false && chkBlocked.Checked == true)
                 {
-                    msg = "Usuario bloqueado correctamente.";
-                    
+                    msg = "Usuario bloqueado correctamente.";                    
                 }
                 newUser.Blocked = chkBlocked.Checked;
                 newUser.Role = int.Parse(cmbRole.SelectedValue.ToString());
@@ -241,7 +242,7 @@ namespace Application.UI
 
                 if (!usuario_BE.Equals(userDB))
                 {
-                    operation = usuario_BLL.UserUpdate(usuario_BE);
+                    operation = usuario_BLL.UserUpdate(usuario_BE,msg);
 
                     // refactorizar
                     if (cmbRole.SelectedValue != null)
@@ -319,7 +320,7 @@ namespace Application.UI
         {
             usuario_BE.Attempts = 0;
             usuario_BE.Blocked = false;
-            usuario_BLL.UserUpdate(usuario_BE);
+            usuario_BLL.UserUpdate(usuario_BE,"Reseteo de clave");
 
             var updUser = usuario_BE;
             string tmppsw = Encrypt.GetRandomPassword();

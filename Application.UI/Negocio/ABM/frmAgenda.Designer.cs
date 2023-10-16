@@ -59,6 +59,8 @@
             this.chkSabado = new System.Windows.Forms.CheckBox();
             this.chkDomingo = new System.Windows.Forms.CheckBox();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.label5 = new System.Windows.Forms.Label();
+            this.cmbSucursal = new System.Windows.Forms.ComboBox();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -67,7 +69,7 @@
             this.cmbEstudio.FormattingEnabled = true;
             this.cmbEstudio.Location = new System.Drawing.Point(27, 35);
             this.cmbEstudio.Name = "cmbEstudio";
-            this.cmbEstudio.Size = new System.Drawing.Size(242, 28);
+            this.cmbEstudio.Size = new System.Drawing.Size(418, 28);
             this.cmbEstudio.TabIndex = 0;
             // 
             // label1
@@ -83,7 +85,7 @@
             // htpLunesDesde
             // 
             this.htpLunesDesde.Format = System.Windows.Forms.DateTimePickerFormat.Time;
-            this.htpLunesDesde.Location = new System.Drawing.Point(165, 177);
+            this.htpLunesDesde.Location = new System.Drawing.Point(168, 232);
             this.htpLunesDesde.Name = "htpLunesDesde";
             this.htpLunesDesde.ShowUpDown = true;
             this.htpLunesDesde.Size = new System.Drawing.Size(134, 26);
@@ -93,7 +95,7 @@
             // htpLunesHasta
             // 
             this.htpLunesHasta.Format = System.Windows.Forms.DateTimePickerFormat.Time;
-            this.htpLunesHasta.Location = new System.Drawing.Point(308, 177);
+            this.htpLunesHasta.Location = new System.Drawing.Point(311, 232);
             this.htpLunesHasta.Name = "htpLunesHasta";
             this.htpLunesHasta.ShowUpDown = true;
             this.htpLunesHasta.Size = new System.Drawing.Size(134, 26);
@@ -103,7 +105,7 @@
             // dtpFechaDesde
             // 
             this.dtpFechaDesde.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpFechaDesde.Location = new System.Drawing.Point(26, 109);
+            this.dtpFechaDesde.Location = new System.Drawing.Point(29, 164);
             this.dtpFechaDesde.Name = "dtpFechaDesde";
             this.dtpFechaDesde.Size = new System.Drawing.Size(198, 26);
             this.dtpFechaDesde.TabIndex = 19;
@@ -111,7 +113,7 @@
             // dtpFechaHasta
             // 
             this.dtpFechaHasta.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpFechaHasta.Location = new System.Drawing.Point(230, 109);
+            this.dtpFechaHasta.Location = new System.Drawing.Point(233, 164);
             this.dtpFechaHasta.Name = "dtpFechaHasta";
             this.dtpFechaHasta.Size = new System.Drawing.Size(198, 26);
             this.dtpFechaHasta.TabIndex = 20;
@@ -119,7 +121,7 @@
             // htpMartesHasta
             // 
             this.htpMartesHasta.Format = System.Windows.Forms.DateTimePickerFormat.Time;
-            this.htpMartesHasta.Location = new System.Drawing.Point(308, 217);
+            this.htpMartesHasta.Location = new System.Drawing.Point(311, 272);
             this.htpMartesHasta.Name = "htpMartesHasta";
             this.htpMartesHasta.ShowUpDown = true;
             this.htpMartesHasta.Size = new System.Drawing.Size(134, 26);
@@ -129,7 +131,7 @@
             // htpMartesDesde
             // 
             this.htpMartesDesde.Format = System.Windows.Forms.DateTimePickerFormat.Time;
-            this.htpMartesDesde.Location = new System.Drawing.Point(165, 217);
+            this.htpMartesDesde.Location = new System.Drawing.Point(168, 272);
             this.htpMartesDesde.Name = "htpMartesDesde";
             this.htpMartesDesde.ShowUpDown = true;
             this.htpMartesDesde.Size = new System.Drawing.Size(134, 26);
@@ -139,7 +141,7 @@
             // htpMiercolesHasta
             // 
             this.htpMiercolesHasta.Format = System.Windows.Forms.DateTimePickerFormat.Time;
-            this.htpMiercolesHasta.Location = new System.Drawing.Point(308, 257);
+            this.htpMiercolesHasta.Location = new System.Drawing.Point(311, 312);
             this.htpMiercolesHasta.Name = "htpMiercolesHasta";
             this.htpMiercolesHasta.ShowUpDown = true;
             this.htpMiercolesHasta.Size = new System.Drawing.Size(134, 26);
@@ -149,7 +151,7 @@
             // htpMiercolesDesde
             // 
             this.htpMiercolesDesde.Format = System.Windows.Forms.DateTimePickerFormat.Time;
-            this.htpMiercolesDesde.Location = new System.Drawing.Point(165, 257);
+            this.htpMiercolesDesde.Location = new System.Drawing.Point(168, 312);
             this.htpMiercolesDesde.Name = "htpMiercolesDesde";
             this.htpMiercolesDesde.ShowUpDown = true;
             this.htpMiercolesDesde.Size = new System.Drawing.Size(134, 26);
@@ -159,7 +161,7 @@
             // htpJuevesHasta
             // 
             this.htpJuevesHasta.Format = System.Windows.Forms.DateTimePickerFormat.Time;
-            this.htpJuevesHasta.Location = new System.Drawing.Point(308, 297);
+            this.htpJuevesHasta.Location = new System.Drawing.Point(311, 352);
             this.htpJuevesHasta.Name = "htpJuevesHasta";
             this.htpJuevesHasta.ShowUpDown = true;
             this.htpJuevesHasta.Size = new System.Drawing.Size(134, 26);
@@ -169,7 +171,7 @@
             // htpViernesHasta
             // 
             this.htpViernesHasta.Format = System.Windows.Forms.DateTimePickerFormat.Time;
-            this.htpViernesHasta.Location = new System.Drawing.Point(308, 336);
+            this.htpViernesHasta.Location = new System.Drawing.Point(311, 391);
             this.htpViernesHasta.Name = "htpViernesHasta";
             this.htpViernesHasta.ShowUpDown = true;
             this.htpViernesHasta.Size = new System.Drawing.Size(134, 26);
@@ -179,7 +181,7 @@
             // htpViernesDesde
             // 
             this.htpViernesDesde.Format = System.Windows.Forms.DateTimePickerFormat.Time;
-            this.htpViernesDesde.Location = new System.Drawing.Point(165, 336);
+            this.htpViernesDesde.Location = new System.Drawing.Point(168, 391);
             this.htpViernesDesde.Name = "htpViernesDesde";
             this.htpViernesDesde.ShowUpDown = true;
             this.htpViernesDesde.Size = new System.Drawing.Size(134, 26);
@@ -189,7 +191,7 @@
             // htpSabadoHasta
             // 
             this.htpSabadoHasta.Format = System.Windows.Forms.DateTimePickerFormat.Time;
-            this.htpSabadoHasta.Location = new System.Drawing.Point(308, 375);
+            this.htpSabadoHasta.Location = new System.Drawing.Point(311, 430);
             this.htpSabadoHasta.Name = "htpSabadoHasta";
             this.htpSabadoHasta.ShowUpDown = true;
             this.htpSabadoHasta.Size = new System.Drawing.Size(134, 26);
@@ -199,7 +201,7 @@
             // htpSabadoDesde
             // 
             this.htpSabadoDesde.Format = System.Windows.Forms.DateTimePickerFormat.Time;
-            this.htpSabadoDesde.Location = new System.Drawing.Point(165, 375);
+            this.htpSabadoDesde.Location = new System.Drawing.Point(168, 430);
             this.htpSabadoDesde.Name = "htpSabadoDesde";
             this.htpSabadoDesde.ShowUpDown = true;
             this.htpSabadoDesde.Size = new System.Drawing.Size(134, 26);
@@ -209,7 +211,7 @@
             // htpDomingoHasta
             // 
             this.htpDomingoHasta.Format = System.Windows.Forms.DateTimePickerFormat.Time;
-            this.htpDomingoHasta.Location = new System.Drawing.Point(308, 415);
+            this.htpDomingoHasta.Location = new System.Drawing.Point(311, 470);
             this.htpDomingoHasta.Name = "htpDomingoHasta";
             this.htpDomingoHasta.ShowUpDown = true;
             this.htpDomingoHasta.Size = new System.Drawing.Size(134, 26);
@@ -219,7 +221,7 @@
             // htpDomingoDesde
             // 
             this.htpDomingoDesde.Format = System.Windows.Forms.DateTimePickerFormat.Time;
-            this.htpDomingoDesde.Location = new System.Drawing.Point(165, 415);
+            this.htpDomingoDesde.Location = new System.Drawing.Point(168, 470);
             this.htpDomingoDesde.Name = "htpDomingoDesde";
             this.htpDomingoDesde.ShowUpDown = true;
             this.htpDomingoDesde.Size = new System.Drawing.Size(134, 26);
@@ -229,7 +231,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(23, 86);
+            this.label2.Location = new System.Drawing.Point(26, 141);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(102, 20);
             this.label2.TabIndex = 33;
@@ -239,7 +241,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(226, 86);
+            this.label3.Location = new System.Drawing.Point(229, 141);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(101, 20);
             this.label3.TabIndex = 34;
@@ -249,7 +251,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(175, 150);
+            this.label4.Location = new System.Drawing.Point(178, 205);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(95, 20);
             this.label4.TabIndex = 35;
@@ -259,7 +261,7 @@
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(320, 150);
+            this.label11.Location = new System.Drawing.Point(323, 205);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(91, 20);
             this.label11.TabIndex = 42;
@@ -268,7 +270,7 @@
             // 
             // btnCrearAgenda
             // 
-            this.btnCrearAgenda.Location = new System.Drawing.Point(165, 465);
+            this.btnCrearAgenda.Location = new System.Drawing.Point(168, 520);
             this.btnCrearAgenda.Name = "btnCrearAgenda";
             this.btnCrearAgenda.Size = new System.Drawing.Size(277, 38);
             this.btnCrearAgenda.TabIndex = 43;
@@ -280,7 +282,7 @@
             // htpJuevesDesde
             // 
             this.htpJuevesDesde.Format = System.Windows.Forms.DateTimePickerFormat.Time;
-            this.htpJuevesDesde.Location = new System.Drawing.Point(165, 297);
+            this.htpJuevesDesde.Location = new System.Drawing.Point(168, 352);
             this.htpJuevesDesde.Name = "htpJuevesDesde";
             this.htpJuevesDesde.ShowUpDown = true;
             this.htpJuevesDesde.Size = new System.Drawing.Size(134, 26);
@@ -373,16 +375,36 @@
             this.panel1.Controls.Add(this.chkMiercoles);
             this.panel1.Controls.Add(this.chkMartes);
             this.panel1.Controls.Add(this.chkLunes);
-            this.panel1.Location = new System.Drawing.Point(19, 165);
+            this.panel1.Location = new System.Drawing.Point(22, 220);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(121, 289);
             this.panel1.TabIndex = 44;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(26, 75);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(71, 20);
+            this.label5.TabIndex = 46;
+            this.label5.Tag = "sucursal";
+            this.label5.Text = "Sucursal";
+            // 
+            // cmbSucursal
+            // 
+            this.cmbSucursal.FormattingEnabled = true;
+            this.cmbSucursal.Location = new System.Drawing.Point(27, 98);
+            this.cmbSucursal.Name = "cmbSucursal";
+            this.cmbSucursal.Size = new System.Drawing.Size(418, 28);
+            this.cmbSucursal.TabIndex = 45;
             // 
             // frmAgenda
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(462, 528);
+            this.ClientSize = new System.Drawing.Size(478, 589);
+            this.Controls.Add(this.label5);
+            this.Controls.Add(this.cmbSucursal);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.btnCrearAgenda);
             this.Controls.Add(this.label11);
@@ -450,5 +472,7 @@
         private System.Windows.Forms.CheckBox chkSabado;
         private System.Windows.Forms.CheckBox chkDomingo;
         private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.ComboBox cmbSucursal;
     }
 }

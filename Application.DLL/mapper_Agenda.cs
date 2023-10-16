@@ -12,11 +12,12 @@ namespace Application.DLL
     public class mapper_Agenda
     {
         readonly DBAccess accesso = new DBAccess();
-        public List<Agenda> GetByEstudio(int estudio)
+        public List<Agenda> GetByEstudioSucursal(int estudio, int entidad)
         {
             List<Agenda> agendas = new List<Agenda>();
-            SqlParameter[] parameter = new SqlParameter[1];
+            SqlParameter[] parameter = new SqlParameter[2];
             parameter[0] = new SqlParameter("@estudio",estudio);
+            parameter[1] = new SqlParameter("@entidad", entidad);
 
             try
             {
@@ -46,10 +47,11 @@ namespace Application.DLL
         {
             try
             {
-                SqlParameter[] parameters = new SqlParameter[3];
+                SqlParameter[] parameters = new SqlParameter[4];
                 parameters[0] = new SqlParameter("estudio", agenda.estudio);
                 parameters[1] = new SqlParameter("fechaDesde", agenda.fechaDesde);
                 parameters[2] = new SqlParameter("fechaHasta", agenda.fechaHasta);
+                parameters[3] = new SqlParameter("entidad", agenda.entidad);
 
                 return accesso.Write("AgendaCrear", parameters);
             }

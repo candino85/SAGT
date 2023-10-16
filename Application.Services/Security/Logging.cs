@@ -9,6 +9,7 @@ namespace Application.Services.Security
 {
     public class Logging
     {
+        
         public void Info (string message)
         {
             Log.Information(message);

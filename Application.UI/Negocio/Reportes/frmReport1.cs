@@ -65,5 +65,10 @@ namespace Application.UI.Negocio.Reportes
         {
             SessionManager.GetInstance.UnsubscribeObserver(this);
         }
+
+        private void dtpDesde_ValueChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

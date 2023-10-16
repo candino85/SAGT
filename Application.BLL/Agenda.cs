@@ -16,9 +16,9 @@ namespace Application.BLL
             _mapper = new mapper_Agenda();
         }
 
-        public List<BE.Agenda> GetAgendaByEstudio(int estudio)
+        public List<BE.Agenda> GetByEstudioSucursal(int estudio, int sucursal)
         {
-            List<BE.Agenda> agenda = _mapper.GetByEstudio(estudio);
+            List<BE.Agenda> agenda = _mapper.GetByEstudioSucursal(estudio, sucursal);
             return agenda;
         }
 

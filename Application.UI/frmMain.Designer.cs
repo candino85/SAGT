@@ -42,10 +42,11 @@ namespace Application.UI
             this.menuAdministrar = new System.Windows.Forms.ToolStripMenuItem();
             this.menuUsuarios = new System.Windows.Forms.ToolStripMenuItem();
             this.crearUsuario = new System.Windows.Forms.ToolStripMenuItem();
-            this.ModificarUsuario = new System.Windows.Forms.ToolStripMenuItem();
+            this.modificarUsuario = new System.Windows.Forms.ToolStripMenuItem();
             this.menuPerfiles = new System.Windows.Forms.ToolStripMenuItem();
             this.menuIdiomas = new System.Windows.Forms.ToolStripMenuItem();
             this.menuBackupRestore = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuBitacora = new System.Windows.Forms.ToolStripMenuItem();
             this.menuMaestros = new System.Windows.Forms.ToolStripMenuItem();
             this.menuSucursales = new System.Windows.Forms.ToolStripMenuItem();
             this.menuEspacios = new System.Windows.Forms.ToolStripMenuItem();
@@ -53,13 +54,14 @@ namespace Application.UI
             this.crearPaciente = new System.Windows.Forms.ToolStripMenuItem();
             this.modificarPaciente = new System.Windows.Forms.ToolStripMenuItem();
             this.menuEspecialidades = new System.Windows.Forms.ToolStripMenuItem();
-            this.crearToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.crearEspecialidad = new System.Windows.Forms.ToolStripMenuItem();
             this.menuEstudios = new System.Windows.Forms.ToolStripMenuItem();
             this.crearEstudio = new System.Windows.Forms.ToolStripMenuItem();
-            this.modificarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.menuTurnos = new System.Windows.Forms.ToolStripMenuItem();
-            this.menuRegistrarTurno = new System.Windows.Forms.ToolStripMenuItem();
+            this.modificarEstudio = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuRegistrar = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuTurno = new System.Windows.Forms.ToolStripMenuItem();
             this.menuAgenda = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuMuestra = new System.Windows.Forms.ToolStripMenuItem();
             this.menuReportes = new System.Windows.Forms.ToolStripMenuItem();
             this.menuReportesTurnos = new System.Windows.Forms.ToolStripMenuItem();
             this.menuAyuda = new System.Windows.Forms.ToolStripMenuItem();
@@ -67,6 +69,7 @@ namespace Application.UI
             this.logoutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.españolToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.englishToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuHistoricoDeCambios = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip.SuspendLayout();
             this.menu.SuspendLayout();
             this.SuspendLayout();
@@ -76,10 +79,10 @@ namespace Application.UI
             this.statusStrip.ImageScalingSize = new System.Drawing.Size(24, 24);
             this.statusStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.lblEstado});
-            this.statusStrip.Location = new System.Drawing.Point(0, 797);
+            this.statusStrip.Location = new System.Drawing.Point(0, 792);
             this.statusStrip.Name = "statusStrip";
             this.statusStrip.Padding = new System.Windows.Forms.Padding(2, 0, 21, 0);
-            this.statusStrip.Size = new System.Drawing.Size(1389, 32);
+            this.statusStrip.Size = new System.Drawing.Size(1389, 37);
             this.statusStrip.TabIndex = 2;
             this.statusStrip.Tag = "Estado";
             this.statusStrip.Text = "Estado";
@@ -87,7 +90,7 @@ namespace Application.UI
             // lblEstado
             // 
             this.lblEstado.Name = "lblEstado";
-            this.lblEstado.Size = new System.Drawing.Size(68, 25);
+            this.lblEstado.Size = new System.Drawing.Size(77, 30);
             this.lblEstado.Tag = "estado";
             this.lblEstado.Text = "Estado";
             // 
@@ -100,7 +103,7 @@ namespace Application.UI
             this.sesionToolStripMenuItem,
             this.menuAdministrar,
             this.menuMaestros,
-            this.menuTurnos,
+            this.menuRegistrar,
             this.menuReportes,
             this.menuAyuda});
             this.menu.Location = new System.Drawing.Point(0, 0);
@@ -146,7 +149,7 @@ namespace Application.UI
             this.menuCambiarClave.Tag = "cambiar clave";
             this.menuCambiarClave.Text = "Cambiar Clave";
             this.menuCambiarClave.Visible = false;
-            this.menuCambiarClave.Click += new System.EventHandler(this.cambiarClaveToolStripMenuItem_Click);
+            this.menuCambiarClave.Click += new System.EventHandler(this.menuCambiarClave_Click);
             // 
             // menuLanguage
             // 
@@ -170,7 +173,7 @@ namespace Application.UI
             this.menuCerrar.Size = new System.Drawing.Size(270, 36);
             this.menuCerrar.Tag = "salir";
             this.menuCerrar.Text = "Salir";
-            this.menuCerrar.Click += new System.EventHandler(this.salirToolStripMenuItem_Click);
+            this.menuCerrar.Click += new System.EventHandler(this.menuCerrar_Click);
             // 
             // menuAdministrar
             // 
@@ -178,7 +181,8 @@ namespace Application.UI
             this.menuUsuarios,
             this.menuPerfiles,
             this.menuIdiomas,
-            this.menuBackupRestore});
+            this.menuBackupRestore,
+            this.menuBitacora});
             this.menuAdministrar.Name = "menuAdministrar";
             this.menuAdministrar.Size = new System.Drawing.Size(130, 32);
             this.menuAdministrar.Tag = "administrar";
@@ -189,34 +193,34 @@ namespace Application.UI
             // 
             this.menuUsuarios.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.crearUsuario,
-            this.ModificarUsuario});
+            this.modificarUsuario});
             this.menuUsuarios.Name = "menuUsuarios";
-            this.menuUsuarios.Size = new System.Drawing.Size(260, 36);
+            this.menuUsuarios.Size = new System.Drawing.Size(270, 36);
             this.menuUsuarios.Tag = "usuarios";
             this.menuUsuarios.Text = "Usuarios";
             // 
             // crearUsuario
             // 
             this.crearUsuario.Name = "crearUsuario";
-            this.crearUsuario.Size = new System.Drawing.Size(198, 36);
+            this.crearUsuario.Size = new System.Drawing.Size(270, 36);
             this.crearUsuario.Tag = "crear";
             this.crearUsuario.Text = "Crear";
             this.crearUsuario.ToolTipText = "crear";
-            this.crearUsuario.Click += new System.EventHandler(this.nuevoUsuarioToolStripMenuItem_Click);
+            this.crearUsuario.Click += new System.EventHandler(this.crearUsuario_Click);
             // 
-            // ModificarUsuario
+            // modificarUsuario
             // 
-            this.ModificarUsuario.Name = "ModificarUsuario";
-            this.ModificarUsuario.Size = new System.Drawing.Size(198, 36);
-            this.ModificarUsuario.Tag = "modificar";
-            this.ModificarUsuario.Text = "Modificar";
-            this.ModificarUsuario.ToolTipText = "modificar";
-            this.ModificarUsuario.Click += new System.EventHandler(this.buscarUsuarioToolStripMenuItem_Click);
+            this.modificarUsuario.Name = "modificarUsuario";
+            this.modificarUsuario.Size = new System.Drawing.Size(270, 36);
+            this.modificarUsuario.Tag = "modificar";
+            this.modificarUsuario.Text = "Modificar";
+            this.modificarUsuario.ToolTipText = "modificar";
+            this.modificarUsuario.Click += new System.EventHandler(this.modificarUsuario_Click);
             // 
             // menuPerfiles
             // 
             this.menuPerfiles.Name = "menuPerfiles";
-            this.menuPerfiles.Size = new System.Drawing.Size(260, 36);
+            this.menuPerfiles.Size = new System.Drawing.Size(270, 36);
             this.menuPerfiles.Tag = "perfiles";
             this.menuPerfiles.Text = "Perfiles";
             this.menuPerfiles.Click += new System.EventHandler(this.menuPerfiles_Click);
@@ -224,18 +228,26 @@ namespace Application.UI
             // menuIdiomas
             // 
             this.menuIdiomas.Name = "menuIdiomas";
-            this.menuIdiomas.Size = new System.Drawing.Size(260, 36);
+            this.menuIdiomas.Size = new System.Drawing.Size(270, 36);
             this.menuIdiomas.Tag = "idiomas";
             this.menuIdiomas.Text = "Idiomas";
-            this.menuIdiomas.Click += new System.EventHandler(this.idiomasToolStripMenuItem_Click);
+            this.menuIdiomas.Click += new System.EventHandler(this.menuIdiomas_Click);
             // 
             // menuBackupRestore
             // 
             this.menuBackupRestore.Name = "menuBackupRestore";
-            this.menuBackupRestore.Size = new System.Drawing.Size(260, 36);
+            this.menuBackupRestore.Size = new System.Drawing.Size(270, 36);
             this.menuBackupRestore.Tag = "backup/restore";
             this.menuBackupRestore.Text = "Backup / Restore";
             this.menuBackupRestore.Click += new System.EventHandler(this.menuBackupRestore_Click);
+            // 
+            // menuBitacora
+            // 
+            this.menuBitacora.Name = "menuBitacora";
+            this.menuBitacora.Size = new System.Drawing.Size(270, 36);
+            this.menuBitacora.Tag = "bitacora";
+            this.menuBitacora.Text = "Bitacora";
+            this.menuBitacora.Click += new System.EventHandler(this.menuBitacora_Click);
             // 
             // menuMaestros
             // 
@@ -257,7 +269,7 @@ namespace Application.UI
             this.menuSucursales.Size = new System.Drawing.Size(270, 36);
             this.menuSucursales.Tag = "sucursal";
             this.menuSucursales.Text = "Sucursal";
-            this.menuSucursales.Click += new System.EventHandler(this.sucursalToolStripMenuItem_Click);
+            this.menuSucursales.Click += new System.EventHandler(this.menuSucursales_Click);
             // 
             // menuEspacios
             // 
@@ -265,7 +277,7 @@ namespace Application.UI
             this.menuEspacios.Size = new System.Drawing.Size(270, 36);
             this.menuEspacios.Tag = "espacios";
             this.menuEspacios.Text = "Espacios";
-            this.menuEspacios.Click += new System.EventHandler(this.menuGestionEspacios_Click);
+            this.menuEspacios.Click += new System.EventHandler(this.menuEspacios_Click);
             // 
             // menuClientes
             // 
@@ -298,26 +310,25 @@ namespace Application.UI
             // menuEspecialidades
             // 
             this.menuEspecialidades.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.crearToolStripMenuItem1});
+            this.crearEspecialidad});
             this.menuEspecialidades.Name = "menuEspecialidades";
             this.menuEspecialidades.Size = new System.Drawing.Size(270, 36);
             this.menuEspecialidades.Tag = "espacialidades";
             this.menuEspecialidades.Text = "Especialidades";
             // 
-            // crearToolStripMenuItem1
+            // crearEspecialidad
             // 
-            this.crearToolStripMenuItem1.Name = "crearToolStripMenuItem1";
-            this.crearToolStripMenuItem1.Size = new System.Drawing.Size(270, 36);
-            this.crearToolStripMenuItem1.Tag = "crear";
-            this.crearToolStripMenuItem1.Text = "Crear";
-            this.crearToolStripMenuItem1.ToolTipText = "crear";
-            this.crearToolStripMenuItem1.Click += new System.EventHandler(this.crearToolStripMenuItem1_Click);
+            this.crearEspecialidad.Name = "crearEspecialidad";
+            this.crearEspecialidad.Size = new System.Drawing.Size(160, 36);
+            this.crearEspecialidad.Tag = "crear";
+            this.crearEspecialidad.Text = "Crear";
+            this.crearEspecialidad.ToolTipText = "crear";
             // 
             // menuEstudios
             // 
             this.menuEstudios.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.crearEstudio,
-            this.modificarToolStripMenuItem});
+            this.modificarEstudio});
             this.menuEstudios.Name = "menuEstudios";
             this.menuEstudios.Size = new System.Drawing.Size(270, 36);
             this.menuEstudios.Tag = "estudios";
@@ -332,40 +343,49 @@ namespace Application.UI
             this.crearEstudio.ToolTipText = "crear";
             this.crearEstudio.Click += new System.EventHandler(this.crearEstudio_Click);
             // 
-            // modificarToolStripMenuItem
+            // modificarEstudio
             // 
-            this.modificarToolStripMenuItem.Name = "modificarToolStripMenuItem";
-            this.modificarToolStripMenuItem.Size = new System.Drawing.Size(198, 36);
-            this.modificarToolStripMenuItem.Tag = "modificar";
-            this.modificarToolStripMenuItem.Text = "Modificar";
-            this.modificarToolStripMenuItem.Click += new System.EventHandler(this.modificarToolStripMenuItem_Click);
+            this.modificarEstudio.Name = "modificarEstudio";
+            this.modificarEstudio.Size = new System.Drawing.Size(198, 36);
+            this.modificarEstudio.Tag = "modificar";
+            this.modificarEstudio.Text = "Modificar";
+            this.modificarEstudio.Click += new System.EventHandler(this.modificarEstudio_Click);
             // 
-            // menuTurnos
+            // menuRegistrar
             // 
-            this.menuTurnos.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.menuRegistrarTurno,
-            this.menuAgenda});
-            this.menuTurnos.Name = "menuTurnos";
-            this.menuTurnos.Size = new System.Drawing.Size(87, 32);
-            this.menuTurnos.Tag = "turnos";
-            this.menuTurnos.Text = "Turnos";
-            this.menuTurnos.Visible = false;
+            this.menuRegistrar.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.menuTurno,
+            this.menuAgenda,
+            this.menuMuestra,
+            this.menuHistoricoDeCambios});
+            this.menuRegistrar.Name = "menuRegistrar";
+            this.menuRegistrar.Size = new System.Drawing.Size(105, 32);
+            this.menuRegistrar.Tag = "registrar";
+            this.menuRegistrar.Text = "Registrar";
+            this.menuRegistrar.Visible = false;
             // 
-            // menuRegistrarTurno
+            // menuTurno
             // 
-            this.menuRegistrarTurno.Name = "menuRegistrarTurno";
-            this.menuRegistrarTurno.Size = new System.Drawing.Size(191, 36);
-            this.menuRegistrarTurno.Tag = "registrar";
-            this.menuRegistrarTurno.Text = "Registrar";
-            this.menuRegistrarTurno.Click += new System.EventHandler(this.registrarToolStripMenuItem_Click);
+            this.menuTurno.Name = "menuTurno";
+            this.menuTurno.Size = new System.Drawing.Size(301, 36);
+            this.menuTurno.Tag = "turno";
+            this.menuTurno.Text = "Turno";
+            this.menuTurno.Click += new System.EventHandler(this.menuTurno_Click);
             // 
             // menuAgenda
             // 
             this.menuAgenda.Name = "menuAgenda";
-            this.menuAgenda.Size = new System.Drawing.Size(191, 36);
+            this.menuAgenda.Size = new System.Drawing.Size(301, 36);
             this.menuAgenda.Tag = "agenda";
             this.menuAgenda.Text = "Agenda";
             this.menuAgenda.Click += new System.EventHandler(this.menuAgenda_Click);
+            // 
+            // menuMuestra
+            // 
+            this.menuMuestra.Name = "menuMuestra";
+            this.menuMuestra.Size = new System.Drawing.Size(301, 36);
+            this.menuMuestra.Tag = "muestra";
+            this.menuMuestra.Text = "Muestra";
             // 
             // menuReportes
             // 
@@ -418,6 +438,14 @@ namespace Application.UI
             this.englishToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.englishToolStripMenuItem.Text = "English";
             // 
+            // menuHistoricoDeCambios
+            // 
+            this.menuHistoricoDeCambios.Name = "menuHistoricoDeCambios";
+            this.menuHistoricoDeCambios.Size = new System.Drawing.Size(301, 36);
+            this.menuHistoricoDeCambios.Tag = "historicoDeCambios";
+            this.menuHistoricoDeCambios.Text = "Historico de Cambios";
+            this.menuHistoricoDeCambios.Click += new System.EventHandler(this.menuHistoricoDeCambios_Click);
+            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
@@ -467,11 +495,11 @@ namespace Application.UI
         private System.Windows.Forms.ToolStripMenuItem menuEstudios;
         private System.Windows.Forms.ToolStripMenuItem menuCambiarClave;
         private System.Windows.Forms.ToolStripMenuItem crearUsuario;
-        private System.Windows.Forms.ToolStripMenuItem ModificarUsuario;
+        private System.Windows.Forms.ToolStripMenuItem modificarUsuario;
         private System.Windows.Forms.ToolStripMenuItem DropDown;
         private System.Windows.Forms.ToolStripMenuItem menuSucursales;
-        private System.Windows.Forms.ToolStripMenuItem menuTurnos;
-        private System.Windows.Forms.ToolStripMenuItem menuRegistrarTurno;
+        private System.Windows.Forms.ToolStripMenuItem menuRegistrar;
+        private System.Windows.Forms.ToolStripMenuItem menuTurno;
         private System.Windows.Forms.ToolStripMenuItem menuBackupRestore;
         private System.Windows.Forms.ToolStripMenuItem menuPerfiles;
         private System.Windows.Forms.ToolStripMenuItem menuReportes;
@@ -480,9 +508,12 @@ namespace Application.UI
         private System.Windows.Forms.ToolStripMenuItem crearPaciente;
         private System.Windows.Forms.ToolStripMenuItem modificarPaciente;
         private System.Windows.Forms.ToolStripMenuItem menuReportesTurnos;
-        private System.Windows.Forms.ToolStripMenuItem crearToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem crearEspecialidad;
         private System.Windows.Forms.ToolStripMenuItem crearEstudio;
-        private System.Windows.Forms.ToolStripMenuItem modificarToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem modificarEstudio;
+        private System.Windows.Forms.ToolStripMenuItem menuBitacora;
+        private System.Windows.Forms.ToolStripMenuItem menuMuestra;
+        private System.Windows.Forms.ToolStripMenuItem menuHistoricoDeCambios;
     }
 }
 
