@@ -1,14 +1,9 @@
-﻿using Application.BE;
-using Application.Services;
+﻿using Application.Services;
 using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
-using System.Runtime.InteropServices;
-using System.Text;
-using System.Threading.Tasks;
-using System.Web.Services.Description;
 
 namespace Application.DLL
 {
@@ -291,9 +286,10 @@ namespace Application.DLL
             DataTable dt = new DataTable();
             dt = accesso.Read(cmd);
 
-            foreach(DataRow dr in dt.Rows)
+            foreach (DataRow dr in dt.Rows)
             {
-                Permission permission = new Permission {
+                Permission permission = new Permission
+                {
                     Id = (int)dr["Id_Hijo"],
                     Parent = (Role)dr["Id_Padre"]
                 };

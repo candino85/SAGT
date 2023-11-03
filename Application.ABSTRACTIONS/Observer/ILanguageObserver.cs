@@ -1,10 +1,4 @@
-﻿using Application.ABSTRACTIONS;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace Application.ABSTRACTIONS
+﻿namespace Application.ABSTRACTIONS
 {
     public interface ILanguageObserver
     {

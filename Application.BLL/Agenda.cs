@@ -1,9 +1,5 @@
 ﻿using Application.DLL;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Application.BLL
 {
@@ -11,7 +7,7 @@ namespace Application.BLL
     {
         readonly mapper_Agenda _mapper;
 
-        public Agenda() 
+        public Agenda()
         {
             _mapper = new mapper_Agenda();
         }

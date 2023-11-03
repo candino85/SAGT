@@ -32,6 +32,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Web.Services" />
     <Reference Include="System.Xml.Linq" />
@@ -45,12 +46,14 @@
     <Compile Include="BackupRestoreRepository.cs" />
     <Compile Include="DataAccessException.cs" />
     <Compile Include="DBAccess.cs" />
+    <Compile Include="IntegrityRepository.cs" />
     <Compile Include="LanguageRepository.cs" />
     <Compile Include="mapper_Agenda.cs" />
     <Compile Include="mapper_Area.cs" />
     <Compile Include="BitacoraRepository.cs" />
     <Compile Include="mapper_Especialidad.cs" />
     <Compile Include="mapper_Estudio.cs" />
+    <Compile Include="mapper_Muestra.cs" />
     <Compile Include="mapper_Turno.cs" />
     <Compile Include="PermissionRepository.cs" />
     <Compile Include="mapper_Sucursal.cs" />

@@ -3,20 +3,15 @@ using Application.BE;
 using Application.Services;
 using Application.UI.Language;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Application.UI.Bitacora
 {
-    public partial class frmBitacoraCambios : Form, ILanguageObserver    
+    public partial class frmBitacoraCambios : Form, ILanguageObserver
     {
-        BE.Turno turno;  
+        BE.Turno turno;
         BE.TurnoHistorico turnoHistorico;
 
         BLL.Turno mapperTurno;
@@ -127,7 +122,7 @@ namespace Application.UI.Bitacora
                 }
             }
             else
-                MessageBox.Show("El turno histórico seleccionado se encuentra activo", "INFO", MessageBoxButtons.OK,MessageBoxIcon.Exclamation);
+                MessageBox.Show("El turno histórico seleccionado se encuentra activo", "INFO", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
         }
 
         private void dgvCambios_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -138,6 +133,7 @@ namespace Application.UI.Bitacora
         private void btnLimpiar_Click(object sender, EventArgs e)
         {
             LoadCombos();
+            LoadDataGrid();
         }
     }
 }

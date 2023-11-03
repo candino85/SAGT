@@ -1,16 +1,7 @@
 ﻿using Application.ABSTRACTIONS;
-using Application.BE;
-using Application.BLL;
 using Application.Services;
 using Application.UI.Language;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Application.UI
@@ -48,7 +39,7 @@ namespace Application.UI
 
         private void btnCambiarClave_Click(object sender, EventArgs e)
         {
-            string ctrl =  checkControls(txtClaveActual.Text, txtClaveNueva.Text, txtClaveNueva2.Text);
+            string ctrl = checkControls(txtClaveActual.Text, txtClaveNueva.Text, txtClaveNueva2.Text);
 
             switch (ctrl)
             {
@@ -63,21 +54,21 @@ namespace Application.UI
                     break;
                 case "OK":
 
-                        var msg = user.UpdatePassword(txtClaveActual.Text, txtClaveNueva.Text);
-                        string  msgtoshw = "";
-                        if (msg == "CM")
-                            msgtoshw = "La contraseña fue modificada con éxito.";
-                        else if (msg == "HP")
-                            msgtoshw = "Hubo un problema al modificar la contraseña.";
-                        else if (msg == "CI")
-                            msgtoshw = "La contraseña actual es incorrecta.";
+                    var msg = user.UpdatePassword(txtClaveActual.Text, txtClaveNueva.Text);
+                    string msgtoshw = "";
+                    if (msg == "CM")
+                        msgtoshw = "La contraseña fue modificada con éxito.";
+                    else if (msg == "HP")
+                        msgtoshw = "Hubo un problema al modificar la contraseña.";
+                    else if (msg == "CI")
+                        msgtoshw = "La contraseña actual es incorrecta.";
 
-                        MessageBox.Show(msgtoshw, "INFO", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        
-                        if (msg == "HP" || msg == "CI" || msg == "CM")
-                            this.Close();
+                    MessageBox.Show(msgtoshw, "INFO", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                    if (msg == "HP" || msg == "CI" || msg == "CM")
+                        this.Close();
                     break;
-            }             
+            }
         }
 
         private string checkControls(string claveActual, string claveNueva1, string claveNueva2)
@@ -88,7 +79,7 @@ namespace Application.UI
                 return "CN1O2I";                //ingresar clave nueva
             else if (claveNueva1 != claveNueva2)
                 return "CNNC";                  //nuevas claves no coinciden
-            else 
+            else
                 return "OK";
         }
 

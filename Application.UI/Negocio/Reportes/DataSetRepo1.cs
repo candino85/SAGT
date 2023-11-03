@@ -7,9 +7,11 @@
     }
 }
 
-namespace Application.UI.Negocio.Reportes.DataSetRepo1TableAdapters {
-    
-    
-    public partial class TurnosTableAdapter {
+namespace Application.UI.Negocio.Reportes.DataSetRepo1TableAdapters
+{
+
+
+    public partial class TurnosTableAdapter
+    {
     }
 }

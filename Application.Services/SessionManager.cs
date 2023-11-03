@@ -2,9 +2,6 @@
 using Application.BE;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Application.Services
 {
@@ -12,19 +9,19 @@ namespace Application.Services
     {
         private static SessionManager _session = new SessionManager();
         private readonly static object _lock = new Object();
-        
+
         public User Usuario;
         public DateTime InicioSesion { get; set; }
         public DateTime FinSesion { get; set; }
         public bool IsLogged { get; private set; }
-        public IList<ILanguageObserver> languageObservers { get ; set ; }
+        public IList<ILanguageObserver> languageObservers { get; set; }
 
         private Language _language;
 
-        public Language language 
-        { 
-            get { return _language; } 
-            set { _language = value; } 
+        public Language language
+        {
+            get { return _language; }
+            set { _language = value; }
         }
 
         private SessionManager()
@@ -41,14 +38,14 @@ namespace Application.Services
                     _session = new SessionManager();
                 return _session;
             }
-        }        
+        }
 
         public void Login(User usuario)
         {
             lock (_lock)
             {
                 if (IsLogged == false)
-                {                   
+                {
                     _session.Usuario = usuario;
                     _session.language = usuario.Language;
                     _session.InicioSesion = DateTime.Now;
@@ -77,7 +74,7 @@ namespace Application.Services
                     throw new Exception("La sesión no se encuentra iniciada");
                 }
             }
-        }      
+        }
 
         public void SubscribeObserver(ILanguageObserver observer)
         {

@@ -1,14 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Application.BE;
-using System.Data.SqlClient;
-using System.Data;
+﻿using Application.BE;
 using Application.Services;
-using System.Security.Policy;
-using System.Xml.Linq;
+using System;
+using System.Collections.Generic;
+using System.Data;
+using System.Data.SqlClient;
 
 namespace Application.DLL
 {
@@ -23,13 +18,13 @@ namespace Application.DLL
         //    try
         //    { 
         //        User usuario = new User();
-                
+
         //        SqlParameter[] parameters = new SqlParameter[2];
         //        parameters[0] = new SqlParameter("@loginname", loginname);
         //        parameters[1] = new SqlParameter("@password", password);
-               
+
         //        DataTable dataTable = accesso.Read("UsuarioGetByLoginnamePassword", parameters);
-                
+
         //        foreach (DataRow row in dataTable.Rows)
         //        {
         //            usuario.Id = int.Parse(row["id"].ToString());
@@ -38,11 +33,11 @@ namespace Application.DLL
         //            usuario.Lastname = row["apellido"].ToString();
         //            usuario.LoginName = row["loginname"].ToString();
         //            usuario.Password = row["password"].ToString();
-        //            usuario.Language = languageRepository.GetLanguage((int)row["idioma"]);
+        //            usuario.Language = languageRepository.GetLanguage(Convert.ToInt32(row["idioma"]);
         //            usuario.Address = row["direccion"].ToString();
         //            usuario.Active = (bool)row["activo"];
-        //            usuario.Entity = (entity.GetEntityById((int)row["Entidad"]));
-        //            usuario.Role = row["role"] != DBNull.Value ? (int)row["role"] : 0;
+        //            usuario.Entity = (entity.GetEntityById(Convert.ToInt32(row["Entidad"]));
+        //            usuario.Role = row["role"] != DBNull.Value ? Convert.ToInt32(row["role"] : 0;
         //            usuario.Email = row["email"].ToString();
         //            usuario.Blocked = (bool)row["bloqueado"];
         //            usuario.CreationDate = (DateTime)row["fechacreacion"];
@@ -72,13 +67,13 @@ namespace Application.DLL
                     usuario.Password = row["password"].ToString();
                     usuario.Language = languageRepository.GetLanguage(int.Parse(row["idioma"].ToString()));
                     usuario.Active = (bool)row["activo"];
-                    usuario.Role = (int)row["rol"];
-                    usuario.Entity = entity.GetlById((int)row["Entidad"]);
+                    usuario.Role = Convert.ToInt32(row["rol"]);
+                    usuario.Entity = entity.GetlById(Convert.ToInt32(row["Entidad"]));
                     usuario.Address = row["direccion"].ToString();
                     usuario.Email = row["email"].ToString();
                     usuario.Blocked = (bool)row["bloqueado"];
                     usuario.CreationDate = (DateTime)row["fechacreacion"];
-                    usuario.Attempts = (int)row["intentos"];
+                    usuario.Attempts = Convert.ToInt32(row["intentos"]);
                 }
                 return usuario;
             }
@@ -161,24 +156,24 @@ namespace Application.DLL
 
                 foreach (DataRow row in dataTable.Rows)
                 {
-                    User usuario = new User
+                    BE.User usuario = new BE.User
                     {
-                        Id = (int)row["id"],
+                        Id = Convert.ToInt32(row["id"]),
                         DNI = row["dni"].ToString(),
                         Name = row["nombre"].ToString(),
                         Lastname = row["apellido"].ToString(),
                         LoginName = row["loginname"].ToString(),
                         Password = row["password"].ToString(),
-                        Active = (bool)row["activo"],
-                        CreationDate = (DateTime)row["FechaCreacion"],
-                        Entity = entity.GetlById((int)row["Entidad"]),
-                        Language = languageRepository.GetLanguage((int)row["idioma"]),
-                        Role = row["role"] != DBNull.Value ? (int)row["role"] : 0,
+                        Active = Convert.ToBoolean(row["activo"]),
+                        CreationDate = Convert.ToDateTime(row["FechaCreacion"]),
+                        Entity = entity.GetlById(Convert.ToInt32(row["Entidad"])),
+                        Language = languageRepository.GetLanguage(Convert.ToInt32(row["idioma"])),
+                        Role = row["role"] != DBNull.Value ? Convert.ToInt32(row["role"]) : 0,
                         //Address = row["direccion"] != DBNull.Value ? row["direccion"].ToString() : string.Empty
-                        Address = row["direccion"].ToString(),
+                        Address = row["direccion"] != DBNull.Value ? row["direccion"].ToString() : string.Empty,
                         Email = row["email"].ToString(),
-                        Blocked = (bool)row["bloqueado"],
-                        Attempts = (int)row["intentos"]
+                        Blocked = Convert.ToBoolean(row["bloqueado"]),
+                        Attempts = Convert.ToInt32(row["intentos"])
                     };
 
                     listaUsuarios.Add(usuario);
@@ -209,12 +204,12 @@ namespace Application.DLL
                     usuario.Password = row["password"].ToString();
                     usuario.Language = languageRepository.GetLanguage(int.Parse(row["idioma"].ToString()));
                     usuario.Active = (bool)row["activo"];
-                    usuario.Role = (int)row["role"];
-                    usuario.Entity = entity.GetlById((int)row["Entidad"]);
+                    usuario.Role = Convert.ToInt32(row["role"]);
+                    usuario.Entity = entity.GetlById(Convert.ToInt32(row["Entidad"]));
                     usuario.Address = row["direccion"].ToString();
                     usuario.Email = row["email"].ToString();
                     usuario.Blocked = (bool)row["bloqueado"];
-                    usuario.Attempts = (int)row["intentos"];
+                    usuario.Attempts = Convert.ToInt32(row["intentos"]);
 
                 }
                 return usuario;
@@ -222,7 +217,7 @@ namespace Application.DLL
             catch (Exception ex) { throw new DataAccessException("Sucedió un error en DAL", ex); }
         }
 
-        public int UpdatePassword(string username, string password) 
+        public int UpdatePassword(string username, string password)
         {
             try
             {
@@ -231,11 +226,11 @@ namespace Application.DLL
                 parametros[1] = new SqlParameter("password", password);
                 return accesso.Write("Update_Password", parametros);
             }
-            catch (Exception ex) 
+            catch (Exception ex)
             {
-                throw new DataAccessException("Sucedió un error en DAL",ex);
+                throw new DataAccessException("Sucedió un error en DAL", ex);
             }
-             
+
         }
 
         public void FailLoginAttempt(BE.User user)
@@ -258,7 +253,7 @@ namespace Application.DLL
         {
             var cnn = new SqlConnection(accesso.GetConnectionString());
             int[] usrExist = new int[3];
-             
+
             try
             {
                 cnn.Open();

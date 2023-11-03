@@ -1,24 +1,22 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Data.SqlClient;
+using System.Configuration;
 using System.Data;
+using System.Data.SqlClient;
 
 namespace Application.DLL
 {
     public class DBAccess
     {
-        readonly SqlConnection CN = new SqlConnection();        
+        readonly SqlConnection CN = new SqlConnection();
 
         public string GetConnectionString()
         {
-            var cs = new SqlConnectionStringBuilder();
-            cs.IntegratedSecurity = true;
-            cs.DataSource = ".\\SQLEXPRESS2019";
-            cs.InitialCatalog = "Campo";
-            return cs.ConnectionString;
+            //var cs = new SqlConnectionStringBuilder();
+            //cs.IntegratedSecurity = true;
+            //cs.DataSource = ".\\SQLEXPRESS2019";
+            //cs.InitialCatalog = "Campo";
+            //return cs.ConnectionString;
+            return ConfigurationManager.ConnectionStrings["SAGT"].ToString();
         }
 
         void Connect()
@@ -29,7 +27,7 @@ namespace Application.DLL
                 CN.Open();
             }
             else
-                Disconnect();            
+                Disconnect();
         }
 
         void Disconnect()
@@ -54,7 +52,7 @@ namespace Application.DLL
             CMD.Parameters.AddRange(parametros);
 
             try
-            {                
+            {
                 CMD.Transaction = TR;
                 fa = CMD.ExecuteNonQuery();
                 TR.Commit();
@@ -62,7 +60,7 @@ namespace Application.DLL
             }
             catch (Exception ex)
             {
-                TR.Rollback($"La transacción falló \n{ex.ToString()}");               
+                TR.Rollback($"La transacción falló \n{ex.ToString()}");
             }
             Disconnect();
             return fa;
@@ -88,7 +86,7 @@ namespace Application.DLL
             {
                 TR.Rollback($"La transacción falló \n{ex.ToString()}");
             }
-            
+
             Disconnect();
             return id;
         }

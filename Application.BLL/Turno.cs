@@ -1,21 +1,17 @@
-﻿using Application.BE;
-using Application.DLL;
-using System;
+﻿using Application.DLL;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Application.BLL
 {
     public class Turno
     {
         mapper_Turno _mapper;
-
-        public Turno() 
+        private IntegrityRepository _integrityRepo;
+        public Turno()
         {
             _mapper = new mapper_Turno();
-        }  
+            _integrityRepo = new IntegrityRepository();
+        }
         public List<BE.Turno> TurnoList()
         {
             List<BE.Turno> turnos = _mapper.GetTurnos();
@@ -38,7 +34,10 @@ namespace Application.BLL
         {
             int fa = _mapper.Create(turno, user);
             if (fa != 0)
+            {
+                _integrityRepo.SetDV("Turno");
                 return true;
+            }
             else
                 return false;
         }
@@ -47,7 +46,10 @@ namespace Application.BLL
         {
             int fa = _mapper.Update(turno, user);
             if (fa != 0)
+            {
+                _integrityRepo.SetDV("Turno");
                 return true;
+            }
             else
                 return false;
         }
@@ -55,7 +57,10 @@ namespace Application.BLL
         {
             int fa = _mapper.Delete(turno, user);
             if (fa != 0)
+            {
+                _integrityRepo.SetDV("Turno");
                 return true;
+            }
             else
                 return false;
         }

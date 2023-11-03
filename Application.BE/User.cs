@@ -3,7 +3,7 @@ using System;
 
 namespace Application.BE
 {
-    public class User : IEntity, IUser, IEquatable<User>
+    public class User : IEntity, IUser, IEquatable<User>, IDigitoVerificador
     {
         private int _id;
         public int Id { get { return _id; } set { _id = value; } }
@@ -75,6 +75,9 @@ namespace Application.BE
             get { return _attempts; }
             set { _attempts = value; }
         }
+
+        public string DVH { get; set; }
+        public string DVV { get ; set ; }
 
         public override string ToString()
         {

@@ -5,8 +5,6 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Application.DLL
 {
@@ -45,7 +43,7 @@ namespace Application.DLL
 
                 return languages;
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 cnn.Close();
                 throw new Exception(ex.Message);
@@ -124,10 +122,10 @@ namespace Application.DLL
             }
         }
 
-        public List<ITranslation> GetTranslations (Language language)
+        public List<ITranslation> GetTranslations(Language language)
         {
             var cnn = new SqlConnection(access.GetConnectionString());
-            
+
             try
             {
                 cnn.Open();
@@ -149,9 +147,9 @@ namespace Application.DLL
                     translation.Key = reader.GetString(reader.GetOrdinal("Tag"));
                     listTranslations.Add(translation);
                 }
-                reader.Close(); 
+                reader.Close();
                 cnn.Close();
-                
+
                 return listTranslations;
             }
             catch (Exception)
@@ -181,7 +179,7 @@ namespace Application.DLL
             cmd.CommandText = query;
 
             var adapter = new SqlDataAdapter();
-            adapter.SelectCommand= cmd;
+            adapter.SelectCommand = cmd;
 
             var dataSet = new DataSet();
 
@@ -192,7 +190,7 @@ namespace Application.DLL
             return dataSet;
         }
 
-        public void createTranslation(string tag, string translation,Language language)
+        public void createTranslation(string tag, string translation, Language language)
         {
             var cnn = new SqlConnection(access.GetConnectionString());
 

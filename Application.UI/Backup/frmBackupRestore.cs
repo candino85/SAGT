@@ -2,14 +2,6 @@
 using Application.Services;
 using Application.UI.Language;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Application.UI.Backup
@@ -30,7 +22,7 @@ namespace Application.UI.Backup
             dialog.ShowDialog();
             if (dialog.SelectedPath != string.Empty)
             {
-                txtBackupDatabase.Text = dialog.SelectedPath;               
+                txtBackupDatabase.Text = dialog.SelectedPath;
             }
         }
 
@@ -65,7 +57,7 @@ namespace Application.UI.Backup
         private void btnGoRestore_Click(object sender, EventArgs e)
         {
             if (!string.IsNullOrEmpty(txtRestoreBackup.Text))
-            {                
+            {
                 MessageBox.Show(backupRestore.RestoreDatabase(txtRestoreBackup.Text));
             }
             else

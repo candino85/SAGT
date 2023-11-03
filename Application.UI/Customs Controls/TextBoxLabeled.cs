@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Drawing;
 using System.Windows.Forms;
 
 namespace Application.UI.Customs_Controls
@@ -29,16 +22,16 @@ namespace Application.UI.Customs_Controls
             set { lblTextBox.Text = value; }
         }
 
-        public char PasswordChar 
+        public char PasswordChar
         {
             get { return txtTextBox.PasswordChar; }
-            set { txtTextBox.PasswordChar = value; } 
+            set { txtTextBox.PasswordChar = value; }
         }
 
         public object Tag
         {
-            get { return lblTextBox.Tag;}
-            set { lblTextBox.Tag = value;} 
+            get { return lblTextBox.Tag; }
+            set { lblTextBox.Tag = value; }
         }
 
         public void ClearText()

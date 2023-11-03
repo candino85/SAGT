@@ -1,16 +1,10 @@
 ﻿using Application.ABSTRACTIONS;
 using Application.BE;
-using Application.BLL;
 using Application.Services;
 using Application.UI.Language;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Application.UI.Bitacora
@@ -56,7 +50,7 @@ namespace Application.UI.Bitacora
             cmbOperacion.SelectedItem = null;
 
             cmbCriticidad.SelectedItem = null;
-            
+
             cmbModulo.SelectedItem = null;
 
             dtpFechaDesde.Checked = false;
@@ -71,13 +65,16 @@ namespace Application.UI.Bitacora
 
         private void btnFiltrar_Click(object sender, EventArgs e)
         {
-            filtro = new Filtro { IdUsuario = cmbUsuario.SelectedValue == null ? -10 : (int)cmbUsuario.SelectedValue,
-                                  Modulo = cmbModulo.SelectedIndex == -1 ? null : cmbModulo.SelectedItem.ToString(),
-                                  Operacion = cmbOperacion.SelectedIndex == -1 ? null : cmbOperacion.SelectedItem.ToString(),
-                                  Criticidad = cmbCriticidad.SelectedIndex == -1 ? -10 : cmbCriticidad.SelectedIndex + 1 ,
-                                  FechaHoraDesde = dtpFechaDesde.Checked == true ? dtpFechaDesde.Value : DateTime.MinValue,
-                                  FechaHoraHasta = dtpFechaHasta.Checked == true ? dtpFechaHasta.Value : DateTime.MaxValue};
-            
+            filtro = new Filtro
+            {
+                IdUsuario = cmbUsuario.SelectedValue == null ? -10 : (int)cmbUsuario.SelectedValue,
+                Modulo = cmbModulo.SelectedIndex == -1 ? null : cmbModulo.SelectedItem.ToString(),
+                Operacion = cmbOperacion.SelectedIndex == -1 ? null : cmbOperacion.SelectedItem.ToString(),
+                Criticidad = cmbCriticidad.SelectedIndex == -1 ? -10 : cmbCriticidad.SelectedIndex + 1,
+                FechaHoraDesde = dtpFechaDesde.Checked == true ? dtpFechaDesde.Value : DateTime.MinValue,
+                FechaHoraHasta = dtpFechaHasta.Checked == true ? dtpFechaHasta.Value : DateTime.MaxValue
+            };
+
             dgvBitacora.DataSource = mapperBitacora.Get(filtro);
             dgvBitacora.Columns["Id"].Visible = false;
         }

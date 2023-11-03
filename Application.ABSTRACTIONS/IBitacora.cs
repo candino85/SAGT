@@ -1,15 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Application.ABSTRACTIONS
 {
     public interface IBitacora
     {
-        int IdUsuario { get; set; }   
-        
+        int IdUsuario { get; set; }
+
         string LoginName { get; set; }
 
         DateTime FechaHora { get; set; }

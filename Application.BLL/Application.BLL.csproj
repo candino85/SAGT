@@ -47,8 +47,10 @@
     <Compile Include="BusinessLogicException.cs" />
     <Compile Include="Especialidad.cs" />
     <Compile Include="Estudio.cs" />
+    <Compile Include="IntegrityService.cs" />
     <Compile Include="LanguageService.cs" />
     <Compile Include="Client.cs" />
+    <Compile Include="Muestra.cs" />
     <Compile Include="Turno.cs" />
     <Compile Include="Permission.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -2,10 +2,6 @@
 using Application.Services;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Component = Application.Services.Component;
 
 namespace Application.BLL
@@ -36,7 +32,7 @@ namespace Application.BLL
 
         public IList<Services.Permission> GetAllPermissionsFromDB()
         {
-            return _repository.GetAllPermissionsFromDB(); 
+            return _repository.GetAllPermissionsFromDB();
         }
 
         public Component SaveComponent(Component component)
@@ -82,7 +78,7 @@ namespace Application.BLL
 
         public Role GetRoleComponents(Role role)
         {
-            foreach(var c in GetAll($"= {role.Id}"))
+            foreach (var c in GetAll($"= {role.Id}"))
             {
                 role.AddChild(c);
             }
@@ -94,7 +90,7 @@ namespace Application.BLL
             _repository.SaveRole(role);
         }
 
-        public bool FindUserPermissions(PermissionType permissionType,UserPermission userPermission)
+        public bool FindUserPermissions(PermissionType permissionType, UserPermission userPermission)
         {
             return _repository.FindUserPermissions(permissionType, userPermission);
         }
@@ -106,7 +102,7 @@ namespace Application.BLL
 
         public int SaveUserPermission(int idUser, int idPermission)
         {
-            return _repository.SaveUserPermission(idUser,idPermission);
+            return _repository.SaveUserPermission(idUser, idPermission);
         }
     }
 }

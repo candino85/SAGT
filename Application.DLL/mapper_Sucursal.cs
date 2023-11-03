@@ -1,11 +1,7 @@
-﻿using System;
+﻿using Application.BE;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Application.BE;
-using System.Data.SqlClient;
 using System.Data;
+using System.Data.SqlClient;
 
 namespace Application.DLL
 {
@@ -45,7 +41,7 @@ namespace Application.DLL
                 sucursal.Id = int.Parse(row["Id"].ToString());
                 sucursal.Name = row["Nombre"].ToString();
                 sucursal.Address = row["Direccion"].ToString();
-                sucursal.Phone= row["Telefono"].ToString();
+                sucursal.Phone = row["Telefono"].ToString();
                 sucursal.Cuit = row["Cuit"].ToString();
                 sucursal.Active = bool.Parse(row["Activo"].ToString());
             }
@@ -55,11 +51,11 @@ namespace Application.DLL
         public int Create(Sucursal sucursal)
         {
             SqlParameter[] parametros = new SqlParameter[5];
-            parametros[0] = new SqlParameter("Nombre",sucursal.Name);
-            parametros[1] = new SqlParameter("Direccion",sucursal.Address);
-            parametros[2] = new SqlParameter("Telefono",sucursal.Phone);
-            parametros[3] = new SqlParameter("Cuit",sucursal.Cuit);
-            parametros[4] = new SqlParameter("Activo",sucursal.Active);
+            parametros[0] = new SqlParameter("Nombre", sucursal.Name);
+            parametros[1] = new SqlParameter("Direccion", sucursal.Address);
+            parametros[2] = new SqlParameter("Telefono", sucursal.Phone);
+            parametros[3] = new SqlParameter("Cuit", sucursal.Cuit);
+            parametros[4] = new SqlParameter("Activo", sucursal.Active);
             //parametros[6] = new SqlParameter("Idioma", usuario.Idioma.Id); 
             //parametros[7] = new SqlParameter("Guid", usuario.Guid);
 
@@ -69,11 +65,11 @@ namespace Application.DLL
         public int Update(Sucursal sucursal)
         {
             SqlParameter[] parametros = new SqlParameter[6];
-            parametros[0] = new SqlParameter("Id", sucursal.Id); 
+            parametros[0] = new SqlParameter("Id", sucursal.Id);
             parametros[1] = new SqlParameter("Cuit", sucursal.Cuit);
-            parametros[2] = new SqlParameter("Nombre", sucursal.Name); 
-            parametros[3] = new SqlParameter("Direccion", sucursal.Address); 
-            parametros[4] = new SqlParameter("Telefono", sucursal.Phone); 
+            parametros[2] = new SqlParameter("Nombre", sucursal.Name);
+            parametros[3] = new SqlParameter("Direccion", sucursal.Address);
+            parametros[4] = new SqlParameter("Telefono", sucursal.Phone);
             parametros[5] = new SqlParameter("Activo", sucursal.Active);
             //parametros[6] = new SqlParameter("Idioma", usuario.Idioma.Id);
             //parametros[7] = new SqlParameter("Guid", usuario.Guid); 
@@ -85,7 +81,7 @@ namespace Application.DLL
         //{
         //    SqlParameter[] parametro = new SqlParameter[1];
         //    parametro[0] = new SqlParameter("Id", id);
-            
+
         //    return accesso.Write("UsuarioEliminar", parametro);
         //}
 

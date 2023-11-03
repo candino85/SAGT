@@ -3,11 +3,6 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
-using System.Diagnostics;
-using System.Linq;
-using System.Net.Http.Headers;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Application.DLL
 {
@@ -48,16 +43,6 @@ namespace Application.DLL
                 turno.FechaHora = reader.GetDateTime(reader.GetOrdinal("fechaHora"));
                 turno.Operacion = reader.GetString(reader.GetOrdinal("Operacion"));
                 turno.Usuario = reader.GetString(reader.GetOrdinal("Usuario"));
-
-                //turno.Turno = new Turno();
-                //turno.Turno.Id = reader.GetInt32(reader.GetOrdinal("IdTurno"));
-                //turno.Turno.client = reader.GetInt32(reader.GetOrdinal("Cliente"));
-                //turno.Turno.estado = Convert.ToChar(reader.GetValue(reader.GetOrdinal("Estado")));
-                //turno.Turno.agenda = reader.GetInt32(reader.GetOrdinal("Agenda"));
-                //turno.Turno.fechaCreacion = reader.GetDateTime(reader.GetOrdinal("FechaHoraCreacion"));
-                //turno.Turno.fechaTurno= reader.GetDateTime(reader.GetOrdinal("FechaHoraTurno"));
-                //turno.Turno.fechaEntrega = reader.GetDateTime(reader.GetOrdinal("FechaHoraEntrega"));
-
                 turno.idTurno = reader.GetInt32(reader.GetOrdinal("IdTurno"));
                 turno.client = reader.GetInt32(reader.GetOrdinal("Cliente"));
                 turno.estado = Convert.ToChar(reader.GetValue(reader.GetOrdinal("Estado")));
@@ -132,8 +117,6 @@ namespace Application.DLL
             while (reader.Read())
             {
                 TurnoHistorico turnoHistorico = new TurnoHistorico();
-                //evento.Id = reader.GetInt32(reader.GetOrdinal("id"));
-                //evento.IdUsuario = reader.GetInt32(reader.GetOrdinal("idUsuario"));
                 turnoHistorico.Id = reader.GetInt32(reader.GetOrdinal("id"));
                 turnoHistorico.activo = reader.GetBoolean(reader.GetOrdinal("Activo"));
                 turnoHistorico.FechaHora = reader.GetDateTime(reader.GetOrdinal("fechaHora"));
@@ -143,9 +126,9 @@ namespace Application.DLL
                 turnoHistorico.client = reader.GetInt32(reader.GetOrdinal("cliente"));
                 turnoHistorico.estado = Convert.ToChar(reader.GetValue(reader.GetOrdinal("Estado")));
                 turnoHistorico.agenda = reader.GetInt32(reader.GetOrdinal("agenda"));
-                turnoHistorico.fechaCreacion= reader.GetDateTime(reader.GetOrdinal("fechaHoraCreacion"));
+                turnoHistorico.fechaCreacion = reader.GetDateTime(reader.GetOrdinal("fechaHoraCreacion"));
                 turnoHistorico.fechaTurno = reader.GetDateTime(reader.GetOrdinal("fechaHoraTurno"));
-                turnoHistorico.fechaEntrega = reader.GetDateTime(reader.GetOrdinal("fechaHoraEntrega"));                
+                turnoHistorico.fechaEntrega = reader.GetDateTime(reader.GetOrdinal("fechaHoraEntrega"));
 
                 turnoHistoricoList.Add(turnoHistorico);
             }
@@ -303,7 +286,7 @@ namespace Application.DLL
             }
         }
 
-        public int Delete(BE.Turno turno,BE.User user) 
+        public int Delete(BE.Turno turno, BE.User user)
         {
             try
             {
@@ -313,7 +296,7 @@ namespace Application.DLL
 
                 return accesso.Write("TurnoEliminar", parameters);
             }
-            catch (Exception ex) { throw ex; }  
+            catch (Exception ex) { throw ex; }
         }
     }
 }

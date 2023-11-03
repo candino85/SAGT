@@ -1,21 +1,15 @@
 ﻿using Application.ABSTRACTIONS;
-using Application.BE;
-using Application.BLL;
 using Application.Services;
 using Application.UI.Backup;
 using Application.UI.Bitacora;
+using Application.UI.Digito_Verificador;
 using Application.UI.Language;
 using Application.UI.Negocio;
 using Application.UI.Negocio.ABM;
 using Application.UI.Negocio.Reportes;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Application.UI
@@ -32,7 +26,7 @@ namespace Application.UI
         public frmMain()
         {
             InitializeComponent();
-            
+
             permission = new BLL.Permission();
             userPermission = new UserPermission();
             user = new BLL.User();
@@ -40,7 +34,7 @@ namespace Application.UI
         }
 
         private void frmMain_Load(object sender, EventArgs e)
-        { 
+        {
             if (!SessionManager.GetInstance.IsLogged)
             {
                 menuLogin_Click(sender, e);
@@ -53,7 +47,7 @@ namespace Application.UI
 
         private void validatePermissions()
         {
-            if (SessionManager.GetInstance.Usuario != null && SessionManager.GetInstance.Usuario.LoginName != "SysAdmin")
+            if (SessionManager.GetInstance.Usuario != null) //&& SessionManager.GetInstance.Usuario.LoginName != "SysAdmin")
             {
                 userPermission.Id = SessionManager.GetInstance.Usuario.Id;
                 userPermission.Nombre = SessionManager.GetInstance.Usuario.Name;
@@ -75,6 +69,7 @@ namespace Application.UI
                 menuIdiomas.Visible = permission.FindUserPermissions(PermissionType.menuIdiomas, userPermission);
                 menuBackupRestore.Visible = permission.FindUserPermissions(PermissionType.menuBackupRestore, userPermission);
                 menuBitacora.Visible = permission.FindUserPermissions(PermissionType.menuBitacora, userPermission);
+                //menuDV.Visible = permission.FindUserPermissions(PermissionType.menuDV, userPermission);
 
                 //maestros
                 menuMaestros.Visible = permission.FindUserPermissions(PermissionType.menuMaestros, userPermission);
@@ -92,7 +87,7 @@ namespace Application.UI
                 menuHistoricoDeCambios.Visible = permission.FindUserPermissions(PermissionType.menuHistoricoDeCambios, userPermission);
 
                 //reportes
-                menuReportes.Visible = permission.FindUserPermissions(PermissionType.menuReportes,userPermission);
+                menuReportes.Visible = permission.FindUserPermissions(PermissionType.menuReportes, userPermission);
 
                 //ayuda
                 menuAyuda.Visible = permission.FindUserPermissions(PermissionType.menuAyuda, userPermission);
@@ -147,24 +142,24 @@ namespace Application.UI
             //this.menuLanguage.Enabled = SessionManager.GetInstance.IsLogged;
 
             if (SessionManager.GetInstance.IsLogged)
-            {                
+            {
                 this.lblEstado.Text = SessionManager.GetInstance.Usuario.LoginName;
 
                 foreach (ToolStripMenuItem i in menuLanguage.DropDownItems)
                 {
                     if (i.Text == SessionManager.GetInstance.Usuario.Language.Name)
                         i.Checked = true;
-                    else 
+                    else
                         i.Checked = false;
                 }
-                
+
                 updateLanguage(SessionManager.GetInstance.language);
             }
             else
             {
-                this.lblEstado.Text = "[Sesión no iniciada]";                
+                this.lblEstado.Text = "[Sesión no iniciada]";
             }
-            
+
             validatePermissions();
         }
 
@@ -179,7 +174,7 @@ namespace Application.UI
                 ToolStripMenuItem i = new ToolStripMenuItem(item.Name);
                 i.Tag = item;
                 i.Click += languageChange_Click;
-                if(SessionManager.GetInstance.Usuario != null)
+                if (SessionManager.GetInstance.Usuario != null)
                     i.Checked = (SessionManager.GetInstance.language.Name == item.Name) ? true : false;
                 menuLanguage.DropDown.Items.Add(i);
             }
@@ -222,17 +217,17 @@ namespace Application.UI
 
         private void menuLogout_Click(object sender, EventArgs e)
         {
-            if(MessageBox.Show("¿Está seguro de que desea cerrar la sesión?", "Confirme",MessageBoxButtons.YesNo) == DialogResult.Yes)
+            if (MessageBox.Show("¿Está seguro de que desea cerrar la sesión?", "Confirme", MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
                 user.LogOut();
                 CloseSesion();
-                
+
                 if (!SessionManager.GetInstance.IsLogged)
                 {
                     CreateForm(typeof(frmLogin));
                 }
                 ValidarForm();
-            }           
+            }
         }
 
         private void menuLogin_Click(object sender, EventArgs e)
@@ -338,6 +333,11 @@ namespace Application.UI
         private void menuHistoricoDeCambios_Click(object sender, EventArgs e)
         {
             CreateForm(typeof(frmBitacoraCambios));
+        }
+
+        private void menuDV_Click(object sender, EventArgs e)
+        {
+            CreateForm(typeof(frmDigitoVerificador));
         }
     }
 }

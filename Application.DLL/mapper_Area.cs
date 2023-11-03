@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Application.BE;
-using System.Data.SqlClient;
-using System.Data;
+﻿using Application.BE;
 using Application.Services;
+using System;
+using System.Collections.Generic;
+using System.Data;
+using System.Data.SqlClient;
 
 namespace Application.DLL
 {

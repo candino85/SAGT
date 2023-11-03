@@ -1,10 +1,4 @@
-﻿    using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Application.Services
+﻿namespace Application.Services
 {
     public enum PermissionType
     {
@@ -19,6 +13,7 @@ namespace Application.Services
         menuBackupRestore,
         menuPerfiles,
         menuBitacora,
+        menuDV,
 
         //Maestros
         menuMaestros,
@@ -37,7 +32,7 @@ namespace Application.Services
 
         //Reportes
         menuReportes,
-        
+
         //Ayuda
         menuAyuda
 

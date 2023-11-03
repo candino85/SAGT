@@ -1,11 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Application.UI.Negocio.ABM
@@ -14,7 +8,7 @@ namespace Application.UI.Negocio.ABM
     {
 
         BLL.Estudio estudio_BLL;
-        
+
         BE.Agenda agenda_BE;
         BLL.Agenda agenda_BLL;
 
@@ -131,7 +125,7 @@ namespace Application.UI.Negocio.ABM
                         agendas.Add(agenda_BE);
                         agenda_BE = null;
                     }
-                        
+
                 }
                 GuardarAgenda(agendas);
             }
@@ -151,9 +145,9 @@ namespace Application.UI.Negocio.ABM
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Se ha producido un error al guardar la agenda\n{ex.Message}","ERROR",MessageBoxButtons.OK,MessageBoxIcon.Error);
+                MessageBox.Show($"Se ha producido un error al guardar la agenda\n{ex.Message}", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            
+
         }
     }
 }

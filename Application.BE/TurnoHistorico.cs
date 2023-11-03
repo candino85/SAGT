@@ -1,17 +1,13 @@
 ﻿using Application.ABSTRACTIONS;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Application.BE
 {
-    public class TurnoHistorico: IEntity
+    public class TurnoHistorico : IEntity
     {
-        public int Id { get; set ; }
+        public int Id { get; set; }
         public bool activo { get; set; }
-        public DateTime FechaHora { get; set; }        
+        public DateTime FechaHora { get; set; }
         public string Operacion { get; set; }
         public string Usuario { get; set; }
         public int idTurno { get; set; }
@@ -20,7 +16,7 @@ namespace Application.BE
         public int agenda { get; set; }
         public DateTime fechaCreacion { get; set; }
         public DateTime fechaTurno { get; set; }
-        public DateTime fechaEntrega { get; set; }        
+        public DateTime fechaEntrega { get; set; }
     }
 
     public class FiltroHistorico

@@ -1,9 +1,5 @@
 ﻿using Application.ABSTRACTIONS;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Application.BE
 {
@@ -35,6 +31,6 @@ namespace Application.BE
             return Name;
         }
 
-        public List<ITranslation> Translations { get ; set ; }
+        public List<ITranslation> Translations { get; set; }
     }
 }

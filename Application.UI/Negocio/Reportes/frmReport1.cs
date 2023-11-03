@@ -1,15 +1,7 @@
 ﻿using Application.ABSTRACTIONS;
 using Application.Services;
 using Application.UI.Language;
-using Application.UI.Negocio.Reportes.DataSetRepo1TableAdapters;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Application.UI.Negocio.Reportes
@@ -39,7 +31,7 @@ namespace Application.UI.Negocio.Reportes
 
         private void btnCargar_Click(object sender, EventArgs e)
         {
-            if(dtpDesde.Value <= dtpHasta.Value)
+            if (dtpDesde.Value <= dtpHasta.Value)
             {
                 DateTime desde = dtpDesde.Value;
                 DateTime hasta = (dtpHasta.Value - dtpHasta.Value.TimeOfDay).AddHours(23).AddMinutes(59);
@@ -53,7 +45,7 @@ namespace Application.UI.Negocio.Reportes
                     MessageBox.Show("Seleccione un estudio para continuar", "INFO", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
             else
-                MessageBox.Show("La fecha 'Desde' no puede ser mayor que la fecha 'Hasta'.", "INFO", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);          
+                MessageBox.Show("La fecha 'Desde' no puede ser mayor que la fecha 'Hasta'.", "INFO", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
         }
 
         public void updateLanguage(ILanguage language)

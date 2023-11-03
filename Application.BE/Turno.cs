@@ -1,13 +1,9 @@
 ﻿using Application.ABSTRACTIONS;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Application.BE
 {
-    public class Turno : IEntity
+    public class Turno : IEntity, IDigitoVerificador
     {
         public int client { get; set; }
         public char estado { get; set; }
@@ -19,5 +15,7 @@ namespace Application.BE
         public DateTime fechaTurno { get; set; }
         public DateTime fechaEntrega { get; set; }
         public int Id { get; set; }
+        public string DVH { get ; set ; }
+        public string DVV { get ; set ; }
     }
 }

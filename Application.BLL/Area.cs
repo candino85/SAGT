@@ -1,12 +1,7 @@
-﻿using System;
+﻿using Application.DLL;
+using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Application.DLL;
-using Application.BE;
 
 namespace Application.BLL
 {
@@ -17,7 +12,7 @@ namespace Application.BLL
 
         public Area()
         {
-                _mapper = new Mapper_Area();
+            _mapper = new Mapper_Area();
         }
 
         public BE.Area GetAreaById(int id)

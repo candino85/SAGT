@@ -2,16 +2,7 @@
 using Application.BLL;
 using Application.Services;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.ToolBar;
 
 namespace Application.UI.Language
 {
@@ -28,7 +19,7 @@ namespace Application.UI.Language
         {
             RefreshDataGrid();
             DataGridViewConfig();
-            
+
             SessionManager.GetInstance.SubscribeObserver(this);
             updateLanguage(SessionManager.GetInstance.language);
         }
@@ -38,7 +29,7 @@ namespace Application.UI.Language
             SessionManager.GetInstance.UnsubscribeObserver(this);
         }
 
-        private void DataGridViewConfig() 
+        private void DataGridViewConfig()
         {
             dgvTranslations.AllowUserToAddRows = false;
             dgvTranslations.AllowUserToDeleteRows = false;
@@ -82,7 +73,7 @@ namespace Application.UI.Language
         {
             if (dgvTranslations.CurrentCell.ColumnIndex == 0) return;
 
-            if(txtTranslationText.Text.RemoveWhitespaces().IsNullOrEmpty())
+            if (txtTranslationText.Text.RemoveWhitespaces().IsNullOrEmpty())
             {
                 MessageBox.Show("Ingrese una traducción válida");
                 return;

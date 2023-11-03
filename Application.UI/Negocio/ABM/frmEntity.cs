@@ -2,13 +2,6 @@
 using Application.Services;
 using Application.UI.Language;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Application.UI
@@ -24,7 +17,7 @@ namespace Application.UI
         {
             InitializeComponent();
         }
-            public frmEntity(frmEntityList frmEntityList)
+        public frmEntity(frmEntityList frmEntityList)
         {
             InitializeComponent();
             _frmEntitiesList = frmEntityList;
@@ -54,7 +47,7 @@ namespace Application.UI
             this.Close();
         }
 
-        public frmEntity(BE.Sucursal entidad,frmEntityList frmEntityList)
+        public frmEntity(BE.Sucursal entidad, frmEntityList frmEntityList)
         {
             InitializeComponent();
             entidad_BE = entidad;
@@ -69,7 +62,7 @@ namespace Application.UI
             txtDireccion.Text = entidad_BE.Address;
             txtTelefono.Text = entidad_BE.Phone;
             txtCuit.Text = entidad_BE.Cuit;
-            chkActive.Checked = entidad_BE.Active;            
+            chkActive.Checked = entidad_BE.Active;
         }
 
         private void btnUpdateEntity_Click(object sender, EventArgs e)

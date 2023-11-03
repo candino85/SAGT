@@ -1,9 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Application.DLL
 {
@@ -15,19 +11,19 @@ namespace Application.DLL
             SqlConnection conn = new SqlConnection(dbAccess.GetConnectionString());
             conn.Open();
 
-            try 
-            {                
+            try
+            {
                 string query = $"BACKUP DATABASE {conn.Database} TO DISK = '{path}\\{conn.Database}_{DateTime.Now.ToString("yyyyMMdd-hhmmss")}.bak'";
-                
+
                 SqlCommand comm = new SqlCommand(query, conn);
                 comm.ExecuteNonQuery();
-                
+
                 string msg = "Backup generado correctamente";
                 return msg;
                 conn.Close();
             }
             catch (Exception ex)
-            {                
+            {
                 conn.Close();
                 return ex.ToString();
             }
@@ -39,10 +35,10 @@ namespace Application.DLL
             conn.Open();
 
             try
-            {                
+            {
                 string query = $"USE[master] ALTER DATABASE {conn.Database} SET Single_User WITH Rollback Immediate;  RESTORE DATABASE {conn.Database} FROM DISK = N'{path}' WITH REPLACE; ALTER DATABASE {conn.Database} SET Multi_User";
 
-                SqlCommand comm = new SqlCommand(query,conn);
+                SqlCommand comm = new SqlCommand(query, conn);
                 comm.ExecuteNonQuery();
 
                 string msg = "Backup restaurado correctamente";

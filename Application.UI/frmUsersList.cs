@@ -2,13 +2,6 @@
 using Application.Services;
 using Application.UI.Language;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Application.UI
@@ -22,12 +15,12 @@ namespace Application.UI
             InitializeComponent();
             usuario_BLL = new BLL.User();
             Bind();
-            
+
         }
 
         private void dgvUsers_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            frmUser frmUser = new frmUser((BE.User)dgvUsers.Rows[e.RowIndex].DataBoundItem,this);
+            frmUser frmUser = new frmUser((BE.User)dgvUsers.Rows[e.RowIndex].DataBoundItem, this);
             frmMain frmMain = (frmMain)this.MdiParent;
             frmUser.Show();
         }

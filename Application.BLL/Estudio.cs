@@ -1,12 +1,5 @@
-﻿using System;
+﻿using Application.DLL;
 using System.Collections.Generic;
-using System.Data;
-using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Application.DLL;
-using Application.BE;
 
 namespace Application.BLL
 {
@@ -17,7 +10,7 @@ namespace Application.BLL
 
         public Estudio()
         {
-            _mapper = new mapper_Estudio();   
+            _mapper = new mapper_Estudio();
         }
 
         public BE.Estudio GetEstudioById(int id)

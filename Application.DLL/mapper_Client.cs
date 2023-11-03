@@ -1,11 +1,8 @@
-﻿using System;
+﻿using Application.BE;
+using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Application.BE;
-using System.Data.SqlClient;
 using System.Data;
+using System.Data.SqlClient;
 
 namespace Application.DLL
 {
@@ -15,20 +12,21 @@ namespace Application.DLL
 
         public int Create(Client client)
         {
-            SqlParameter[] parametros = new SqlParameter[6];
+            SqlParameter[] parametros = new SqlParameter[7];
             parametros[0] = new SqlParameter("nombre", client.Name);
             parametros[1] = new SqlParameter("apellido", client.Lastname);
             parametros[2] = new SqlParameter("dni", client.DNI);
             parametros[3] = new SqlParameter("fechaCreacion", client.CreationDate);
             parametros[4] = new SqlParameter("activo", client.Active);
             parametros[5] = new SqlParameter("direccion", client.Address);
+            parametros[6] = new SqlParameter("email", client.Email);
 
             return accesso.Write("ClienteCrear", parametros);
         }
 
         public int Update(Client client)
         {
-            SqlParameter[] parametros = new SqlParameter[7];
+            SqlParameter[] parametros = new SqlParameter[8];
             parametros[0] = new SqlParameter("id", client.Id);
             parametros[1] = new SqlParameter("nombre", client.Name);
             parametros[2] = new SqlParameter("apellido", client.Lastname);
@@ -36,6 +34,7 @@ namespace Application.DLL
             parametros[4] = new SqlParameter("fechaCreacion", client.CreationDate);
             parametros[5] = new SqlParameter("activo", client.Active);
             parametros[6] = new SqlParameter("direccion", client.Address);
+            parametros[7] = new SqlParameter("email", client.Email);
 
             return accesso.Write("ClienteModificar", parametros);
         }
@@ -63,7 +62,8 @@ namespace Application.DLL
                     DNI = row["dni"].ToString(),
                     CreationDate = DateTime.Parse(row["fechaCreacion"].ToString()),
                     Active = bool.Parse(row["activo"].ToString()),
-                    Address = row["direccion"].ToString()
+                    Address = row["direccion"].ToString(),
+                    Email = row["email"].ToString()
                 };
 
                 clientList.Add(client);
@@ -84,12 +84,13 @@ namespace Application.DLL
                 client.Id = int.Parse(row["id"].ToString());
                 client.Name = row["nombre"].ToString();
                 client.Lastname = row["apellido"].ToString();
-                client.DNI= row["dni"].ToString();
+                client.DNI = row["dni"].ToString();
                 client.CreationDate = DateTime.Parse(row["fechaCreacion"].ToString());
                 client.Active = bool.Parse(row["activo"].ToString());
                 client.Address = row["direccion"].ToString();
+                client.Email = row["email"].ToString();
             }
             return client;
-        }             
+        }
     }
 }

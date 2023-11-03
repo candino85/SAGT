@@ -1,11 +1,6 @@
-﻿using Microsoft.SqlServer.Server;
-using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System;
 using System.Net;
 using System.Net.Mail;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Application.Services
 {
@@ -31,7 +26,7 @@ namespace Application.Services
 
                 // Configura los detalles del correo electrónico
                 MailMessage correo = new MailMessage(remitente, destinatario, asunto, cuerpo);
-                correo.IsBodyHtml = true;   
+                correo.IsBodyHtml = true;
 
                 // Configura el cliente SMTP
                 SmtpClient clienteSmtp = new SmtpClient("smtp.office365.com", 587);

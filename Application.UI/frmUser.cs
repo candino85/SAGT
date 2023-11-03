@@ -1,12 +1,8 @@
 ﻿using Application.ABSTRACTIONS;
-using Application.DLL;
 using Application.Services;
 using Application.UI.Language;
 using System;
-using System.Linq;
-using System.Net.Configuration;
 using System.Windows.Forms;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.ToolTip;
 
 namespace Application.UI
 {
@@ -63,7 +59,7 @@ namespace Application.UI
             usuario_BLL = new BLL.User();
             entity = new BLL.Sucursal();
             permission = new BLL.Permission();
-            
+
             _frmUsersList = frmUsersList;
 
             btnCreateUser.Visible = false;
@@ -80,7 +76,7 @@ namespace Application.UI
 
             CombosLoad();
             cmbLanguage.SelectedValue = usuario.Language.Id;
-            cmbRole.SelectedValue = usuario.Role;   
+            cmbRole.SelectedValue = usuario.Role;
             cmbEntity.SelectedValue = usuario.Entity.Id;
 
             // traigo el rol actual del usuario
@@ -116,7 +112,7 @@ namespace Application.UI
                     //if ((txtNombreUsuario.Text != chckLoginname.LoginName) || (txtEmail.Text != (checkEmail.FirstOrDefault(usr => usr.Email == txtEmail.Text)).Email));
 
                     var usrExist = usuario_BLL.UserExist(txtNombreUsuario.Text, txtEmail.Text, txtDNI.Text);
-                    
+
                     if (usrExist[0] == 0 && usrExist[1] == 0 && usrExist[2] == 0)
                     {
                         //usuario_BE = GetValuesFromForm();
@@ -132,7 +128,7 @@ namespace Application.UI
                         usuario_BE.Role = int.Parse(cmbRole.SelectedValue.ToString());
                         usuario_BE.Entity = entity.GetSucursalById(int.Parse(cmbEntity.SelectedValue.ToString()));
                         usuario_BE.Language = languageService.GetLanguage(cmbLanguage.Text);
-                            string tmppsw = Encrypt.GetRandomPassword();
+                        string tmppsw = Encrypt.GetRandomPassword();
                         usuario_BE.Password = Encrypt.GetSHA256(tmppsw);
                         usuario_BE.Email = txtEmail.Text;
                         usuario_BE.Blocked = false;
@@ -156,7 +152,7 @@ namespace Application.UI
                         }
                     }
                     if (usrExist[0] > 0)
-                        MessageBox.Show($"El nombre de usuario '{txtNombreUsuario.Text}' ya está registrado en el sistema, por favor, ingrese otro diferente\n", "INFO", MessageBoxButtons.OK, MessageBoxIcon.Exclamation); 
+                        MessageBox.Show($"El nombre de usuario '{txtNombreUsuario.Text}' ya está registrado en el sistema, por favor, ingrese otro diferente\n", "INFO", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                     if (usrExist[1] > 0)
                         MessageBox.Show($"El correo '{txtEmail.Text}' ya está registrado en el sistema, por favor, ingrese otro diferente\n", "INFO", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                     if (usrExist[2] > 0)
@@ -179,7 +175,7 @@ namespace Application.UI
             var newUser = usuario_BE;
 
             if (txtNombreUsuario.Text == newUser.LoginName) // si el nombre de usuario es el mismo
-            {               
+            {
                 newUser.DNI = txtDNI.Text;
                 newUser.Name = txtNombre.Text;
                 newUser.Lastname = txtApellido.Text;
@@ -187,7 +183,7 @@ namespace Application.UI
                 newUser.Address = txtAddress.Text;
                 newUser.Email = txtEmail.Text;
                 newUser.Active = chkActive.Checked;
-                
+
                 if (newUser.Blocked == true && chkBlocked.Checked == false)
                 {
                     newUser.Attempts = 0;
@@ -195,7 +191,7 @@ namespace Application.UI
                 }
                 else if (newUser.Blocked == false && chkBlocked.Checked == true)
                 {
-                    msg = "Usuario bloqueado correctamente.";                    
+                    msg = "Usuario bloqueado correctamente.";
                 }
                 newUser.Blocked = chkBlocked.Checked;
                 newUser.Role = int.Parse(cmbRole.SelectedValue.ToString());
@@ -203,8 +199,8 @@ namespace Application.UI
                 newUser.Language = languageService.GetLanguage(cmbLanguage.Text);
                 newUser.Email = txtEmail.Text;
 
-                userDB = usuario_BLL.GetByLoginName(txtNombreUsuario.Text);                
-                
+                userDB = usuario_BLL.GetByLoginName(txtNombreUsuario.Text);
+
                 UpdateUser(newUser, userDB, msg);
             }
             else // si el nombre de usuario es distinto
@@ -242,7 +238,7 @@ namespace Application.UI
 
                 if (!usuario_BE.Equals(userDB))
                 {
-                    operation = usuario_BLL.UserUpdate(usuario_BE,msg);
+                    operation = usuario_BLL.UserUpdate(usuario_BE, msg);
 
                     // refactorizar
                     if (cmbRole.SelectedValue != null)
@@ -286,10 +282,10 @@ namespace Application.UI
             user.Name = txtNombre.Text;
             user.Lastname = txtApellido.Text;
             user.LoginName = txtNombreUsuario.Text;
-            user.Address = txtAddress.Text;            
+            user.Address = txtAddress.Text;
             user.Active = chkActive.Checked;
             user.Role = int.Parse(cmbRole.SelectedValue.ToString());
-            user.Entity = entity.GetSucursalById(int.Parse(cmbEntity.SelectedValue.ToString()));            
+            user.Entity = entity.GetSucursalById(int.Parse(cmbEntity.SelectedValue.ToString()));
             user.Language = languageService.GetLanguage(cmbLanguage.Text);
             if (_frmUsersList.Name != "frmUsersList")
                 user.Password = Encrypt.GetSHA256(Encrypt.GetRandomPassword());
@@ -320,7 +316,7 @@ namespace Application.UI
         {
             usuario_BE.Attempts = 0;
             usuario_BE.Blocked = false;
-            usuario_BLL.UserUpdate(usuario_BE,"Reseteo de clave");
+            usuario_BLL.UserUpdate(usuario_BE, "Reseteo de clave");
 
             var updUser = usuario_BE;
             string tmppsw = Encrypt.GetRandomPassword();

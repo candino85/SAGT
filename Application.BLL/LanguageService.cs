@@ -1,11 +1,7 @@
-﻿using System;
+﻿using Application.BE;
+using Application.DLL;
 using System.Collections.Generic;
 using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Application.BE;
-using Application.DLL;
 
 namespace Application.BLL
 {
@@ -17,7 +13,7 @@ namespace Application.BLL
         {
             languageRepository = new LanguageRepository();
         }
-        
+
         public List<Language> GetLanguages()
         {
             List<Language> languages = languageRepository.GetLanguagesList();
@@ -34,7 +30,7 @@ namespace Application.BLL
             return languageRepository.GetDataSet();
         }
 
-        public void CreateTranslation(string tag,string translate, string language)
+        public void CreateTranslation(string tag, string translate, string language)
         {
             languageRepository.createTranslation(tag, translate, GetLanguage(language));
         }
@@ -44,7 +40,7 @@ namespace Application.BLL
             languageRepository.updateTranslation(tag, translate, GetLanguage(language));
         }
 
-        public void CreateNewLanguage(string name) 
+        public void CreateNewLanguage(string name)
         {
             languageRepository.createLanguage(name);
         }

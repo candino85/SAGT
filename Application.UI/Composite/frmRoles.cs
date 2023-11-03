@@ -1,16 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using Application.ABSTRACTIONS;
+﻿using Application.ABSTRACTIONS;
 using Application.Services;
 using Application.UI.Language;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Windows.Forms;
 
 namespace Application.UI
 {
@@ -73,7 +67,7 @@ namespace Application.UI
         private void btnSavePermission_Click(object sender, EventArgs e)
         {
             if (this.cmbPermisos.SelectedItem != null)
-            { 
+            {
                 Permission permission = new Permission()
                 {
                     Name = this.txtPermissionName.Text,
@@ -82,7 +76,7 @@ namespace Application.UI
 
                 _permission.SaveComponent(permission);
                 tvAvailablePermission.Nodes.Add(permission.Id.ToString(), permission.Name);
-                GetPermissionsAndCleanCtls();          
+                GetPermissionsAndCleanCtls();
             }
             else
                 MessageBox.Show("Debe seleccionar un permiso para poder crearlo", "INFO", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
@@ -227,7 +221,7 @@ namespace Application.UI
         {
             TreeNode n = new TreeNode(component.Name);
             n.Name = component.Id.ToString();
-            
+
             tn.Tag = component;
             tn.Nodes.Add(n);
             if (component.GetChild != null)
@@ -245,12 +239,12 @@ namespace Application.UI
 
         private void btnSaveSelectedRole_Click(object sender, EventArgs e)
         {
-            try 
-            { 
+            try
+            {
                 _permission.SaveRole(selectedRole);
                 MessageBox.Show("El rol se guardó correctamente", "INFO", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 MessageBox.Show($"Error al guardar el rol\n {ex.ToString()}", "INFO", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }

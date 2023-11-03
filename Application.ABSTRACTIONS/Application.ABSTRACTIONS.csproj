@@ -41,7 +41,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DVH.cs" />
     <Compile Include="IBitacora.cs" />
+    <Compile Include="IDigitoVerificador.cs" />
     <Compile Include="IEntity.cs" />
     <Compile Include="IPerson.cs" />
     <Compile Include="IUser.cs" />

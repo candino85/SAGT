@@ -68,7 +68,7 @@
             this.cmbEstudio.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.cmbEstudio.Location = new System.Drawing.Point(12, 46);
             this.cmbEstudio.Name = "cmbEstudio";
-            this.cmbEstudio.Size = new System.Drawing.Size(255, 28);
+            this.cmbEstudio.Size = new System.Drawing.Size(344, 28);
             this.cmbEstudio.TabIndex = 0;
             this.cmbEstudio.SelectionChangeCommitted += new System.EventHandler(this.cmbEstudio_SelectedIndexChanged);
             // 
@@ -85,7 +85,7 @@
             // lblSucursal
             // 
             this.lblSucursal.AutoSize = true;
-            this.lblSucursal.Location = new System.Drawing.Point(440, 20);
+            this.lblSucursal.Location = new System.Drawing.Point(12, 83);
             this.lblSucursal.Name = "lblSucursal";
             this.lblSucursal.Size = new System.Drawing.Size(71, 20);
             this.lblSucursal.TabIndex = 4;
@@ -95,9 +95,9 @@
             // cmbSucursal
             // 
             this.cmbSucursal.FormattingEnabled = true;
-            this.cmbSucursal.Location = new System.Drawing.Point(444, 43);
+            this.cmbSucursal.Location = new System.Drawing.Point(12, 106);
             this.cmbSucursal.Name = "cmbSucursal";
-            this.cmbSucursal.Size = new System.Drawing.Size(255, 28);
+            this.cmbSucursal.Size = new System.Drawing.Size(344, 28);
             this.cmbSucursal.TabIndex = 3;
             this.cmbSucursal.Tag = "sucursal";
             // 
@@ -105,7 +105,7 @@
             // 
             this.lblPaciente.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.lblPaciente.AutoSize = true;
-            this.lblPaciente.Location = new System.Drawing.Point(13, 59);
+            this.lblPaciente.Location = new System.Drawing.Point(13, 40);
             this.lblPaciente.Name = "lblPaciente";
             this.lblPaciente.Size = new System.Drawing.Size(71, 20);
             this.lblPaciente.TabIndex = 7;
@@ -116,18 +116,18 @@
             // 
             this.cmbPaciente.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.cmbPaciente.FormattingEnabled = true;
-            this.cmbPaciente.Location = new System.Drawing.Point(13, 82);
+            this.cmbPaciente.Location = new System.Drawing.Point(13, 63);
             this.cmbPaciente.Name = "cmbPaciente";
-            this.cmbPaciente.Size = new System.Drawing.Size(468, 28);
+            this.cmbPaciente.Size = new System.Drawing.Size(466, 28);
             this.cmbPaciente.TabIndex = 6;
             this.cmbPaciente.Format += new System.Windows.Forms.ListControlConvertEventHandler(this.cmbPacienteFormat);
             // 
             // btnCrearPaciente
             // 
             this.btnCrearPaciente.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.btnCrearPaciente.Location = new System.Drawing.Point(13, 116);
+            this.btnCrearPaciente.Location = new System.Drawing.Point(13, 102);
             this.btnCrearPaciente.Name = "btnCrearPaciente";
-            this.btnCrearPaciente.Size = new System.Drawing.Size(468, 55);
+            this.btnCrearPaciente.Size = new System.Drawing.Size(468, 40);
             this.btnCrearPaciente.TabIndex = 8;
             this.btnCrearPaciente.Tag = "crear paciente";
             this.btnCrearPaciente.Text = "Crear Paciente";
@@ -138,7 +138,7 @@
             // 
             this.label6.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(13, 333);
+            this.label6.Location = new System.Drawing.Point(13, 328);
             this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(44, 20);
@@ -150,7 +150,7 @@
             // 
             this.label5.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(13, 199);
+            this.label5.Location = new System.Drawing.Point(13, 194);
             this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(63, 20);
@@ -162,7 +162,7 @@
             // 
             this.label4.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(13, 264);
+            this.label4.Location = new System.Drawing.Point(13, 259);
             this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(54, 20);
@@ -174,7 +174,7 @@
             // 
             this.txtEstudio.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.txtEstudio.Enabled = false;
-            this.txtEstudio.Location = new System.Drawing.Point(13, 222);
+            this.txtEstudio.Location = new System.Drawing.Point(13, 217);
             this.txtEstudio.Name = "txtEstudio";
             this.txtEstudio.Size = new System.Drawing.Size(470, 26);
             this.txtEstudio.TabIndex = 312;
@@ -183,7 +183,7 @@
             // 
             this.txtFecha.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.txtFecha.Enabled = false;
-            this.txtFecha.Location = new System.Drawing.Point(13, 287);
+            this.txtFecha.Location = new System.Drawing.Point(13, 282);
             this.txtFecha.Name = "txtFecha";
             this.txtFecha.Size = new System.Drawing.Size(470, 26);
             this.txtFecha.TabIndex = 313;
@@ -192,7 +192,7 @@
             // 
             this.txtHora.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.txtHora.Enabled = false;
-            this.txtHora.Location = new System.Drawing.Point(13, 356);
+            this.txtHora.Location = new System.Drawing.Point(13, 351);
             this.txtHora.Name = "txtHora";
             this.txtHora.Size = new System.Drawing.Size(470, 26);
             this.txtHora.TabIndex = 314;
@@ -209,13 +209,13 @@
             this.monthView1.DaySelectedTextColor = System.Drawing.SystemColors.HighlightText;
             this.monthView1.FirstDayOfWeek = System.DayOfWeek.Monday;
             this.monthView1.ItemPadding = new System.Windows.Forms.Padding(2);
-            this.monthView1.Location = new System.Drawing.Point(1101, 23);
+            this.monthView1.Location = new System.Drawing.Point(1087, 23);
             this.monthView1.MonthTitleColor = System.Drawing.SystemColors.ActiveCaption;
             this.monthView1.MonthTitleColorInactive = System.Drawing.SystemColors.InactiveCaption;
             this.monthView1.MonthTitleTextColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.monthView1.MonthTitleTextColorInactive = System.Drawing.SystemColors.InactiveCaptionText;
             this.monthView1.Name = "monthView1";
-            this.monthView1.Size = new System.Drawing.Size(467, 529);
+            this.monthView1.Size = new System.Drawing.Size(496, 529);
             this.monthView1.TabIndex = 310;
             this.monthView1.Text = "monthView1";
             this.monthView1.TodayBorderColor = System.Drawing.Color.Maroon;
@@ -254,9 +254,9 @@
         calendarHighlightRange3,
         calendarHighlightRange4,
         calendarHighlightRange5};
-            this.calendar1.Location = new System.Drawing.Point(16, 88);
+            this.calendar1.Location = new System.Drawing.Point(16, 160);
             this.calendar1.Name = "calendar1";
-            this.calendar1.Size = new System.Drawing.Size(1065, 999);
+            this.calendar1.Size = new System.Drawing.Size(1065, 927);
             this.calendar1.TabIndex = 311;
             this.calendar1.Text = "calendar1";
             this.calendar1.LoadItems += new System.Windows.Forms.Calendar.Calendar.CalendarLoadEventHandler(this.calendar1_LoadItems);
@@ -308,7 +308,7 @@
             // 
             this.rbtDisponibles.AutoSize = true;
             this.rbtDisponibles.Checked = true;
-            this.rbtDisponibles.Location = new System.Drawing.Point(727, 47);
+            this.rbtDisponibles.Location = new System.Drawing.Point(622, 102);
             this.rbtDisponibles.Name = "rbtDisponibles";
             this.rbtDisponibles.Size = new System.Drawing.Size(169, 24);
             this.rbtDisponibles.TabIndex = 315;
@@ -321,7 +321,7 @@
             // rbtAsignados
             // 
             this.rbtAsignados.AutoSize = true;
-            this.rbtAsignados.Location = new System.Drawing.Point(727, 20);
+            this.rbtAsignados.Location = new System.Drawing.Point(622, 46);
             this.rbtAsignados.Name = "rbtAsignados";
             this.rbtAsignados.Size = new System.Drawing.Size(162, 24);
             this.rbtAsignados.TabIndex = 316;
@@ -332,9 +332,9 @@
             // 
             // btnCrearEstudio
             // 
-            this.btnCrearEstudio.Location = new System.Drawing.Point(273, 43);
+            this.btnCrearEstudio.Location = new System.Drawing.Point(382, 38);
             this.btnCrearEstudio.Name = "btnCrearEstudio";
-            this.btnCrearEstudio.Size = new System.Drawing.Size(161, 32);
+            this.btnCrearEstudio.Size = new System.Drawing.Size(220, 40);
             this.btnCrearEstudio.TabIndex = 318;
             this.btnCrearEstudio.Tag = "crear estudio";
             this.btnCrearEstudio.Text = "Crear Estudio";
@@ -345,7 +345,7 @@
             // 
             this.btnCancelarTurno.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.btnCancelarTurno.Enabled = false;
-            this.btnCancelarTurno.Location = new System.Drawing.Point(11, 434);
+            this.btnCancelarTurno.Location = new System.Drawing.Point(11, 429);
             this.btnCancelarTurno.Name = "btnCancelarTurno";
             this.btnCancelarTurno.Size = new System.Drawing.Size(468, 39);
             this.btnCancelarTurno.TabIndex = 317;
@@ -358,7 +358,7 @@
             // btnRegistrarTurno
             // 
             this.btnRegistrarTurno.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.btnRegistrarTurno.Location = new System.Drawing.Point(12, 388);
+            this.btnRegistrarTurno.Location = new System.Drawing.Point(12, 383);
             this.btnRegistrarTurno.Name = "btnRegistrarTurno";
             this.btnRegistrarTurno.Size = new System.Drawing.Size(467, 40);
             this.btnRegistrarTurno.TabIndex = 307;
@@ -383,16 +383,16 @@
             this.panel1.Controls.Add(this.btnCrearPaciente);
             this.panel1.Controls.Add(this.lblPaciente);
             this.panel1.Controls.Add(this.cmbPaciente);
-            this.panel1.Location = new System.Drawing.Point(1087, 558);
+            this.panel1.Location = new System.Drawing.Point(1087, 569);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(496, 529);
+            this.panel1.Size = new System.Drawing.Size(496, 518);
             this.panel1.TabIndex = 319;
             // 
             // btnEliminarTurno
             // 
             this.btnEliminarTurno.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.btnEliminarTurno.Enabled = false;
-            this.btnEliminarTurno.Location = new System.Drawing.Point(11, 479);
+            this.btnEliminarTurno.Location = new System.Drawing.Point(11, 474);
             this.btnEliminarTurno.Name = "btnEliminarTurno";
             this.btnEliminarTurno.Size = new System.Drawing.Size(468, 39);
             this.btnEliminarTurno.TabIndex = 318;
@@ -404,12 +404,12 @@
             // 
             // btnBuscar
             // 
-            this.btnBuscar.Location = new System.Drawing.Point(917, 39);
+            this.btnBuscar.Location = new System.Drawing.Point(382, 94);
             this.btnBuscar.Name = "btnBuscar";
-            this.btnBuscar.Size = new System.Drawing.Size(161, 32);
+            this.btnBuscar.Size = new System.Drawing.Size(220, 40);
             this.btnBuscar.TabIndex = 320;
-            this.btnBuscar.Tag = "buscar";
-            this.btnBuscar.Text = "Buscar";
+            this.btnBuscar.Tag = "buscar agenda";
+            this.btnBuscar.Text = "Buscar Agenda";
             this.btnBuscar.UseVisualStyleBackColor = true;
             this.btnBuscar.Click += new System.EventHandler(this.btnBuscar_Click);
             // 

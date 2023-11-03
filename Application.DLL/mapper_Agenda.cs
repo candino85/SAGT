@@ -3,9 +3,6 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Application.DLL
 {
@@ -16,7 +13,7 @@ namespace Application.DLL
         {
             List<Agenda> agendas = new List<Agenda>();
             SqlParameter[] parameter = new SqlParameter[2];
-            parameter[0] = new SqlParameter("@estudio",estudio);
+            parameter[0] = new SqlParameter("@estudio", estudio);
             parameter[1] = new SqlParameter("@entidad", entidad);
 
             try

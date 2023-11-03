@@ -1,18 +1,14 @@
-﻿using System;
+﻿using Application.BE;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Application.BE;
-using System.Data.SqlClient;
 using System.Data;
+using System.Data.SqlClient;
 
 namespace Application.DLL
 {
     public class mapper_Estudio
     {
         readonly DBAccess accesso = new DBAccess();
-        
+
         private mapper_Especialidad mapper_Especialidad = new mapper_Especialidad();
 
         public Estudio GetById(int id)
@@ -37,8 +33,8 @@ namespace Application.DLL
         {
             SqlParameter[] parametros = new SqlParameter[4];
             parametros[0] = new SqlParameter("nombre", estudio.Nombre);
-            parametros[1] = new SqlParameter("especialidad",estudio.Especialidad);
-            parametros[2] = new SqlParameter("tiempo",estudio.Tiempo);
+            parametros[1] = new SqlParameter("especialidad", estudio.Especialidad);
+            parametros[2] = new SqlParameter("tiempo", estudio.Tiempo);
             parametros[3] = new SqlParameter("activo", estudio.Activo);
 
 
@@ -61,7 +57,7 @@ namespace Application.DLL
         //{
         //    SqlParameter[] parametro = new SqlParameter[1];
         //    parametro[0] = new SqlParameter("Id", id);
-            
+
         //    return accesso.Write("UsuarioEliminar", parametro);
         //}
 

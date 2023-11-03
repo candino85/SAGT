@@ -1,16 +1,7 @@
 ﻿using Application.ABSTRACTIONS;
-using Application.BE;
 using Application.Services;
 using Application.UI.Language;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Diagnostics.Eventing.Reader;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Application.UI.Negocio
@@ -71,6 +62,7 @@ namespace Application.UI.Negocio
             txtID.TextBoxText = cliente_BE.DNI;
             txtAddress.TextBoxText = cliente_BE.Address;
             chkActive.Checked = cliente_BE.Active;
+            cliente_BE.Email = txtEmail.Text;
         }
 
         private void btnCreate_Click(object sender, EventArgs e)
@@ -83,13 +75,14 @@ namespace Application.UI.Negocio
             cliente_BE.Address = txtAddress.TextBoxText;
             cliente_BE.CreationDate = DateTime.Now;
             cliente_BE.Active = chkActive.Checked;
+            cliente_BE.Email = txtEmail.Text;
 
             bool operation = cliente_BLL.ClientCreate(cliente_BE);
 
             if (!operation)
                 throw new Exception("Error al crear el cliente");
-            
-            if(_frmRegistrarTurno != null)
+
+            if (_frmRegistrarTurno != null)
                 _frmRegistrarTurno.LoadCmbClientes();
 
             this.Close();
@@ -102,6 +95,7 @@ namespace Application.UI.Negocio
             cliente_BE.DNI = txtID.TextBoxText;
             cliente_BE.Address = txtAddress.TextBoxText;
             cliente_BE.Active = chkActive.Checked;
+            cliente_BE.Email = txtEmail.Text;
 
             bool operation = cliente_BLL.ClientUpdate(cliente_BE);
 
@@ -117,7 +111,7 @@ namespace Application.UI.Negocio
         {
             bool operation = false;
 
-            DialogResult dialogResult = MessageBox.Show("Eliminar el cliente implica eliminar el historico de turnos para el mismo de manera permanente. \nSi desea conservar el cliente y su historia puede deshabilitarlo.\nPresione Si: para inabilitar el cliente\nNo: para eliminarlo\nCancelar: para cancelar la operación","IMPORTANTE", MessageBoxButtons.YesNoCancel);
+            DialogResult dialogResult = MessageBox.Show("Eliminar el cliente implica eliminar el historico de turnos para el mismo de manera permanente. \nSi desea conservar el cliente y su historia puede deshabilitarlo.\nPresione Si: para inabilitar el cliente\nNo: para eliminarlo\nCancelar: para cancelar la operación", "IMPORTANTE", MessageBoxButtons.YesNoCancel);
             if (dialogResult == DialogResult.Yes)
             {
 
@@ -126,6 +120,7 @@ namespace Application.UI.Negocio
                 cliente_BE.DNI = txtID.TextBoxText;
                 cliente_BE.Address = txtAddress.TextBoxText;
                 cliente_BE.Active = false;
+                cliente_BE.Email = txtEmail.Text;
 
                 operation = cliente_BLL.ClientUpdate(cliente_BE);
 
@@ -135,7 +130,7 @@ namespace Application.UI.Negocio
             if (dialogResult == DialogResult.No)
             {
                 DialogResult dialogResultConfirm = MessageBox.Show("Se procederá a eliminar el usuario, confirma la operación?", "IMPORTANTE", MessageBoxButtons.YesNoCancel);
-                if (dialogResultConfirm == DialogResult.Yes) 
+                if (dialogResultConfirm == DialogResult.Yes)
                 {
                     operation = cliente_BLL.ClientRemove(cliente_BE.Id);
 

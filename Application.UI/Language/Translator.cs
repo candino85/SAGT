@@ -1,14 +1,6 @@
-﻿using Application.BE;
-using Application.Services;
-using Application.UI.Customs_Controls;
+﻿using Application.Services;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Security.Cryptography;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using static System.Collections.Specialized.BitVector32;
 
 namespace Application.UI.Language
 {
@@ -35,7 +27,7 @@ namespace Application.UI.Language
                 }
 
                 if (control.Tag != null)
-                {                
+                {
                     control.Text = GetTranslation(language, control.Tag.ToString()) ?? control.Text;
                 }
 

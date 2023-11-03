@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
 
 namespace Application.Services
 {
@@ -25,7 +24,7 @@ namespace Application.Services
 
         public override void RemoveChild(Component comp)
         {
-            if(_childList.Contains(comp))
+            if (_childList.Contains(comp))
                 _childList.Remove(comp);
         }
     }

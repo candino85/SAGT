@@ -62,6 +62,7 @@ namespace Application.UI
             this.menuTurno = new System.Windows.Forms.ToolStripMenuItem();
             this.menuAgenda = new System.Windows.Forms.ToolStripMenuItem();
             this.menuMuestra = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuHistoricoDeCambios = new System.Windows.Forms.ToolStripMenuItem();
             this.menuReportes = new System.Windows.Forms.ToolStripMenuItem();
             this.menuReportesTurnos = new System.Windows.Forms.ToolStripMenuItem();
             this.menuAyuda = new System.Windows.Forms.ToolStripMenuItem();
@@ -69,7 +70,7 @@ namespace Application.UI
             this.logoutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.españolToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.englishToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.menuHistoricoDeCambios = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuDV = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip.SuspendLayout();
             this.menu.SuspendLayout();
             this.SuspendLayout();
@@ -182,7 +183,8 @@ namespace Application.UI
             this.menuPerfiles,
             this.menuIdiomas,
             this.menuBackupRestore,
-            this.menuBitacora});
+            this.menuBitacora,
+            this.menuDV});
             this.menuAdministrar.Name = "menuAdministrar";
             this.menuAdministrar.Size = new System.Drawing.Size(130, 32);
             this.menuAdministrar.Tag = "administrar";
@@ -266,7 +268,7 @@ namespace Application.UI
             // menuSucursales
             // 
             this.menuSucursales.Name = "menuSucursales";
-            this.menuSucursales.Size = new System.Drawing.Size(270, 36);
+            this.menuSucursales.Size = new System.Drawing.Size(240, 36);
             this.menuSucursales.Tag = "sucursal";
             this.menuSucursales.Text = "Sucursal";
             this.menuSucursales.Click += new System.EventHandler(this.menuSucursales_Click);
@@ -274,7 +276,7 @@ namespace Application.UI
             // menuEspacios
             // 
             this.menuEspacios.Name = "menuEspacios";
-            this.menuEspacios.Size = new System.Drawing.Size(270, 36);
+            this.menuEspacios.Size = new System.Drawing.Size(240, 36);
             this.menuEspacios.Tag = "espacios";
             this.menuEspacios.Text = "Espacios";
             this.menuEspacios.Click += new System.EventHandler(this.menuEspacios_Click);
@@ -285,7 +287,7 @@ namespace Application.UI
             this.crearPaciente,
             this.modificarPaciente});
             this.menuClientes.Name = "menuClientes";
-            this.menuClientes.Size = new System.Drawing.Size(270, 36);
+            this.menuClientes.Size = new System.Drawing.Size(240, 36);
             this.menuClientes.Tag = "clientes";
             this.menuClientes.Text = "Clientes";
             // 
@@ -312,7 +314,7 @@ namespace Application.UI
             this.menuEspecialidades.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.crearEspecialidad});
             this.menuEspecialidades.Name = "menuEspecialidades";
-            this.menuEspecialidades.Size = new System.Drawing.Size(270, 36);
+            this.menuEspecialidades.Size = new System.Drawing.Size(240, 36);
             this.menuEspecialidades.Tag = "espacialidades";
             this.menuEspecialidades.Text = "Especialidades";
             // 
@@ -330,7 +332,7 @@ namespace Application.UI
             this.crearEstudio,
             this.modificarEstudio});
             this.menuEstudios.Name = "menuEstudios";
-            this.menuEstudios.Size = new System.Drawing.Size(270, 36);
+            this.menuEstudios.Size = new System.Drawing.Size(240, 36);
             this.menuEstudios.Tag = "estudios";
             this.menuEstudios.Text = "Estudios";
             // 
@@ -387,6 +389,14 @@ namespace Application.UI
             this.menuMuestra.Tag = "muestra";
             this.menuMuestra.Text = "Muestra";
             // 
+            // menuHistoricoDeCambios
+            // 
+            this.menuHistoricoDeCambios.Name = "menuHistoricoDeCambios";
+            this.menuHistoricoDeCambios.Size = new System.Drawing.Size(301, 36);
+            this.menuHistoricoDeCambios.Tag = "historicoDeCambios";
+            this.menuHistoricoDeCambios.Text = "Historico de Cambios";
+            this.menuHistoricoDeCambios.Click += new System.EventHandler(this.menuHistoricoDeCambios_Click);
+            // 
             // menuReportes
             // 
             this.menuReportes.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -438,13 +448,13 @@ namespace Application.UI
             this.englishToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.englishToolStripMenuItem.Text = "English";
             // 
-            // menuHistoricoDeCambios
+            // menuDV
             // 
-            this.menuHistoricoDeCambios.Name = "menuHistoricoDeCambios";
-            this.menuHistoricoDeCambios.Size = new System.Drawing.Size(301, 36);
-            this.menuHistoricoDeCambios.Tag = "historicoDeCambios";
-            this.menuHistoricoDeCambios.Text = "Historico de Cambios";
-            this.menuHistoricoDeCambios.Click += new System.EventHandler(this.menuHistoricoDeCambios_Click);
+            this.menuDV.Name = "menuDV";
+            this.menuDV.Size = new System.Drawing.Size(270, 36);
+            this.menuDV.Tag = "digito verificador";
+            this.menuDV.Text = "Dígito Verificador";
+            this.menuDV.Click += new System.EventHandler(this.menuDV_Click);
             // 
             // frmMain
             // 
@@ -514,6 +524,7 @@ namespace Application.UI
         private System.Windows.Forms.ToolStripMenuItem menuBitacora;
         private System.Windows.Forms.ToolStripMenuItem menuMuestra;
         private System.Windows.Forms.ToolStripMenuItem menuHistoricoDeCambios;
+        private System.Windows.Forms.ToolStripMenuItem menuDV;
     }
 }
 

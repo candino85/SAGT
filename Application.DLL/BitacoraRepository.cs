@@ -1,12 +1,8 @@
-﻿using Application.ABSTRACTIONS;
-using Application.BE;
+﻿using Application.BE;
 using Application.Services;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Application.DLL
 {
@@ -42,11 +38,11 @@ namespace Application.DLL
                 Bitacora evento = new Bitacora();
                 //evento.Id = reader.GetInt32(reader.GetOrdinal("id"));
                 //evento.IdUsuario = reader.GetInt32(reader.GetOrdinal("idUsuario"));
-                evento.LoginName  = reader["loginname"] != DBNull.Value ? reader.GetString(reader.GetOrdinal("loginname")) : "";
+                evento.LoginName = reader["loginname"] != DBNull.Value ? reader.GetString(reader.GetOrdinal("loginname")) : "";
                 evento.FechaHora = reader.GetDateTime(reader.GetOrdinal("fechaHora"));
                 evento.Modulo = reader.GetString(reader.GetOrdinal("modulo"));
                 evento.Operacion = reader.GetString(reader.GetOrdinal("operacion"));
-                evento.Criticidad = reader.GetInt32(reader.GetOrdinal("criticidad"));                
+                evento.Criticidad = reader.GetInt32(reader.GetOrdinal("criticidad"));
                 evento.Mensaje = reader.GetString(reader.GetOrdinal("mensaje"));
 
                 bitacoraList.Add(evento);
@@ -103,7 +99,7 @@ namespace Application.DLL
                     query += $@" AND bita.[FechaHora] >= '{filtro.FechaHoraDesde}' and bita.[FechaHora] <= '{filtro.FechaHoraHasta}'";
                 else
                     query += $@" WHERE bita.[FechaHora] >= '{filtro.FechaHoraDesde}' and bita.[FechaHora] <= '{filtro.FechaHoraHasta}'";
-            }             
+            }
 
             cmd.CommandText = query;
 
@@ -133,7 +129,7 @@ namespace Application.DLL
             var cnn = new SqlConnection(accesso.GetConnectionString());
             cnn.Open();
             var cmd = new SqlCommand();
-            cmd.Connection = cnn;                    
+            cmd.Connection = cnn;
 
             var query = $@"INSERT INTO [dbo].[Bitacora]
                             ([IdUsuario]
@@ -160,7 +156,7 @@ namespace Application.DLL
             {
                 throw new DataAccessException("Sucedió un error en DAL", ex);
             }
-            
+
         }
 
     }
