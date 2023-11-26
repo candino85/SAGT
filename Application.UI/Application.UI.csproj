@@ -151,6 +151,7 @@
     <Reference Include="System.Buffers, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Buffers.4.5.1\lib\net461\System.Buffers.dll</HintPath>
     </Reference>
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Diagnostics.DiagnosticSource, Version=5.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Diagnostics.DiagnosticSource.5.0.0\lib\net46\System.Diagnostics.DiagnosticSource.dll</HintPath>
@@ -339,12 +340,6 @@
     <Compile Include="Negocio\frmRegistrarMuestraQRPreview.Designer.cs">
       <DependentUpon>frmRegistrarMuestraQRPreview.cs</DependentUpon>
     </Compile>
-    <Compile Include="Negocio\frmVerTurnosxEstudio.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Negocio\frmVerTurnosxEstudio.Designer.cs">
-      <DependentUpon>frmVerTurnosxEstudio.cs</DependentUpon>
-    </Compile>
     <Compile Include="Negocio\frmRegistrarTurno.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -365,8 +360,19 @@
     <Compile Include="Negocio\Reportes\frmReport1.Designer.cs">
       <DependentUpon>frmReport1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Negocio\Reportes\frmReport2.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Negocio\Reportes\frmReport2.Designer.cs">
+      <DependentUpon>frmReport2.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
     <Compile Include="SqlServerTypes\Loader.cs" />
     <EmbeddedResource Include="Backup\frmBackupRestore.resx">
       <DependentUpon>frmBackupRestore.cs</DependentUpon>
@@ -443,15 +449,16 @@
     <EmbeddedResource Include="Negocio\frmRegistrarMuestraQRPreview.resx">
       <DependentUpon>frmRegistrarMuestraQRPreview.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Negocio\frmVerTurnosxEstudio.resx">
-      <DependentUpon>frmVerTurnosxEstudio.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Negocio\frmRegistrarTurno.resx">
       <DependentUpon>frmRegistrarTurno.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Negocio\Reportes\frmReport1.resx">
       <DependentUpon>frmReport1.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Negocio\Reportes\frmReport2.resx">
+      <DependentUpon>frmReport2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Negocio\Reportes\Report2.rdlc" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -463,7 +470,6 @@
     </Compile>
     <EmbeddedResource Include="Negocio\Reportes\Report1.rdlc" />
     <None Include="Application.UI_TemporaryKey.pfx" />
-    <None Include="Class Diagram - UI.cd" />
     <None Include="Negocio\ClassDiagram - UI Neg.cd" />
     <None Include="Negocio\Reportes\DataSetRepo1.xsc">
       <DependentUpon>DataSetRepo1.xsd</DependentUpon>
@@ -477,18 +483,19 @@
       <DependentUpon>DataSetRepo1.xsd</DependentUpon>
     </None>
     <None Include="packages.config" />
+    <None Include="Properties\DataSources\Application.UI.Negocio.Reportes.DataSetRepo1.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
-    <Compile Include="Properties\Settings.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Settings.settings</DependentUpon>
-      <DesignTimeSharedInput>True</DesignTimeSharedInput>
-    </Compile>
+    <None Include="Resources\Ayuda.chm">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
+    <None Include="App.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Application.ABSTRACTIONS\Application.ABSTRACTIONS.csproj">

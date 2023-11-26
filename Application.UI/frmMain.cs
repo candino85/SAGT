@@ -18,10 +18,8 @@ namespace Application.UI
     {
         BLL.Permission permission;
         BLL.User user;
-
-        Services.UserPermission userPermission;
-
         BLL.LanguageService language;
+        Services.UserPermission userPermission;
 
         public frmMain()
         {
@@ -47,7 +45,7 @@ namespace Application.UI
 
         private void validatePermissions()
         {
-            if (SessionManager.GetInstance.Usuario != null) //&& SessionManager.GetInstance.Usuario.LoginName != "SysAdmin")
+            if (SessionManager.GetInstance.Usuario != null && SessionManager.GetInstance.Usuario.LoginName != "sysadmin") //&& SessionManager.GetInstance.Usuario.LoginName != "SysAdmin")
             {
                 userPermission.Id = SessionManager.GetInstance.Usuario.Id;
                 userPermission.Nombre = SessionManager.GetInstance.Usuario.Name;
@@ -92,25 +90,46 @@ namespace Application.UI
                 //ayuda
                 menuAyuda.Visible = permission.FindUserPermissions(PermissionType.menuAyuda, userPermission);
             }
-            //else if (SessionManager.GetInstance.Usuario.LoginName == "SysAdmin")
-            //{
-            //    //sesionToolStripMenuItem
-            //    menuLanguage.Visible = true;
+            else if (SessionManager.GetInstance.Usuario.LoginName == "sysadmin")
+            {
 
-            //    gestionToolStripMenuItem.Visible = true;
-            //    entidadesToolStripMenuItem.Visible = true;
-            //    idiomasToolStripMenuItem.Visible = true;
-            //    usuariosToolStripMenuItem.Visible = true;
-            //    //espaciosToolStripMenuItem.Visible = permission.FindUserPermissions(PermissionType.GestionarEspacios, userPermission);
+                //sesion
+                menuLanguage.Visible = true;
+                menuCambiarClave.Visible = true;
 
-            //    seguridadToolStripMenuItem.Visible = true;
-            //    rolesToolStripMenuItem.Visible = true;
-            //    backupRestoreToolStripMenuItem.Visible = true;
-            //    //seguridadUsuariosToolStripMenuItem.Visible = permission.FindUserPermissions(PermissionType.ConfigurarSeguridadUsuarios, userPermission);
+                //administrar
+                menuAdministrar.Visible = true;
+                menuUsuarios.Visible = true;
+                menuPerfiles.Visible = true;
+                menuIdiomas.Visible = true;
+                menuBackupRestore.Visible = true;
+                menuBitacora.Visible = true;
+                menuDV.Visible = true;
 
-            //    //negocioToolStripMenuItem (Este permiso se desglosará para cada tipo de role del negocio)
-            //    negocioToolStripMenuItem.Visible = true;
-            //}
+                //maestros
+                menuMaestros.Visible = true;
+                menuSucursales.Visible = true;
+                menuEspacios.Visible = true;
+                menuClientes.Visible = true;
+                menuEspecialidades.Visible = true;
+                menuEstudios.Visible = true;
+
+                //turnos
+                menuRegistrar.Visible = true;
+                menuTurno.Visible = true;
+                menuAgenda.Visible = true;
+                menuMuestra.Visible = true;
+                menuHistoricoDeCambios.Visible = true;
+
+                //reportes
+                menuReportes.Visible = true;
+
+                //ayuda
+                menuAyuda.Visible = true;
+
+                //sesionToolStripMenuItem
+                menuLanguage.Visible = true;
+            }
         }
 
         private void CloseSesion()
@@ -160,7 +179,8 @@ namespace Application.UI
                 this.lblEstado.Text = "[Sesión no iniciada]";
             }
 
-            validatePermissions();
+            if (SessionManager.GetInstance.IsLogged)
+                validatePermissions();
         }
 
         public void LoadComboLanguage()
@@ -338,6 +358,21 @@ namespace Application.UI
         private void menuDV_Click(object sender, EventArgs e)
         {
             CreateForm(typeof(frmDigitoVerificador));
+        }
+
+        private void reporteDeCadenaDeCustodiaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            CreateForm(typeof(frmReport2));
+        }
+
+        private void crearEspecialidad_Click(object sender, EventArgs e)
+        {
+            CreateForm(typeof(frmEspecialidad));
+        }
+
+        private void menuAyuda_Click(object sender, EventArgs e)
+        {
+            Help.ShowHelp(this, @"Resources\Ayuda.chm");
         }
     }
 }

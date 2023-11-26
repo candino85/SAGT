@@ -29,16 +29,17 @@ namespace Application.UI.Negocio
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmClient));
             this.chkActive = new System.Windows.Forms.CheckBox();
             this.btnRemove = new System.Windows.Forms.Button();
             this.btnModify = new System.Windows.Forms.Button();
-            this.txtAddress = new Application.UI.Customs_Controls.TextBoxLabeled();
             this.btnCreate = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
+            this.txtEmail = new System.Windows.Forms.TextBox();
+            this.txtAddress = new Application.UI.Customs_Controls.TextBoxLabeled();
             this.txtID = new Application.UI.Customs_Controls.TextBoxLabeled();
             this.txtLastname = new Application.UI.Customs_Controls.TextBoxLabeled();
             this.txtName = new Application.UI.Customs_Controls.TextBoxLabeled();
-            this.label1 = new System.Windows.Forms.Label();
-            this.txtEmail = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // chkActive
@@ -77,18 +78,6 @@ namespace Application.UI.Negocio
             this.btnModify.UseVisualStyleBackColor = true;
             this.btnModify.Click += new System.EventHandler(this.btnUpdate_Click);
             // 
-            // txtAddress
-            // 
-            this.txtAddress.AutoSize = true;
-            this.txtAddress.LabelText = "Direccion";
-            this.txtAddress.Location = new System.Drawing.Point(15, 319);
-            this.txtAddress.Margin = new System.Windows.Forms.Padding(6, 8, 6, 8);
-            this.txtAddress.Name = "txtAddress";
-            this.txtAddress.PasswordChar = '\0';
-            this.txtAddress.Size = new System.Drawing.Size(362, 69);
-            this.txtAddress.TabIndex = 15;
-            this.txtAddress.TextBoxText = "";
-            // 
             // btnCreate
             // 
             this.btnCreate.AutoEllipsis = true;
@@ -101,6 +90,36 @@ namespace Application.UI.Negocio
             this.btnCreate.Text = "Crear";
             this.btnCreate.UseVisualStyleBackColor = true;
             this.btnCreate.Click += new System.EventHandler(this.btnCreate_Click);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(12, 240);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(140, 20);
+            this.label1.TabIndex = 20;
+            this.label1.Tag = "email";
+            this.label1.Text = "Correo Electrónico";
+            // 
+            // txtEmail
+            // 
+            this.txtEmail.CausesValidation = false;
+            this.txtEmail.Location = new System.Drawing.Point(15, 280);
+            this.txtEmail.Name = "txtEmail";
+            this.txtEmail.Size = new System.Drawing.Size(362, 26);
+            this.txtEmail.TabIndex = 21;
+            // 
+            // txtAddress
+            // 
+            this.txtAddress.AutoSize = true;
+            this.txtAddress.LabelText = "Direccion";
+            this.txtAddress.Location = new System.Drawing.Point(15, 319);
+            this.txtAddress.Margin = new System.Windows.Forms.Padding(6, 8, 6, 8);
+            this.txtAddress.Name = "txtAddress";
+            this.txtAddress.PasswordChar = '\0';
+            this.txtAddress.Size = new System.Drawing.Size(362, 69);
+            this.txtAddress.TabIndex = 15;
+            this.txtAddress.TextBoxText = "";
             // 
             // txtID
             // 
@@ -139,29 +158,11 @@ namespace Application.UI.Negocio
             this.txtName.Tag = "nombre";
             this.txtName.TextBoxText = "";
             // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(12, 240);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(210, 30);
-            this.label1.TabIndex = 20;
-            this.label1.Tag = "email";
-            this.label1.Text = "Correo Electrónico";
-            // 
-            // txtEmail
-            // 
-            this.txtEmail.CausesValidation = false;
-            this.txtEmail.Location = new System.Drawing.Point(15, 280);
-            this.txtEmail.Name = "txtEmail";
-            this.txtEmail.Size = new System.Drawing.Size(362, 26);
-            this.txtEmail.TabIndex = 21;
-            // 
             // frmClient
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(358, 343);
+            this.ClientSize = new System.Drawing.Size(396, 525);
             this.Controls.Add(this.txtEmail);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.chkActive);
@@ -172,6 +173,7 @@ namespace Application.UI.Negocio
             this.Controls.Add(this.txtID);
             this.Controls.Add(this.txtLastname);
             this.Controls.Add(this.txtName);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "frmClient";
             this.Tag = "frmCliente";

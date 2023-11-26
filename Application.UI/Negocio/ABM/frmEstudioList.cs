@@ -32,12 +32,12 @@ namespace Application.UI.Negocio.ABM
             dgvEstudios.DataSource = null;
             dgvEstudios.DataSource = estudio_BLL.EstudioList();
             dgvEstudios.Columns["Id"].Visible = false;
+            DataGridViewConfig();
         }
 
         private void frmEstudioList_Load(object sender, EventArgs e)
         {
-            updateLanguage(SessionManager.GetInstance.language);
-            DataGridViewConfig();
+            updateLanguage(SessionManager.GetInstance.language);            
         }
 
         private void DataGridViewConfig()
@@ -73,6 +73,11 @@ namespace Application.UI.Negocio.ABM
                 dgvEstudios.DataSource = null;
                 dgvEstudios.DataSource = estudio_BLL.EstudioList().FindAll(x => x.Nombre.ToUpper().Contains(txtSearchEstudio.Text.ToUpper()));
             }
+        }
+
+        private void frmEstudioList_FormClosed_1(object sender, FormClosedEventArgs e)
+        {
+            SessionManager.GetInstance.UnsubscribeObserver(this);
         }
     }
 }

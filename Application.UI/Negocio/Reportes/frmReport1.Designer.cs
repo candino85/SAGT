@@ -30,6 +30,7 @@
         {
             this.components = new System.ComponentModel.Container();
             Microsoft.Reporting.WinForms.ReportDataSource reportDataSource1 = new Microsoft.Reporting.WinForms.ReportDataSource();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmReport1));
             this.turnosBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.dataSetRepo1 = new Application.UI.Negocio.Reportes.DataSetRepo1();
             this.reportViewer1 = new Microsoft.Reporting.WinForms.ReportViewer();
@@ -64,10 +65,10 @@
             reportDataSource1.Value = this.turnosBindingSource;
             this.reportViewer1.LocalReport.DataSources.Add(reportDataSource1);
             this.reportViewer1.LocalReport.ReportEmbeddedResource = "Application.UI.Negocio.Reportes.Report1.rdlc";
-            this.reportViewer1.Location = new System.Drawing.Point(12, 86);
+            this.reportViewer1.Location = new System.Drawing.Point(12, 70);
             this.reportViewer1.Name = "reportViewer1";
             this.reportViewer1.ServerReport.BearerToken = null;
-            this.reportViewer1.Size = new System.Drawing.Size(929, 849);
+            this.reportViewer1.Size = new System.Drawing.Size(929, 865);
             this.reportViewer1.TabIndex = 0;
             // 
             // dtpDesde
@@ -79,7 +80,6 @@
             this.dtpDesde.Size = new System.Drawing.Size(237, 26);
             this.dtpDesde.TabIndex = 1;
             this.dtpDesde.Value = new System.DateTime(2023, 7, 11, 0, 0, 0, 0);
-            this.dtpDesde.ValueChanged += new System.EventHandler(this.dtpDesde_ValueChanged);
             // 
             // dtpHasta
             // 
@@ -94,7 +94,7 @@
             // 
             // btnGenerar
             // 
-            this.btnGenerar.Location = new System.Drawing.Point(717, 24);
+            this.btnGenerar.Location = new System.Drawing.Point(717, 15);
             this.btnGenerar.Name = "btnGenerar";
             this.btnGenerar.Size = new System.Drawing.Size(224, 49);
             this.btnGenerar.TabIndex = 3;
@@ -159,6 +159,7 @@
             this.Controls.Add(this.dtpHasta);
             this.Controls.Add(this.dtpDesde);
             this.Controls.Add(this.reportViewer1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "frmReport1";
             this.Tag = "frmReport1";
             this.Text = "Reporte de Turnos Asignados";

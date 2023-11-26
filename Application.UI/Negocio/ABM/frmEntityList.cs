@@ -15,12 +15,13 @@ namespace Application.UI
             InitializeComponent();
             entity_BLL = new BLL.Sucursal();
             Bind();
+            DataGridViewConfig();
         }
 
         private void btnCreateEntity_Click(object sender, EventArgs e)
         {
             frmEntity frmEntity = new frmEntity(this);
-            frmMain frmMain = (frmMain)this.MdiParent;
+            //frmMain frmMain = (frmMain)this.MdiParent;
             frmEntity.Show();
         }
 
@@ -51,6 +52,20 @@ namespace Application.UI
         private void frmEntityList_FormClosed(object sender, FormClosedEventArgs e)
         {
             SessionManager.GetInstance.UnsubscribeObserver(this);
+        }
+
+        private void DataGridViewConfig()
+        {
+            dgvEntities.AllowUserToAddRows = false;
+            dgvEntities.AllowUserToDeleteRows = false;
+            dgvEntities.AllowUserToResizeRows = false;
+            dgvEntities.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.DisableResizing;
+            dgvEntities.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            dgvEntities.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dgvEntities.ReadOnly = true;
+            dgvEntities.SelectionMode = DataGridViewSelectionMode.CellSelect;
+            dgvEntities.RowHeadersVisible = false;
+            dgvEntities.MultiSelect = false;
         }
     }
 }

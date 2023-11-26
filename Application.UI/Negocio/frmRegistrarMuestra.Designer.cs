@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmRegistrarMuestra));
             this.label1 = new System.Windows.Forms.Label();
             this.txtPacienteApellido = new System.Windows.Forms.TextBox();
             this.gbPaciente = new System.Windows.Forms.GroupBox();
@@ -54,6 +55,8 @@
             this.btnCancelar = new System.Windows.Forms.Button();
             this.cmbOperacion = new System.Windows.Forms.ComboBox();
             this.label9 = new System.Windows.Forms.Label();
+            this.btnExportar = new System.Windows.Forms.Button();
+            this.btnImportar = new System.Windows.Forms.Button();
             this.gbPaciente.SuspendLayout();
             this.gbEstudio.SuspendLayout();
             this.z.SuspendLayout();
@@ -91,7 +94,7 @@
             this.gbPaciente.Controls.Add(this.txtPacienteApellido);
             this.gbPaciente.Location = new System.Drawing.Point(12, 12);
             this.gbPaciente.Name = "gbPaciente";
-            this.gbPaciente.Size = new System.Drawing.Size(473, 441);
+            this.gbPaciente.Size = new System.Drawing.Size(473, 401);
             this.gbPaciente.TabIndex = 2;
             this.gbPaciente.TabStop = false;
             this.gbPaciente.Tag = "paciente";
@@ -131,7 +134,7 @@
             this.txtPacienteDireccion.Multiline = true;
             this.txtPacienteDireccion.Name = "txtPacienteDireccion";
             this.txtPacienteDireccion.ReadOnly = true;
-            this.txtPacienteDireccion.Size = new System.Drawing.Size(450, 118);
+            this.txtPacienteDireccion.Size = new System.Drawing.Size(450, 90);
             this.txtPacienteDireccion.TabIndex = 7;
             // 
             // label3
@@ -320,16 +323,40 @@
             this.label9.AutoSize = true;
             this.label9.Location = new System.Drawing.Point(504, 362);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(123, 30);
+            this.label9.Size = new System.Drawing.Size(82, 20);
             this.label9.TabIndex = 14;
             this.label9.Tag = "operacion";
             this.label9.Text = "Operación";
+            // 
+            // btnExportar
+            // 
+            this.btnExportar.Location = new System.Drawing.Point(12, 432);
+            this.btnExportar.Name = "btnExportar";
+            this.btnExportar.Size = new System.Drawing.Size(222, 43);
+            this.btnExportar.TabIndex = 16;
+            this.btnExportar.Tag = "exportar";
+            this.btnExportar.Text = "Exportar";
+            this.btnExportar.UseVisualStyleBackColor = true;
+            this.btnExportar.Click += new System.EventHandler(this.btnExportar_Click);
+            // 
+            // btnImportar
+            // 
+            this.btnImportar.Location = new System.Drawing.Point(257, 432);
+            this.btnImportar.Name = "btnImportar";
+            this.btnImportar.Size = new System.Drawing.Size(228, 43);
+            this.btnImportar.TabIndex = 15;
+            this.btnImportar.Tag = "importar";
+            this.btnImportar.Text = "Importar";
+            this.btnImportar.UseVisualStyleBackColor = true;
+            this.btnImportar.Click += new System.EventHandler(this.btnImportar_Click);
             // 
             // frmRegistrarMuestra
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(990, 490);
+            this.Controls.Add(this.btnExportar);
+            this.Controls.Add(this.btnImportar);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.cmbOperacion);
             this.Controls.Add(this.btnCancelar);
@@ -337,8 +364,12 @@
             this.Controls.Add(this.z);
             this.Controls.Add(this.gbEstudio);
             this.Controls.Add(this.gbPaciente);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "frmRegistrarMuestra";
-            this.Text = "frmRegistrarMuestra";
+            this.Tag = "frmRegistrarMuestra";
+            this.Text = "Registrar Muestra";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.frmRegistrarMuestra_FormClosed);
+            this.Load += new System.EventHandler(this.frmRegistrarMuestra_Load);
             this.gbPaciente.ResumeLayout(false);
             this.gbPaciente.PerformLayout();
             this.gbEstudio.ResumeLayout(false);
@@ -378,5 +409,7 @@
         private System.Windows.Forms.Button btnCancelar;
         private System.Windows.Forms.ComboBox cmbOperacion;
         private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Button btnExportar;
+        private System.Windows.Forms.Button btnImportar;
     }
 }

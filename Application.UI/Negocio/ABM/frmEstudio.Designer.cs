@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmEstudio));
             this.chkActive = new System.Windows.Forms.CheckBox();
             this.btnRemove = new System.Windows.Forms.Button();
             this.btnModify = new System.Windows.Forms.Button();
@@ -43,7 +44,7 @@
             // chkActive
             // 
             this.chkActive.AutoSize = true;
-            this.chkActive.Location = new System.Drawing.Point(212, 275);
+            this.chkActive.Location = new System.Drawing.Point(212, 236);
             this.chkActive.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.chkActive.Name = "chkActive";
             this.chkActive.Size = new System.Drawing.Size(78, 24);
@@ -54,21 +55,22 @@
             // 
             // btnRemove
             // 
-            this.btnRemove.Location = new System.Drawing.Point(303, 325);
+            this.btnRemove.Location = new System.Drawing.Point(20, 358);
             this.btnRemove.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnRemove.Name = "btnRemove";
-            this.btnRemove.Size = new System.Drawing.Size(135, 43);
+            this.btnRemove.Size = new System.Drawing.Size(298, 34);
             this.btnRemove.TabIndex = 24;
             this.btnRemove.Tag = "eliminar socio";
             this.btnRemove.Text = "Eliminar";
             this.btnRemove.UseVisualStyleBackColor = true;
+            this.btnRemove.Click += new System.EventHandler(this.btnRemove_Click);
             // 
             // btnModify
             // 
-            this.btnModify.Location = new System.Drawing.Point(160, 325);
+            this.btnModify.Location = new System.Drawing.Point(20, 314);
             this.btnModify.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnModify.Name = "btnModify";
-            this.btnModify.Size = new System.Drawing.Size(135, 43);
+            this.btnModify.Size = new System.Drawing.Size(298, 34);
             this.btnModify.TabIndex = 26;
             this.btnModify.Tag = "modificar socio";
             this.btnModify.Text = "Modificar";
@@ -77,10 +79,10 @@
             // btnCreate
             // 
             this.btnCreate.AutoEllipsis = true;
-            this.btnCreate.Location = new System.Drawing.Point(20, 325);
+            this.btnCreate.Location = new System.Drawing.Point(20, 270);
             this.btnCreate.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnCreate.Name = "btnCreate";
-            this.btnCreate.Size = new System.Drawing.Size(135, 43);
+            this.btnCreate.Size = new System.Drawing.Size(298, 34);
             this.btnCreate.TabIndex = 25;
             this.btnCreate.Tag = "crear cliente";
             this.btnCreate.Text = "Crear";
@@ -90,15 +92,15 @@
             // cmbEspecialidad
             // 
             this.cmbEspecialidad.FormattingEnabled = true;
-            this.cmbEspecialidad.Location = new System.Drawing.Point(15, 135);
+            this.cmbEspecialidad.Location = new System.Drawing.Point(12, 111);
             this.cmbEspecialidad.Name = "cmbEspecialidad";
-            this.cmbEspecialidad.Size = new System.Drawing.Size(275, 28);
+            this.cmbEspecialidad.Size = new System.Drawing.Size(303, 28);
             this.cmbEspecialidad.TabIndex = 28;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(16, 112);
+            this.label1.Location = new System.Drawing.Point(13, 88);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(99, 20);
             this.label1.TabIndex = 29;
@@ -107,15 +109,15 @@
             // 
             // txtName
             // 
-            this.txtName.Location = new System.Drawing.Point(15, 69);
+            this.txtName.Location = new System.Drawing.Point(12, 45);
             this.txtName.Name = "txtName";
-            this.txtName.Size = new System.Drawing.Size(275, 26);
+            this.txtName.Size = new System.Drawing.Size(303, 26);
             this.txtName.TabIndex = 31;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(16, 46);
+            this.label2.Location = new System.Drawing.Point(13, 22);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(65, 20);
             this.label2.TabIndex = 32;
@@ -125,7 +127,7 @@
             // lblTiempo
             // 
             this.lblTiempo.AutoSize = true;
-            this.lblTiempo.Location = new System.Drawing.Point(16, 179);
+            this.lblTiempo.Location = new System.Drawing.Point(13, 155);
             this.lblTiempo.Name = "lblTiempo";
             this.lblTiempo.Size = new System.Drawing.Size(61, 20);
             this.lblTiempo.TabIndex = 33;
@@ -141,16 +143,16 @@
             "15",
             "30",
             "60"});
-            this.cmbTiempo.Location = new System.Drawing.Point(15, 203);
+            this.cmbTiempo.Location = new System.Drawing.Point(12, 179);
             this.cmbTiempo.Name = "cmbTiempo";
-            this.cmbTiempo.Size = new System.Drawing.Size(275, 28);
+            this.cmbTiempo.Size = new System.Drawing.Size(303, 28);
             this.cmbTiempo.TabIndex = 34;
             // 
             // frmEstudio
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(466, 392);
+            this.ClientSize = new System.Drawing.Size(345, 426);
             this.Controls.Add(this.cmbTiempo);
             this.Controls.Add(this.lblTiempo);
             this.Controls.Add(this.label2);
@@ -161,6 +163,7 @@
             this.Controls.Add(this.btnRemove);
             this.Controls.Add(this.btnModify);
             this.Controls.Add(this.btnCreate);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "frmEstudio";
             this.Tag = "frmEstudio";
             this.Text = "Estudio";

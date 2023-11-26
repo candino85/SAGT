@@ -62,60 +62,63 @@ namespace Application.UI
         {
             MessageBox.Show(_user.LogIn(this.txtNombreUsuario.Text, this.txtPassword.Text), "Bienvenido", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-            var integrityResult = integrityService.IntegrityCheck("Usuarios, Turno");
+            //if (SessionManager.GetInstance.Usuario.Name != "sysadmin")
+            //{
+                var integrityResult = integrityService.IntegrityCheck("Usuarios, Turno");
 
-            if (SessionManager.GetInstance.IsLogged)
-            {
-                frmMain frm = (frmMain)this.MdiParent;
-                if (!hasValues(integrityResult))
+                if (SessionManager.GetInstance.IsLogged)
                 {
+                    frmMain frm = (frmMain)this.MdiParent;
+                    if (!hasValues(integrityResult))
+                    {
 
-                    frm.lblEstado.Text = SessionManager.GetInstance.Usuario.LoginName.ToString();
-                    frm.ValidarForm();
-                    this.Close();
-                }
-                else
-                {
-                    userPermission.Id = SessionManager.GetInstance.Usuario.Id;
-                    userPermission.Nombre = SessionManager.GetInstance.Usuario.Name;
-
-                    var hasPermissionToDV = permission.FindUserPermissions(PermissionType.menuDV, userPermission);
-                    
-                    if (hasPermissionToDV)
-                    {                        
-                        var msg = "*** ERROR EN LA COMPROBACIÓN DE INTEGRIDAD EN LA BASE DE DATOS ***";
-
-                        foreach (var item in integrityResult)
-                        {
-                            var message = "";
-
-                            if (item.Count != 0)
-                            {
-                                msg += $"\r\n\r\n{item["tabla"].ToUpper()}:\r\n";
-
-                                foreach (KeyValuePair<string, string> key in item)
-                                {
-                                    if (key.Key != "tabla" && key.Key != "DVV")
-                                    {
-                                        message += $" {key.Key} ";
-                                    }
-                                }
-
-                                msg += $"Error de integridad en los IDs: {message}\r\n";
-                            }
-                        }
-                      
-                        frmDigitoVerificador frmDigitoVerificador = new frmDigitoVerificador(msg);
-                        frmDigitoVerificador.ShowDialog();
+                        frm.lblEstado.Text = SessionManager.GetInstance.Usuario.LoginName.ToString();
+                        frm.ValidarForm();
                         this.Close();
                     }
                     else
-                    { 
-                        MessageBox.Show("El sistema no está disponible en este momento, comuniquese con un administrador para reestablecer el servicio.","ERROR",MessageBoxButtons.OK,MessageBoxIcon.Error);
-                        _user.LogOut();
+                    {
+                        userPermission.Id = SessionManager.GetInstance.Usuario.Id;
+                        userPermission.Nombre = SessionManager.GetInstance.Usuario.Name;
+
+                        var hasPermissionToDV = permission.FindUserPermissions(PermissionType.menuDV, userPermission);
+
+                        if (hasPermissionToDV || userPermission.Nombre == "sysadmin")
+                        {
+                            var msg = "*** ERROR EN LA COMPROBACIÓN DE INTEGRIDAD EN LA BASE DE DATOS ***";
+
+                            foreach (var item in integrityResult)
+                            {
+                                var message = "";
+
+                                if (item.Count != 0)
+                                {
+                                    msg += $"\r\n\r\n{item["tabla"].ToUpper()}:\r\n";
+
+                                    foreach (KeyValuePair<string, string> key in item)
+                                    {
+                                        if (key.Key != "tabla" && key.Key != "DVV")
+                                        {
+                                            message += $" {key.Key} ";
+                                        }
+                                    }
+
+                                    msg += $"Error de integridad en los IDs: {message}\r\n";
+                                }
+                            }
+
+                            frmDigitoVerificador frmDigitoVerificador = new frmDigitoVerificador(msg);
+                            frmDigitoVerificador.ShowDialog();
+                            this.Close();
+                        }
+                        else
+                        {
+                            MessageBox.Show("El sistema no está disponible en este momento, comuniquese con un administrador para reestablecer el servicio.", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            _user.LogOut();
+                        }
                     }
                 }
-            }
+            //}
         }
 
         private void frmLogin_Load(object sender, EventArgs e)

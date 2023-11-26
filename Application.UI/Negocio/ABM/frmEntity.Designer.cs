@@ -29,6 +29,7 @@ namespace Application.UI
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmEntity));
             this.btnCreateEntity = new System.Windows.Forms.Button();
             this.btnUpdateEntity = new System.Windows.Forms.Button();
             this.txtCuit = new System.Windows.Forms.TextBox();
@@ -170,10 +171,11 @@ namespace Application.UI
             this.Controls.Add(this.label2);
             this.Controls.Add(this.btnUpdateEntity);
             this.Controls.Add(this.btnCreateEntity);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "frmEntity";
             this.Tag = "frmEntity";
-            this.Text = "Detalle de Entidad";
+            this.Text = "Detalle de Sucursal";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.frmEntity_FormClosed);
             this.Load += new System.EventHandler(this.frmEntity_Load);
             this.ResumeLayout(false);

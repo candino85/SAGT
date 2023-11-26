@@ -29,6 +29,7 @@ namespace Application.UI.Negocio
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmClientList));
             this.label1 = new System.Windows.Forms.Label();
             this.txtSearchClient = new System.Windows.Forms.TextBox();
             this.dgvClients = new System.Windows.Forms.DataGridView();
@@ -82,6 +83,7 @@ namespace Application.UI.Negocio
             this.Controls.Add(this.label1);
             this.Controls.Add(this.txtSearchClient);
             this.Controls.Add(this.dgvClients);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "frmClientList";
             this.Tag = "frmClientList";

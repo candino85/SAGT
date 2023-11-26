@@ -1,10 +1,12 @@
-﻿using System;
+﻿using Application.ABSTRACTIONS;
+using Application.Services;
+using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
 
 namespace Application.UI.Negocio.ABM
 {
-    public partial class frmAgenda : Form
+    public partial class frmAgenda : Form, ILanguageObserver
     {
 
         BLL.Estudio estudio_BLL;
@@ -148,6 +150,16 @@ namespace Application.UI.Negocio.ABM
                 MessageBox.Show($"Se ha producido un error al guardar la agenda\n{ex.Message}", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
+        }
+
+        private void frmAgenda_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            SessionManager.GetInstance.UnsubscribeObserver(this);
+        }
+
+        public void updateLanguage(ILanguage language)
+        {
+            throw new NotImplementedException();
         }
     }
 }

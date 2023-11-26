@@ -1,5 +1,8 @@
-﻿using Application.BE;
+﻿using Application.ABSTRACTIONS;
+using Application.BE;
 using Application.BLL;
+using Application.Services;
+using Application.UI.Language;
 using iText.Kernel.Geom;
 using iText.Kernel.Pdf;
 using iText.Layout;
@@ -11,18 +14,29 @@ using System.Windows.Forms;
 
 namespace Application.UI.Negocio
 {
-    public partial class frmRegistrarMuestraQRPreview : Form
+    public partial class frmRegistrarMuestraQRPreview : Form, ILanguageObserver
     {
+
+        PrintDocument printDocument1 = new PrintDocument();
+
         public frmRegistrarMuestraQRPreview()
         {
             InitializeComponent();
         }
-        public frmRegistrarMuestraQRPreview(BE.Muestra muestra)
+        public frmRegistrarMuestraQRPreview(BE.Turno turno)
         {
             InitializeComponent();
 
             Zen.Barcode.CodeQrBarcodeDraw mGeneradorQR = Zen.Barcode.BarcodeDrawFactory.CodeQr;
-            pbQR.Image = mGeneradorQR.Draw(muestra.Id.ToString(), 300);
+            pbQR.Image = mGeneradorQR.Draw(turno.Id.ToString(), 300);
+            
+            printDocument1.PrintPage += new PrintPageEventHandler(printDocument_PrintPage);
+            
+        }
+
+        public void updateLanguage(ILanguage language)
+        {
+            Translator.Translate(this); 
         }
 
         //private void btnImprimirQR_Click(object sender, System.EventArgs e)
@@ -43,8 +57,8 @@ namespace Application.UI.Negocio
 
 
         //    }
-            
-            
+
+
 
         //    // Le colocamos el título y el autor
         //    // **Nota: Esto no será visible en el documento
@@ -71,9 +85,20 @@ namespace Application.UI.Negocio
         //    }
         //}
 
-        private void printDocument_PrintPage(object sender, System.Drawing.Printing.PrintPageEventArgs e)
+        private void printDocument_PrintPage(object sender, PrintPageEventArgs e)
         {
             e.Graphics.DrawImage(pbQR.Image, 0, 0);
+            printDocument1.Print();
+        }
+
+        private void frmRegistrarMuestraQRPreview_Load(object sender, System.EventArgs e)
+        {
+            updateLanguage(SessionManager.GetInstance.language);
+        }
+
+        private void frmRegistrarMuestraQRPreview_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            SessionManager.GetInstance.UnsubscribeObserver(this);
         }
     }
 }

@@ -13,12 +13,11 @@ namespace Application.UI.Bitacora
     {
         BE.Turno turno;
         BE.TurnoHistorico turnoHistorico;
+        BE.FiltroHistorico filtroHistorico;
 
         BLL.Turno mapperTurno;
         BLL.User mapperUsuario;
         BLL.Estudio mapperEstudio;
-
-        BE.FiltroHistorico filtroHistorico;
 
         public frmBitacoraCambios()
         {
@@ -122,7 +121,7 @@ namespace Application.UI.Bitacora
                 }
             }
             else
-                MessageBox.Show("El turno histórico seleccionado se encuentra activo", "INFO", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                MessageBox.Show("El turno histórico seleccionado se encuentra activo.", "INFO", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
         }
 
         private void dgvCambios_CellContentClick(object sender, DataGridViewCellEventArgs e)

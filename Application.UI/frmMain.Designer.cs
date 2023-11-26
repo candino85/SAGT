@@ -29,6 +29,7 @@ namespace Application.UI
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMain));
             this.statusStrip = new System.Windows.Forms.StatusStrip();
             this.lblEstado = new System.Windows.Forms.ToolStripStatusLabel();
             this.menu = new System.Windows.Forms.MenuStrip();
@@ -47,6 +48,7 @@ namespace Application.UI
             this.menuIdiomas = new System.Windows.Forms.ToolStripMenuItem();
             this.menuBackupRestore = new System.Windows.Forms.ToolStripMenuItem();
             this.menuBitacora = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuDV = new System.Windows.Forms.ToolStripMenuItem();
             this.menuMaestros = new System.Windows.Forms.ToolStripMenuItem();
             this.menuSucursales = new System.Windows.Forms.ToolStripMenuItem();
             this.menuEspacios = new System.Windows.Forms.ToolStripMenuItem();
@@ -65,12 +67,12 @@ namespace Application.UI
             this.menuHistoricoDeCambios = new System.Windows.Forms.ToolStripMenuItem();
             this.menuReportes = new System.Windows.Forms.ToolStripMenuItem();
             this.menuReportesTurnos = new System.Windows.Forms.ToolStripMenuItem();
+            this.reporteDeCadenaDeCustodiaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuAyuda = new System.Windows.Forms.ToolStripMenuItem();
             this.loginToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.logoutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.españolToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.englishToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.menuDV = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip.SuspendLayout();
             this.menu.SuspendLayout();
             this.SuspendLayout();
@@ -197,14 +199,14 @@ namespace Application.UI
             this.crearUsuario,
             this.modificarUsuario});
             this.menuUsuarios.Name = "menuUsuarios";
-            this.menuUsuarios.Size = new System.Drawing.Size(270, 36);
+            this.menuUsuarios.Size = new System.Drawing.Size(268, 36);
             this.menuUsuarios.Tag = "usuarios";
             this.menuUsuarios.Text = "Usuarios";
             // 
             // crearUsuario
             // 
             this.crearUsuario.Name = "crearUsuario";
-            this.crearUsuario.Size = new System.Drawing.Size(270, 36);
+            this.crearUsuario.Size = new System.Drawing.Size(198, 36);
             this.crearUsuario.Tag = "crear";
             this.crearUsuario.Text = "Crear";
             this.crearUsuario.ToolTipText = "crear";
@@ -213,7 +215,7 @@ namespace Application.UI
             // modificarUsuario
             // 
             this.modificarUsuario.Name = "modificarUsuario";
-            this.modificarUsuario.Size = new System.Drawing.Size(270, 36);
+            this.modificarUsuario.Size = new System.Drawing.Size(198, 36);
             this.modificarUsuario.Tag = "modificar";
             this.modificarUsuario.Text = "Modificar";
             this.modificarUsuario.ToolTipText = "modificar";
@@ -222,7 +224,7 @@ namespace Application.UI
             // menuPerfiles
             // 
             this.menuPerfiles.Name = "menuPerfiles";
-            this.menuPerfiles.Size = new System.Drawing.Size(270, 36);
+            this.menuPerfiles.Size = new System.Drawing.Size(268, 36);
             this.menuPerfiles.Tag = "perfiles";
             this.menuPerfiles.Text = "Perfiles";
             this.menuPerfiles.Click += new System.EventHandler(this.menuPerfiles_Click);
@@ -230,7 +232,7 @@ namespace Application.UI
             // menuIdiomas
             // 
             this.menuIdiomas.Name = "menuIdiomas";
-            this.menuIdiomas.Size = new System.Drawing.Size(270, 36);
+            this.menuIdiomas.Size = new System.Drawing.Size(268, 36);
             this.menuIdiomas.Tag = "idiomas";
             this.menuIdiomas.Text = "Idiomas";
             this.menuIdiomas.Click += new System.EventHandler(this.menuIdiomas_Click);
@@ -238,7 +240,7 @@ namespace Application.UI
             // menuBackupRestore
             // 
             this.menuBackupRestore.Name = "menuBackupRestore";
-            this.menuBackupRestore.Size = new System.Drawing.Size(270, 36);
+            this.menuBackupRestore.Size = new System.Drawing.Size(268, 36);
             this.menuBackupRestore.Tag = "backup/restore";
             this.menuBackupRestore.Text = "Backup / Restore";
             this.menuBackupRestore.Click += new System.EventHandler(this.menuBackupRestore_Click);
@@ -246,10 +248,18 @@ namespace Application.UI
             // menuBitacora
             // 
             this.menuBitacora.Name = "menuBitacora";
-            this.menuBitacora.Size = new System.Drawing.Size(270, 36);
+            this.menuBitacora.Size = new System.Drawing.Size(268, 36);
             this.menuBitacora.Tag = "bitacora";
             this.menuBitacora.Text = "Bitacora";
             this.menuBitacora.Click += new System.EventHandler(this.menuBitacora_Click);
+            // 
+            // menuDV
+            // 
+            this.menuDV.Name = "menuDV";
+            this.menuDV.Size = new System.Drawing.Size(268, 36);
+            this.menuDV.Tag = "digito verificador";
+            this.menuDV.Text = "Dígito Verificador";
+            this.menuDV.Click += new System.EventHandler(this.menuDV_Click);
             // 
             // menuMaestros
             // 
@@ -325,6 +335,7 @@ namespace Application.UI
             this.crearEspecialidad.Tag = "crear";
             this.crearEspecialidad.Text = "Crear";
             this.crearEspecialidad.ToolTipText = "crear";
+            this.crearEspecialidad.Click += new System.EventHandler(this.crearEspecialidad_Click);
             // 
             // menuEstudios
             // 
@@ -400,7 +411,8 @@ namespace Application.UI
             // menuReportes
             // 
             this.menuReportes.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.menuReportesTurnos});
+            this.menuReportesTurnos,
+            this.reporteDeCadenaDeCustodiaToolStripMenuItem});
             this.menuReportes.Name = "menuReportes";
             this.menuReportes.Size = new System.Drawing.Size(105, 32);
             this.menuReportes.Tag = "reportes";
@@ -410,11 +422,19 @@ namespace Application.UI
             // menuReportesTurnos
             // 
             this.menuReportesTurnos.Name = "menuReportesTurnos";
-            this.menuReportesTurnos.Size = new System.Drawing.Size(274, 36);
+            this.menuReportesTurnos.Size = new System.Drawing.Size(389, 36);
             this.menuReportesTurnos.Tag = "reporte de turnos";
             this.menuReportesTurnos.Text = "Reporte de Turnos";
             this.menuReportesTurnos.ToolTipText = "reporte de turnos";
             this.menuReportesTurnos.Click += new System.EventHandler(this.menuReportesTurnos_Click);
+            // 
+            // reporteDeCadenaDeCustodiaToolStripMenuItem
+            // 
+            this.reporteDeCadenaDeCustodiaToolStripMenuItem.Name = "reporteDeCadenaDeCustodiaToolStripMenuItem";
+            this.reporteDeCadenaDeCustodiaToolStripMenuItem.Size = new System.Drawing.Size(389, 36);
+            this.reporteDeCadenaDeCustodiaToolStripMenuItem.Tag = "reporte de cadena de custodia";
+            this.reporteDeCadenaDeCustodiaToolStripMenuItem.Text = "Reporte de Cadena de Custodia";
+            this.reporteDeCadenaDeCustodiaToolStripMenuItem.Click += new System.EventHandler(this.reporteDeCadenaDeCustodiaToolStripMenuItem_Click);
             // 
             // menuAyuda
             // 
@@ -423,6 +443,7 @@ namespace Application.UI
             this.menuAyuda.Tag = "ayuda";
             this.menuAyuda.Text = "Ayuda";
             this.menuAyuda.Visible = false;
+            this.menuAyuda.Click += new System.EventHandler(this.menuAyuda_Click);
             // 
             // loginToolStripMenuItem
             // 
@@ -448,14 +469,6 @@ namespace Application.UI
             this.englishToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.englishToolStripMenuItem.Text = "English";
             // 
-            // menuDV
-            // 
-            this.menuDV.Name = "menuDV";
-            this.menuDV.Size = new System.Drawing.Size(270, 36);
-            this.menuDV.Tag = "digito verificador";
-            this.menuDV.Text = "Dígito Verificador";
-            this.menuDV.Click += new System.EventHandler(this.menuDV_Click);
-            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
@@ -463,6 +476,7 @@ namespace Application.UI
             this.ClientSize = new System.Drawing.Size(1389, 829);
             this.Controls.Add(this.statusStrip);
             this.Controls.Add(this.menu);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.IsMdiContainer = true;
             this.MainMenuStrip = this.menu;
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
@@ -525,6 +539,7 @@ namespace Application.UI
         private System.Windows.Forms.ToolStripMenuItem menuMuestra;
         private System.Windows.Forms.ToolStripMenuItem menuHistoricoDeCambios;
         private System.Windows.Forms.ToolStripMenuItem menuDV;
+        private System.Windows.Forms.ToolStripMenuItem reporteDeCadenaDeCustodiaToolStripMenuItem;
     }
 }
 

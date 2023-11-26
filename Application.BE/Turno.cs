@@ -17,5 +17,12 @@ namespace Application.BE
         public int Id { get; set; }
         public string DVH { get ; set ; }
         public string DVV { get ; set ; }
+
+        public override string ToString()
+        {
+            return $"Cliente: {client}, Estado: {estado}, Sucursal: {sucursal}, Profesional: {profesional}, Estudio: {estudio}, Agenda: {agenda}, " +
+                $"Fecha Creacion: {fechaCreacion}, Fecha Turno: {fechaTurno}, Fecha Entrega: {fechaEntrega}";
+        }
     }
+
 }

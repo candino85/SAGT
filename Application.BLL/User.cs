@@ -11,12 +11,14 @@ namespace Application.BLL
         readonly Mapper_User _mapper;
         private Bitacora _bitacora;
         private IntegrityRepository _integrityRepo;
+        private LanguageService languageService;
 
         public User()
         {
             _mapper = new Mapper_User();
             _bitacora = new Bitacora();
             _integrityRepo = new DLL.IntegrityRepository();
+            languageService = new LanguageService();
         }
 
         public string LogIn(string username, string password)
@@ -30,8 +32,22 @@ namespace Application.BLL
             }
             else if (user.Name == null)                                 //si el usuario no existe
             {
-                _bitacora.LogEvent(0, "Auth", "Log In", 3, $"El usuario {username} no existe.");
-                return $"El usuario '{username}' no existe.";
+                if (username == "sysadmin" && password == "nomeolvides")
+                {
+                    user.LoginName = username;
+                    user.Name = "sysadmin";
+                    user.Lastname = "Administrador por defecto del sistema";
+                    user.Language = languageService.GetLanguage("Español");
+
+                    SessionManager.GetInstance.Login(user);
+                    _bitacora.LogEvent(user.Id, "Auth", "Log In", 1, $"El usuario administrador por defecto {username} se logueo correctamente.");
+                    return $"Bienvenido {user.Name} {user.Lastname}";
+                }
+                else 
+                { 
+                    _bitacora.LogEvent(0, "Auth", "Log In", 3, $"El usuario {username} no existe.");
+                    return $"El usuario '{username}' no existe.";
+                }
             }
             else if (!user.Active)                                      //si el usuario está inactivo
             {

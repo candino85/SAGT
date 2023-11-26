@@ -115,5 +115,10 @@ namespace Application.UI.Negocio.ABM
         {
             SessionManager.GetInstance.UnsubscribeObserver(this);
         }
+
+        private void btnRemove_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

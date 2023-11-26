@@ -33,6 +33,7 @@
             System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange3 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
             System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange4 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
             System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange5 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmRegistrarTurno));
             this.cmbEstudio = new System.Windows.Forms.ComboBox();
             this.lblEstudios = new System.Windows.Forms.Label();
             this.lblSucursal = new System.Windows.Forms.Label();
@@ -58,6 +59,7 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.btnEliminarTurno = new System.Windows.Forms.Button();
             this.btnBuscar = new System.Windows.Forms.Button();
+            this.panel2 = new System.Windows.Forms.Panel();
             this.calendar1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -256,7 +258,7 @@
         calendarHighlightRange5};
             this.calendar1.Location = new System.Drawing.Point(16, 160);
             this.calendar1.Name = "calendar1";
-            this.calendar1.Size = new System.Drawing.Size(1065, 927);
+            this.calendar1.Size = new System.Drawing.Size(1052, 927);
             this.calendar1.TabIndex = 311;
             this.calendar1.Text = "calendar1";
             this.calendar1.LoadItems += new System.Windows.Forms.Calendar.Calendar.CalendarLoadEventHandler(this.calendar1_LoadItems);
@@ -413,6 +415,15 @@
             this.btnBuscar.UseVisualStyleBackColor = true;
             this.btnBuscar.Click += new System.EventHandler(this.btnBuscar_Click);
             // 
+            // panel2
+            // 
+            this.panel2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel2.Location = new System.Drawing.Point(1077, 12);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(513, 1075);
+            this.panel2.TabIndex = 321;
+            // 
             // frmRegistrarTurno
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
@@ -429,6 +440,8 @@
             this.Controls.Add(this.lblEstudios);
             this.Controls.Add(this.cmbEstudio);
             this.Controls.Add(this.calendar1);
+            this.Controls.Add(this.panel2);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "frmRegistrarTurno";
             this.Tag = "frmRegistrarTurno";
             this.Text = "Registrar Turnos";
@@ -468,5 +481,6 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Button btnEliminarTurno;
         private System.Windows.Forms.Button btnBuscar;
+        private System.Windows.Forms.Panel panel2;
     }
 }

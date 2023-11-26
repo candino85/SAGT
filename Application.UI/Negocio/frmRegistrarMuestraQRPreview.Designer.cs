@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmRegistrarMuestraQRPreview));
             this.pbQR = new System.Windows.Forms.PictureBox();
             this.btnImprimirQR = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pbQR)).BeginInit();
@@ -37,7 +38,7 @@
             // 
             this.pbQR.Location = new System.Drawing.Point(12, 12);
             this.pbQR.Name = "pbQR";
-            this.pbQR.Size = new System.Drawing.Size(300, 300);
+            this.pbQR.Size = new System.Drawing.Size(300, 311);
             this.pbQR.TabIndex = 0;
             this.pbQR.TabStop = false;
             // 
@@ -50,7 +51,6 @@
             this.btnImprimirQR.Tag = "imprimir etiqueta";
             this.btnImprimirQR.Text = "Imprimir Etiqueta";
             this.btnImprimirQR.UseVisualStyleBackColor = true;
-            //this.btnImprimirQR.Click += new System.EventHandler(this.btnImprimirQR_Click);
             // 
             // frmRegistrarMuestraQRPreview
             // 
@@ -59,10 +59,13 @@
             this.ClientSize = new System.Drawing.Size(324, 384);
             this.Controls.Add(this.btnImprimirQR);
             this.Controls.Add(this.pbQR);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "frmRegistrarMuestraQRPreview";
             this.Tag = "frmRegistrarMuestraQRPreview";
-            this.Text = "frmRegistrarMuestraQRPreview";
+            this.Text = "Registrar Muestra QR Preview";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.frmRegistrarMuestraQRPreview_FormClosed);
+            this.Load += new System.EventHandler(this.frmRegistrarMuestraQRPreview_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pbQR)).EndInit();
             this.ResumeLayout(false);
 

@@ -29,6 +29,7 @@ namespace Application.UI
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmEntityList));
             this.btnCreateEntity = new System.Windows.Forms.Button();
             this.dgvEntities = new System.Windows.Forms.DataGridView();
             ((System.ComponentModel.ISupportInitialize)(this.dgvEntities)).BeginInit();
@@ -42,7 +43,7 @@ namespace Application.UI
             this.btnCreateEntity.Size = new System.Drawing.Size(201, 40);
             this.btnCreateEntity.TabIndex = 24;
             this.btnCreateEntity.Tag = "crear entidad";
-            this.btnCreateEntity.Text = "Crear Entidad";
+            this.btnCreateEntity.Text = "Crear Sucursal";
             this.btnCreateEntity.UseVisualStyleBackColor = true;
             this.btnCreateEntity.Click += new System.EventHandler(this.btnCreateEntity_Click);
             // 
@@ -70,10 +71,11 @@ namespace Application.UI
             this.ClientSize = new System.Drawing.Size(1200, 692);
             this.Controls.Add(this.dgvEntities);
             this.Controls.Add(this.btnCreateEntity);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "frmEntityList";
             this.Tag = "frmEntityList";
-            this.Text = "Administración de Entidades";
+            this.Text = "Administración de Sucursales";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.frmEntityList_FormClosed);
             this.Load += new System.EventHandler(this.frmEntityList_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvEntities)).EndInit();

@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmEstudioList));
             this.label1 = new System.Windows.Forms.Label();
             this.txtSearchEstudio = new System.Windows.Forms.TextBox();
             this.dgvEstudios = new System.Windows.Forms.DataGridView();
@@ -82,9 +83,11 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.txtSearchEstudio);
             this.Controls.Add(this.dgvEstudios);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "frmEstudioList";
             this.Tag = "frmEstudioList";
             this.Text = "Lista de Estudios";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.frmEstudioList_FormClosed_1);
             ((System.ComponentModel.ISupportInitialize)(this.dgvEstudios)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

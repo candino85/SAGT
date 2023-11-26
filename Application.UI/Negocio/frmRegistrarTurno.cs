@@ -292,7 +292,7 @@ namespace Application.UI.Negocio
         private void btnCrearPaciente_Click(object sender, EventArgs e)
         {
             frmClient frmClient = new frmClient(this);
-            frmMain frmMain = (frmMain)this.MdiParent;
+            //frmMain frmMain = (frmMain)this.MdiParent;
             frmClient.Show();
         }
 
@@ -319,17 +319,9 @@ namespace Application.UI.Negocio
                 {
                     //enviar correo con el turno al paciente
                     MessageBox.Show("El turno se ha registrado correctamente y se envío la información al paciente vía email", "INFO", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    //if (rbtDisponibles.Checked)
-                    //{
-                    //    btnRegistrarTurno.Enabled = false;
-                    //    btnCancelarTurno.Visible = false;
-                    //}
-                    //else if (rbtAsignados.Checked)
-                    //{
-                    //    btnCancelarTurno.Visible = true;
-                    //    btnRegistrarTurno.Visible = false;
-                    //}
+
                     rbtDisponibles_CheckedChanged(sender, new EventArgs());
+
                 }
                 else
                 {

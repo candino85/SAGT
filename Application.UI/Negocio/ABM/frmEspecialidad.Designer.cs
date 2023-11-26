@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmEspecialidad));
             this.label2 = new System.Windows.Forms.Label();
             this.txtName = new System.Windows.Forms.TextBox();
             this.btnCreate = new System.Windows.Forms.Button();
@@ -49,7 +50,7 @@
             // 
             this.txtName.Location = new System.Drawing.Point(24, 47);
             this.txtName.Name = "txtName";
-            this.txtName.Size = new System.Drawing.Size(275, 26);
+            this.txtName.Size = new System.Drawing.Size(418, 26);
             this.txtName.TabIndex = 41;
             // 
             // btnCreate
@@ -98,6 +99,7 @@
             this.Controls.Add(this.btnRemove);
             this.Controls.Add(this.btnModify);
             this.Controls.Add(this.btnCreate);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "frmEspecialidad";
             this.Tag = "frmEspecialidad";
             this.Text = "Especialidad";

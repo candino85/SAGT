@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmAgenda));
             this.cmbEstudio = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.htpLunesDesde = new System.Windows.Forms.DateTimePicker();
@@ -429,9 +430,11 @@
             this.Controls.Add(this.htpLunesDesde);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.cmbEstudio);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "frmAgenda";
             this.Tag = "frmAgenda";
             this.Text = "Creador de Agendas";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.frmAgenda_FormClosed);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.ResumeLayout(false);
