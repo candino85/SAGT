@@ -216,8 +216,10 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.cmbUsuario);
             this.Controls.Add(this.dgvCambios);
+            this.MaximizeBox = false;
             this.Name = "frmBitacoraCambios";
-            this.Text = "frmBitacoraCambios";
+            this.Tag = "frmBitacoraCambios";
+            this.Text = "Bitacora de Cambios (Turnos)";
             this.Load += new System.EventHandler(this.frmBitacoraCambios_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvCambios)).EndInit();
             this.ResumeLayout(false);

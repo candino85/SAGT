@@ -253,13 +253,16 @@ namespace Application.UI.Negocio
                 btnRegistrarTurno.Visible = true;
                 btnCancelarTurno.Visible = false;
                 btnEliminarTurno.Visible = false;
+                btnNoAsistioTurno.Visible = false;
             }
             else if (rbtAsignados.Checked)
             {
                 btnCancelarTurno.Visible = true;
                 btnCancelarTurno.Enabled = true;
                 btnEliminarTurno.Visible = true;
-                btnEliminarTurno.Enabled = true;
+                btnEliminarTurno.Enabled = true;                
+                btnNoAsistioTurno.Enabled = true;
+                btnNoAsistioTurno.Visible = true;
                 btnRegistrarTurno.Visible = false;
             }
         }
@@ -303,7 +306,7 @@ namespace Application.UI.Negocio
                 turno = new BE.Turno
                 {
                     client = (int)cmbPaciente.SelectedValue,
-                    estado = 'A',
+                    estado = 'A', // turno asignado
                     estudio = estudio_BE.Id,
                     fechaCreacion = DateTime.Now,
                     fechaTurno = calendarItemSelected.StartDate,
@@ -341,7 +344,7 @@ namespace Application.UI.Negocio
                 DialogResult dialogResult = MessageBox.Show("Esta seguro de que desea cancelar el turno?", "CANCELACIÓN DE TURNO", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                 if (dialogResult == DialogResult.Yes)
                 {
-                    turno.estado = 'C';
+                    turno.estado = 'C'; // turno cancelado
                     var ok = turno_BLL.TurnoUpdate(turno, SessionManager.GetInstance.Usuario);
 
                     if (ok)
@@ -400,6 +403,29 @@ namespace Application.UI.Negocio
             }
             else
                 MessageBox.Show("El turno seleccionado se encuentra vencido.", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+        }
+
+        private void btnNoAsistió_Click(object sender, EventArgs e)
+        {
+            if (turno.estado == 'A')
+            {
+                DialogResult dialogResult = MessageBox.Show("Esta seguro de que desea cambiar el turno a No Asistido?", "TURNO NO ASISTIDO", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+                if (dialogResult == DialogResult.Yes)
+                {
+                    turno.estado = 'N'; // turno no asistido
+                    var ok = turno_BLL.TurnoUpdate(turno, SessionManager.GetInstance.Usuario);
+
+                    if (ok)
+                        MessageBox.Show("El turno se ha establecido como NO ASISTIDO.", "INFO", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    else
+                        MessageBox.Show("Ocurrió un error al intentar establecer el turno como NO ASISTIDO.", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+
+                    rbtAsignados_CheckedChanged(sender, new EventArgs());
+                }
+            }
+            else
+                MessageBox.Show("El turno seleccionado no se encuentra asginado.", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
         }
     }
 }

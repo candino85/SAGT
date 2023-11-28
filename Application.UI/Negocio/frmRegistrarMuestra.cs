@@ -17,6 +17,7 @@ namespace Application.UI.Negocio
         BLL.Estudio estudio_BLL;
         BLL.Sucursal sucursal_BLL;
         BLL.Muestra muestra_BLL;
+        BLL.Turno turno_BLL;
 
         BE.Muestra muestra;
         BE.Turno turno;
@@ -37,6 +38,7 @@ namespace Application.UI.Negocio
             estudio_BLL = new BLL.Estudio();
             sucursal_BLL = new BLL.Sucursal();
             muestra_BLL = new BLL.Muestra();
+            turno_BLL = new BLL.Turno();
 
             paciente = client_BLL.GetClientById(tur.client);
 
@@ -67,7 +69,10 @@ namespace Application.UI.Negocio
             try
             {
                 if (cmbOperacion.SelectedItem.ToString() == "Recepción de muestra") 
-                { 
+                {
+                    turno.estado = 'Z'; // turno concluído
+                    turno_BLL.TurnoUpdate(turno, SessionManager.GetInstance.Usuario);
+
                     frmRegistrarMuestraQRPreview frmRegistrarMuestraQRPreview = new frmRegistrarMuestraQRPreview(turno);
                     frmRegistrarMuestraQRPreview.Show();
                 }

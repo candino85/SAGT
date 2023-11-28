@@ -57,6 +57,7 @@
             this.btnCancelarTurno = new System.Windows.Forms.Button();
             this.btnRegistrarTurno = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.btnNoAsistioTurno = new System.Windows.Forms.Button();
             this.btnEliminarTurno = new System.Windows.Forms.Button();
             this.btnBuscar = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
@@ -107,7 +108,7 @@
             // 
             this.lblPaciente.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.lblPaciente.AutoSize = true;
-            this.lblPaciente.Location = new System.Drawing.Point(13, 40);
+            this.lblPaciente.Location = new System.Drawing.Point(12, 18);
             this.lblPaciente.Name = "lblPaciente";
             this.lblPaciente.Size = new System.Drawing.Size(71, 20);
             this.lblPaciente.TabIndex = 7;
@@ -118,7 +119,7 @@
             // 
             this.cmbPaciente.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.cmbPaciente.FormattingEnabled = true;
-            this.cmbPaciente.Location = new System.Drawing.Point(13, 63);
+            this.cmbPaciente.Location = new System.Drawing.Point(12, 41);
             this.cmbPaciente.Name = "cmbPaciente";
             this.cmbPaciente.Size = new System.Drawing.Size(466, 28);
             this.cmbPaciente.TabIndex = 6;
@@ -127,7 +128,7 @@
             // btnCrearPaciente
             // 
             this.btnCrearPaciente.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.btnCrearPaciente.Location = new System.Drawing.Point(13, 102);
+            this.btnCrearPaciente.Location = new System.Drawing.Point(12, 80);
             this.btnCrearPaciente.Name = "btnCrearPaciente";
             this.btnCrearPaciente.Size = new System.Drawing.Size(468, 40);
             this.btnCrearPaciente.TabIndex = 8;
@@ -140,7 +141,7 @@
             // 
             this.label6.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(13, 328);
+            this.label6.Location = new System.Drawing.Point(12, 306);
             this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(44, 20);
@@ -152,7 +153,7 @@
             // 
             this.label5.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(13, 194);
+            this.label5.Location = new System.Drawing.Point(12, 172);
             this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(63, 20);
@@ -164,7 +165,7 @@
             // 
             this.label4.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(13, 259);
+            this.label4.Location = new System.Drawing.Point(12, 237);
             this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(54, 20);
@@ -176,7 +177,7 @@
             // 
             this.txtEstudio.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.txtEstudio.Enabled = false;
-            this.txtEstudio.Location = new System.Drawing.Point(13, 217);
+            this.txtEstudio.Location = new System.Drawing.Point(12, 195);
             this.txtEstudio.Name = "txtEstudio";
             this.txtEstudio.Size = new System.Drawing.Size(470, 26);
             this.txtEstudio.TabIndex = 312;
@@ -185,7 +186,7 @@
             // 
             this.txtFecha.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.txtFecha.Enabled = false;
-            this.txtFecha.Location = new System.Drawing.Point(13, 282);
+            this.txtFecha.Location = new System.Drawing.Point(12, 260);
             this.txtFecha.Name = "txtFecha";
             this.txtFecha.Size = new System.Drawing.Size(470, 26);
             this.txtFecha.TabIndex = 313;
@@ -194,7 +195,7 @@
             // 
             this.txtHora.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.txtHora.Enabled = false;
-            this.txtHora.Location = new System.Drawing.Point(13, 351);
+            this.txtHora.Location = new System.Drawing.Point(12, 329);
             this.txtHora.Name = "txtHora";
             this.txtHora.Size = new System.Drawing.Size(470, 26);
             this.txtHora.TabIndex = 314;
@@ -258,7 +259,7 @@
         calendarHighlightRange5};
             this.calendar1.Location = new System.Drawing.Point(16, 160);
             this.calendar1.Name = "calendar1";
-            this.calendar1.Size = new System.Drawing.Size(1052, 927);
+            this.calendar1.Size = new System.Drawing.Size(1052, 979);
             this.calendar1.TabIndex = 311;
             this.calendar1.Text = "calendar1";
             this.calendar1.LoadItems += new System.Windows.Forms.Calendar.Calendar.CalendarLoadEventHandler(this.calendar1_LoadItems);
@@ -347,7 +348,7 @@
             // 
             this.btnCancelarTurno.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.btnCancelarTurno.Enabled = false;
-            this.btnCancelarTurno.Location = new System.Drawing.Point(11, 429);
+            this.btnCancelarTurno.Location = new System.Drawing.Point(10, 407);
             this.btnCancelarTurno.Name = "btnCancelarTurno";
             this.btnCancelarTurno.Size = new System.Drawing.Size(468, 39);
             this.btnCancelarTurno.TabIndex = 317;
@@ -360,7 +361,7 @@
             // btnRegistrarTurno
             // 
             this.btnRegistrarTurno.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.btnRegistrarTurno.Location = new System.Drawing.Point(12, 383);
+            this.btnRegistrarTurno.Location = new System.Drawing.Point(11, 361);
             this.btnRegistrarTurno.Name = "btnRegistrarTurno";
             this.btnRegistrarTurno.Size = new System.Drawing.Size(467, 40);
             this.btnRegistrarTurno.TabIndex = 307;
@@ -373,6 +374,7 @@
             // panel1
             // 
             this.panel1.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.panel1.Controls.Add(this.btnNoAsistioTurno);
             this.panel1.Controls.Add(this.btnEliminarTurno);
             this.panel1.Controls.Add(this.btnRegistrarTurno);
             this.panel1.Controls.Add(this.btnCancelarTurno);
@@ -385,16 +387,30 @@
             this.panel1.Controls.Add(this.btnCrearPaciente);
             this.panel1.Controls.Add(this.lblPaciente);
             this.panel1.Controls.Add(this.cmbPaciente);
-            this.panel1.Location = new System.Drawing.Point(1087, 569);
+            this.panel1.Location = new System.Drawing.Point(1087, 558);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(496, 518);
+            this.panel1.Size = new System.Drawing.Size(496, 555);
             this.panel1.TabIndex = 319;
+            // 
+            // btnNoAsistioTurno
+            // 
+            this.btnNoAsistioTurno.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.btnNoAsistioTurno.Enabled = false;
+            this.btnNoAsistioTurno.Location = new System.Drawing.Point(11, 497);
+            this.btnNoAsistioTurno.Name = "btnNoAsistioTurno";
+            this.btnNoAsistioTurno.Size = new System.Drawing.Size(468, 39);
+            this.btnNoAsistioTurno.TabIndex = 319;
+            this.btnNoAsistioTurno.Tag = "turno no asistido";
+            this.btnNoAsistioTurno.Text = "Turno No Asistido";
+            this.btnNoAsistioTurno.UseVisualStyleBackColor = true;
+            this.btnNoAsistioTurno.Visible = false;
+            this.btnNoAsistioTurno.Click += new System.EventHandler(this.btnNoAsistió_Click);
             // 
             // btnEliminarTurno
             // 
             this.btnEliminarTurno.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.btnEliminarTurno.Enabled = false;
-            this.btnEliminarTurno.Location = new System.Drawing.Point(11, 474);
+            this.btnEliminarTurno.Location = new System.Drawing.Point(10, 452);
             this.btnEliminarTurno.Name = "btnEliminarTurno";
             this.btnEliminarTurno.Size = new System.Drawing.Size(468, 39);
             this.btnEliminarTurno.TabIndex = 318;
@@ -421,14 +437,14 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel2.Location = new System.Drawing.Point(1077, 12);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(513, 1075);
+            this.panel2.Size = new System.Drawing.Size(513, 1127);
             this.panel2.TabIndex = 321;
             // 
             // frmRegistrarTurno
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1595, 1099);
+            this.ClientSize = new System.Drawing.Size(1595, 1151);
             this.Controls.Add(this.btnBuscar);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.btnCrearEstudio);
@@ -482,5 +498,6 @@
         private System.Windows.Forms.Button btnEliminarTurno;
         private System.Windows.Forms.Button btnBuscar;
         private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.Button btnNoAsistioTurno;
     }
 }
